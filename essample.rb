@@ -1,11 +1,9 @@
-puts "okok"
-
 require 'mustache'
 
 
 # afconvert --file WAVE --data LEI16 /Users/clean/Downloads/take_5.m4a
 
-`aubiocut -i /Users/clean/Downloads/take_5.wav  -Lc`
+# `aubiocut -i /Users/clean/Downloads/take_5.wav  -Lc`
 
 
 giada = File.read("giada.mustache")
@@ -17,14 +15,15 @@ home_keys_array = home_keys.bytes.to_a
 
 home = "/Users/clean/Desktop/slices/"
 
-files = %w(
-piano.000.35200..wav
-piano.001.07733..wav
-piano.002.05333..wav
-piano.002.41600..wav
-piano.002.74133..wav
-piano.003.80267..wav
-)
+files = []
+
+Dir.foreach(home) do |item|
+  next if item == '.' or item == '..' 
+  next unless item.include?("wav")
+  # do work on real items
+files << item
+
+end
 
 puts files
 
