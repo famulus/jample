@@ -1,4 +1,5 @@
 require 'mustache'
+require 'fileutils'
 
 
 
@@ -13,8 +14,9 @@ hydrogen = File.read(File.join(project_root, "hydrogen.mustache"))
 Dir.foreach(raw_songs) do |raw_song|
 	next if raw_song == '.' or raw_song == '..' 
 	next unless raw_song.include?("mp3")
-	puts str = "aubiocut -i #{File.join(raw_songs, raw_song)} -c -b"
+	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c -b"
 	puts `#{str}`
+	`mv ./*.wav #{slices_folder}`
 end
 
 
