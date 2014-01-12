@@ -31,9 +31,9 @@ Dir.foreach(slices_folder) do |item|
 	files << item
 end
 
-puts files
+# puts files.shuffle!
 
-channels = files.each_with_index.map { |f,i| {file_path: File.join(slices_folder, f), channel_index:i }}
+channels = files.each_with_index.map { |f,i| {file_path: File.join(slices_folder, f), file_name:f, channel_index:i }}
 
 new_hydrogen =  Mustache.render(hydrogen, {channels: channels, channel_count: channels.size}  )
 
