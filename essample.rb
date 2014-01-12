@@ -38,4 +38,4 @@ channels = files.each_with_index.map { |f,i| {file_path: "#{f}", channel_index:i
 new_hydrogen =  Mustache.render(hydrogen, {channels: channels, channel_count: channels.size}  )
 
 
-File.write("#{slices_folder}new_hydrogen.h2song",new_hydrogen )
+File.write(File.join(project_root,'hydrogen_songs','generated.h2song'),new_hydrogen )
