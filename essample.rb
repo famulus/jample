@@ -33,7 +33,7 @@ end
 
 puts files
 
-channels = files.each_with_index.map { |f,i| {file_path: "#{f}", channel_index:i }}
+channels = files.each_with_index.map { |f,i| {file_path: File.join(slices_folder, f), channel_index:i }}
 
 new_hydrogen =  Mustache.render(hydrogen, {channels: channels, channel_count: channels.size}  )
 
