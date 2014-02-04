@@ -1,0 +1,4 @@
+#N canvas 589 140 450 300 10;
+#X msg 74 123 read /Users/clean/Documents/essample/slices/Drum2.wav
+drum;
+#X msg 74 194 read /user drum2;
