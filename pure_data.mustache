@@ -1,5 +1,13 @@
 #N canvas 589 140 450 300 10;
-{{#file_paths}}
-#X msg 186 249 read /Users/clean/Documents/essample/slices/Drum2.wav;
-{{/file_paths}}
-drum;
+{{#file_objects}}
+#X msg 186 {{ypos}} read -resize {{filepath}}
+{{file}};
+#X obj 114 {{ypos}} soundfiler;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array {{file}} 100 float 2;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 600 {{ypos}} graph;
+{{/file_objects}}
+{{#connections}}
+#X connect {{to}} 0 {{from}} 0;
+{{/connections}}

@@ -32,11 +32,21 @@ Dir.foreach(slices_folder) do |item|
 end
 
  files.shuffle!
-puts files = files[0..200]
+puts files = files[0..20]
+
+file_objects = files.each_with_index.map do |file, i|
+	{file: file, index: i, ypos: (i*200), filepath:File.join(slices_folder,file)}	
+end
+
+number_of_object_per_channel = 3
+run_once_offset = 1
+
+connections= files.each_with_index.map do |file, i|
+	{file: file, index: i, from: ((number_of_object_per_channel*i)+1), to: (number_of_object_per_channel*i)}	
+end
 
 
-
-populated_pure_data_template =  Mustache.render(pure_data_template, {file_paths: files}  )
+populated_pure_data_template =  Mustache.render(pure_data_template, {file_objects: file_objects, connections:connections}  )
 
 
 File.write(File.join(project_root,'generated.pd'),populated_pure_data_template )
