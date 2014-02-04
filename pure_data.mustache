@@ -1,4 +1,5 @@
 #N canvas 589 140 450 300 10;
+#X obj 17 9 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1;
 {{#file_objects}}
 #X msg 186 {{ypos}} read -resize {{filepath}}
 {{file}};
@@ -7,7 +8,10 @@
 #X array {{file}} 100 float 2;
 #X coords 0 1 99 -1 200 140 1;
 #X restore 600 {{ypos}} graph;
+#X obj 17 {{ypos}} bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1;
+#X obj 166 {{ypos}} tabplay~ {{file}};
 {{/file_objects}}
 {{#connections}}
 #X connect {{to}} 0 {{from}} 0;
+#X connect 0 0 {{to}} 0;
 {{/connections}}

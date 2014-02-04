@@ -38,11 +38,11 @@ file_objects = files.each_with_index.map do |file, i|
 	{file: file, index: i, ypos: (i*200), filepath:File.join(slices_folder,file)}	
 end
 
-number_of_object_per_channel = 3
+number_of_object_per_channel = 5
 run_once_offset = 1
 
 connections= files.each_with_index.map do |file, i|
-	{file: file, index: i, from: ((number_of_object_per_channel*i)+1), to: (number_of_object_per_channel*i)}	
+	{file: file, index: i, from: ((number_of_object_per_channel*i)+1+run_once_offset), to: (number_of_object_per_channel*i+run_once_offset)}	
 end
 
 
