@@ -12,6 +12,6 @@
 #X obj 166 {{ypos}} tabplay~ {{file}};
 {{/file_objects}}
 {{#connections}}
-#X connect {{to}} 0 {{from}} 0;
-#X connect 0 0 {{to}} 0;
+#X connect {{read_file}} 0 {{soundfiler}} 0;
+#X connect 0 0 {{read_file}} 0;
 {{/connections}}

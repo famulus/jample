@@ -32,7 +32,7 @@ Dir.foreach(slices_folder) do |item|
 end
 
  files.shuffle!
-puts files = files[0..20]
+puts files = files[0..48]
 
 file_objects = files.each_with_index.map do |file, i|
 	{file: file, index: i, ypos: (i*200), filepath:File.join(slices_folder,file)}	
@@ -42,7 +42,7 @@ number_of_object_per_channel = 5
 run_once_offset = 1
 
 connections= files.each_with_index.map do |file, i|
-	{file: file, index: i, from: ((number_of_object_per_channel*i)+1+run_once_offset), to: (number_of_object_per_channel*i+run_once_offset)}	
+	{file: file, index: i, soundfiler: ((number_of_object_per_channel*i)+1+run_once_offset), read_file: (number_of_object_per_channel*i+run_once_offset)}	
 end
 
 
