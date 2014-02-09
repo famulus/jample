@@ -10,15 +10,15 @@ slices_folder = File.join(project_root, 'slices')
 hydrogen = File.read(File.join(project_root, "hydrogen.mustache"))
 
 
-# FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
+FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
 
-# # For each song in raw songs
-# Dir.foreach(raw_songs) do |raw_song|
-# 	next if raw_song == '.' or raw_song == '..' 
-# 	next unless raw_song.include?("mp3")
-# 	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=10 -o #{slices_folder}"
-# 	puts `#{str}`
-# end
+# For each song in raw songs
+Dir.foreach(raw_songs) do |raw_song|
+	next if raw_song == '.' or raw_song == '..' 
+	next unless raw_song.include?("mp3")
+	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=10 -o #{slices_folder}"
+	puts `#{str}`
+end
 
 
 
