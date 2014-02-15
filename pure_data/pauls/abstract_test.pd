@@ -2,8 +2,8 @@
 #X obj 126 128 soundfiler;
 #X floatatom 126 156 15 0 0 0 - - -;
 #X obj 126 13 inlet;
-#X floatatom 124 228 5 0 0 0 - - -;
-#X obj 123 195 inlet;
+#X floatatom 222 47 5 0 0 0 - - -;
+#X obj 221 14 inlet;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array \$0-drum 146303 float 0;
 #X coords 0 1 146302 -1 200 140 1 0 0;
@@ -28,8 +28,10 @@
 #X obj 191 268 == 0;
 #X obj 29 140 t f f;
 #X obj 65 107 t f f;
+#X obj 241 230 print;
 #X connect 0 0 1 0;
 #X connect 2 0 7 0;
+#X connect 2 0 25 0;
 #X connect 3 0 18 1;
 #X connect 4 0 3 0;
 #X connect 6 0 0 0;
