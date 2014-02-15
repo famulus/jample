@@ -1,0 +1,50 @@
+#N canvas 113 40 845 645 10;
+#X obj 107 50 samplemapper example;
+#X obj 107 321 mapreader example;
+#X obj 42 455 ex-sampler;
+#X floatatom 107 297 5 1 32 0 - - -;
+#X obj 43 543 *~;
+#X obj 44 571 dac~;
+#X obj 59 519 / 100;
+#X text 366 30 Usage: [samplemapper mapname];
+#X text 370 320 Usage: [mapreader mapname];
+#X text 366 43 Where 'mapname' is the name you give to your samplemap.
+;
+#X text 106 232 RECALL [re]loads all the samples from the given samplemap.
+Note that this is *not* done automatically when the patch is loaded.
+;
+#X text 143 456 <---Example sampler client. The client recieves the
+sample number and from this determines which table to read and also
+the length of the table in samples. Look inside for details.;
+#X text 297 571 derek@umatic.nl;
+#X text 13 4 SAMPLEMAPPER : a soundfile management system for Pure
+Data by Derek Holzer;
+#X text 107 202 VIEM_MAP displays the contents of the textfile written
+by the [coll] object inside.;
+#X obj 42 431 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0 1
+;
+#X text 114 431 Toggle 1/0 to start/stop playback.;
+#X obj 59 500 nbx 5 14 0 100 0 1 empty empty GAIN 0 -6 0 10 -262144
+-1 -1 40 256;
+#X text 151 296 <---sample number can also be sent externally [by MIDI
+\, etc];
+#X text 297 552 Requires: Cyclone [by Krzysztof Czaja and others];
+#X text 371 334 Scroll the "LOAD" numberbox to select soundfiles \,
+which will be selected on a mouseup. Mapreader is attached to the sample
+client. While its output is simply the number of the sample used \,
+it is handy because it allows you to scroll through the names of the
+samples before selecting one.;
+#X text 367 69 Use the "LOAD" number box to select tables to load with
+soundfiles. While you can save and recall multiple samplemaps by giving
+different creation arguments \, only one can be used at a time. It
+will write a textfile named 'mapname'.txt once the first sample is
+loaded. One [samplemapper] can be called upon by many [mapreader] abstractions.
+;
+#X connect 1 0 2 1;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 4 0 5 1;
+#X connect 6 0 4 1;
+#X connect 15 0 2 0;
+#X connect 17 0 6 0;

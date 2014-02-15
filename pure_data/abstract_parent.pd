@@ -1,0 +1,12 @@
+#N canvas 145 522 574 314 10;
+#X msg 207 78 200;
+#X obj 98 102 abstract_test;
+#X msg 132 183 list /Users/clean/Documents/essample/slices/03_All_I_Need_0260.265374.wav
+;
+#X msg 69 22 list /Users/clean/Documents/essample/slices/03_All_I_Need_0254.861247.wav
+;
+#X obj 209 246 abstract_test;
+#X connect 0 0 1 1;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 3 0 0 0;

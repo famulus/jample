@@ -1,0 +1,4 @@
+1, /Users/clean/Documents/essample/slices/JUKKA_TOLONENThe_Hook_1974_0003.728844.wav
+;
+2, /Users/clean/Documents/essample/slices/JUKKA_TOLONENThe_Hook_1974_0003.728844.wav
+;
