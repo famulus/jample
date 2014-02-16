@@ -1,0 +1,24 @@
+#N canvas 323 180 395 347 10;
+#X obj -2135 27 textfile;
+#X obj -2135 88 print list;
+#X obj -2060 88 print done;
+#X msg -1975 -8 clear;
+#X msg -2007 -34 print;
+#X obj -2171 -145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg -2142 -28 rewind;
+#X msg -2128 -53 read /tmp/foo.txt;
+#X obj -2174 27 until;
+#X obj -2166 -84 t b b b;
+#X connect 0 0 1 0;
+#X connect 0 1 2 0;
+#X connect 0 1 8 1;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 9 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 0;
+#X connect 9 0 8 0;
+#X connect 9 1 6 0;
+#X connect 9 2 7 0;
