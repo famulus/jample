@@ -10,15 +10,15 @@ slices_folder = File.join(project_root, 'slices')
 hydrogen = File.read(File.join(project_root, "hydrogen.mustache"))
 
 
-FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
+# FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
 
-# For each song in raw songs
-Dir.foreach(raw_songs) do |raw_song|
-	next if raw_song == '.' or raw_song == '..' 
-	next unless raw_song.include?("mp3")
-	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=10 -o #{slices_folder}"
-	puts `#{str}`
-end
+# # For each song in raw songs
+# Dir.foreach(raw_songs) do |raw_song|
+# 	next if raw_song == '.' or raw_song == '..' 
+# 	next unless raw_song.include?("mp3")
+# 	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=10 -o #{slices_folder}"
+# 	puts `#{str}`
+# end
 
 
 
@@ -33,7 +33,12 @@ end
 
 # puts files.shuffle!
 
-start_at = 350
+start_at = 0
+
+pure_data_list = files[(500..1500)].map{|f| "#{File.join(slices_folder, f)}\n"}.join
+
+File.write(File.join(project_root,'pure_data','pd_list.txt'),pure_data_list )
+
 puts files = files[(start_at..(start_at+100))]
 
 channels = files.each_with_index.map { |f,i| {file_path: File.join(slices_folder, f), file_name:f, channel_index:i }}
