@@ -24,187 +24,6 @@
 #X msg 828 739 41;
 #X msg 842 779 42;
 #X msg 848 821 43;
-#X msg 1015 142 list /Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0000.000000.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0000.614535.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0000.928912.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0001.282290.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0001.639184.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0001.835782.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0001.969252.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0002.304694.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0002.661202.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0003.007120.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0003.212834.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0003.348526.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0003.679615.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0004.032676.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0004.387347.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0004.582018.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0004.717098.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0005.064830.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0005.411088.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0005.769093.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0006.164671.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0006.338685.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0006.513175.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0006.687188.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0006.870907.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0007.041565.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0007.247438.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0007.413379.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0007.592086.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0007.766689.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0007.963175.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0008.138481.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0008.312676.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0008.486939.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0008.661202.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0008.823311.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0009.021927.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0009.183492.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0009.377574.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0009.551134.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0009.723084.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0009.892222.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0010.084785.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0010.246077.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0010.411179.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0010.610181.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0010.799841.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0010.976644.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0011.152063.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0011.324966.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0011.504354.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0011.669546.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0011.854762.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0012.023968.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0012.219274.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0012.388118.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0012.567755.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0012.765125.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0012.821769.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0013.137007.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0013.486780.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0013.823878.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0014.009524.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0014.151973.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0014.508322.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0014.848912.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0015.182154.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0015.494104.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0015.837370.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0016.243197.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0016.513991.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0016.546100.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0016.634444.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0016.887256.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0017.001020.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0017.033311.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0017.209433.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0017.403447.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0017.611746.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0017.798073.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0018.053039.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0018.191451.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0018.439887.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0018.592653.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0018.981519.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.253560.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.339683.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.395329.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.601678.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.661519.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.700907.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.783243.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0019.955692.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.031769.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.188277.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.501020.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.561474.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.733356.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.764014.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.855782.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.907370.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0020.945125.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0021.139229.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0021.206417.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0021.239070.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0021.346667.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0021.542653.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0021.650272.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0021.744649.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0022.057211.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0022.134490.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0022.373832.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0022.540454.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0022.635556.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0022.908186.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0023.157438.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0023.429025.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0023.697483.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0023.951678.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0024.213719.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0024.471179.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0024.742268.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0025.011950.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0025.257937.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0025.518889.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0025.792812.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0026.050340.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0026.304830.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0026.555442.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0026.820748.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0027.082404.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0027.330771.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0027.602358.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0027.731769.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0027.860794.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0028.037778.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0028.121610.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0028.192494.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0028.370612.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0028.574921.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0028.621905.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0028.887188.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0029.144150.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0029.392698.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0029.639887.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0029.786599.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0029.896916.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0030.038957.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0030.202222.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0030.437664.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0030.688413.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0030.787914.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0030.948685.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0031.198390.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0031.340159.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0031.452109.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0031.704898.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0031.963175.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0032.238458.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0032.497914.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0032.752608.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0033.025782.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0033.140907.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0033.270431.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0033.512472.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0033.777392.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0034.035011.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0034.303356.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0034.564195.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0034.799569.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0035.041950.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0035.078209.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0035.189048.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0035.319002.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0035.586327.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0035.776893.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0035.836122.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0036.015941.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0036.072517.wav
-/Users/clean/Documents/essample/slices/DrumAndBass_Hip_Hop_Breaks_Part_7_0036.237891.wav
-;
 #X obj 671 924 abstract_test;
 #X obj 725 947 abstract_test;
 #X obj 768 986 abstract_test;
@@ -224,8 +43,17 @@
 #X obj 607 474 unpack s s s s s s s s s s s s s s s s;
 #X msg 567 549 20;
 #X obj 485 471 * 4;
+#X obj 328 311 textfile;
+#X obj 303 139 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 368 268 rewind;
+#X obj 274 260 until;
+#X obj 308 200 t b b b b b;
+#X obj 285 363 list-extend;
+#X msg 1015 142;
+#X msg 371 236 read pd_list.txt;
 #X connect 0 0 8 1;
-#X connect 1 0 42 0;
+#X connect 1 0 41 0;
 #X connect 3 0 11 0;
 #X connect 5 0 3 0;
 #X connect 5 1 2 0;
@@ -233,9 +61,9 @@
 #X connect 6 0 9 1;
 #X connect 7 0 12 1;
 #X connect 8 1 1 0;
-#X connect 11 0 25 0;
-#X connect 11 1 44 0;
-#X connect 11 3 43 0;
+#X connect 11 0 49 0;
+#X connect 11 1 43 0;
+#X connect 11 3 42 0;
 #X connect 11 3 6 0;
 #X connect 11 3 7 0;
 #X connect 11 3 20 0;
@@ -244,6 +72,7 @@
 #X connect 11 3 22 0;
 #X connect 11 3 23 0;
 #X connect 11 3 24 0;
+#X connect 11 3 33 0;
 #X connect 11 3 34 0;
 #X connect 11 3 35 0;
 #X connect 11 3 36 0;
@@ -251,14 +80,13 @@
 #X connect 11 3 38 0;
 #X connect 11 3 39 0;
 #X connect 11 3 40 0;
-#X connect 11 3 41 0;
 #X connect 19 0 13 1;
 #X connect 20 0 14 1;
 #X connect 21 0 15 1;
 #X connect 22 0 16 1;
 #X connect 23 0 17 1;
 #X connect 24 0 18 1;
-#X connect 25 0 8 0;
+#X connect 33 0 25 1;
 #X connect 34 0 26 1;
 #X connect 35 0 27 1;
 #X connect 36 0 28 1;
@@ -266,22 +94,32 @@
 #X connect 38 0 30 1;
 #X connect 39 0 31 1;
 #X connect 40 0 32 1;
-#X connect 41 0 33 1;
-#X connect 42 0 9 0;
-#X connect 42 1 12 0;
-#X connect 42 2 13 0;
-#X connect 42 3 14 0;
-#X connect 42 4 15 0;
-#X connect 42 5 16 0;
-#X connect 42 6 17 0;
-#X connect 42 7 18 0;
-#X connect 42 8 26 0;
-#X connect 42 9 27 0;
-#X connect 42 10 28 0;
-#X connect 42 11 29 0;
-#X connect 42 12 30 0;
-#X connect 42 13 31 0;
-#X connect 42 14 32 0;
-#X connect 42 15 33 0;
-#X connect 43 0 1 1;
-#X connect 44 0 0 0;
+#X connect 41 0 9 0;
+#X connect 41 1 12 0;
+#X connect 41 2 13 0;
+#X connect 41 3 14 0;
+#X connect 41 4 15 0;
+#X connect 41 5 16 0;
+#X connect 41 6 17 0;
+#X connect 41 7 18 0;
+#X connect 41 8 25 0;
+#X connect 41 9 26 0;
+#X connect 41 10 27 0;
+#X connect 41 11 28 0;
+#X connect 41 12 29 0;
+#X connect 41 13 30 0;
+#X connect 41 14 31 0;
+#X connect 41 15 32 0;
+#X connect 42 0 1 1;
+#X connect 43 0 0 0;
+#X connect 44 0 49 0;
+#X connect 44 1 47 1;
+#X connect 45 0 48 0;
+#X connect 46 0 44 0;
+#X connect 47 0 44 0;
+#X connect 48 2 47 0;
+#X connect 48 3 46 0;
+#X connect 48 4 51 0;
+#X connect 48 4 49 1;
+#X connect 49 0 8 0;
+#X connect 51 0 44 0;
