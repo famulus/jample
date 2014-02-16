@@ -35,7 +35,7 @@ end
 
 start_at = 0
 
-pure_data_list = files[(500..1500)].map{|f| "#{File.join(slices_folder, f)}\n"}.join
+pure_data_list = files.map{|f| "#{File.join(slices_folder, f)};"}.join("\n")
 
 File.write(File.join(project_root,'pure_data','pd_list.txt'),pure_data_list )
 
