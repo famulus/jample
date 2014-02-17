@@ -42,7 +42,7 @@
 #X obj -564 395 loadbang;
 #X msg -113 122 \; pd dsp 1;
 #X obj -113 73 loadbang;
-#X obj -635 373 list;
+#X obj -618 373 list;
 #X obj -291 516 jample_subsampler;
 #X obj -276 556 jample_subsampler;
 #X obj -261 597 jample_subsampler;
@@ -58,7 +58,7 @@
 #X obj -115 1022 jample_subsampler;
 #X obj -100 1061 jample_subsampler;
 #X obj -88 1103 jample_subsampler;
-#X obj -635 283 debounce_b 200;
+#X obj -618 283 debounce_b 200;
 #X msg -231 445 36;
 #X obj -306 473 jample_subsampler;
 #X msg -231 445 36;
@@ -67,6 +67,7 @@
 #X obj -306 473 jample_subsampler;
 #X obj -231 324 loadbang;
 #X text -205 811 9;
+#X text -389 119 midi control in: sample pagination;
 #X connect 0 0 8 1;
 #X connect 1 0 25 0;
 #X connect 3 0 10 0;
