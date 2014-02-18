@@ -16,7 +16,9 @@ sustain mode vs mute mode
 	mute modes:
 	1) full play mute mode (current behaviour). Only stop upon other notes on
 	2) Stop sample on assigned note off and other notes on
-	3) 
+	3) Stop sample on assigned note off, ignore other notes
+
+	4) Loop sample 
 make a pagination setting that fills the entire slider
 pagination zoom: dont lose your place when you switch to a higher rez pagination
 split midi zones
