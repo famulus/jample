@@ -5,7 +5,7 @@
 #X floatatom -385 168 0 0 0 0 - - -;
 #X floatatom -309 167 0 0 0 0 - - -;
 #X obj -385 141 ctlin;
-#X msg -203 445 36;
+#X msg -202 447 36;
 #X msg -187 489 37;
 #X obj -581 553 zl slice;
 #X obj -301 473 jample_subsampler;
@@ -59,11 +59,8 @@
 #X obj -95 1061 jample_subsampler;
 #X obj -83 1103 jample_subsampler;
 #X obj -618 283 debounce_b 200;
-#X msg -203 445 36;
 #X obj -301 473 jample_subsampler;
-#X msg -203 445 36;
 #X obj -301 473 jample_subsampler;
-#X msg -203 445 36;
 #X obj -301 473 jample_subsampler;
 #X text -200 811 9;
 #X text -389 119 midi control in: sample pagination;
@@ -148,6 +145,3 @@
 #X connect 42 0 8 0;
 #X connect 58 0 42 0;
 #X connect 58 0 6 0;
-#X connect 59 0 60 1;
-#X connect 61 0 62 1;
-#X connect 63 0 64 1;
