@@ -3,7 +3,7 @@
 #X floatatom 126 177 15 0 0 0 - - -;
 #X obj 126 34 inlet;
 #X floatatom 222 68 5 0 0 0 - - -;
-#X obj 221 35 inlet;
+#X obj 222 35 inlet;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array \$0-drum 139482 float 0;
 #X coords 0 1 139481 -1 200 140 1 0 0;
@@ -11,28 +11,27 @@
 #X msg 126 116 read -resize \$1 \$2-drum;
 #X obj 126 76 pack s \$0;
 #X floatatom 58 67 0 0 0 0 - - -;
-#X obj 28 35 notein;
+#X obj 22 35 notein;
 #X floatatom 22 67 0 0 0 0 - - -;
 #X floatatom 94 67 0 0 0 0 - - -;
-#X obj 96 406 hip~ 5;
-#X obj 96 459 dac~;
-#X obj 22 318 spigot;
-#X obj 96 373 tabplay~ \$0-drum;
-#X obj 49 196 ==;
-#X obj 22 411 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 76 356 hip~ 5;
+#X obj 76 409 dac~;
+#X obj 22 268 spigot;
+#X obj 76 323 tabplay~ \$0-drum;
+#X obj 55 146 ==;
+#X obj 22 301 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 182 318 stop;
-#X obj 22 226 stripnote;
-#X obj 22 154 t f f;
-#X obj 182 264 !=;
-#X obj 182 342 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 162 268 stop;
+#X obj 22 176 stripnote;
+#X obj 22 104 t f f;
+#X obj 162 214 !=;
+#X obj 162 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X floatatom 76 275 5 0 0 0 - - -;
-#X obj 182 292 sel 1;
+#X obj 162 242 sel 1;
 #X text 270 199;
 #X text 184 17;
 #X text 196 15 assigned note;
-#X text 28 15 midi in;
+#X text 22 15 midi in;
 #X text 109 15 sample path;
 #X connect 0 0 1 0;
 #X connect 2 0 7 0;
@@ -56,8 +55,7 @@
 #X connect 18 0 22 0;
 #X connect 19 0 14 0;
 #X connect 19 0 21 0;
-#X connect 19 0 23 0;
 #X connect 20 0 19 0;
 #X connect 20 1 16 0;
-#X connect 21 0 24 0;
-#X connect 24 0 18 0;
+#X connect 21 0 23 0;
+#X connect 23 0 18 0;
