@@ -1,6 +1,6 @@
 #N canvas 492 271 634 518 10;
-#X obj 126 149 soundfiler;
-#X floatatom 126 177 15 0 0 0 - - -;
+#X obj 126 145 soundfiler;
+#X floatatom 126 176 15 0 0 0 - - -;
 #X obj 126 34 inlet;
 #X floatatom 222 68 5 0 0 0 - - -;
 #X obj 222 35 inlet;
@@ -8,8 +8,8 @@
 #X array \$0-drum 139482 float 0;
 #X coords 0 1 139481 -1 200 140 1 0 0;
 #X restore 308 33 graph;
-#X msg 126 116 read -resize \$1 \$2-drum;
-#X obj 126 76 pack s \$0;
+#X msg 126 104 read -resize \$1 \$2-drum;
+#X obj 126 68 pack s \$0;
 #X floatatom 58 67 0 0 0 0 - - -;
 #X obj 22 35 notein;
 #X floatatom 22 67 0 0 0 0 - - -;
@@ -28,7 +28,7 @@
 #X obj 162 292 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 162 242 sel 1;
-#X text 270 199;
+#X text 185 169;
 #X text 184 17;
 #X text 196 15 assigned note;
 #X text 22 15 midi in;
