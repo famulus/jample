@@ -31,6 +31,12 @@
 #X text 293 13 assigned note;
 #X text 201 15 midi in;
 #X text 17 13 sample path;
+#X floatatom 24 253 5 0 0 0 - respect_note_off -;
+#X floatatom 25 313 5 0 0 0 - monosample -;
+#X floatatom 25 367 5 0 0 0 - loop_enable -;
+#X text 23 234 respect note off;
+#X text 23 294 mono sample;
+#X text 22 349 loop enable;
 #X connect 0 0 1 0;
 #X connect 2 0 7 0;
 #X connect 3 0 16 1;
