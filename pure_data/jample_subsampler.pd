@@ -31,7 +31,6 @@
 #X text 293 13 assigned note;
 #X text 201 15 midi in;
 #X text 17 13 sample path;
-#X text 281 15;
 #X connect 0 0 1 0;
 #X connect 2 0 7 0;
 #X connect 3 0 16 1;
