@@ -1,0 +1,4 @@
+#N canvas 710 208 450 300 10;
+#X msg 165 70 list tmp/pd_list.txt;
+#X obj 167 130 file_loader;
+#X connect 0 0 1 0;

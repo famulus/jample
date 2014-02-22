@@ -1,12 +1,12 @@
-#N canvas 769 274 634 518 10;
+#N canvas 718 70 643 669 10;
 #X obj 6 138 soundfiler;
 #X floatatom 6 169 15 0 0 0 - - -;
 #X obj 6 32 inlet;
 #X floatatom 302 66 5 0 0 0 - - -;
 #X obj 302 33 inlet;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drum 133060 float 0;
-#X coords 0 1 133059 -1 200 140 1 0 0;
+#X array \$0-drum 43050 float 0;
+#X coords 0 1 43049 -1 200 140 1 0 0;
 #X restore 374 33 graph;
 #X msg 6 102 read -resize \$1 \$2-drum;
 #X obj 6 66 pack s \$0;
