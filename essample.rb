@@ -11,26 +11,45 @@ puts "About to process #{raw_songs}"
 
 # FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
 
+def sanitize_filename(filename)
+	filename.gsub(" ","_").gsub('(','').gsub(')','').gsub("\'", '')
+end
+
 
 # Run aubiocut on each song in raw songs
 song_index = []
 Dir.mkdir(metadata_folder) rescue nil
+
+songs_already_sliced = Dir.foreach(slices_folder).to_a
+songs_in_raw_songs = Dir.foreach(raw_songs).to_a
+songs_in_raw_songs_no_ext = songs_in_raw_songs.map{|s| File.basename(sanitize_filename(s), ".*") }
+
+new_and_old_songs =  (songs_already_sliced | songs_in_raw_songs_no_ext)
+
 Dir.foreach(raw_songs) do |raw_song|
 	next if raw_song == '.' or raw_song == '..' 
 	next unless raw_song.include?("mp3") or raw_song.include?("m4a") or raw_song.include?("wav")
-	underscore_file = raw_song.gsub(" ","_").gsub('(','').gsub(')','')
+	underscore_file = sanitize_filename(raw_song)
 	underscore_file_no_ext = File.basename(underscore_file, ".*")
 	current_song_dir = (File.join(slices_folder,underscore_file_no_ext ))
 	Dir.mkdir(current_song_dir) rescue nil
-	puts aubiocut_command = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=15 -o #{current_song_dir}"
-	puts `#{aubiocut_command}`
-	# convert spaces to underscore in slice filenames
-	Dir.glob(File.join(current_song_dir,"*")).each do |original_file|
-		next if original_file == '.' or original_file == '..' or original_file == '.DS_Store' 
-		underscore_slice_file = original_file.gsub(" ","_").gsub('(','').gsub(')','')
-		FileUtils.mv(original_file,underscore_slice_file) rescue nil
+	if !songs_already_sliced.include?(underscore_file_no_ext)
+		puts aubiocut_command = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=15 -o #{current_song_dir}"
+		puts `#{aubiocut_command}`
+		# convert spaces to underscore in slice filenames
+		Dir.glob(File.join(current_song_dir,"*")).each do |original_file|
+			next if original_file == '.' or original_file == '..' or original_file == '.DS_Store' 
+			underscore_slice_file = sanitize_filename(original_file)
+			FileUtils.mv(original_file,underscore_slice_file) rescue nil
+		end
 	end
 
+end
+
+new_and_old_songs.each do |current_song|
+	next if current_song == '.' or current_song == '..' or current_song == '.DS_Store' 
+
+	current_song_dir = File.join(slices_folder, current_song)
 
 	# load slice filenames into array
 	files = []
@@ -43,9 +62,8 @@ Dir.foreach(raw_songs) do |raw_song|
 
 	# puts files.shuffle!
 	pure_data_list = files.map{|f| "#{File.join(current_song_dir, f)};"}.join("\n")
-	meta_filename = (File.join(metadata_folder, "#{underscore_file_no_ext}.txt"))
+	meta_filename = (File.join(metadata_folder, "#{current_song}.txt"))
 	song_index << meta_filename
-	puts "OKOK"
 	puts meta_filename
 	File.write(meta_filename,pure_data_list)
 end
