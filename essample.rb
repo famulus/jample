@@ -14,7 +14,7 @@ FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
 Dir.foreach(raw_songs) do |raw_song|
 	next if raw_song == '.' or raw_song == '..' 
 	next unless raw_song.include?("mp3") or raw_song.include?("m4a")
-	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=7 -o #{slices_folder}"
+	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=15 -o #{slices_folder}"
 	puts `#{str}`
 end
 
