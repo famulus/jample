@@ -12,11 +12,13 @@ puts "About to process #{raw_songs}"
 # FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
 
 # Run aubiocut on each song in raw songs
+song_index = []
 Dir.foreach(raw_songs) do |raw_song|
 	next if raw_song == '.' or raw_song == '..' 
 	next unless raw_song.include?("mp3") or raw_song.include?("m4a")
 	underscore_file = raw_song.gsub(" ","_").gsub('(','').gsub(')','')
-	current_song_dir = (File.join(slices_folder, File.basename(underscore_file, ".*")))
+	underscore_file_no_ext = File.basename(underscore_file, ".*")
+	current_song_dir = (File.join(slices_folder,underscore_file_no_ext ))
 	Dir.mkdir(current_song_dir) rescue nil
 	puts str = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=15 -o #{current_song_dir}"
 	puts `#{str}`
@@ -38,9 +40,16 @@ Dir.foreach(raw_songs) do |raw_song|
 	end
 
 	# puts files.shuffle!
-	pure_data_list = files.map{|f| "#{File.join(slices_folder, f)};"}.join("\n")
-	File.write(File.join("#{underscore_file}.txt"),pure_data_list )
+	pure_data_list = files.map{|f| "#{File.join(current_song_dir, f)};"}.join("\n")
+	meta_filename = (File.join(metadata_folder, "#{underscore_file_no_ext}.txt"))
+	song_index << meta_filename
+	puts "OKOK"
+	puts meta_filename
+	File.write(meta_filename,pure_data_list)
 end
+song_index_contents = song_index.map{|si| "#{si};"}.join("\n")
+File.write(File.join(metadata_folder,"song_index.txt"),song_index_contents )
+
 
 
 
