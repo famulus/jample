@@ -13,6 +13,7 @@ puts "About to process #{raw_songs}"
 
 # Run aubiocut on each song in raw songs
 song_index = []
+Dir.mkdir(metadata_folder)
 Dir.foreach(raw_songs) do |raw_song|
 	next if raw_song == '.' or raw_song == '..' 
 	next unless raw_song.include?("mp3") or raw_song.include?("m4a")
@@ -25,8 +26,8 @@ Dir.foreach(raw_songs) do |raw_song|
 	# convert spaces to underscore in slice filenames
 	Dir.glob(File.join(current_song_dir,"*")).each do |original_file|
 		next if original_file == '.' or original_file == '..' or original_file == '.DS_Store' 
-		underscore_file = original_file.gsub(" ","_").gsub('(','').gsub(')','')
-		FileUtils.mv(original_file,underscore_file) rescue nil
+		underscore_slice_file = original_file.gsub(" ","_").gsub('(','').gsub(')','')
+		FileUtils.mv(original_file,underscore_slice_file) rescue nil
 	end
 
 

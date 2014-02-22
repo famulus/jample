@@ -63,7 +63,17 @@
 #X obj -301 473 jample_subsampler;
 #X obj -301 473 jample_subsampler;
 #X obj -579 148 file_loader;
-#X msg -578 90 list tmp/pd_list.txt;
+#X obj -180 215 file_loader;
+#X msg -176 178 list tmp/metadata/song_index.txt;
+#X obj -181 279 zl nth;
+#X floatatom -126 250 5 0 0 0 - - -;
+#X obj -63 304 print;
+#X obj -43 201 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -180 255 list;
+#X obj -218 231 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj -180 323 pack s;
 #X connect 0 0 8 1;
 #X connect 1 0 25 0;
 #X connect 3 0 10 0;
@@ -129,7 +139,15 @@
 #X connect 31 0 27 0;
 #X connect 33 0 32 0;
 #X connect 34 0 6 0;
-#X connect 34 0 61 0;
+#X connect 34 0 60 0;
 #X connect 41 0 34 1;
 #X connect 60 0 8 0;
-#X connect 61 0 60 0;
+#X connect 61 0 67 1;
+#X connect 62 0 61 0;
+#X connect 63 0 65 0;
+#X connect 63 0 69 0;
+#X connect 64 0 63 1;
+#X connect 66 0 64 0;
+#X connect 67 0 63 0;
+#X connect 68 0 67 0;
+#X connect 69 0 60 0;
