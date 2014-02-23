@@ -12,7 +12,7 @@ puts "About to process #{raw_songs}"
 # FileUtils.rm Dir.glob(File.join(slices_folder,"*"))
 
 def sanitize_filename(filename)
-	filename.gsub(" ","_").gsub('(','').gsub(')','').gsub("\'", '')
+	filename.gsub(" ","_").gsub('(','').gsub(')','').gsub("\'", '').gsub('&','')
 end
 
 
