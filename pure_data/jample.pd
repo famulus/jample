@@ -86,7 +86,6 @@
 #X obj -301 473 jample_subsampler;
 #X obj -301 473 jample_subsampler;
 #X obj -301 473 jample_subsampler;
-#X obj 47 343 print;
 #X connect 0 0 7 1;
 #X connect 0 0 51 1;
 #X connect 1 0 24 0;
@@ -187,6 +186,4 @@
 #X connect 62 0 53 0;
 #X connect 63 0 52 0;
 #X connect 64 0 40 0;
-#X connect 64 0 84 0;
 #X connect 65 0 41 0;
-#X connect 65 0 84 0;
