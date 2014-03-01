@@ -2,6 +2,7 @@ raw_songs/*
 slices/*
 pure_data/tmp
 audacity/
+finished_songs/
 hydrogen_songs/
 reject_songs/
 song_storage/
