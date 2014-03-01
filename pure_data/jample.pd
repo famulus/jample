@@ -30,24 +30,24 @@
 #X obj -113 73 loadbang;
 #X text -200 811 9;
 #X text -389 119 midi control in: sample pagination;
-#X obj 41 82 tgl 15 1 respect_note_off empty respect_note_off 17 7
+#X obj 141 82 tgl 15 1 respect_note_off empty respect_note_off 17 7
 0 10 -262144 -1 -1 0 127;
-#X obj 42 152 tgl 15 1 monosample empty mono_sample 17 7 0 10 -262144
+#X obj 142 152 tgl 15 1 monosample empty mono_sample 17 7 0 10 -262144
 -1 -1 0 127;
-#X obj 44 220 tgl 15 1 loop_enable empty loop_enable 17 7 0 10 -262144
--1 -1 127 127;
+#X obj 144 220 tgl 15 1 loop_enable empty loop_enable 17 7 0 10 -262144
+-1 -1 0 127;
 #X obj -579 148 file_loader;
 #X obj -159 215 file_loader;
 #X msg -159 178 list tmp/metadata/song_index.txt;
 #X obj -181 289 zl nth;
 #X obj -180 265 list;
 #X obj -181 315 pack s;
-#X msg -77 216 -1;
-#X msg -42 216 1;
-#X floatatom -50 298 5 0 0 0 - - -;
-#X obj -77 240 +;
-#X obj -43 240 f;
-#X obj -77 264 t b f;
+#X msg -67 247 -1;
+#X msg -32 247 1;
+#X floatatom -40 329 5 0 0 0 - - -;
+#X obj -67 271 +;
+#X obj -24 297 f;
+#X obj -67 295 t b f;
 #X obj -557 327 list length;
 #X obj -557 383 / 127;
 #X obj -557 410 int;
@@ -56,18 +56,18 @@
 #X obj -479 426 +;
 #X msg -479 402 -4;
 #X msg -444 402 4;
-#X obj -479 452 t b f;
+#X obj -479 481 t b f;
 #X obj -516 292 debounce_b 100;
 #X obj -142 141 t b b b b;
 #X msg -257 203 4;
 #X obj -385 141 ctlin 1;
-#X obj 41 57 ctlin 85;
-#X obj 41 117 ctlin 86;
-#X obj 46 192 ctlin 87;
+#X obj 141 57 ctlin 85;
+#X obj 142 125 ctlin 86;
+#X obj 144 192 ctlin 87;
 #X obj -396 384 ctlin 115;
 #X obj -438 347 ctlin 114;
-#X obj 24 276 ctlin 116;
-#X obj 23 252 ctlin 117;
+#X obj 34 307 ctlin 116;
+#X obj 33 283 ctlin 117;
 #X obj -286 516 jample_subsampler;
 #X obj -271 556 jample_subsampler;
 #X obj -256 597 jample_subsampler;
@@ -86,6 +86,8 @@
 #X obj -301 473 jample_subsampler;
 #X obj -301 473 jample_subsampler;
 #X obj -301 473 jample_subsampler;
+#X obj -22 275 max 1;
+#X obj -479 454 max 0;
 #X connect 0 0 7 1;
 #X connect 0 0 51 1;
 #X connect 1 0 24 0;
@@ -154,8 +156,8 @@
 #X connect 39 0 34 0;
 #X connect 40 0 43 0;
 #X connect 41 0 43 0;
-#X connect 43 0 44 0;
 #X connect 43 0 45 0;
+#X connect 43 0 84 0;
 #X connect 44 0 43 1;
 #X connect 45 0 38 0;
 #X connect 45 1 37 1;
@@ -165,7 +167,7 @@
 #X connect 48 0 49 0;
 #X connect 49 0 26 1;
 #X connect 50 0 47 0;
-#X connect 51 0 54 0;
+#X connect 51 0 85 0;
 #X connect 52 0 51 0;
 #X connect 53 0 51 0;
 #X connect 54 0 7 0;
@@ -187,3 +189,5 @@
 #X connect 63 0 52 0;
 #X connect 64 0 40 0;
 #X connect 65 0 41 0;
+#X connect 84 0 44 0;
+#X connect 85 0 54 0;
