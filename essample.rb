@@ -34,7 +34,7 @@ Dir.foreach(raw_songs) do |raw_song|
 	current_song_dir = (File.join(slices_folder,underscore_file_no_ext ))
 	Dir.mkdir(current_song_dir) rescue nil
 	if !songs_already_sliced.include?(underscore_file_no_ext)
-		puts aubiocut_command = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=15 -o #{current_song_dir}"
+		puts aubiocut_command = "aubiocut -i \"#{File.join(raw_songs, raw_song)}\" -c  --cut-until-nslices=10 -o #{current_song_dir}"
 		puts `#{aubiocut_command}`
 		# convert spaces to underscore in slice filenames
 		Dir.glob(File.join(current_song_dir,"*")).each do |original_file|
