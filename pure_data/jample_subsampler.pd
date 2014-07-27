@@ -4,8 +4,8 @@
 #X floatatom 521 166 5 0 0 0 - - -;
 #X obj 521 133 inlet;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumL 80905 float 0;
-#X coords 0 1 80904 -1 200 140 1 0 0;
+#X array \$0-drumL 264226 float 0;
+#X coords 0 1 264225 -1 200 140 1 0 0;
 #X restore 749 137 graph;
 #X obj 6 156 pack s \$0;
 #X floatatom 443 167 0 0 0 0 - - -;
@@ -26,8 +26,8 @@
 #X obj 698 393 == 0;
 #X obj 506 319 &;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumR 80905 float 0;
-#X coords 0 1 80904 -1 200 140 1;
+#X array \$0-drumR 264226 float 0;
+#X coords 0 1 264225 -1 200 140 1;
 #X restore 750 300 graph;
 #X msg 6 180 read -resize \$1 \$2-drumL \$2-drumR;
 #X floatatom 271 708 5 0 0 0 - - -;
@@ -57,7 +57,7 @@
 #X obj 226 467 t f b;
 #X obj 11 374 *;
 #X obj 752 448 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 17612 1;
+-1 -1 10883 1;
 #X text 223 384 start;
 #X text 170 383 stop;
 #X obj 226 423 / 127;
@@ -89,7 +89,7 @@
 #X obj 271 751 spigot 0;
 #X obj 411 626 unsig~ 20;
 #X obj 757 489 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 17612 1;
+-1 -1 10883 1;
 #X obj 416 667 unsig~ 20;
 #X obj 500 635 threshold~ 0.999 1 0.01 10;
 #X obj 538 581 ctlin 87;
@@ -135,6 +135,11 @@
 #X msg 250 98 2;
 #X msg 363 97 1;
 #X floatatom 621 251 5 0 0 0 - - -;
+#X obj 727 626 note_to_bang;
+#X obj 727 577 loadbang;
+#X msg 773 603 1;
+#X msg 727 602 81;
+#X text 728 556 mute all;
 #X connect 0 0 27 0;
 #X connect 0 0 56 1;
 #X connect 0 0 60 0;
@@ -273,3 +278,8 @@
 #X connect 119 0 117 0;
 #X connect 121 0 114 1;
 #X connect 122 0 117 1;
+#X connect 124 0 35 0;
+#X connect 125 0 127 0;
+#X connect 125 0 126 0;
+#X connect 126 0 124 1;
+#X connect 127 0 124 0;
