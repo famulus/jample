@@ -46,6 +46,8 @@ Dir.foreach(raw_songs) do |raw_song|
 
 end
 
+all_slices_list = []
+
 new_and_old_songs.each do |current_song|
 	next if current_song == '.' or current_song == '..' or current_song == '.DS_Store' 
 
@@ -61,12 +63,22 @@ new_and_old_songs.each do |current_song|
 	end
 
 	# puts files.shuffle!
-	pure_data_list = files.map{|f| "#{File.join(current_song_dir, f)};"}.join("\n")
+	files_paths =files.map{|f| "#{File.join(current_song_dir, f)};"}
+	pure_data_list = files_paths.join("\n")
+	all_slices_list += files_paths 
 	meta_filename = (File.join(metadata_folder, "#{current_song}.txt"))
 	song_index << meta_filename
 	puts meta_filename
 	File.write(meta_filename,pure_data_list)
 end
+
+# shuffle all slides
+shuffle_list = all_slices_list.shuffle
+shuffle_list = shuffle_list[0..1000]
+shuffle_file = File.join(metadata_folder, "shuffle.txt")
+File.write(shuffle_file,shuffle_list.join("\n"))
+
+song_index.unshift(shuffle_file) # add shuffle file to beginning
 song_index_contents = song_index.map{|si| "#{si};"}.join("\n")
 File.write(File.join(metadata_folder,"song_index.txt"),song_index_contents )
 
