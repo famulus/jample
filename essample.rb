@@ -28,7 +28,7 @@ new_and_old_songs =  (songs_already_sliced | songs_in_raw_songs_no_ext)
 
 Dir.foreach(raw_songs) do |raw_song|
 	next if raw_song == '.' or raw_song == '..' 
-	next unless raw_song.include?("mp3") or raw_song.include?("m4a") or raw_song.include?("wav")
+	next unless raw_song.include?("mp3") or raw_song.include?("m4a") or raw_song.include?("wav") # filter to songs with file formats we can use
 	underscore_file = sanitize_filename(raw_song)
 	underscore_file_no_ext = File.basename(underscore_file, ".*")
 	current_song_dir = (File.join(slices_folder,underscore_file_no_ext ))
@@ -72,9 +72,19 @@ new_and_old_songs.each do |current_song|
 	File.write(meta_filename,pure_data_list)
 end
 
-# shuffle all slides
-shuffle_list = all_slices_list.shuffle
-shuffle_list = shuffle_list[0..1000]
+## shuffle all slices
+# shuffle_list = all_slices_list.shuffle
+# shuffle_list = shuffle_list[0..1000]
+# shuffle_file = File.join(metadata_folder, "shuffle.txt")
+# File.write(shuffle_file,shuffle_list.join("\n"))
+
+## order all slices by filesize, as an experiment
+# puts all_slices_list.inspect
+
+
+shuffle_list = all_slices_list.sort_by{|li|  File.size(li.gsub(';','')).to_i}
+puts shuffle_list.map{|li|  File.size(li.gsub(';',''))}
+shuffle_list = shuffle_list[0..10000]
 shuffle_file = File.join(metadata_folder, "shuffle.txt")
 File.write(shuffle_file,shuffle_list.join("\n"))
 
