@@ -3,6 +3,7 @@ class Track
 
 
   field :path_and_file, type: String
+  field :file_contents_hash, type: String
 
   def self.import_tracks
   	track_list_string = `mdfind -name \.mp3`
@@ -13,7 +14,9 @@ class Track
 
   	tracks_array.each do |track_path|
   		puts track_path
-  		Track.find_or_create_by(path_and_file: track_path)
+  		track = Track.find_or_create_by(path_and_file: track_path)
+  		track.file_contents_hash = Digest::MD5.file(track_path).hexdigest
+  		track.save
   		
   	end
 
