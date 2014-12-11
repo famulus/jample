@@ -5,6 +5,8 @@ class Track
   field :path_and_file, type: String
   field :file_contents_hash, type: String
   field :onset_times, type: Array
+  field :onset_count, type: Integer
+
 
   def self.import_tracks
   	track_list_string = `mdfind -name \.mp3`
@@ -22,12 +24,20 @@ class Track
   		track.detect_onset
   		
   	end
-
-  	def detect_onset
-		puts aubiocut_command = "aubiocut -i \"#{self.path_and_file}\" -c  --cut-until-nslices=10 -o #{current_song_dir}"
-
-  	end
-
-  	
   end
+
+  def detect_onset
+    if onset_times.blank?
+     aubiocut_command = "aubiocut -i \"#{self.path_and_file}\""
+
+     puts onsets = `#{aubiocut_command}`
+
+     self.onset_times = onsets.split("\n")
+     self.onset_count = onset_times.size
+     self.save
+
+    end
+  end
+
+
 end
