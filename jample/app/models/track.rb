@@ -14,8 +14,9 @@ class Track
 
   	tracks_array.each do |track_path|
   		puts track_path
-  		track = Track.find_or_create_by(path_and_file: track_path)
-  		track.file_contents_hash = Digest::MD5.file(track_path).hexdigest
+  		file_contents_hash = Digest::MD5.file(track_path).hexdigest
+  		track = Track.find_or_create_by(file_contents_hash: file_contents_hash)
+  		track.path_and_file = track_path
   		track.save
   		
   	end
