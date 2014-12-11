@@ -22,7 +22,7 @@ class Track
   		track.path_and_file = track_path
   		track.save
   		track.detect_onset
-      track.cut_nth_slice(1)
+      track.cut_nth_slice(1) rescue nil
   	end
   end
 
@@ -62,9 +62,11 @@ class Track
 
   def cut_nth_slice(n)
     throw "The given slice is out of range at #{n}" if (n > self.onset_count.size)
+    throw "no slices" if self.onset_count < 3
     puts start_stop = get_nth_slice(n)
     patch_directory = "/Users/clean/Documents/essample/pure_data/tmp/patch"
-    puts mp3split_command = "mp3splt -d #{patch_directory} \"#{self.path_and_file}\" #{convert_time_format(start_stop.first)} #{convert_time_format(start_stop.last)}"
+    pad = 0
+    puts mp3split_command = "mp3splt -d #{patch_directory} -o pad_#{pad} \"#{self.path_and_file}\" #{convert_time_format(start_stop.first)} #{convert_time_format(start_stop.last)}"
     
   end
 
