@@ -11,3 +11,8 @@ end
 task :order_by_slice_length => :environment do
 	Track.order_by_slice_length
 end
+
+task :midi_test => :environment do
+	Track.midi_test
+end
+
