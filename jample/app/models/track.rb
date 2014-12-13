@@ -40,7 +40,7 @@ class Track
   field :onset_count, type: Integer
 
 
-    PATCH_DIRECTORY = "/Users/clean/Documents/essample/pure_data/tmp/patch"
+  PATCH_DIRECTORY = "/Users/clean/Documents/essample/pure_data/tmp/patch"
 
   def self.import_tracks
   	track_list_string = `mdfind -name \.mp3`
@@ -87,7 +87,7 @@ class Track
 
     all_slices = []
 
-    Track.all[0..10].each do |track| 
+    Track.all.each do |track| 
       next if track.onset_times.blank?
       track.onset_times.each_with_index do |onset,index| 
         next unless track.onset_times[index+1] # don't go out of range
@@ -107,8 +107,11 @@ class Track
 
     FileUtils.rm_rf Dir.glob("#{PATCH_DIRECTORY}/*")
     ordered = all_slices.sort_by{|slice| slice[:duration_in_milliseconds]}
+    puts "ORDERED SIZE: #{ordered.size}"
     
-    ordered[2000...2016].each_with_index do |slice_hash,index|
+
+    pad1 = 40700
+    ordered[pad1...(pad1+16)].each_with_index do |slice_hash,index|
       puts slice_hash.inspect
       track = slice_hash[:track]
       track.cut_track_by_index(slice_hash[:slice_start_index], 8, index)
@@ -133,12 +136,14 @@ class Track
 
   def cut_slice(start, stop, pad)
     pad_name = "pad_#{pad}"
-      puts "-------------------------SPLIT-------------------------------\n\n\n"
-     puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.path_and_file}\" #{convert_time_format(start)} #{convert_time_format(stop)}"
-    `#{mp3split_command}`
-      puts "-------------------------TO WAV-------------------------------\n\n\n"
-     puts convert_format_command = "ffmpeg -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
-    `#{convert_format_command}`
+    # Thread.new do 
+        puts "-------------------------SPLIT-------------------------------\n\n\n"
+       puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.path_and_file}\" #{convert_time_format(start)} #{convert_time_format(stop)}"
+      `#{mp3split_command}`
+        puts "-------------------------TO WAV-------------------------------\n\n\n"
+       puts convert_format_command = "ffmpeg -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
+      `#{convert_format_command}`
+    # end
   end
 
 
