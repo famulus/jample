@@ -64,12 +64,12 @@ class Track
   	end
   end
 
-  def self.cut_16_patches
+  def self.cut_16_patches(start_index)
     FileUtils.rm_rf Dir.glob("#{PATCH_DIRECTORY}/*")
     track = Track.gt(onset_count: 10).to_a[22]
     puts "OKOK"
     puts track.inspect
-    start = 20
+    start = start_index || 1
     16.times do |iteration|
       puts track.onset_times
       track.cut_slice(track.onset_times[(start + iteration)],track.onset_times[(start + iteration + 8 )], iteration )
@@ -148,5 +148,40 @@ class Track
 
 
 
+def self.midi_test
+
+  input = UniMIDI::Input.first
+  output = UniMIDI::Output.all.each{|o| o.open}
+
+  cursor = 0
+  input.open do |input|
+    $stdout.puts "send some MIDI to your input now..."
+    loop do
+      m = input.gets
+      $stdout.puts(m)
+
+      if m.first[:data] == [144, 97, 127]
+        puts "LEFT"
+        cursor = cursor - 16
+        self.cut_16_patches(cursor)
+        output.open do |output|
+          output.puts(144, 82, 127) # note on message
+        end
+
+
+
+
+      end
+
+      if m.first[:data] == [144, 96, 127]
+        puts "RIGHT"
+        cursor = cursor + 16
+        self.cut_16_patches(cursor)
+      end
+    end
+  end
+
+  
+end
 
 end
