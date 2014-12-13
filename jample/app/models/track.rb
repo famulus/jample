@@ -7,6 +7,23 @@ module TimeHelpers
     result = (second*10000)+millisecond
     return result
   end
+
+  def convert_time_format(thousandths)
+    raise "thousandths required" if thousandths.blank?
+    puts "CONVERT_TIME_FORMAT"
+    puts thousandths
+    
+    sec = thousandths.split(".").first.to_i
+    thousandths = thousandths.split(".").last
+
+    min = (sec/60).floor
+    sec = sec % 60
+
+    result = "#{min}.#{sec}.#{thousandths[0...2]}"
+    puts result
+    return result
+  end
+
 end
 
 
@@ -112,18 +129,6 @@ class Track
     end
   end
 
-  def convert_time_format(thousandths)
-    raise "thousandths required" if thousandths.blank?
-    
-    sec = thousandths.split(".").first.to_i
-    thousandths = thousandths.split(".").last
-
-    min = (sec/50).floor
-    sec = sec % 60
-
-    return "#{min}.#{sec}.#{thousandths[0...2]}"
-
-  end
 
 
   def cut_slice(start, stop, pad)
