@@ -1,3 +1,18 @@
+module TimeHelpers
+  def sec_dot_milli_to_milli(sec_dot_milli)
+    raise "Bad second dot millisecond format for #{sec_dot_milli}"  unless /^\d+\.\d+$/.match(sec_dot_milli)
+    second = sec_dot_milli.split('.').first.to_i
+    millisecond = sec_dot_milli.split('.').last.to_i
+
+    result = (second*10000)+millisecond
+    return result
+  end
+end
+
+
+include TimeHelpers
+
+
 class Track
   include Mongoid::Document
 
@@ -45,9 +60,9 @@ class Track
 
   end
 
-  def onset_times_padded
-      self.onset_times.unshift("0.0000")
 
+  def cut_track_by_index(start_index, number_of_slices, pad)
+      self.cut_slice(self.onset_times[(start_index)],self.onset_times[(start_index+number_of_slices)], pad )
   end
 
 
@@ -57,12 +72,30 @@ class Track
 
     Track.all[0..10].each do |track| 
       next if track.onset_times.blank?
-      track.onset_times.each_with_index{|onset,index| all_slices << {track: track, slice_start: onset, slice_end: track.onset_times[index] }  } 
+      track.onset_times.each_with_index do |onset,index| 
+        next unless track.onset_times[index+1] # don't go out of range
+        slice = track.onset_times[index+1]
+        duration_in_milliseconds = (sec_dot_milli_to_milli(slice) - sec_dot_milli_to_milli(onset))
+        # puts duration_in_milliseconds
+        # puts "end: #{slice}, converted: #{sec_dot_milli_to_milli(slice)}"
+        # puts "start: #{onset}, converted: #{sec_dot_milli_to_milli(onset)}"
+
+        all_slices << {
+          track: track,
+          slice_start_index: index,
+          duration_in_milliseconds: duration_in_milliseconds
+        }  
+      end
     end
 
-
+    FileUtils.rm_rf Dir.glob("#{PATCH_DIRECTORY}/*")
+    ordered = all_slices.sort_by{|slice| slice[:duration_in_milliseconds]}
     
-    puts all_slices.inspect
+    ordered[2000...2016].each_with_index do |slice_hash,index|
+      puts slice_hash.inspect
+      track = slice_hash[:track]
+      track.cut_track_by_index(slice_hash[:slice_start_index], 8, index)
+    end
   end
 
 
@@ -70,7 +103,7 @@ class Track
     if onset_times.blank?
      aubiocut_command = "aubiocut -i \"#{self.path_and_file}\""
 
-     onsets = `#{aubiocut_command}`
+     puts onsets = `#{aubiocut_command}`
 
      self.onset_times = onsets.split("\n")
      self.onset_count = onset_times.size
@@ -79,16 +112,16 @@ class Track
     end
   end
 
-  def convert_time_format(hundredths)
-    throw "hundredths required" if hundredths.blank?
+  def convert_time_format(thousandths)
+    raise "thousandths required" if thousandths.blank?
     
-    sec = hundredths.split(".").first.to_i
-    hundredths = hundredths.split(".").last
+    sec = thousandths.split(".").first.to_i
+    thousandths = thousandths.split(".").last
 
     min = (sec/50).floor
     sec = sec % 60
 
-    return "#{min}.#{sec}.#{hundredths[0...2]}"
+    return "#{min}.#{sec}.#{thousandths[0...2]}"
 
   end
 
