@@ -28,6 +28,21 @@ class Track
   	end
   end
 
+  def self.cut_16_patches
+    track = Track.first
+    16.times do |iteration|
+      # puts track.onset_times_padded
+      start = 20
+      track.cut_slice(track.onset_times_padded[(start + iteration)],track.onset_times_padded[(start + iteration + 8 )], iteration )
+    end
+
+  end
+
+  def onset_times_padded
+      self.onset_times.unshift("0.0000")
+
+  end
+
   def detect_onset
     if onset_times.blank?
      aubiocut_command = "aubiocut -i \"#{self.path_and_file}\""
@@ -56,17 +71,17 @@ class Track
 
   def get_nth_slice(n)
     throw "The given slice is out of range at #{n}" if (n > self.onset_count.size)
-     onset_times_padded = self.onset_times.unshift("0.0000")
      # puts onset_times_padded[n+1]
      start_stop =  [onset_times_padded[n], onset_times_padded[(n+1)]]
      return start_stop
   end
 
   def cut_slice(start, stop, pad)
-    throw "The given slice is out of range at #{n}" if (n > self.onset_count.size)
-    throw "no slices" if self.onset_count < 3
-    puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o pad_#{pad} \"#{self.path_and_file}\" #{convert_time_format(start)} #{convert_time_format(stop)}"
-    # ffmpeg -i input.mp3 -ar 8000 -ac 1 output.wav
+    pad_name = "pad_#{pad}"
+    puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.path_and_file}\" #{convert_time_format(start)} #{convert_time_format(stop)}"
+    `#{mp3split_command}`
+    puts convert_format_command = "ffmpeg -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
+    `#{convert_format_command}`
   end
 
 
