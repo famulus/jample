@@ -16,6 +16,10 @@ class Track
   	# puts track_list
   	tracks_array = track_list_string.split("\n")
   	puts tracks_array.size
+    missing_files = Track.nin(path_and_file: tracks_array)
+    missing_files.each  do |missing_file|
+      missing_file.destroy
+    end
 
   	tracks_array.each do |track_path|
   		 track_path
@@ -29,11 +33,14 @@ class Track
   end
 
   def self.cut_16_patches
-    track = Track.first
+    FileUtils.rm_rf Dir.glob("#{PATCH_DIRECTORY}/*")
+    track = Track.gt(onset_count: 10).to_a[22]
+    puts "OKOK"
+    puts track.inspect
+    start = 20
     16.times do |iteration|
-      # puts track.onset_times_padded
-      start = 20
-      track.cut_slice(track.onset_times_padded[(start + iteration)],track.onset_times_padded[(start + iteration + 8 )], iteration )
+      puts track.onset_times
+      track.cut_slice(track.onset_times[(start + iteration)],track.onset_times[(start + iteration + 8 )], iteration )
     end
 
   end
@@ -42,6 +49,22 @@ class Track
       self.onset_times.unshift("0.0000")
 
   end
+
+
+  def self.order_by_slice_length
+
+    all_slices = []
+
+    Track.all[0..10].each do |track| 
+      next if track.onset_times.blank?
+      track.onset_times.each_with_index{|onset,index| all_slices << {track: track, slice_start: onset, slice_end: track.onset_times[index] }  } 
+    end
+
+
+    
+    puts all_slices.inspect
+  end
+
 
   def detect_onset
     if onset_times.blank?
@@ -69,18 +92,14 @@ class Track
 
   end
 
-  def get_nth_slice(n)
-    throw "The given slice is out of range at #{n}" if (n > self.onset_count.size)
-     # puts onset_times_padded[n+1]
-     start_stop =  [onset_times_padded[n], onset_times_padded[(n+1)]]
-     return start_stop
-  end
 
   def cut_slice(start, stop, pad)
     pad_name = "pad_#{pad}"
-    puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.path_and_file}\" #{convert_time_format(start)} #{convert_time_format(stop)}"
+      puts "-------------------------SPLIT-------------------------------\n\n\n"
+     puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.path_and_file}\" #{convert_time_format(start)} #{convert_time_format(stop)}"
     `#{mp3split_command}`
-    puts convert_format_command = "ffmpeg -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
+      puts "-------------------------TO WAV-------------------------------\n\n\n"
+     puts convert_format_command = "ffmpeg -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
     `#{convert_format_command}`
   end
 
