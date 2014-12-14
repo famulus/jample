@@ -151,7 +151,7 @@ class Track
 def self.midi_test
 
   input = UniMIDI::Input.first
-  output = UniMIDI::Output.all.each{|o| o.open}
+  output = UniMIDI::Output.open(:first)
 
   cursor = 0
   input.open do |input|
