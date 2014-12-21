@@ -1,32 +1,3 @@
-module TimeHelpers
-  def sec_dot_milli_to_milli(sec_dot_milli)
-    raise "Bad second dot millisecond format for #{sec_dot_milli}"  unless /^\d+\.\d+$/.match(sec_dot_milli)
-    second = sec_dot_milli.split('.').first.to_i
-    millisecond = sec_dot_milli.split('.').last.to_i
-
-    result = (second*10000)+millisecond
-    return result
-  end
-
-  def convert_time_format(thousandths)
-    raise "thousandths required" if thousandths.blank?
-    puts "CONVERT_TIME_FORMAT"
-    puts thousandths
-    
-    sec = thousandths.split(".").first.to_i
-    thousandths = thousandths.split(".").last
-
-    min = (sec/60).floor
-    sec = sec % 60
-
-    result = "#{min}.#{sec}.#{thousandths[0...2]}"
-    puts result
-    return result
-  end
-
-end
-
-
 include TimeHelpers
 
 
@@ -39,6 +10,7 @@ class Track
   field :onset_times, type: Array
   field :onset_count, type: Integer
 
+  has_many :samples
 
   PATCH_DIRECTORY = "/Users/clean/Documents/essample/pure_data/tmp/patch"
 
@@ -110,7 +82,7 @@ class Track
     puts "ORDERED SIZE: #{ordered.size}"
     
 
-    pad1 = 40700
+    pad1 = (10..(all_slices.size-20)).to_a.sample
     ordered[pad1...(pad1+16)].each_with_index do |slice_hash,index|
       puts slice_hash.inspect
       track = slice_hash[:track]
