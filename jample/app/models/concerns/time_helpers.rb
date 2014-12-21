@@ -9,6 +9,7 @@ module TimeHelpers
   end
 
   def convert_time_format(thousandths)
+    # convert from thousandths to min.sec.thousands
     raise "thousandths required" if thousandths.blank?
     puts "CONVERT_TIME_FORMAT"
     puts thousandths

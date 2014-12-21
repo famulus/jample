@@ -12,7 +12,6 @@ class Track
 
   has_many :samples
 
-  PATCH_DIRECTORY = "/Users/clean/Documents/essample/pure_data/tmp/patch"
 
   def self.import_tracks
   	track_list_string = `mdfind -name \.mp3`
@@ -36,58 +35,23 @@ class Track
   	end
   end
 
-  def self.cut_16_patches(start_index)
-    FileUtils.rm_rf Dir.glob("#{PATCH_DIRECTORY}/*")
-    track = Track.gt(onset_count: 10).to_a[22]
-    puts "OKOK"
-    puts track.inspect
-    start = start_index || 1
-    16.times do |iteration|
-      puts track.onset_times
-      track.cut_slice(track.onset_times[(start + iteration)],track.onset_times[(start + iteration + 8 )], iteration )
-    end
+  def slice_track_at_every_onset_fixed_length(length_in_slice_count)
+    puts number_of_slices
+    number_of_slices.times do |index|
+      padded_stop_index = [(index + length_in_slice_count),number_of_slices].min # don't go out of bounds
+      sample = Sample.create(
+        start_onset_index: index, 
+        stop_onset_index: padded_stop_index 
+      )
+      self.samples << sample
 
+    end
+    self.save
   end
 
-
-  def cut_track_by_index(start_index, number_of_slices, pad)
-      self.cut_slice(self.onset_times[(start_index)],self.onset_times[(start_index+number_of_slices)], pad )
-  end
-
-
-  def self.order_by_slice_length
-
-    all_slices = []
-
-    Track.all.each do |track| 
-      next if track.onset_times.blank?
-      track.onset_times.each_with_index do |onset,index| 
-        next unless track.onset_times[index+1] # don't go out of range
-        slice = track.onset_times[index+1]
-        duration_in_milliseconds = (sec_dot_milli_to_milli(slice) - sec_dot_milli_to_milli(onset))
-        # puts duration_in_milliseconds
-        # puts "end: #{slice}, converted: #{sec_dot_milli_to_milli(slice)}"
-        # puts "start: #{onset}, converted: #{sec_dot_milli_to_milli(onset)}"
-
-        all_slices << {
-          track: track,
-          slice_start_index: index,
-          duration_in_milliseconds: duration_in_milliseconds
-        }  
-      end
-    end
-
-    FileUtils.rm_rf Dir.glob("#{PATCH_DIRECTORY}/*")
-    ordered = all_slices.sort_by{|slice| slice[:duration_in_milliseconds]}
-    puts "ORDERED SIZE: #{ordered.size}"
+  def number_of_slices
+    self.onset_count
     
-
-    pad1 = (10..(all_slices.size-20)).to_a.sample
-    ordered[pad1...(pad1+16)].each_with_index do |slice_hash,index|
-      puts slice_hash.inspect
-      track = slice_hash[:track]
-      track.cut_track_by_index(slice_hash[:slice_start_index], 8, index)
-    end
   end
 
 
@@ -105,18 +69,6 @@ class Track
   end
 
 
-
-  def cut_slice(start, stop, pad)
-    pad_name = "pad_#{pad}"
-    # Thread.new do 
-        puts "-------------------------SPLIT-------------------------------\n\n\n"
-       puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.path_and_file}\" #{convert_time_format(start)} #{convert_time_format(stop)}"
-      `#{mp3split_command}`
-        puts "-------------------------TO WAV-------------------------------\n\n\n"
-       puts convert_format_command = "ffmpeg -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
-      `#{convert_format_command}`
-    # end
-  end
 
 
 
