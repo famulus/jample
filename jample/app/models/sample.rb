@@ -4,6 +4,7 @@ include Settings
 
 class Sample
   include Mongoid::Document
+  paginates_per 16
 
 
   field :track_id, type: String

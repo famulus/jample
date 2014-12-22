@@ -37,6 +37,7 @@ class Track
 
   def slice_track_at_every_onset_fixed_length(length_in_slice_count)
     puts number_of_slices
+    return if number_of_slices.blank?
     number_of_slices.times do |index|
       padded_stop_index = [(index + length_in_slice_count),number_of_slices].min # don't go out of bounds
       sample = Sample.create(
@@ -77,7 +78,7 @@ def self.midi_test
   input = UniMIDI::Input.first
   output = UniMIDI::Output.open(:first)
 
-  cursor = 0
+  @cursor = 0
   input.open do |input|
     $stdout.puts "send some MIDI to your input now..."
     loop do
@@ -86,11 +87,13 @@ def self.midi_test
 
       if m.first[:data] == [144, 97, 127]
         puts "LEFT"
-        cursor = cursor - 16
-        self.cut_16_patches(cursor)
-        output.open do |output|
-          output.puts(144, 82, 127) # note on message
+        @cursor = @cursor - 1
+        Sample.page(@cursor).each_with_index do |sample,index|
+          sample.cut_sample(index)
         end
+        # output.open do |output|
+        #   output.puts(144, 82, 127) # note on message
+        # end
 
 
 
@@ -99,9 +102,20 @@ def self.midi_test
 
       if m.first[:data] == [144, 96, 127]
         puts "RIGHT"
-        cursor = cursor + 16
-        self.cut_16_patches(cursor)
+        @cursor = @cursor + 1
+        Sample.page(@cursor).each_with_index do |sample,index|
+          sample.cut_sample(index)
+        end
       end
+
+      if m.first[:data] == [144, 95, 127]
+        puts "DOWN"
+        @cursor = random_page = (0.. (Sample.count/16).to_i).to_a.sample
+        Sample.page(random_page).each_with_index do |sample,index|
+          sample.cut_sample(index)
+        end
+      end
+
     end
   end
 
