@@ -14,7 +14,8 @@ class Track
 
 
   def self.import_tracks
-  	track_list_string = `mdfind -name \.mp3`
+    # track_list_string = `mdfind -name \.mp3`
+  	track_list_string = `find ~/  -name *.mp3`
   	puts "OKOK"
   	# puts track_list
   	tracks_array = track_list_string.split("\n")
@@ -81,6 +82,12 @@ def self.midi_test
   @cursor = 0
   input.open do |input|
     $stdout.puts "send some MIDI to your input now..."
+
+    # ids = Track.where(path_and_file: /raw_songs/i ).pluck(:id)
+    ids = Track.all.pluck(:id)
+    working_set = Sample.in(:track_id => ids)
+    puts working_set.inspect
+
     loop do
       m = input.gets
       $stdout.puts(m)
@@ -88,7 +95,8 @@ def self.midi_test
       if m.first[:data] == [144, 97, 127]
         puts "LEFT"
         @cursor = @cursor - 1
-        Sample.page(@cursor).each_with_index do |sample,index|
+
+        working_set.page(@cursor).each_with_index do |sample,index|
           sample.cut_sample(index)
         end
         # output.open do |output|
@@ -103,15 +111,15 @@ def self.midi_test
       if m.first[:data] == [144, 96, 127]
         puts "RIGHT"
         @cursor = @cursor + 1
-        Sample.page(@cursor).each_with_index do |sample,index|
+        working_set.page(@cursor).each_with_index do |sample,index|
           sample.cut_sample(index)
         end
       end
 
       if m.first[:data] == [144, 95, 127]
         puts "DOWN"
-        @cursor = random_page = (0.. (Sample.count/16).to_i).to_a.sample
-        Sample.page(random_page).each_with_index do |sample,index|
+        @cursor = random_page = (0.. (working_set.count/16).to_i).to_a.sample
+        working_set.page(random_page).each_with_index do |sample,index|
           sample.cut_sample(index)
         end
       end
