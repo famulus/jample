@@ -23,9 +23,13 @@ class Patch
   		patch = Patch.create({patch_index: index})
   		patch.randomize_patch
   		patch.save
-  		
+
   	end
   	
+  end
+
+  def self.grab(patch_index)
+  	return Patch.where(patch_index: (patch_index - 1)).first
   end
 
   def randomize_patch
@@ -35,6 +39,7 @@ class Patch
   	usable_onset_times = track_onset_array.split(track_onset_array.size - duration_in_slices).first
   	self.start_onset_index = usable_onset_times.shuffle.first
   	self.stop_onset_index = self.start_onset_index + duration_in_slices
+  	self.save
 		self.cut_sample(self.patch_index)
   	
   end
@@ -65,14 +70,15 @@ class Patch
   end
  
   def shrink_patch_by_one_on_the_end
-  		self.save
   		self.stop_onset_index -= 1
+  		self.save
   		self.cut_sample(self.patch_index)
   end
 
   def shift_sample_forward_one_slice
   		self.start_onset_index += 1
   		self.stop_onset_index += 1
+  		self.save
   		self.cut_sample(self.patch_index)
   		
 	end	
@@ -80,11 +86,21 @@ class Patch
   def shift_sample_backward_one_slice
   		self.start_onset_index -= 1
   		self.stop_onset_index -= 1
+  		self.save
   		self.cut_sample(self.patch_index)
 	end	
 
 
+	def copy_patch(desired_patch)
+		desired_patch_object = Patch.where(patch_index: (desired_patch -1) ).first
+		self.track = desired_patch_object.track
+		self.start_onset_index = desired_patch_object.start_onset_index
+		self.start_onset_index = desired_patch_object.start_onset_index
+		self.stop_onset_index = desired_patch_object.stop_onset_index
+		self.save
+		self.cut_sample(self.patch_index)
 
+	end
 
   def cut_sample(pad)
     return nil unless valid_sample?
