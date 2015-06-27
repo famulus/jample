@@ -9,25 +9,16 @@
     field :patch_index, type: Integer
     field :track_id, type: String
     field :patch_set_id, type: String
-    
+
     field :start_onset_index, type: Integer
     field :stop_onset_index, type: Integer
 
     belongs_to :track
     belongs_to :patch_set
 
-    index({ track_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: true, drop_dups: true })
+    index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: true, drop_dups: true })
 
 
-    def self.init_16_patches
-    	Patch.delete_all
-    	(0..15).each do |index|
-    		patch = Patch.create({patch_index: index})
-    		patch.randomize_patch
-    		patch.save
-    	end
-    	
-    end
 
     def self.grab(patch_index)
     	return Patch.where(patch_index: (patch_index - 1)).first
