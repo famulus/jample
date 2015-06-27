@@ -30,24 +30,24 @@
     	track_onset_array = self.track.onset_times
     	usable_onset_times = track_onset_array.split(track_onset_array.size - duration_in_slices).first
     	self.start_onset_index = usable_onset_times.shuffle.first
-    	self.stop_onset_index = self.start_onset_index + duration_in_slices
+    	self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (self.track.onset_times.size - 1)].min
     	self.save
   		self.cut_sample(self.patch_index)
     	
     end
 
     def start_onset_time
-      return nil unless valid_sample?
+      self.valid_sample?
       start_onset_time = self.track.onset_times[self.start_onset_index]
     end
 
     def stop_onset_time
-      return nil unless valid_sample?
+      self.valid_sample?
       stop_onset_time = self.track.onset_times[self.stop_onset_index]
     end
 
     def duration
-      return nil if start_onset_time.blank? || stop_onset_time.blank?
+      valid_sample?
       duration = sec_dot_milli_to_milli(stop_onset_time) - sec_dot_milli_to_milli(start_onset_time) 
       return duration
     end
@@ -95,7 +95,7 @@
   	end
 
     def cut_sample(pad)
-      return nil unless valid_sample?
+      valid_sample?
       
       pad_name = "pad_#{pad}"
       # Thread.new do 
@@ -113,7 +113,14 @@
 
 
     def valid_sample?
-       return nil unless self.start_onset_index.present? && self.track.present? && self.track.onset_times.present?
+      puts "OKOK #{self.to_a}"
+       raise "invalid patch: #{self.to_s}, missing start_onset_index" unless self.start_onset_index.present? 
+       raise "invalid patch: #{self.to_s}, missing track" unless self.track.present? 
+       raise "invalid patch: #{self.to_s}, missing track.onset_times" unless self.track.onset_times.present?
+       raise "invalid patch: #{self.to_s}, missing start_onset_index" unless self.start_onset_index.present?
+       raise "invalid patch: #{self.to_s}, missing stop_onset_index" unless self.stop_onset_index.present?
+
+
        return true
     end
 

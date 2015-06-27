@@ -23,7 +23,6 @@ class PatchSet
 
   def become_current_patch
   	@@current_patch = self.id
-  	self.patches.each{|p| p.cut_sample(p.patch_index)}
   	
   end
 
