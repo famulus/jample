@@ -108,6 +108,10 @@
         `#{convert_format_command}`
       # end
 
+       s = TCPSocket.new 'localhost', 4040
+       s.puts "okok:#{pad};"
+       s.close
+
     end
 
 
