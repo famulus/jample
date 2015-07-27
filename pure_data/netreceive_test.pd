@@ -1,0 +1,22 @@
+#N canvas 114 359 777 323 10;
+#X declare -lib moocow;
+#X floatatom 247 125 5 0 0 0 - - -;
+#X obj 121 69 netreceive 4040;
+#X obj 117 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 124 255 print "ok ";
+#X obj 178 204 print;
+#X obj 205 123 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 420 123 netsend;
+#X floatatom 431 180 5 0 0 0 - - -;
+#X msg 411 33 connect localhost 4141;
+#X msg 485 68 send heyo;
+#X obj 551 186 httpget;
+#X connect 1 0 4 0;
+#X connect 1 0 5 0;
+#X connect 1 1 0 0;
+#X connect 2 0 3 0;
+#X connect 6 0 7 0;
+#X connect 8 0 6 0;
+#X connect 9 0 6 0;
