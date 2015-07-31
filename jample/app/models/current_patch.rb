@@ -30,4 +30,8 @@ class CurrentPatch
     return p
   end
 
+  def self.randomize
+    self.get_current_patch.randomize_patch
+  end
+
 end
