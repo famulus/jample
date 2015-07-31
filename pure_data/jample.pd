@@ -101,6 +101,13 @@
 #X obj -201 473 jample_subsampler;
 #X obj -201 473 jample_subsampler;
 #X msg 116 1080 51;
+#X floatatom 659 488 5 0 0 0 - - -;
+#X obj 529 592 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 590 567 print;
+#X obj 617 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 533 432 netreceive 4040;
 #X connect 0 0 18 0;
 #X connect 0 1 70 0;
 #X connect 0 2 71 0;
@@ -212,3 +219,8 @@
 #X connect 68 0 24 0;
 #X connect 69 0 19 0;
 #X connect 88 0 84 1;
+#X connect 93 0 91 0;
+#X connect 93 0 92 0;
+#X connect 93 0 90 0;
+#X connect 93 0 38 0;
+#X connect 93 1 89 0;

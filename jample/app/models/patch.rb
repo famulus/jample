@@ -84,6 +84,7 @@
   	end	
 
 
+
   	def copy_patch(desired_patch)
   		desired_patch_object = Patch.where(patch_index: (desired_patch -1) ).first
   		self.track = desired_patch_object.track
@@ -109,7 +110,7 @@
       # end
 
        s = TCPSocket.new 'localhost', 4040
-       s.puts "okok:#{pad};"
+       s.puts "#{pad};"
        s.close
 
     end

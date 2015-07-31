@@ -31,5 +31,9 @@ class PatchSet
   	
   end
 
+  def p(patch_number)
+    return self.patches[(patch_number-1)]
+    
+  end
 
 end
