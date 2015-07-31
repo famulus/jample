@@ -1,0 +1,2 @@
+module JampleHelper
+end
