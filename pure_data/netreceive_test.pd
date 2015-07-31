@@ -1,5 +1,6 @@
 #N canvas 114 359 777 323 10;
-#X declare -lib moocow;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
 #X floatatom 247 125 5 0 0 0 - - -;
 #X obj 121 69 netreceive 4040;
 #X obj 117 229 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -12,7 +13,11 @@
 #X floatatom 431 180 5 0 0 0 - - -;
 #X msg 411 33 connect localhost 4141;
 #X msg 485 68 send heyo;
-#X obj 551 186 httpget;
+#X obj 545 224 print;
+#X obj 612 231 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 551 186 http_get;
+#X msg 569 116 get http://localhost/;
 #X connect 1 0 4 0;
 #X connect 1 0 5 0;
 #X connect 1 1 0 0;
@@ -20,3 +25,6 @@
 #X connect 6 0 7 0;
 #X connect 8 0 6 0;
 #X connect 9 0 6 0;
+#X connect 12 0 10 0;
+#X connect 12 2 11 0;
+#X connect 13 0 12 0;
