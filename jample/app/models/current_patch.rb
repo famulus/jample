@@ -5,6 +5,8 @@ class CurrentPatch
 
   field :patch_index, type: Integer
   field :patch_set_id, type: String
+  field :subset_search_string, type: String
+
 
 
   def self.init

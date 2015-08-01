@@ -25,7 +25,9 @@
     end
 
     def randomize_patch
-    	self.track = Track.all.shuffle.first
+      subset_search_string = CurrentPatch.last.subset_search_string
+      subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i)
+      self.track = subset_of_tracks.shuffle.first
     	duration_in_slices = 10
     	track_onset_array = self.track.onset_times
     	usable_onset_times = track_onset_array.split(track_onset_array.size - duration_in_slices).first
