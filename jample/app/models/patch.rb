@@ -20,9 +20,6 @@
 
 
 
-    def self.grab(patch_index)
-    	return Patch.where(patch_index: (patch_index - 1)).first
-    end
 
     def randomize_patch
       subset_search_string = CurrentPatch.last.subset_search_string
