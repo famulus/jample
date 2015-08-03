@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   get 'set_current_patch/:id' => 'jample#set_current_patch'
+  get 'randomize_current_patch' => 'jample#randomize_current_patch'
+  get 'set_filter/:filter_text' => 'jample#set_filter'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

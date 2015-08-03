@@ -1,4 +1,44 @@
 #N canvas 0 22 1436 803 10;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
 #X obj -201 374 unpack s s s s s s s s s s s s s s s s;
 #X msg 40 184 \; pd dsp 1;
 #X obj 40 151 loadbang;
@@ -11,8 +51,8 @@
 #X text -100 811 9;
 #X text -216 471 1;
 #X text -36 1105 16;
-#X obj 42 114 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 722 194 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
 #X floatatom 453 77 0 0 0 0 - - -;
 #X floatatom 417 77 0 0 0 0 - - -;
 #X floatatom 489 77 0 0 0 0 - - -;
@@ -26,21 +66,18 @@
 #X obj 150 82 note_to_toggle;
 #X obj 245 142 loadbang;
 #X obj 175 208 note_to_toggle;
-#X obj 305 245 loadbang;
-#X obj 235 311 note_to_toggle;
+#X obj 306 245 loadbang;
+#X obj 236 311 note_to_toggle;
 #X msg 54 446 1;
 #X msg 64 598 1;
 #X msg 102 749 1;
 #X msg 116 892 1;
 #X msg 243 55 1;
 #X msg 268 181 2;
-#X msg 328 284 3;
-#X msg 105 50 1;
-#X obj 36 72 note_to_bang;
-#X msg 36 49 82;
+#X msg 329 284 3;
+#X obj 716 152 note_to_bang;
 #X obj 417 44 notein;
-#X obj 81 7 notein;
-#X msg 130 185;
+#X obj 761 87 notein;
 #X msg -351 -87 list /Users/clean/Documents/essample/pure_data/tmp/patch/pad_0.wav
 /Users/clean/Documents/essample/pure_data/tmp/patch/pad_1.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_2.wav
 /Users/clean/Documents/essample/pure_data/tmp/patch/pad_3.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_4.wav
@@ -79,9 +116,20 @@
 #X msg 101 1040 50;
 #X msg 197 54 100;
 #X msg 222 180 100;
-#X msg 282 283 100;
+#X msg 283 283 100;
 #X obj 320 26 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
+#X msg 116 1080 51;
+#X floatatom 659 488 5 0 0 0 - - -;
+#X obj 529 592 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 590 567 print;
+#X obj 617 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 533 432 netreceive 4040;
+#X obj 284 483 note_to_bang;
+#X msg 716 129 28;
+#X msg 785 130 25;
 #X obj -186 516 jample_subsampler;
 #X obj -171 556 jample_subsampler;
 #X obj -156 597 jample_subsampler;
@@ -100,127 +148,123 @@
 #X obj -201 473 jample_subsampler;
 #X obj -201 473 jample_subsampler;
 #X obj -201 473 jample_subsampler;
-#X msg 116 1080 51;
-#X floatatom 659 488 5 0 0 0 - - -;
-#X obj 529 592 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 590 567 print;
-#X obj 617 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 533 432 netreceive 4040;
+#X obj 706 321 http_get;
+#X text 766 231 Set Current Patch in Rails;
+#X msg 724 251 get http://localhost/randomize_current_patch/;
 #X connect 0 0 18 0;
-#X connect 0 1 70 0;
-#X connect 0 2 71 0;
-#X connect 0 3 72 0;
-#X connect 0 4 73 0;
-#X connect 0 5 74 0;
-#X connect 0 6 75 0;
-#X connect 0 7 76 0;
-#X connect 0 8 77 0;
-#X connect 0 9 78 0;
-#X connect 0 10 79 0;
-#X connect 0 11 80 0;
-#X connect 0 12 81 0;
-#X connect 0 13 82 0;
-#X connect 0 14 83 0;
-#X connect 0 15 84 0;
+#X connect 0 1 76 0;
+#X connect 0 2 77 0;
+#X connect 0 3 78 0;
+#X connect 0 4 79 0;
+#X connect 0 5 80 0;
+#X connect 0 6 81 0;
+#X connect 0 7 82 0;
+#X connect 0 8 83 0;
+#X connect 0 9 84 0;
+#X connect 0 10 85 0;
+#X connect 0 11 86 0;
+#X connect 0 12 87 0;
+#X connect 0 13 88 0;
+#X connect 0 14 89 0;
+#X connect 0 15 90 0;
 #X connect 2 0 1 0;
-#X connect 2 0 38 0;
-#X connect 2 0 51 0;
+#X connect 2 0 35 0;
+#X connect 2 0 48 0;
 #X connect 2 0 25 0;
-#X connect 9 0 2 0;
+#X connect 9 0 96 0;
 #X connect 14 0 15 0;
 #X connect 14 1 16 0;
 #X connect 14 2 17 0;
-#X connect 19 0 66 0;
+#X connect 19 0 63 0;
 #X connect 19 0 29 0;
 #X connect 20 0 3 0;
-#X connect 21 0 67 0;
+#X connect 21 0 64 0;
 #X connect 21 0 30 0;
 #X connect 22 0 4 0;
-#X connect 23 0 68 0;
+#X connect 23 0 65 0;
 #X connect 23 0 31 0;
 #X connect 24 0 5 0;
-#X connect 25 0 39 0;
+#X connect 25 0 36 0;
 #X connect 25 0 18 2;
-#X connect 26 0 42 0;
-#X connect 26 0 73 2;
-#X connect 27 0 45 0;
-#X connect 27 0 77 2;
-#X connect 28 0 48 0;
-#X connect 28 0 81 2;
+#X connect 26 0 39 0;
+#X connect 26 0 79 2;
+#X connect 27 0 42 0;
+#X connect 27 0 83 2;
+#X connect 28 0 45 0;
+#X connect 28 0 87 2;
 #X connect 29 0 20 1;
 #X connect 30 0 22 1;
 #X connect 31 0 24 1;
-#X connect 32 0 33 1;
-#X connect 33 0 9 0;
-#X connect 34 0 33 0;
-#X connect 35 0 11 0;
-#X connect 35 1 10 0;
-#X connect 35 2 12 0;
-#X connect 36 0 34 0;
-#X connect 36 2 32 0;
-#X connect 38 0 0 0;
+#X connect 32 0 9 0;
+#X connect 33 0 11 0;
+#X connect 33 1 10 0;
+#X connect 33 2 12 0;
+#X connect 34 0 74 0;
+#X connect 34 2 75 0;
+#X connect 35 0 0 0;
+#X connect 36 0 37 0;
+#X connect 36 0 76 2;
+#X connect 37 0 38 0;
+#X connect 37 0 77 2;
+#X connect 38 0 26 0;
+#X connect 38 0 78 2;
 #X connect 39 0 40 0;
-#X connect 39 0 70 2;
+#X connect 39 0 80 2;
 #X connect 40 0 41 0;
-#X connect 40 0 71 2;
-#X connect 41 0 26 0;
-#X connect 41 0 72 2;
+#X connect 40 0 81 2;
+#X connect 41 0 27 0;
+#X connect 41 0 82 2;
 #X connect 42 0 43 0;
-#X connect 42 0 74 2;
+#X connect 42 0 84 2;
 #X connect 43 0 44 0;
-#X connect 43 0 75 2;
-#X connect 44 0 27 0;
-#X connect 44 0 76 2;
+#X connect 43 0 85 2;
+#X connect 44 0 28 0;
+#X connect 44 0 86 2;
 #X connect 45 0 46 0;
-#X connect 45 0 78 2;
+#X connect 45 0 88 2;
 #X connect 46 0 47 0;
-#X connect 46 0 79 2;
-#X connect 47 0 28 0;
-#X connect 47 0 80 2;
+#X connect 46 0 89 2;
+#X connect 47 0 90 2;
 #X connect 48 0 49 0;
-#X connect 48 0 82 2;
+#X connect 48 0 18 1;
 #X connect 49 0 50 0;
-#X connect 49 0 83 2;
-#X connect 50 0 84 2;
+#X connect 49 0 76 1;
+#X connect 50 0 51 0;
+#X connect 50 0 77 1;
 #X connect 51 0 52 0;
-#X connect 51 0 18 1;
+#X connect 51 0 78 1;
 #X connect 52 0 53 0;
-#X connect 52 0 70 1;
+#X connect 52 0 79 1;
 #X connect 53 0 54 0;
-#X connect 53 0 71 1;
+#X connect 53 0 80 1;
 #X connect 54 0 55 0;
-#X connect 54 0 72 1;
+#X connect 54 0 81 1;
 #X connect 55 0 56 0;
-#X connect 55 0 73 1;
+#X connect 55 0 82 1;
 #X connect 56 0 57 0;
-#X connect 56 0 74 1;
+#X connect 56 0 83 1;
 #X connect 57 0 58 0;
-#X connect 57 0 75 1;
+#X connect 57 0 84 1;
 #X connect 58 0 59 0;
-#X connect 58 0 76 1;
+#X connect 58 0 85 1;
 #X connect 59 0 60 0;
-#X connect 59 0 77 1;
+#X connect 59 0 86 1;
 #X connect 60 0 61 0;
-#X connect 60 0 78 1;
+#X connect 60 0 87 1;
 #X connect 61 0 62 0;
-#X connect 61 0 79 1;
-#X connect 62 0 63 0;
-#X connect 62 0 80 1;
-#X connect 63 0 64 0;
-#X connect 63 0 81 1;
-#X connect 64 0 65 0;
-#X connect 64 0 82 1;
-#X connect 65 0 88 0;
-#X connect 65 0 83 1;
-#X connect 66 0 20 0;
-#X connect 67 0 22 0;
-#X connect 68 0 24 0;
-#X connect 69 0 19 0;
-#X connect 88 0 84 1;
-#X connect 93 0 91 0;
-#X connect 93 0 92 0;
-#X connect 93 0 90 0;
-#X connect 93 0 38 0;
-#X connect 93 1 89 0;
+#X connect 61 0 88 1;
+#X connect 62 0 67 0;
+#X connect 62 0 89 1;
+#X connect 63 0 20 0;
+#X connect 64 0 22 0;
+#X connect 65 0 24 0;
+#X connect 66 0 19 0;
+#X connect 67 0 90 1;
+#X connect 72 0 70 0;
+#X connect 72 0 71 0;
+#X connect 72 0 69 0;
+#X connect 72 0 35 0;
+#X connect 72 1 68 0;
+#X connect 74 0 32 0;
+#X connect 75 0 32 1;
+#X connect 96 0 94 0;
