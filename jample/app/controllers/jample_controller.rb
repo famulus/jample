@@ -15,8 +15,30 @@ class JampleController < ApplicationController
 	def set_filter
 		cp = CurrentPatch.last
 		cp.subset_search_string = params[:filter_text]
+		cp.subset_search_string = '' if params[:filter_text]=="*"
+
 		cp.save
 		puts "filter set to: #{cp.subset_search_string}"
 		render nothing:true
 	end
+
+	def shrink_patch_by_one_on_the_end
+		CurrentPatch.get_current_patch.shrink_patch_by_one_on_the_end
+		render nothing:true
+	end
+
+	def grow_patch_by_one_on_the_end
+		CurrentPatch.get_current_patch.grow_patch_by_one_on_the_end
+		render nothing:true
+	end
+	def shift_sample_backward_one_slice
+		CurrentPatch.get_current_patch.shift_sample_backward_one_slice
+		render nothing:true
+	end
+
+	def shift_sample_forward_one_slice
+		CurrentPatch.get_current_patch.shift_sample_forward_one_slice
+		render nothing:true
+	end
+
 end
