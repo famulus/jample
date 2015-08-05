@@ -47,6 +47,8 @@
 ;
 #X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
 ;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
 #X obj -201 374 unpack s s s s s s s s s s s s s s s s;
 #X msg 40 184 \; pd dsp 1;
 #X obj 40 151 loadbang;
@@ -167,7 +169,7 @@
 #X msg 344 568 12;
 #X msg 345 647 get http://localhost/shrink_patch_by_one_on_the_end
 ;
-#X text 387 627;
+#X text 387 627 comment;
 #X obj 465 556 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 466 530 note_to_bang;
@@ -197,6 +199,8 @@
 #X msg 700 446 get http://localhost/shift_sample_forward_one_slice
 ;
 #X msg 699 367 27;
+#X obj 366 299 http_get;
+#X msg 384 229 get http://localhost/set_volume/\$1;
 #X connect 0 0 17 0;
 #X connect 0 1 64 0;
 #X connect 0 2 65 0;
@@ -220,6 +224,7 @@
 #X connect 13 0 14 0;
 #X connect 13 1 15 0;
 #X connect 13 2 16 0;
+#X connect 14 0 129 0;
 #X connect 18 0 82 0;
 #X connect 18 0 83 0;
 #X connect 19 0 3 0;
@@ -344,3 +349,4 @@
 #X connect 123 0 121 1;
 #X connect 126 0 124 0;
 #X connect 127 0 121 0;
+#X connect 129 0 128 0;

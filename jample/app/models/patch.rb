@@ -13,6 +13,10 @@
     field :start_onset_index, type: Integer
     field :stop_onset_index, type: Integer
 
+    
+    field :volume, type: Float
+
+
     belongs_to :track
     belongs_to :patch_set
 

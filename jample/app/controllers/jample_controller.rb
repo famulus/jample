@@ -41,4 +41,12 @@ class JampleController < ApplicationController
 		render nothing:true
 	end
 
+	def set_volume
+		cp =CurrentPatch.get_current_patch
+		cp.volume = params[:volume].to_f / 127
+		cp.save
+		render nothing:true
+	end
+
+
 end
