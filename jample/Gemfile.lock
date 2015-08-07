@@ -40,6 +40,8 @@ GEM
     connection_pool (2.1.0)
     erubis (2.7.0)
     execjs (2.2.2)
+    haml (4.0.6)
+      tilt
     hike (1.2.3)
     i18n (0.6.11)
     jbuilder (2.2.5)
@@ -122,6 +124,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
+  haml
   jbuilder (~> 2.0)
   jquery-rails
   mongoid

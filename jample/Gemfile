@@ -42,5 +42,5 @@ gem 'mongoid'
 
 
 # gem "unimidi"
-
+gem 'haml'
 
