@@ -1,4 +1,7 @@
 class JampleController < ApplicationController
+	def index
+	end
+
 
 	def set_current_patch
 		patch_index = params[:id].to_i - 35
