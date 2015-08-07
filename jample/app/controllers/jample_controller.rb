@@ -1,5 +1,7 @@
 class JampleController < ApplicationController
 	def index
+		patch_set_id = CurrentPatch.get_current_patch.patch_set_id
+		@patch_set = PatchSet.where(id: patch_set_id).first
 	end
 
 

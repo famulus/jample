@@ -1,1 +1,6 @@
-OKOK
+%table.table
+	-@patch_set.patches.reverse.in_groups_of(4) do |group|
+		%tr
+			-group.reverse.each do |patch|
+				%td
+					=patch.track.track_name
