@@ -2,5 +2,19 @@
 	-@patch_set.patches.reverse.in_groups_of(4) do |group|
 		%tr
 			-group.reverse.each do |patch|
-				%td
+				%td{:class => ("bg-info" if @current_patch.id == patch.id)}
+					%h4
+						=patch.patch_index + 1
 					=patch.track.track_name
+
+
+%h2
+	=@current_patch.patch_index
+%h3
+	=@current_patch.track.track_name
+
+%p
+	=@current_patch.track.path_and_file
+%p
+	=@current_patch.stop_onset_index 	- @current_patch.start_onset_index 
+	slices
