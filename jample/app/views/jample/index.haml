@@ -1,23 +1,32 @@
-%table.table
-	-@patch_set.patches.reverse.in_groups_of(4) do |group|
-		%tr
-			-group.reverse.each do |patch|
-				%td{:class => ("bg-info" if @current_patch.id == patch.id)}
-					%h4
-						=patch.patch_index + 1
-					=patch.track.track_name
+.row
+	.col-md-6
+		%table.table
+			-@patch_set.patches.reverse.in_groups_of(4) do |group|
+				%tr
+					-group.reverse.each do |patch|
+						%td{:class => ("bg-info" if @current_patch.id == patch.id)}
+							%h4
+								=patch.patch_index + 1
+							=patch.track.track_name
 
 
-%h2
-	=@current_patch.patch_index
-%h3
-	=@current_patch.track.track_name
+	.col-md-6
+		%h2
+			=@current_patch.patch_index + 1
+		%h3
+			=@current_patch.track.track_name
 
-%p
-	=@current_patch.track.path_and_file
-%p
-	=@current_patch.stop_onset_index 	- @current_patch.start_onset_index 
-	of
-	=@current_patch.track.onset_count
-	slices in track
+			
+		%p
+			%ul
+				- @current_patch.track.mp3_data.tag.each do |key, value|
+					%li
+						= "#{key}: #{value}"
 
+		%p
+			=@current_patch.track.path_and_file
+		%p
+			=@current_patch.stop_onset_index 	- @current_patch.start_onset_index 
+			of
+			=@current_patch.track.onset_count
+			slices in track

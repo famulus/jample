@@ -18,9 +18,9 @@ class Track
     track_list__wav_string = ''# `find ~/  -name *.wav`
     puts "OKOK"
     tracks_array = track_list_string.split("\n")
-  	tracks_array =  tracks_array + track_list__wav_string.split("\n")
+    tracks_array =  tracks_array + track_list__wav_string.split("\n")
     puts tracks_array
-  	puts tracks_array.size
+    puts tracks_array.size
 
     # return
     # remove Track records when there is no underlying file
@@ -31,12 +31,12 @@ class Track
 
     tracks_array.each do |track_path|
       puts "track_path:#{track_path}"
-     track_path
-     file_contents_hash = Digest::MD5.file(track_path).hexdigest
-     track = Track.find_or_create_by(file_contents_hash: file_contents_hash)
-     track.path_and_file = track_path
-     track.save
-     track.detect_onset
+      track_path
+      file_contents_hash = Digest::MD5.file(track_path).hexdigest
+      track = Track.find_or_create_by(file_contents_hash: file_contents_hash)
+      track.path_and_file = track_path
+      track.save
+      track.detect_onset
     end
   end
 
@@ -49,22 +49,26 @@ class Track
 
   def detect_onset
     if onset_times.blank?
-     aubiocut_command = "aubiocut -i \"#{self.path_and_file}\""
+      aubiocut_command = "aubiocut -i \"#{self.path_and_file}\""
 
-     puts onsets = `#{aubiocut_command}`
+      puts onsets = `#{aubiocut_command}`
 
-     self.onset_times = onsets.split("\n")
-     self.onset_count = onset_times.size
-     self.save
+      self.onset_times = onsets.split("\n")
+      self.onset_count = onset_times.size
+      self.save
 
-   end
- end
+    end
+  end
 
- def track_name
-  path_and_file.split('/').last
 
-end
+  def track_name
+    path_and_file.split('/').last
+  end
 
+  def mp3_data
+    Mp3Info.open(self.path_and_file)
+    
+  end
 
 
 end
