@@ -3,6 +3,7 @@ class JampleController < ApplicationController
 		@current_patch = CurrentPatch.get_current_patch
 		patch_set_id = @current_patch.patch_set_id
 		@patch_set = PatchSet.where(id: patch_set_id).first
+		@current_filter = CurrentPatch.last.subset_search_string
 	end
 
 

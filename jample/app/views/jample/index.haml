@@ -1,5 +1,14 @@
 .row
 	.col-md-6
+		%form
+			.form-group
+				%label{for: "filter" }
+					Filter
+				%input{type: "email", class: "form-control", id: "filter"}
+					=@current_filter
+
+.row
+	.col-md-6
 		%table.table
 			-@patch_set.patches.reverse.in_groups_of(4) do |group|
 				%tr
