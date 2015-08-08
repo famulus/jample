@@ -17,4 +17,7 @@
 	=@current_patch.track.path_and_file
 %p
 	=@current_patch.stop_onset_index 	- @current_patch.start_onset_index 
-	slices
+	of
+	=@current_patch.track.onset_count
+	slices in track
+
