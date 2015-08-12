@@ -5,7 +5,7 @@ class PatchSet
 
   # add a class attr for current patchset
  
- 	@@current_patch = PatchSet.last
+ 	
 
   def self.init_16_patches
   	new_patch_set = PatchSet.create({})
@@ -16,6 +16,7 @@ class PatchSet
   		patch.patch_set = new_patch_set
   		patch.save
   	end
+    CurrentPatch.last.patch_set_id = new_patch_set.id
 		new_patch_set.become_current_patch
 		new_patch_set.save
 

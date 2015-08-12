@@ -8,7 +8,6 @@ class CurrentPatch
   field :subset_search_string, type: String
 
 
-
   def self.init
     if true #CurrentPatch.count != 1
       CurrentPatch.delete_all
@@ -26,12 +25,23 @@ class CurrentPatch
 
   def self.get_current_patch
     patch_index = CurrentPatch.last.patch_index
-    patch_set = PatchSet.where(id: CurrentPatch.last.patch_set_id).last
+    patch_set = CurrentPatch.get_current_patch_set
     p =patch_set.p(patch_index)
 
     return p
   end
 
-  
+  def self.set_current_patch_set(patch_set)
+    cp = CurrentPatch.first
+    cp.patch_set_id = patch_set.id
+    cp.save
+  end
+
+
+  def self.get_current_patch_set()
+    cp = CurrentPatch.first
+    ps= PatchSet.find(cp.patch_set_id)
+  end
+
 
 end
