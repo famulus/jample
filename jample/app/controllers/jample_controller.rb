@@ -13,6 +13,11 @@ class JampleController < ApplicationController
 		redirect_to '/'
 	end
 
+	def init_16_patches_as_sequence
+		PatchSet.init_16_patches_as_sequence()
+		redirect_to '/'
+	end
+
 	def set_current_patch
 		patch_index = params[:id].to_i - 35
 		CurrentPatch.set_current_patch(patch_index)
