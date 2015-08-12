@@ -16,21 +16,11 @@ class PatchSet
   		patch.patch_set = new_patch_set
   		patch.save
   	end
-    CurrentPatch.last.patch_set_id = new_patch_set.id
-		new_patch_set.become_current_patch
+    CurrentPatch.set_current_patch_set(new_patch_set)
 		new_patch_set.save
 
   end
 
-  def become_current_patch
-  	@@current_patch = self.id
-  	
-  end
-
-  def self.get_current_patch
-  	@@current_patch 
-  	
-  end
 
   def p(patch_number)
     return self.patches[(patch_number - 1)]

@@ -1,11 +1,17 @@
 class JampleController < ApplicationController
+
 	def index
 		@current_patch = CurrentPatch.get_current_patch
-		patch_set_id = @current_patch.patch_set_id
-		@patch_set = PatchSet.where(id: patch_set_id).first
+		@patch_set = CurrentPatch.get_current_patch_set
 		@current_filter = CurrentPatch.last.subset_search_string
 	end
 
+
+
+	def init_16_patches
+		PatchSet.init_16_patches()
+		redirect_to '/'
+	end
 
 	def set_current_patch
 		patch_index = params[:id].to_i - 35
