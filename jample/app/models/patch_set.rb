@@ -26,7 +26,18 @@ class PatchSet
 
   def p(patch_number)
     return self.patches[(patch_number - 1)]
-    
+  end
+
+
+  def previous_patch_set
+    mongoid = self.Created
+    PatchSet.where(:conditions => {:_id.lt => mongoid}).sort({:_id=>-1}).limit(1).last
+
+  end
+
+  def next_patch_set
+    mongoid = self.id
+    PatchSet.where(:conditions => {:_id.gt => mongoid}).sort({:_id=>1}).limit(1).last
   end
 
 end
