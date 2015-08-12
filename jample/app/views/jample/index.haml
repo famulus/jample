@@ -3,7 +3,7 @@
 		=form_tag("/set_filter", method: "post") do
 			.form-group
 				%label{for: "filter" }
-					Filter
+					="Filter: #{@current_filter}"
 				=text_field_tag(:filter_text,nil ,{class: "form-control"} ) 
 			%input{type: 'submit', value: 'Set Filter', class:'btn btn-primary'}
 				
