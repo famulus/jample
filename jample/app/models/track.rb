@@ -65,6 +65,10 @@ class Track
     path_and_file.split('/').last
   end
 
+  def track_name_pretty
+    track_name.gsub('_', ' ')
+  end
+
   def mp3_data
     Mp3Info.open(self.path_and_file)
     
