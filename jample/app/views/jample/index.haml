@@ -22,7 +22,7 @@
 						%td{:class => ("bg-info" if @current_patch.id == patch.id)}
 							%h4
 								=patch.patch_index + 1
-							=link_to(patch.track.track_name_pretty,{ :controller => 'jample', :action => 'set_current_patch', id:  patch.patch_index+36   } )
+							=link_to(patch.track.track_name_pretty,{ :controller => 'jample', :action => 'set_current_patch', id:  patch.patch_index+36})
 
 
 	.col-md-6
@@ -40,6 +40,16 @@
 
 		%p
 			=@current_patch.track.path_and_file
+		%p
+			Onset Index:
+			=@current_patch.start_onset_index 
+		%p
+			Onset Times:
+			=@current_patch.start_onset_time 
+			to
+			=@current_patch.stop_onset_time 
+
+
 		%p
 			=@current_patch.stop_onset_index 	- @current_patch.start_onset_index 
 			of
