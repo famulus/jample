@@ -14,12 +14,12 @@ class JampleController < ApplicationController
 		render nothing:true
 	end
 
-	
+
 	def randomize_current_patch
 		cp = CurrentPatch.get_current_patch
 		cp.randomize_patch
 		puts "randomize_patch: #{cp.patch_index}"
-		render nothing:true
+		redirect_to '/'
 	end
 
 
@@ -44,7 +44,7 @@ class JampleController < ApplicationController
 		redirect_to '/'
 	end
 
-	
+
 	def shift_sample_backward_one_slice
 		CurrentPatch.get_current_patch.shift_sample_backward_one_slice
 		redirect_to '/'
