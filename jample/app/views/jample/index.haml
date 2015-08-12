@@ -1,11 +1,10 @@
 .row
 	.col-md-6
-		%form
+		=form_tag("/set_filter", method: "post") do
 			.form-group
 				%label{for: "filter" }
 					Filter
-				%input{type: "email", class: "form-control", id: "filter"}
-					=@current_filter
+				=text_field_tag(:filter_text,nil ,{class: "form-control"} ) 
 			%input{type: 'submit', value: 'Set Filter', class:'btn btn-primary'}
 				
 

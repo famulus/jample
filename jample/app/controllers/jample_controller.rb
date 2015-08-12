@@ -13,12 +13,16 @@ class JampleController < ApplicationController
 		puts "new index: #{patch_index}"
 		render nothing:true
 	end
+
+	
 	def randomize_current_patch
 		cp = CurrentPatch.get_current_patch
 		cp.randomize_patch
 		puts "randomize_patch: #{cp.patch_index}"
 		render nothing:true
 	end
+
+
 	def set_filter
 		cp = CurrentPatch.last
 		cp.subset_search_string = params[:filter_text]
@@ -26,7 +30,7 @@ class JampleController < ApplicationController
 
 		cp.save
 		puts "filter set to: #{cp.subset_search_string}"
-		render nothing:true
+		redirect_to '/'
 	end
 
 	def shrink_patch_by_one_on_the_end
@@ -38,6 +42,8 @@ class JampleController < ApplicationController
 		CurrentPatch.get_current_patch.grow_patch_by_one_on_the_end
 		render nothing:true
 	end
+
+	
 	def shift_sample_backward_one_slice
 		CurrentPatch.get_current_patch.shift_sample_backward_one_slice
 		render nothing:true

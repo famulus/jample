@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get 'set_current_patch/:id' => 'jample#set_current_patch'
   get 'randomize_current_patch' => 'jample#randomize_current_patch'
-  get 'set_filter/:filter_text' => 'jample#set_filter'
+  post 'set_filter/' => 'jample#set_filter'
 
 
   get 'shrink_patch_by_one_on_the_end/' => 'jample#shrink_patch_by_one_on_the_end'
