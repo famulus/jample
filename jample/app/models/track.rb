@@ -3,6 +3,7 @@ include TimeHelpers
 
 class Track
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
 
 
   field :path_and_file, type: String

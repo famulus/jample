@@ -4,7 +4,7 @@
 
   class Patch
     include Mongoid::Document
-
+    include Mongoid::Timestamps::Created
 
     field :patch_index, type: Integer
     field :track_id, type: String

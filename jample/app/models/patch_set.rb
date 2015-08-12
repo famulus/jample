@@ -1,5 +1,7 @@
 class PatchSet
 	include Mongoid::Document
+  include Mongoid::Timestamps::Created
+
 
 	has_many :patches
 
