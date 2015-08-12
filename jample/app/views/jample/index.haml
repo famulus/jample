@@ -1,5 +1,5 @@
 .row
-	.col-md-4
+	.col-md-6
 		=form_tag("/set_filter", method: "post") do
 			.form-group
 				%label{for: "filter" }
@@ -7,6 +7,10 @@
 				=text_field_tag(:filter_text,nil ,{class: "form-control"} ) 
 			%button{type: 'submit', class:'btn btn-primary', style:'margin-bottom:15px;'}
 				Set Filter
+	.col-md-4
+		%p
+			=button_to('new random patchset', { :controller => 'jample', :action => 'shrink_patch_by_one_on_the_end'    }, class: 'btn btn-danger')
+		
 				
 
 .row
@@ -18,7 +22,7 @@
 						%td{:class => ("bg-info" if @current_patch.id == patch.id)}
 							%h4
 								=patch.patch_index + 1
-							=patch.track.track_name
+							=link_to(patch.track.track_name,{ :controller => 'jample', :action => 'set_current_patch', id:  patch.patch_index+36   } )
 
 
 	.col-md-6
