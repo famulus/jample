@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   post 'set_filter/' => 'jample#set_filter'
 
 
-  get 'shrink_patch_by_one_on_the_end/' => 'jample#shrink_patch_by_one_on_the_end'
-  get 'grow_patch_by_one_on_the_end/' => 'jample#grow_patch_by_one_on_the_end'
-  get 'shift_sample_backward_one_slice/' => 'jample#shift_sample_backward_one_slice'
-  get 'shift_sample_forward_one_slice/' => 'jample#shift_sample_forward_one_slice'
+  post 'shrink_patch_by_one_on_the_end/' => 'jample#shrink_patch_by_one_on_the_end'
+  post 'grow_patch_by_one_on_the_end/' => 'jample#grow_patch_by_one_on_the_end'
+  post 'shift_sample_backward_one_slice/' => 'jample#shift_sample_backward_one_slice'
+  post 'shift_sample_forward_one_slice/' => 'jample#shift_sample_forward_one_slice'
   get 'set_volume/:volume' => 'jample#set_volume'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)

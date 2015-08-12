@@ -1,11 +1,12 @@
 .row
-	.col-md-6
+	.col-md-4
 		=form_tag("/set_filter", method: "post") do
 			.form-group
 				%label{for: "filter" }
 					="Filter: #{@current_filter}"
 				=text_field_tag(:filter_text,nil ,{class: "form-control"} ) 
-			%input{type: 'submit', value: 'Set Filter', class:'btn btn-primary'}
+			%button{type: 'submit', class:'btn btn-primary', style:'margin-bottom:15px;'}
+				Set Filter
 				
 
 .row
@@ -40,3 +41,11 @@
 			of
 			=@current_patch.track.onset_count
 			slices in track
+		%p
+			=button_to('shrink patch by one slice on the end', { :controller => 'jample', :action => 'shrink_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
+		%p
+			=button_to('grow patch by one slice on the end', { :controller => 'jample', :action => 'grow_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
+		%p
+			=button_to('shift sample backward one slice', { :controller => 'jample', :action => 'shift_sample_backward_one_slice'    }, class: 'btn btn-primary')
+		%p
+			=button_to('shift sample forward one slice', { :controller => 'jample', :action => 'shift_sample_forward_one_slice'    }, class: 'btn btn-primary')

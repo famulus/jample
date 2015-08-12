@@ -35,23 +35,24 @@ class JampleController < ApplicationController
 
 	def shrink_patch_by_one_on_the_end
 		CurrentPatch.get_current_patch.shrink_patch_by_one_on_the_end
-		render nothing:true
+		
+		redirect_to '/'
 	end
 
 	def grow_patch_by_one_on_the_end
 		CurrentPatch.get_current_patch.grow_patch_by_one_on_the_end
-		render nothing:true
+		redirect_to '/'
 	end
 
 	
 	def shift_sample_backward_one_slice
 		CurrentPatch.get_current_patch.shift_sample_backward_one_slice
-		render nothing:true
+		redirect_to '/'
 	end
 
 	def shift_sample_forward_one_slice
 		CurrentPatch.get_current_patch.shift_sample_forward_one_slice
-		render nothing:true
+		redirect_to '/'
 	end
 
 	def set_volume
