@@ -10,6 +10,8 @@ class Track
   field :file_contents_hash, type: String
   field :onset_times, type: Array
   field :onset_count, type: Integer
+  field :track_missing, type: Boolean, default: false
+
 
 
 
@@ -17,17 +19,17 @@ class Track
     # track_list_string = `mdfind -name \.mp3`
     track_list_string = `find ~/  -name *.mp3`
     track_list__wav_string = ''# `find ~/  -name *.wav`
-    puts "OKOK"
     tracks_array = track_list_string.split("\n")
     tracks_array =  tracks_array + track_list__wav_string.split("\n")
     puts tracks_array
     puts tracks_array.size
+    sleep 7
 
-    # return
     # remove Track records when there is no underlying file
     missing_files = Track.nin(path_and_file: tracks_array)
     missing_files.each  do |missing_file|
-      missing_file.destroy
+      missing_file.track_missing = true
+      missing_file.save
     end
 
     tracks_array.each do |track_path|
@@ -71,8 +73,7 @@ class Track
   end
 
   def mp3_data
-    Mp3Info.open(self.path_and_file)
-    
+    Mp3Info.open(self.path_and_file)   
   end
 
 

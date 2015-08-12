@@ -27,7 +27,7 @@
 
     def randomize_patch
       subset_search_string = CurrentPatch.last.subset_search_string
-      subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i)
+      subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false)
       self.track = subset_of_tracks.shuffle.first
     	duration_in_slices = 10
     	track_onset_array = self.track.onset_times
