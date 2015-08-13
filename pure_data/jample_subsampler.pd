@@ -1,4 +1,4 @@
-#N canvas 234 22 1083 826 10;
+#N canvas 36 23 1083 826 10;
 #X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
 ;
 #X obj 6 225 soundfiler;
@@ -6,8 +6,8 @@
 #X floatatom 521 166 5 0 0 0 - - -;
 #X obj 521 133 inlet;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumL 111744 float 0;
-#X coords 0 1 111743 -1 200 140 1 0 0;
+#X array \$0-drumL 133632 float 0;
+#X coords 0 1 133631 -1 200 140 1 0 0;
 #X restore 829 137 graph;
 #X obj 6 156 pack s \$0;
 #X floatatom 443 167 0 0 0 0 - - -;
@@ -27,8 +27,8 @@
 #X obj 731 371 == 0;
 #X obj 506 319 &;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumR 111744 float 0;
-#X coords 0 1 111743 -1 200 140 1;
+#X array \$0-drumR 133632 float 0;
+#X coords 0 1 133631 -1 200 140 1;
 #X restore 830 300 graph;
 #X msg 6 180 read -resize \$1 \$2-drumL \$2-drumR;
 #X obj 271 728 / 127;
@@ -48,9 +48,9 @@
 #X obj 61 341 expr 1 / $f1;
 #X obj 11 374 *;
 #X obj 835 474 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 5038 1;
+-1 -1 2035 1;
 #X obj 26 564 *~;
-#X text 271 674 volume;
+#X text 288 709 volume;
 #X obj 26 504 *~ 1;
 #X obj 26 533 +~ 0;
 #X msg 103 266 1;
@@ -63,7 +63,7 @@
 #X obj 6 202 spigot 1;
 #X obj 411 626 unsig~ 20;
 #X obj 834 446 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 5038 1;
+-1 -1 2035 1;
 #X obj 412 598 unsig~ 20;
 #X obj 135 822 hip~ 5;
 #X obj 358 825 hip~ 5;
@@ -112,6 +112,15 @@
 #X obj 278 101 http_get;
 #X msg 296 31 get http://localhost/set_current_patch/\$1;
 #X text 338 11 Set Current Patch in Rails;
+#X obj 276 245 ctlin 25;
+#X floatatom 216 324 5 0 0 0 - - -;
+#X obj 207 244 ctlin 89;
+#X msg 217 279 1;
+#X obj 275 280 / 100;
+#X text 286 227 speed;
+#X text 204 227 speed reset;
+#X text 252 324 1 is normal;
+#X obj 216 349 spigot 0;
 #X connect 0 0 25 0;
 #X connect 0 0 40 1;
 #X connect 0 0 44 0;
@@ -199,6 +208,7 @@
 #X connect 69 0 70 0;
 #X connect 69 0 72 0;
 #X connect 69 0 91 0;
+#X connect 69 0 105 1;
 #X connect 72 0 20 0;
 #X connect 72 0 81 0;
 #X connect 73 0 32 0;
@@ -220,3 +230,9 @@
 #X connect 92 0 23 0;
 #X connect 94 2 93 0;
 #X connect 95 0 94 0;
+#X connect 97 0 101 0;
+#X connect 98 0 105 0;
+#X connect 99 0 100 0;
+#X connect 100 0 98 0;
+#X connect 101 0 98 0;
+#X connect 105 0 28 0;
