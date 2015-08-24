@@ -26,10 +26,10 @@ class PatchSet
   def self.init_16_patches_as_sequence
   	new_patch_set = PatchSet.create({})
 
-    subset_search_string = CurrentPatch.last.subset_search_string
-    subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false)
-    track = subset_of_tracks.shuffle.first
     duration_in_slices = 12
+    subset_search_string = CurrentPatch.last.subset_search_string
+    subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false, :onset_count.gt => duration_in_slices )
+    track = subset_of_tracks.shuffle.first
     track_onset_array = track.onset_times
 
     usable_onset_times = track_onset_array.split(track_onset_array.size - (duration_in_slices+16)).first
