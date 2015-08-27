@@ -23,6 +23,15 @@ class PatchSet
 
   end
 
+  def self.cut_current_patch_set
+    new_patch_set = CurrentPatch.get_current_patch_set
+    new_patch_set.patches.each do |patch|
+      patch.cut_sample(patch.patch_index)
+    end
+
+
+  end
+
   def self.init_16_patches_as_sequence
   	new_patch_set = PatchSet.create({})
 
