@@ -3,7 +3,8 @@ class PatchSet
   include Mongoid::Timestamps::Created
 
 
-	has_many :patches
+  field :patch_set_label, type: String
+  has_many :patches
 
   # add a class attr for current patchset
  
