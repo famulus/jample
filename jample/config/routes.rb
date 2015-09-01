@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   get 'set_current_patch/:id' => 'jample#set_current_patch'
+  get 'set_current_patch_set/:id' => 'jample#set_current_patch_set'
+
+
   get 'randomize_current_patch' => 'jample#randomize_current_patch'
   post 'set_filter/' => 'jample#set_filter'
+  post 'set_current_patch_set_name/' => 'jample#set_current_patch_set_name'
   
   post 'init_16_patches' => 'jample#init_16_patches'
   post 'init_16_patches_as_sequence' => 'jample#init_16_patches_as_sequence'
