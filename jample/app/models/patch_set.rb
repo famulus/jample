@@ -37,8 +37,7 @@ class PatchSet
   	new_patch_set = PatchSet.create({})
 
     duration_in_slices = 12
-    subset_search_string = CurrentPatch.last.subset_search_string
-    subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false, :onset_count.gt => duration_in_slices )
+    subset_of_tracks = CurrentPatch.get_current_filter_set
     track = subset_of_tracks.shuffle.first
     track_onset_array = track.onset_times
 
