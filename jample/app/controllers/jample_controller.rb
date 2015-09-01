@@ -4,6 +4,11 @@ class JampleController < ApplicationController
 		@current_patch = CurrentPatch.get_current_patch
 		@patch_set = CurrentPatch.get_current_patch_set
 		@current_filter = CurrentPatch.last.subset_search_string
+		@named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
+
+		# move these into models
+		subset_search_string = CurrentPatch.last.subset_search_string
+		@subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false)
 	end
 
 
@@ -24,6 +29,13 @@ class JampleController < ApplicationController
 		puts "new index: #{patch_index}"
 		redirect_to '/'
 	end
+	
+	def set_current_patch_set
+		patch_set = PatchSet.find(params[:id])
+		CurrentPatch.set_current_patch_set(patch_set)
+		PatchSet.cut_current_patch_set
+		redirect_to '/'
+	end
 
 
 	def randomize_current_patch
@@ -42,6 +54,14 @@ class JampleController < ApplicationController
 		cp.save
 		puts "filter set to: #{cp.subset_search_string}"
 		redirect_to '/'
+	end
+
+	def set_current_patch_set_name
+		cps = CurrentPatch.get_current_patch_set
+		cps.patch_set_label = params[:current_patch_set_name]
+		cps.save
+		redirect_to '/'
+
 	end
 
 	def shrink_patch_by_one_on_the_end
