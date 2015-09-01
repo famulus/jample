@@ -6,9 +6,8 @@ class JampleController < ApplicationController
 		@current_filter = CurrentPatch.last.subset_search_string
 		@named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
 
-		# move these into models
-		subset_search_string = CurrentPatch.last.subset_search_string
-		@subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false)
+    @subset_of_tracks = CurrentPatch.get_current_filter_set
+
 	end
 
 

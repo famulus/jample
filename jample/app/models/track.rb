@@ -11,6 +11,7 @@ class Track
   field :onset_times, type: Array
   field :onset_count, type: Integer
   field :track_missing, type: Boolean, default: false
+  field :mp3_data_string, type: String
 
 
 
@@ -38,6 +39,7 @@ class Track
       file_contents_hash = Digest::MD5.file(track_path).hexdigest
       track = Track.find_or_create_by(file_contents_hash: file_contents_hash)
       track.path_and_file = track_path
+      track.mp3_data
       track.save
       track.detect_onset
     end
@@ -73,7 +75,10 @@ class Track
   end
 
   def mp3_data
-    Mp3Info.open(self.path_and_file)   
+    mp3_data = Mp3Info.open(self.path_and_file)   
+    self.mp3_data_string = mp3_data.to_s
+    self.save
+    return mp3_data
   end
 
 
