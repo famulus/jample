@@ -112,11 +112,10 @@
       # end
 
 
-       s = TCPSocket.new 'localhost', 4040
-       s.puts "#{pad};"
-       s.close
 
     end
+
+
 
 
 

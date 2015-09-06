@@ -23,7 +23,7 @@ class JampleController < ApplicationController
 	end
 
 	def set_current_patch
-		patch_index = params[:id].to_i - 35
+		patch_index = params[:id].to_i - 35 # this converts the midi number to the pad index number
 		CurrentPatch.set_current_patch(patch_index)
 		puts "new index: #{patch_index}"
 		redirect_to '/'
@@ -40,6 +40,7 @@ class JampleController < ApplicationController
 	def randomize_current_patch
 		cp = CurrentPatch.get_current_patch
 		cp.randomize_patch
+		PatchSet.reload_pure_data()
 		puts "randomize_patch: #{cp.patch_index}"
 		redirect_to '/'
 	end

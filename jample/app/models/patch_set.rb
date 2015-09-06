@@ -6,9 +6,13 @@ class PatchSet
   field :patch_set_label, type: String
   has_many :patches
 
-  # add a class attr for current patchset
- 
- 	
+
+  def self.reload_pure_data
+    s = TCPSocket.new 'localhost', 4040
+    s.puts "reload;"
+    s.close
+
+  end
 
   def self.init_16_patches
     new_patch_set = PatchSet.create({})
@@ -21,6 +25,7 @@ class PatchSet
     end
     CurrentPatch.set_current_patch_set(new_patch_set)
     new_patch_set.save
+    self.reload_pure_data()
 
   end
 
@@ -34,7 +39,7 @@ class PatchSet
   end
 
   def self.init_16_patches_as_sequence
-  	new_patch_set = PatchSet.create({})
+    new_patch_set = PatchSet.create({})
 
     duration_in_slices = 12
     subset_of_tracks = CurrentPatch.get_current_filter_set
@@ -44,19 +49,20 @@ class PatchSet
     usable_onset_times = track_onset_array.split(track_onset_array.size - (duration_in_slices+16)).first
     start_onset_index = track.onset_times.index( usable_onset_times.shuffle.first)
 
-  	(0..15).each do |index|
-  		patch = Patch.create({
+    (0..15).each do |index|
+      patch = Patch.create({
         track: track,
         patch_index: index,
         start_onset_index: start_onset_index+index,
         stop_onset_index: start_onset_index+index+duration_in_slices
-         })
-  		patch.patch_set = new_patch_set
+        })
+      patch.patch_set = new_patch_set
       patch.save
-  		patch.cut_sample(index)
-  	end
+      patch.cut_sample(index)
+    end
     CurrentPatch.set_current_patch_set(new_patch_set)
-		new_patch_set.save
+    new_patch_set.save
+    self.reload_pure_data()
 
   end
 
