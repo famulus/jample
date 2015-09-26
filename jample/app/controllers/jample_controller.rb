@@ -33,6 +33,7 @@ class JampleController < ApplicationController
 		patch_set = PatchSet.find(params[:id])
 		CurrentPatch.set_current_patch_set(patch_set)
 		PatchSet.cut_current_patch_set
+		PatchSet.reload_pure_data()
 		redirect_to '/'
 	end
 
@@ -66,23 +67,26 @@ class JampleController < ApplicationController
 
 	def shrink_patch_by_one_on_the_end
 		CurrentPatch.get_current_patch.shrink_patch_by_one_on_the_end
-		
+		PatchSet.reload_pure_data()
 		redirect_to '/'
 	end
 
 	def grow_patch_by_one_on_the_end
 		CurrentPatch.get_current_patch.grow_patch_by_one_on_the_end
+		PatchSet.reload_pure_data()
 		redirect_to '/'
 	end
 
 
 	def shift_sample_backward_one_slice
 		CurrentPatch.get_current_patch.shift_sample_backward_one_slice
+		PatchSet.reload_pure_data()
 		redirect_to '/'
 	end
 
 	def shift_sample_forward_one_slice
 		CurrentPatch.get_current_patch.shift_sample_forward_one_slice
+		PatchSet.reload_pure_data()
 		redirect_to '/'
 	end
 
