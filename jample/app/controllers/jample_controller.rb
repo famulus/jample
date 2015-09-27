@@ -6,7 +6,7 @@ class JampleController < ApplicationController
 		@current_filter = CurrentPatch.last.subset_search_string
 		@named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
 
-    @subset_of_tracks = CurrentPatch.get_current_filter_set
+    @current_filter_size = CurrentPatch.get_current_filter_set.size
 
 	end
 

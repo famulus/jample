@@ -42,8 +42,9 @@ class PatchSet
     new_patch_set = PatchSet.create({})
 
     duration_in_slices = 12
-    subset_of_tracks = CurrentPatch.get_current_filter_set
-    track = subset_of_tracks.shuffle.first
+    subset_of_track_ids = CurrentPatch.get_current_filter_set
+    track_id = subset_of_track_ids.shuffle.first
+    track = Track.find(track_id.to_s)
     track_onset_array = track.onset_times
 
     usable_onset_times = track_onset_array.split(track_onset_array.size - (duration_in_slices+16)).first

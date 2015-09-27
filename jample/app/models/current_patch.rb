@@ -45,8 +45,8 @@ class CurrentPatch
 
   def self.get_current_filter_set
     subset_search_string = CurrentPatch.last.subset_search_string
-    subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false)
-    subset_of_tracks = subset_of_tracks +  Track.where(mp3_data_string: /#{subset_search_string}/i, track_missing: false)
+    subset_of_tracks = Track.where(path_and_file: /#{subset_search_string}/i, track_missing: false).pluck(:id) # TODO: this line gets slow as the found set grows
+    subset_of_tracks = subset_of_tracks +  Track.where(mp3_data_string: /#{subset_search_string}/i, track_missing: false).pluck(:id)
     subset_of_tracks = subset_of_tracks.uniq
   end
 
