@@ -100,6 +100,8 @@
 #X obj 141 38 == 1;
 #X obj 177 40 == 2;
 #X text 766 231 Randomize Current Patch in Rails;
+#X obj 66 33 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X connect 0 0 15 0;
 #X connect 0 1 48 0;
 #X connect 0 2 49 0;
@@ -170,3 +172,4 @@
 #X connect 58 1 60 0;
 #X connect 61 0 3 0;
 #X connect 62 0 4 0;
+#X connect 64 0 2 0;
