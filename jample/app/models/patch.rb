@@ -32,7 +32,7 @@
     	duration_in_slices = 10
     	track_onset_array = self.track.onset_times
       return if (track_onset_array.size <= (duration_in_slices+1))
-	usable_onset_times = track_onset_array[0..(track_onset_array.size - duration_in_slices)]
+    	usable_onset_times = track_onset_array[0..(track_onset_array.size - duration_in_slices)]
     	self.start_onset_index =self.track.onset_times.index( usable_onset_times.shuffle.first)
     	self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (self.track.onset_times.size - 1)].min
     	self.save
@@ -48,11 +48,11 @@
     def stop_onset_time
       self.valid_sample?
       begin
-	raise "stop_onset_time out of range" if self.stop_onset_index >= self.track.onset_times.size
+        raise "stop_onset_time out of range" if self.stop_onset_index >= self.track.onset_times.size
       rescue
-	debugger
+        debugger
       end
-	self.track.onset_times[self.stop_onset_index]
+        self.track.onset_times[self.stop_onset_index]
     end
 
     def duration

@@ -34,7 +34,7 @@ class Track
     end
 
     tracks_array.each do |track_path|
-
+      
       puts "track_path:#{track_path}"
       track_path
       file_contents_hash = Digest::MD5.file(track_path).hexdigest
