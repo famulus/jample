@@ -50,7 +50,7 @@
       begin
         raise "stop_onset_time out of range" if self.stop_onset_index >= self.track.onset_times.size
       rescue
-	# debugger
+        # debugger
       end
         self.track.onset_times[self.stop_onset_index]
     end

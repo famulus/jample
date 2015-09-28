@@ -22,7 +22,7 @@
 .row
 	.col-md-6
 		%table.table
-			-@patch_set.patches.reverse.in_groups_of(4) do |group|
+			-@patch_set.patches.sort_by{|p|p.patch_index}.reverse.in_groups_of(4) do |group|
 				%tr
 					-group.reverse.each do |patch|
 						%td{:class => ("bg-info" if @current_patch.id == patch.id)}
@@ -32,6 +32,16 @@
 
 
 	.col-md-6
+		%p
+			=button_to('shrink patch by one slice on the end', { :controller => 'jample', :action => 'shrink_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
+		%p
+			=button_to('grow patch by one slice on the end', { :controller => 'jample', :action => 'grow_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
+		%p
+			=button_to('shift sample backward one slice', { :controller => 'jample', :action => 'shift_sample_backward_one_slice'    }, class: 'btn btn-primary')
+		%p
+			=button_to('shift sample forward one slice', { :controller => 'jample', :action => 'shift_sample_forward_one_slice'    }, class: 'btn btn-primary')
+		%p
+			=link_to('randomize patch', { :controller => 'jample', :action => 'randomize_current_patch'    }, class: 'btn btn-danger')
 		%h2
 			=@current_patch.patch_index + 1
 		%h3
@@ -61,16 +71,6 @@
 			of
 			=@current_patch.track.onset_count
 			slices in track
-		%p
-			=button_to('shrink patch by one slice on the end', { :controller => 'jample', :action => 'shrink_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
-		%p
-			=button_to('grow patch by one slice on the end', { :controller => 'jample', :action => 'grow_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
-		%p
-			=button_to('shift sample backward one slice', { :controller => 'jample', :action => 'shift_sample_backward_one_slice'    }, class: 'btn btn-primary')
-		%p
-			=button_to('shift sample forward one slice', { :controller => 'jample', :action => 'shift_sample_forward_one_slice'    }, class: 'btn btn-primary')
-		%p
-			=link_to('randomize patch', { :controller => 'jample', :action => 'randomize_current_patch'    }, class: 'btn btn-danger')
 .row
 	.col-md-12
 .row

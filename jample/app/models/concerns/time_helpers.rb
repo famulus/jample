@@ -13,7 +13,7 @@ module TimeHelpers
     begin
         raise "thousandths required" if thousandths.blank?
     rescue
-	# debugger
+        # debugger
     end
     puts "CONVERT_TIME_FORMAT"
     puts thousandths
