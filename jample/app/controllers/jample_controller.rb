@@ -10,7 +10,14 @@ class JampleController < ApplicationController
 
 	end
 
+	def reset
+			CurrentPatch.set_current_patch(0)
+			cp = CurrentPatch.last
+			cp.subset_search_string = ''
+			cp.save
+			redirect_to '/'
 
+	end
 
 	def init_16_patches
 		PatchSet.init_16_patches()
