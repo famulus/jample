@@ -46,8 +46,9 @@ class PatchSet
     track_id = subset_of_track_ids.shuffle.first
     track = Track.find(track_id.to_s)
     track_onset_array = track.onset_times
+    return if (track_onset_array.size <= (duration_in_slices+1))
+    usable_onset_times = track_onset_array[0..(track_onset_array.size - duration_in_slices)]
 
-    usable_onset_times = track_onset_array.split(track_onset_array.size - (duration_in_slices+16)).first
     start_onset_index = track.onset_times.index( usable_onset_times.shuffle.first)
 
     (0..15).each do |index|
