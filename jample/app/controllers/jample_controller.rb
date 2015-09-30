@@ -16,7 +16,6 @@ class JampleController < ApplicationController
 			cp.subset_search_string = ''
 			cp.save
 			redirect_to '/'
-
 	end
 
 	def init_16_patches
