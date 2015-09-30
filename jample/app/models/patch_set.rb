@@ -69,8 +69,8 @@ class PatchSet
   end
 
 
-  def p(patch_number)
-    return self.patches[(patch_number - 1)]
+  def p(patch_index)
+    return self.patches[(patch_index - 1)]
   end
 
 

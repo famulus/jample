@@ -13,6 +13,7 @@
     field :start_onset_index, type: Integer
     field :stop_onset_index, type: Integer
 
+    field :voiced_count, type: Integer
     
     field :volume, type: Float
 
