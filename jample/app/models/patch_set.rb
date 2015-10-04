@@ -75,14 +75,14 @@ class PatchSet
 
 
   def previous_patch_set
-    mongoid = self.Created
-    PatchSet.where(:conditions => {:_id.lt => mongoid}).sort({:_id=>-1}).limit(1).last
+    mongoid = self.id.to_s
+    PatchSet.where(:conditions => {:_id.lt => mongoid}).sort({:_id => -1 }).limit(1).last
 
   end
 
   def next_patch_set
     mongoid = self.id
-    PatchSet.where(:conditions => {:_id.gt => mongoid}).sort({:_id=>1}).limit(1).last
+    PatchSet.where(:conditions => {:_id.gt => mongoid}).sort({:_id => 1 }).limit(1).last
   end
 
 end
