@@ -32,7 +32,7 @@
       self.track = Track.find(track_id.to_s)
     	duration_in_slices = 10
     	track_onset_array = self.track.onset_times
-      return if (track_onset_array.size <= (duration_in_slices+1))
+      self.randomize_patch if (track_onset_array.size <= (duration_in_slices+1))
     	usable_onset_times = track_onset_array[0..(track_onset_array.size - duration_in_slices)]
     	self.start_onset_index =self.track.onset_times.index( usable_onset_times.shuffle.first)
     	self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (self.track.onset_times.size - 1)].min
