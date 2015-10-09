@@ -8,6 +8,8 @@
               =day
         -patch_sets.each do |patch_set|
           %tr
-            %td{:class => ("bg-info" if false)}
+            %td
               %h4
                 =link_to(patch_set.patch_set_label || "random", "set_current_patch_set/#{patch_set.id}")
+            %td
+              =patch_set.voiced_count

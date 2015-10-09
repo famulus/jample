@@ -85,4 +85,9 @@ class PatchSet
     PatchSet.where(:conditions => {:_id.gt => mongoid}).sort({:_id => 1 }).limit(1).last
   end
 
+  def voiced_count
+    self.patches.inject(0){|memo, patch| memo + (patch.voiced_count || 0) }
+  end
+
+
 end

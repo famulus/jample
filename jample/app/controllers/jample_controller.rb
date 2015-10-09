@@ -104,7 +104,7 @@ class JampleController < ApplicationController
   end
 
   def all_patchsets
-    @all_patch_sets = PatchSet.all.order_by(:created_at => 'desc')
+    @all_patch_sets = PatchSet.all.order_by(:created_at => 'desc').group_by{|p|p.created_at.to_date}
     
   end
 
