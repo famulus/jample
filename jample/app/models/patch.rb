@@ -30,18 +30,18 @@
       subset_of_track_ids = CurrentPatch.get_current_filter_set
       track_id = subset_of_track_ids.shuffle.first
       self.track = Track.find(track_id.to_s)
-    	duration_in_slices = 10
-    	track_onset_array = self.track.onset_times
+      duration_in_slices = 10
+      track_onset_array = self.track.onset_times
       if (track_onset_array.size <= (duration_in_slices+1))
         self.randomize_patch 
         return
       end
-    	usable_onset_times = track_onset_array[0..(track_onset_array.size - duration_in_slices)]
-    	self.start_onset_index =self.track.onset_times.index( usable_onset_times.shuffle.first)
-    	self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (self.track.onset_times.size - 1)].min
-    	self.save
-  		self.cut_sample(self.patch_index)
-    	
+      usable_onset_times = track_onset_array[0..(track_onset_array.size - duration_in_slices)]
+      self.start_onset_index =self.track.onset_times.index( usable_onset_times.shuffle.first)
+      self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (self.track.onset_times.size - 1)].min
+      self.save
+      self.cut_sample(self.patch_index)
+      
     end
 
     def start_onset_time
@@ -69,44 +69,44 @@
 
 
     def grow_patch_by_one_on_the_end
-    		self.stop_onset_index += 1
-    		self.save
-    		self.cut_sample(self.patch_index)
+        self.stop_onset_index += 1
+        self.save
+        self.cut_sample(self.patch_index)
     end
    
     def shrink_patch_by_one_on_the_end
-    		self.stop_onset_index -= 1
-    		self.save
-    		self.cut_sample(self.patch_index)
+        self.stop_onset_index -= 1
+        self.save
+        self.cut_sample(self.patch_index)
     end
 
     def shift_sample_forward_one_slice
-    		self.start_onset_index += 1
-    		self.stop_onset_index += 1
-    		self.save
-    		self.cut_sample(self.patch_index)
-    		
-  	end	
+        self.start_onset_index += 1
+        self.stop_onset_index += 1
+        self.save
+        self.cut_sample(self.patch_index)
+        
+    end 
 
     def shift_sample_backward_one_slice
-    		self.start_onset_index -= 1
-    		self.stop_onset_index -= 1
-    		self.save
-    		self.cut_sample(self.patch_index)
-  	end	
+        self.start_onset_index -= 1
+        self.stop_onset_index -= 1
+        self.save
+        self.cut_sample(self.patch_index)
+    end 
 
 
 
-  	def copy_patch(desired_patch)
-  		desired_patch_object = Patch.where(patch_index: (desired_patch -1) ).first
-  		self.track = desired_patch_object.track
-  		self.start_onset_index = desired_patch_object.start_onset_index
-  		self.start_onset_index = desired_patch_object.start_onset_index
-  		self.stop_onset_index = desired_patch_object.stop_onset_index
-  		self.save
-  		self.cut_sample(self.patch_index)
+    def copy_patch(desired_patch)
+      desired_patch_object = Patch.where(patch_index: (desired_patch -1) ).first
+      self.track = desired_patch_object.track
+      self.start_onset_index = desired_patch_object.start_onset_index
+      self.start_onset_index = desired_patch_object.start_onset_index
+      self.stop_onset_index = desired_patch_object.stop_onset_index
+      self.save
+      self.cut_sample(self.patch_index)
 
-  	end
+    end
 
     def cut_sample(pad)
       valid_sample?

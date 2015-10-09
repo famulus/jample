@@ -103,5 +103,9 @@ class JampleController < ApplicationController
 		render nothing:true
 	end
 
+	def all_patchsets
+		@patch_sets = PatchSet.all
+		
+	end
 
 end

@@ -1,92 +1,92 @@
 .row
-	.col-md-6
-		=form_tag("/set_filter", method: "post") do
-			.form-group
-				%label{for: "filter" }
-					="Filter: #{@current_filter}"
-				=text_field_tag(:filter_text,nil ,{class: "form-control"} ) 
-			%button{type: 'submit', class:'btn btn-primary', style:'margin-bottom:15px;'}
-				Set Filter
-	.col-md-4
-		%p
-			=button_to('new random patchset', { :controller => 'jample', :action => 'init_16_patches'}, class: 'btn btn-danger')
-	.col-md-4
-		%p
-			=button_to('new random patchset sequence', { :controller => 'jample', :action => 'init_16_patches_as_sequence'}, class: 'btn btn-danger')
-		
+  .col-md-6
+    =form_tag("/set_filter", method: "post") do
+      .form-group
+        %label{for: "filter" }
+          ="Filter: #{@current_filter}"
+        =text_field_tag(:filter_text,nil ,{class: "form-control"} ) 
+      %button{type: 'submit', class:'btn btn-primary', style:'margin-bottom:15px;'}
+        Set Filter
+  .col-md-4
+    %p
+      =button_to('new random patchset', { :controller => 'jample', :action => 'init_16_patches'}, class: 'btn btn-danger')
+  .col-md-4
+    %p
+      =button_to('new random patchset sequence', { :controller => 'jample', :action => 'init_16_patches_as_sequence'}, class: 'btn btn-danger')
+    
 .row
-	.col-md-6
-		="#{@current_filter_size} tracks in filter"
-				
+  .col-md-6
+    ="#{@current_filter_size} tracks in filter"
+        
 
 .row
-	.col-md-6
-		%table.table
-			-@patch_set.patches.sort_by{|p|p.patch_index}.reverse.in_groups_of(4) do |group|
-				%tr
-					-group.reverse.each do |patch|
-						%td{:class => ("bg-info" if @current_patch.id == patch.id)}
-							%h4
-								=patch.patch_index + 1
-							=link_to(patch.track.track_name_pretty,{ :controller => 'jample', :action => 'set_current_patch', id:  patch.patch_index+36}) rescue "ERROR"
+  .col-md-6
+    %table.table
+      -@patch_set.patches.sort_by{|p|p.patch_index}.reverse.in_groups_of(4) do |group|
+        %tr
+          -group.reverse.each do |patch|
+            %td{:class => ("bg-info" if @current_patch.id == patch.id)}
+              %h4
+                =patch.patch_index + 1
+              =link_to(patch.track.track_name_pretty,{ :controller => 'jample', :action => 'set_current_patch', id:  patch.patch_index+36}) rescue "ERROR"
 
 
-	.col-md-6
-		%p
-			=button_to('shrink patch by one slice on the end', { :controller => 'jample', :action => 'shrink_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
-		%p
-			=button_to('grow patch by one slice on the end', { :controller => 'jample', :action => 'grow_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
-		%p
-			=button_to('shift sample backward one slice', { :controller => 'jample', :action => 'shift_sample_backward_one_slice'    }, class: 'btn btn-primary')
-		%p
-			=button_to('shift sample forward one slice', { :controller => 'jample', :action => 'shift_sample_forward_one_slice'    }, class: 'btn btn-primary')
-		%p
-			=link_to('randomize patch', { :controller => 'jample', :action => 'randomize_current_patch'    }, class: 'btn btn-danger')
-		%h2
-			=@current_patch.patch_index + 1
-		%h3
-			=@current_patch.track.track_name
+  .col-md-6
+    %p
+      =button_to('shrink patch by one slice on the end', { :controller => 'jample', :action => 'shrink_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
+    %p
+      =button_to('grow patch by one slice on the end', { :controller => 'jample', :action => 'grow_patch_by_one_on_the_end'    }, class: 'btn btn-primary')
+    %p
+      =button_to('shift sample backward one slice', { :controller => 'jample', :action => 'shift_sample_backward_one_slice'    }, class: 'btn btn-primary')
+    %p
+      =button_to('shift sample forward one slice', { :controller => 'jample', :action => 'shift_sample_forward_one_slice'    }, class: 'btn btn-primary')
+    %p
+      =link_to('randomize patch', { :controller => 'jample', :action => 'randomize_current_patch'    }, class: 'btn btn-danger')
+    %h2
+      =@current_patch.patch_index + 1
+    %h3
+      =@current_patch.track.track_name
 
-			
-		%p
-			%ul
-				- @current_patch.track.mp3_data.tag.each do |key, value|
-					%li
-						= "#{key}: #{value}"
+      
+    %p
+      %ul
+        - @current_patch.track.mp3_data.tag.each do |key, value|
+          %li
+            = "#{key}: #{value}"
 
-		%p
-			=@current_patch.track.path_and_file
-		%p
-			Onset Index:
-			=@current_patch.start_onset_index 
-		%p
-			Onset Times:
-			=@current_patch.start_onset_time 
-			to
-			=@current_patch.stop_onset_time rescue ""
+    %p
+      =@current_patch.track.path_and_file
+    %p
+      Onset Index:
+      =@current_patch.start_onset_index 
+    %p
+      Onset Times:
+      =@current_patch.start_onset_time 
+      to
+      =@current_patch.stop_onset_time rescue ""
 
 
-		%p
-			=@current_patch.stop_onset_index 	- @current_patch.start_onset_index 
-			of
-			=@current_patch.track.onset_count
-			slices in track
+    %p
+      =@current_patch.stop_onset_index  - @current_patch.start_onset_index 
+      of
+      =@current_patch.track.onset_count
+      slices in track
 .row
-	.col-md-12
+  .col-md-12
 .row
-	.col-md-6
-		=form_tag("/set_current_patch_set_name", method: "post") do
-			.form-group
-				%label{for: "Patch Set Name" }
-					="#{@patch_set.patch_set_label}"
-				=text_field_tag(:current_patch_set_name,nil ,{class: "form-control"} ) 
-			%button{type: 'submit', class:'btn btn-primary', style:'margin-bottom:15px;'}
-				Name Patch Set
+  .col-md-6
+    =form_tag("/set_current_patch_set_name", method: "post") do
+      .form-group
+        %label{for: "Patch Set Name" }
+          ="#{@patch_set.patch_set_label}"
+        =text_field_tag(:current_patch_set_name,nil ,{class: "form-control"} ) 
+      %button{type: 'submit', class:'btn btn-primary', style:'margin-bottom:15px;'}
+        Name Patch Set
 .row
-	.col-md-6
-		%table.table
-		-@named_patch_sets.each do |patch_set|
-			%tr
-				%td{:class => ("bg-info" if false)}
-					%h4
-						=link_to(patch_set.patch_set_label, "set_current_patch_set/#{patch_set.id}")
+  .col-md-6
+    %table.table
+    -@named_patch_sets.each do |patch_set|
+      %tr
+        %td{:class => ("bg-info" if false)}
+          %h4
+            =link_to(patch_set.patch_set_label, "set_current_patch_set/#{patch_set.id}")
