@@ -7,6 +7,9 @@ class DurationIndex
   field :start_onset_index, type: Integer
   field :stop_onset_index, type: Integer
   field :duration, type: Float
+  
+  
+  belongs_to :track
 
 
   def self.populate
@@ -18,8 +21,8 @@ class DurationIndex
         DurationIndex.create({track_id: track.id, start_onset_index: index,duration: duration })
       end
     end
-
-
   end
+
+
 
 end

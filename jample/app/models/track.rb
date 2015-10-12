@@ -44,6 +44,8 @@ class Track
       track.save
       track.detect_onset
     end
+
+    Track.where(path_and_file: /#{'tmp/patch'}/i, track_missing: false).destroy_all
   end
 
 

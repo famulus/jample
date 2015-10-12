@@ -68,6 +68,30 @@ class PatchSet
 
   end
 
+  def self.init_16_patches_as_duration_sequence
+    new_patch_set = PatchSet.create({})
+
+    duration_in_slices = 12
+    subset_of_track_ids = CurrentPatch.get_current_filter_set
+    
+
+    (0..15).each do |index|
+      patch = Patch.create({
+        track: track,
+        patch_index: index,
+        start_onset_index: start_onset_index+index,
+        stop_onset_index: start_onset_index+index+duration_in_slices
+        })
+      patch.patch_set = new_patch_set
+      patch.save
+      patch.cut_sample(index)
+    end
+    CurrentPatch.set_current_patch_set(new_patch_set)
+    new_patch_set.save
+    self.reload_pure_data()
+
+  end
+
 
   def p(patch_index)
     return self.patches[(patch_index - 1)]
