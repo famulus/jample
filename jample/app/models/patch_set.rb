@@ -73,19 +73,20 @@ class PatchSet
 
     duration_in_slices = 12
     subset_of_track_ids = CurrentPatch.get_current_filter_set
-    
-
-    (0..15).each do |index|
+    DurationIndex.all.sort({:duration => -1}).skip(1000).limit(100).each_with_index do |duration_index,index|
       patch = Patch.create({
-        track: track,
+        track: duration_index.track,
         patch_index: index,
-        start_onset_index: start_onset_index+index,
-        stop_onset_index: start_onset_index+index+duration_in_slices
+        start_onset_index: duration_index.start_onset_index,
+        stop_onset_index: (duration_index.start_onset_index + duration_in_slices)
         })
       patch.patch_set = new_patch_set
       patch.save
       patch.cut_sample(index)
+
     end
+
+
     CurrentPatch.set_current_patch_set(new_patch_set)
     new_patch_set.save
     self.reload_pure_data()
