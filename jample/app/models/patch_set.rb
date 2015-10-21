@@ -71,10 +71,11 @@ class PatchSet
   def self.init_16_patches_as_duration_sequence
     new_patch_set = PatchSet.create({})
 
-    duration_in_slices = 1
+    duration_in_slices = 12 
     subset_of_track_ids = CurrentPatch.get_current_filter_set
-    random_start  = (0 .. DurationIndex.count ).to_a.shuffle.first
-    DurationIndex.all.sort({:duration => -1}).skip(random_start).limit(16).each_with_index do |duration_index,index|
+    subset_of_tracks = DurationIndex.where({:track_id.in => subset_of_track_ids})
+    random_start  = (0 .. subset_of_tracks.size ).to_a.shuffle.first
+    subset_of_tracks.sort({:duration => -1}).skip(random_start).limit(16).each_with_index do |duration_index,index|
       patch = Patch.create({
         track: duration_index.track,
         patch_index: index,

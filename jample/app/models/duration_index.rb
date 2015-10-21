@@ -7,8 +7,8 @@ class DurationIndex
   field :start_onset_index, type: Integer
   field :stop_onset_index, type: Integer
   field :duration, type: Float
-  
-  
+  index ({duration: 1})
+
   belongs_to :track
 
 
@@ -18,7 +18,11 @@ class DurationIndex
       track.onset_times.each_with_index do |onset,index|
         duration = track.onset_times[index+1].to_f - onset.to_f
         next if (duration < 0)
-        DurationIndex.create({track_id: track.id, start_onset_index: index,duration: duration })
+        begin
+          DurationIndex.create({track_id: track.id, start_onset_index: index,duration: duration })
+        rescue Exception => e
+          next            
+        end
       end
     end
   end

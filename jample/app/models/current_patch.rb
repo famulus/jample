@@ -44,7 +44,7 @@ class CurrentPatch
 
   def self.get_current_patch_set()
     cp = CurrentPatch.first
-    ps= PatchSet.find(cp.patch_set_id)
+    ps = PatchSet.find(cp.patch_set_id)
   end
 
   def self.get_current_filter_set

@@ -11,10 +11,11 @@ class JampleController < ApplicationController
   end
 
   def reset
-      CurrentPatch.set_current_patch(0)
       cp = CurrentPatch.last
+      cp.patch_set_id = PatchSet.last.id
       cp.subset_search_string = ''
       cp.save
+      CurrentPatch.set_current_patch(0)
       redirect_to '/'
   end
 
@@ -25,6 +26,11 @@ class JampleController < ApplicationController
 
   def init_16_patches_as_sequence
     PatchSet.init_16_patches_as_sequence()
+    redirect_to '/'
+  end
+
+  def init_16_patches_as_duration_sequence
+    PatchSet.init_16_patches_as_duration_sequence()
     redirect_to '/'
   end
 
