@@ -45,12 +45,10 @@
     end
 
     def start_onset_time
-      self.valid_sample?
       start_onset_time = self.track.onset_times[self.start_onset_index]
     end
 
     def stop_onset_time
-      self.valid_sample?
       begin
         raise "stop_onset_time out of range" if self.stop_onset_index >= self.track.onset_times.size
       rescue
@@ -131,14 +129,13 @@
 
 
     def valid_sample?
-      puts "OKOK #{self.to_a}"
        raise "invalid patch: #{self.to_s}, missing start_onset_index" unless self.start_onset_index.present? 
        raise "invalid patch: #{self.to_s}, missing track" unless self.track.present? 
        raise "invalid patch: #{self.to_s}, missing track.onset_times" unless self.track.onset_times.present?
        raise "invalid patch: #{self.to_s}, missing start_onset_index" unless self.start_onset_index.present?
        raise "invalid patch: #{self.to_s}, missing stop_onset_index" unless self.stop_onset_index.present?
-
-
+       raise "invalid patch: #{self.to_s}, missing stop_onset_time" unless self.stop_onset_time.present?
+       raise "invalid patch: #{self.to_s}, missing start_onset_time" unless self.start_onset_time.present?
        return true
     end
 

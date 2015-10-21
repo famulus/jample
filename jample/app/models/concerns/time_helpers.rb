@@ -1,4 +1,5 @@
 module TimeHelpers
+  
   def sec_dot_milli_to_milli(sec_dot_milli)
     raise "Bad second dot millisecond format for #{sec_dot_milli}"  unless /^\d+\.\d+$/.match(sec_dot_milli)
     second = sec_dot_milli.split('.').first.to_i
@@ -10,11 +11,8 @@ module TimeHelpers
 
   def convert_time_format(thousandths)
     # convert from thousandths to min.sec.thousands
-    begin
-        raise "thousandths required" if thousandths.blank?
-    rescue
-        # debugger
-    end
+    # puts "thousandths: #{thousandths}"
+    raise "thousandths required" if thousandths.blank?
     puts "CONVERT_TIME_FORMAT"
     puts thousandths
     
