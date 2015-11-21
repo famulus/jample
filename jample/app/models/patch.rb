@@ -21,7 +21,7 @@
     belongs_to :track
     belongs_to :patch_set
 
-    index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: true, drop_dups: true })
+    index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: false, drop_dups: false })
 
 
 

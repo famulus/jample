@@ -4,7 +4,7 @@ class PatchSet
 
 
   field :patch_set_label, type: String
-  has_many :patches
+  has_many :patches, {:dependent => :destroy}
 
 
   def self.reload_pure_data

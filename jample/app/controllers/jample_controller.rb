@@ -114,4 +114,9 @@ class JampleController < ApplicationController
     
   end
 
+  def all_tracks
+    @all_tracks = Track.all
+    
+  end
+
 end

@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   get 'reset' => 'jample#reset'
   get 'all_patchsets' => 'jample#all_patchsets'
+  get 'all_tracks' => 'jample#all_tracks'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
