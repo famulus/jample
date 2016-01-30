@@ -18,18 +18,21 @@
     belongs_to :patch_set
 
     index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: false, drop_dups: false })
+    # time = Benchmark.measure do
+    # end ; puts "\n\n\n BENCHMARK \n\n\n#{time}\n\n\n BENCHMARK \n\n\n"
 
     def randomize_patch
+
       duration_in_slices = 10
       subset_of_track_ids = CurrentPatch.get_current_filter_set
       while  # if the track has too few samples, randomly pick another track, until a suitable track is found
         track_id = subset_of_track_ids.shuffle.first
         self.track = Track.find(track_id.to_s)
-        break if self.track.onset_times.size > (duration_in_slices + 1)
+        break if (self.track.onset_times.size > (duration_in_slices + 1))
       end
       track_onset_array = self.track.onset_times
-      max_start_index = track_onset_array.size - duration_in_slices
-      self.start_onset_index = rand(0...max_start_index)
+      max_start_index = track_onset_array.size - duration_in_slices # figure out the max starting index that won't go out of bounds
+      self.start_onset_index = rand(0...max_start_index) # pick a random starting index
       self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (track_onset_array.size - 1)].min
       self.save
       self.cut_sample(self.patch_index)
@@ -96,14 +99,14 @@
     def cut_sample(pad)
       valid_sample?
       pad_name = "pad_#{pad}"
-      Thread.new do 
-        puts "-------------------------SPLIT-------------------------------\n\n\n"
-        puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.track.path_and_file}\" #{convert_time_format(self.start_onset_time)} #{convert_time_format(self.stop_onset_time)}"
+      # Thread.new do 
+         "-------------------------SPLIT-------------------------------\n\n\n"
+         mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.track.path_and_file}\" #{convert_time_format(self.start_onset_time)} #{convert_time_format(self.stop_onset_time)}"
         `#{mp3split_command}`
-        puts "-------------------------TO WAV-------------------------------\n\n\n"
-        puts convert_format_command = "ffmpeg -y -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
+        #  "-------------------------TO WAV-------------------------------\n\n\n"
+         convert_format_command = "ffmpeg -y -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
         `#{convert_format_command}`
-      end
+      # end
 
 
 
