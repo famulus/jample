@@ -14,7 +14,6 @@ class PatchSet
     s = TCPSocket.new 'localhost', 4040
     s.puts "reload;"
     s.close
-
   end
 
   def self.cut_current_patch_set
@@ -90,7 +89,6 @@ class PatchSet
 
   def self.expand_single_patch_to_sequence(patch_index)
     new_patch_set = PatchSet.create({})
-
   end
 
   def p(patch_index)
