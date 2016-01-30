@@ -9,22 +9,15 @@
     field :patch_index, type: Integer
     field :track_id, type: String
     field :patch_set_id, type: String
-
     field :start_onset_index, type: Integer
     field :stop_onset_index, type: Integer
-
     field :voiced_count, type: Integer
-    
     field :volume, type: Float
-
 
     belongs_to :track
     belongs_to :patch_set
 
     index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: false, drop_dups: false })
-
-
-
 
     def randomize_patch
       duration_in_slices = 10
@@ -57,7 +50,6 @@
     end
 
     def duration
-      # valid_sample?
       duration = sec_dot_milli_to_milli(stop_onset_time) - sec_dot_milli_to_milli(start_onset_time) 
       return duration
     end
@@ -82,7 +74,6 @@
         self.stop_onset_index += 1
         self.save
         self.cut_sample(self.patch_index)
-        
     end 
 
     def shift_sample_backward_one_slice
@@ -92,8 +83,6 @@
         self.cut_sample(self.patch_index)
     end 
 
-
-
     def copy_patch(desired_patch)
       desired_patch_object = Patch.where(patch_index: (desired_patch -1) ).first
       self.track = desired_patch_object.track
@@ -102,21 +91,19 @@
       self.stop_onset_index = desired_patch_object.stop_onset_index
       self.save
       self.cut_sample(self.patch_index)
-
     end
 
     def cut_sample(pad)
       valid_sample?
-      
       pad_name = "pad_#{pad}"
-      # Thread.new do 
+      Thread.new do 
         puts "-------------------------SPLIT-------------------------------\n\n\n"
         puts mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.track.path_and_file}\" #{convert_time_format(self.start_onset_time)} #{convert_time_format(self.stop_onset_time)}"
         `#{mp3split_command}`
         puts "-------------------------TO WAV-------------------------------\n\n\n"
         puts convert_format_command = "ffmpeg -y -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
         `#{convert_format_command}`
-      # end
+      end
 
 
 
