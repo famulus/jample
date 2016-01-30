@@ -17,14 +17,17 @@ class CurrentPatch
   end
 
   def self.set_current_patch( patch_index)
-    cp = CurrentPatch.first
-    cp.patch_index = patch_index
-    # increment the voice count for this patch
+    begin
+      cp = CurrentPatch.first
+      cp.patch_index = patch_index
+      # increment the voice count for this patch
 
-    patch = CurrentPatch.get_current_patch_set.p(patch_index)
-    patch.voiced_count = (patch.voiced_count || 0) + 1
-    patch.save
-    cp.save
+      patch = CurrentPatch.get_current_patch_set.p(patch_index)
+      patch.voiced_count = (patch.voiced_count || 0) + 1
+      patch.save
+      cp.save
+    rescue 
+    end
   end
 
   def self.get_current_patch
