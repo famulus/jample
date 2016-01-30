@@ -27,21 +27,19 @@
 
 
     def randomize_patch
-      subset_of_track_ids = CurrentPatch.get_current_filter_set
-      track_id = subset_of_track_ids.shuffle.first
-      self.track = Track.find(track_id.to_s)
       duration_in_slices = 10
-      track_onset_array = self.track.onset_times
-      if (track_onset_array.size <= (duration_in_slices+1))
-        self.randomize_patch 
-        return
+      subset_of_track_ids = CurrentPatch.get_current_filter_set
+      while 
+        track_id = subset_of_track_ids.shuffle.first
+        self.track = Track.find(track_id.to_s)
+        break if self.track.onset_times.size > (duration_in_slices + 1)
       end
-      usable_onset_times = track_onset_array[0..(track_onset_array.size - duration_in_slices)]
-      self.start_onset_index =self.track.onset_times.index( usable_onset_times.shuffle.first)
-      self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (self.track.onset_times.size - 1)].min
+      track_onset_array = self.track.onset_times
+      max_start_index = track_onset_array.size - duration_in_slices
+      self.start_onset_index = rand(0...max_start_index)
+      self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (track_onset_array.size - 1)].min
       self.save
       self.cut_sample(self.patch_index)
-      
     end
 
     def start_onset_time
@@ -51,14 +49,15 @@
     def stop_onset_time
       begin
         raise "stop_onset_time out of range" if self.stop_onset_index >= self.track.onset_times.size
-      rescue
-        # debugger
+      rescue Exception => e
+        debugger
+        raise e
       end
-        self.track.onset_times[self.stop_onset_index]
+      self.track.onset_times[self.stop_onset_index]
     end
 
     def duration
-      valid_sample?
+      # valid_sample?
       duration = sec_dot_milli_to_milli(stop_onset_time) - sec_dot_milli_to_milli(start_onset_time) 
       return duration
     end
@@ -129,14 +128,18 @@
 
 
     def valid_sample?
-       raise "invalid patch: #{self.to_s}, missing start_onset_index" unless self.start_onset_index.present? 
+      begin
        raise "invalid patch: #{self.to_s}, missing track" unless self.track.present? 
        raise "invalid patch: #{self.to_s}, missing track.onset_times" unless self.track.onset_times.present?
-       raise "invalid patch: #{self.to_s}, missing start_onset_index" unless self.start_onset_index.present?
+       raise "invalid patch: #{self.to_s}, missing start_onset_index" unless self.start_onset_index.present? 
        raise "invalid patch: #{self.to_s}, missing stop_onset_index" unless self.stop_onset_index.present?
        raise "invalid patch: #{self.to_s}, missing stop_onset_time" unless self.stop_onset_time.present?
        raise "invalid patch: #{self.to_s}, missing start_onset_time" unless self.start_onset_time.present?
-       return true
+     rescue Exception => e
+      debugger
+      raise e
+     end
+     return true
     end
 
 
