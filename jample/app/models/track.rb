@@ -34,20 +34,17 @@ class Track
     end
 
     tracks_array.each do |track_path|
-      
       puts "track_path:#{track_path}"
       track_path
-      file_contents_hash = Digest::MD5.file(track_path).hexdigest
+      file_contents_hash = Digest::MD5.file(track_path).hexdigest # hash the file contents, like a fingerprint
       track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
       if track.new_record?
         track.path_and_file = track_path
         track.mp3_data
-        track.save
         track.detect_onset
         track.save
       end
     end
-
     Track.where(path_and_file: /#{'tmp/patch'}/i, track_missing: false).destroy_all # remove the temp files
   end
 
