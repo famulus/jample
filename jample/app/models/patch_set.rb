@@ -2,6 +2,9 @@ class PatchSet
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
+  DURATION_IN_SLICES = 12
+  NUMBER_OF_PADS = 16
+
 
   field :patch_set_label, type: String
   has_many :patches, {:dependent => :destroy}
@@ -13,6 +16,14 @@ class PatchSet
     s.close
 
   end
+
+  def self.cut_current_patch_set
+    new_patch_set = CurrentPatch.get_current_patch_set
+    new_patch_set.patches.each do |patch|
+      patch.cut_sample(patch.patch_index)
+    end
+  end
+
 
   def self.init_16_patches
     new_patch_set = PatchSet.create({})
@@ -27,32 +38,24 @@ class PatchSet
     self.reload_pure_data()
   end
 
-  def self.cut_current_patch_set
-    new_patch_set = CurrentPatch.get_current_patch_set
-    new_patch_set.patches.each do |patch|
-      patch.cut_sample(patch.patch_index)
-    end
-  end
 
   def self.init_16_patches_as_sequence
     new_patch_set = PatchSet.create({})
-    duration_in_slices = 12
-    number_of_pads = 16
     subset_of_track_ids = CurrentPatch.get_current_filter_set
     while 
       track_id = subset_of_track_ids.shuffle.first
       track = Track.find(track_id.to_s)
-      break if track.onset_times.size > (duration_in_slices + number_of_pads)
+      break if track.onset_times.size > (DURATION_IN_SLICES + NUMBER_OF_PADS)
     end
     track_onset_array = track.onset_times
-    max_start_index = (track.onset_times.size - (duration_in_slices + number_of_pads))
+    max_start_index = (track.onset_times.size - (DURATION_IN_SLICES + NUMBER_OF_PADS))
     start_onset_index = rand(0...max_start_index)
-    (0...number_of_pads).each do |index|
+    (0...NUMBER_OF_PADS).each do |index|
       patch = Patch.create({
         track: track,
         patch_index: index,
         start_onset_index: start_onset_index+index,
-        stop_onset_index: [(start_onset_index+index+duration_in_slices),(track_onset_array.size-1)].min
+        stop_onset_index: [(start_onset_index+index+DURATION_IN_SLICES),(track_onset_array.size-1)].min
         })
       patch.patch_set = new_patch_set
       patch.save
@@ -66,7 +69,6 @@ class PatchSet
 
   def self.init_16_patches_as_duration_sequence
     new_patch_set = PatchSet.create({})
-    duration_in_slices = 12 
     subset_of_track_ids = CurrentPatch.get_current_filter_set
     subset_of_tracks = DurationIndex.where({:track_id.in => subset_of_track_ids})
     random_start  = (0 .. subset_of_tracks.size ).to_a.shuffle.first
@@ -75,7 +77,7 @@ class PatchSet
         track: duration_index.track,
         patch_index: index,
         start_onset_index: duration_index.start_onset_index,
-        stop_onset_index: (duration_index.start_onset_index + duration_in_slices)
+        stop_onset_index: (duration_index.start_onset_index + DURATION_IN_SLICES)
         })
       patch.patch_set = new_patch_set
       patch.save
@@ -86,6 +88,10 @@ class PatchSet
     self.reload_pure_data()
   end
 
+  def self.expand_single_patch_to_sequence(patch_index)
+    new_patch_set = PatchSet.create({})
+
+  end
 
   def p(patch_index)
     return self.patches[(patch_index - 1)]
