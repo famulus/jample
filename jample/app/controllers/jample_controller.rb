@@ -34,6 +34,11 @@ class JampleController < ApplicationController
     redirect_to '/'
   end
 
+  def expand_single_patch_to_sequence
+    PatchSet.expand_single_patch_to_sequence()
+    redirect_to '/'
+  end
+
   def set_current_patch
     patch_index = params[:id].to_i - 35 # this converts the midi number to the pad index number
     CurrentPatch.set_current_patch(patch_index)

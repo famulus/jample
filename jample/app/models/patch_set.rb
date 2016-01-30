@@ -87,8 +87,28 @@ class PatchSet
     self.reload_pure_data()
   end
 
-  def self.expand_single_patch_to_sequence(patch_index)
+  def self.expand_single_patch_to_sequence()
+    current_patch_set = CurrentPatch.get_current_patch_set
+    seed_patch =  CurrentPatch.get_current_patch
+    patch_index = seed_patch.patch_index
+    track = seed_patch.track
+    track_onset_array = track.onset_times
+    first_patch_index = seed_patch.start_onset_index - patch_index
     new_patch_set = PatchSet.create({})
+    (0...NUMBER_OF_PADS).each do |index|
+      patch = Patch.create({
+        track: track,
+        patch_index: index,
+        start_onset_index: first_patch_index+index,
+        stop_onset_index: [(first_patch_index+index+DURATION_IN_SLICES),(track_onset_array.size-1)].min
+        })
+      patch.patch_set = new_patch_set
+      patch.save
+      patch.cut_sample(index)
+    end
+    CurrentPatch.set_current_patch_set(new_patch_set)
+    new_patch_set.save
+    self.reload_pure_data()
   end
 
   def p(patch_index)

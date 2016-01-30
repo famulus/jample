@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   post 'init_16_patches' => 'jample#init_16_patches'
   post 'init_16_patches_as_sequence' => 'jample#init_16_patches_as_sequence'
   post 'init_16_patches_as_duration_sequence' => 'jample#init_16_patches_as_duration_sequence'
+  post 'expand_single_patch_to_sequence' => 'jample#expand_single_patch_to_sequence'
 
 
   post 'shrink_patch_by_one_on_the_end/' => 'jample#shrink_patch_by_one_on_the_end'

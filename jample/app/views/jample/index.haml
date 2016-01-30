@@ -44,6 +44,8 @@
     %p
       =button_to('shift sample forward one slice', { :controller => 'jample', :action => 'shift_sample_forward_one_slice'    }, class: 'btn btn-primary')
     %p
+      =button_to('sequence from patch', { :controller => 'jample', :action => 'expand_single_patch_to_sequence'    }, class: 'btn btn-primary')
+    %p
       =link_to('randomize patch', { :controller => 'jample', :action => 'randomize_current_patch'    }, class: 'btn btn-danger')
     %h2
       =@current_patch.patch_index + 1
