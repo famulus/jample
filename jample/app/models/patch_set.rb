@@ -42,21 +42,27 @@ class PatchSet
     new_patch_set = PatchSet.create({})
 
     duration_in_slices = 12
+    number_of_pads = 16
     subset_of_track_ids = CurrentPatch.get_current_filter_set
-    track_id = subset_of_track_ids.shuffle.first
-    track = Track.find(track_id.to_s)
+    while 
+      track_id = subset_of_track_ids.shuffle.first
+      track = Track.find(track_id.to_s)
+      break if track.onset_times.size > (duration_in_slices + number_of_pads)
+    end
     track_onset_array = track.onset_times
-    return if (track_onset_array.size <= (duration_in_slices+1))
-    usable_onset_times = track_onset_array[0...(track_onset_array.size - duration_in_slices)]
+    # usable_onset_times = track_onset_array[0...(track_onset_array.size - duration_in_slices)]
+    # start_onset_index = track.onset_times.index( usable_onset_times.shuffle.first)
 
-    start_onset_index = track.onset_times.index( usable_onset_times.shuffle.first)
+    max_start_index = (track.onset_times.size - (duration_in_slices + number_of_pads))
 
-    (0..15).each do |index|
+    start_onset_index = rand(0...max_start_index)
+
+    (0...number_of_pads).each do |index|
       patch = Patch.create({
         track: track,
         patch_index: index,
         start_onset_index: start_onset_index+index,
-        stop_onset_index: start_onset_index+index+duration_in_slices
+        stop_onset_index: [(start_onset_index+index+duration_in_slices),(track_onset_array.size-1)].min
         })
       patch.patch_set = new_patch_set
       patch.save
