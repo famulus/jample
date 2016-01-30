@@ -34,18 +34,18 @@ class Track
     end
 
     tracks_array.each do |track_path|
-      puts "track_path:#{track_path}"
       track_path
+      next if track_path.include?('pure_data/tmp/patch') # don't ingest the temporary files
       file_contents_hash = Digest::MD5.file(track_path).hexdigest # hash the file contents, like a fingerprint
       track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
       if track.new_record?
+        puts "track_path:#{track_path}"
         track.path_and_file = track_path
         track.mp3_data
         track.detect_onset
         track.save
       end
     end
-    Track.where(path_and_file: /#{'tmp/patch'}/i, track_missing: false).destroy_all # remove the temp files
   end
 
 
@@ -58,13 +58,10 @@ class Track
   def detect_onset
     if onset_times.blank?
       aubiocut_command = "aubiocut -i \"#{self.path_and_file}\""
-
       puts onsets = `#{aubiocut_command}`
-
       self.onset_times = onsets.split("\n")
       self.onset_count = onset_times.size
       self.save
-
     end
   end
 
