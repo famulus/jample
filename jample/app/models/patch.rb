@@ -29,7 +29,7 @@
     def randomize_patch
       duration_in_slices = 10
       subset_of_track_ids = CurrentPatch.get_current_filter_set
-      while 
+      while  # if the track has too few samples, randomly pick another track, until a suitable track is found
         track_id = subset_of_track_ids.shuffle.first
         self.track = Track.find(track_id.to_s)
         break if self.track.onset_times.size > (duration_in_slices + 1)
