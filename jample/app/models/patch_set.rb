@@ -50,9 +50,6 @@ class PatchSet
       break if track.onset_times.size > (duration_in_slices + number_of_pads)
     end
     track_onset_array = track.onset_times
-    # usable_onset_times = track_onset_array[0...(track_onset_array.size - duration_in_slices)]
-    # start_onset_index = track.onset_times.index( usable_onset_times.shuffle.first)
-
     max_start_index = (track.onset_times.size - (duration_in_slices + number_of_pads))
 
     start_onset_index = rand(0...max_start_index)
