@@ -54,6 +54,11 @@ class JampleController < ApplicationController
     redirect_to '/'
   end
 
+  def duplicate_patch_set
+    cp = CurrentPatch.get_current_patch_set
+    cp.duplicate_patch_set
+    redirect_to '/'
+  end
 
   def randomize_current_patch
     cp = CurrentPatch.get_current_patch

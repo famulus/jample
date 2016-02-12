@@ -115,6 +115,18 @@ class PatchSet
     return self.patches[(patch_index - 1)]
   end
 
+  def duplicate_patch_set
+    current_patch_set = CurrentPatch.get_current_patch_set
+    new_patch_set = PatchSet.create
+    current_patch_set.patches.each_with_index do |patch,index| 
+      new_patch = patch.clone
+      new_patch.patch_set = new_patch_set
+      new_patch.save
+      new_patch.cut_sample(index)
+    end
+    new_patch_set.save
+    CurrentPatch.set_current_patch_set(new_patch_set)
+  end
 
   def previous_patch_set
     mongoid = self.id.to_s

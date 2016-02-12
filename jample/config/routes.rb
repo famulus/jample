@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'randomize_current_patch' => 'jample#randomize_current_patch'
   post 'set_filter/' => 'jample#set_filter'
   post 'set_current_patch_set_name/' => 'jample#set_current_patch_set_name'
+  post 'duplicate_patch_set/' => 'jample#duplicate_patch_set'
   
   post 'init_16_patches' => 'jample#init_16_patches'
   post 'init_16_patches_as_sequence' => 'jample#init_16_patches_as_sequence'
