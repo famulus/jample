@@ -13,6 +13,7 @@
     field :stop_onset_index, type: Integer
     field :voiced_count, type: Integer
     field :volume, type: Float
+    field :frozen, type: String, default: false
 
     belongs_to :track
     belongs_to :patch_set
@@ -23,6 +24,8 @@
 
     def randomize_patch
 
+      return if self.is_frozen?
+      
       duration_in_slices = 10
       subset_of_track_ids = CurrentPatch.get_current_filter_set
       while  # if the track has too few samples, randomly pick another track, until a suitable track is found
@@ -114,7 +117,9 @@
 
 
 
-
+    def is_frozen?
+      self.frozen == "true" || false
+    end
 
 
     def valid_sample?

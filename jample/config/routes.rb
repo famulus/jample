@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   post 'duplicate_patch_set/' => 'jample#duplicate_patch_set'
   
   post 'init_16_patches' => 'jample#init_16_patches'
+  post 'shuffle_unfrozen' => 'jample#shuffle_unfrozen'
   post 'init_16_patches_as_sequence' => 'jample#init_16_patches_as_sequence'
   post 'init_16_patches_as_duration_sequence' => 'jample#init_16_patches_as_duration_sequence'
   post 'expand_single_patch_to_sequence' => 'jample#expand_single_patch_to_sequence'
@@ -33,6 +34,8 @@ Rails.application.routes.draw do
   get 'reset' => 'jample#reset'
   get 'all_patchsets' => 'jample#all_patchsets'
   get 'all_tracks' => 'jample#all_tracks'
+
+  get 'freeze_patch/:id/:checkbox_status' => 'jample#freeze_patch'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

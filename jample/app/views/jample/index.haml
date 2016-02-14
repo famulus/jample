@@ -13,9 +13,8 @@
   .col-md-4
     %p
       =button_to('new random patchset sequence', { :controller => 'jample', :action => 'init_16_patches_as_sequence'}, class: 'btn btn-danger')
-  / .col-md-4
-  /   %p
-  /     =button_to('new random patchset duration sequence', { :controller => 'jample', :action => 'init_16_patches_as_duration_sequence'}, class: 'btn btn-danger')
+    %p
+      =button_to('shuffle unfrozen', { :controller => 'jample', :action => 'shuffle_unfrozen'}, class: 'btn btn-danger')
   .col-md-4
     %p
       =button_to('duplicate patch set', { :controller => 'jample', :action => 'duplicate_patch_set'}, class: 'btn btn-danger')
@@ -34,8 +33,8 @@
             %td{:class => ("bg-info" if @current_patch.id == patch.id)}
               %h4
                 =patch.patch_index + 1
+              %input{type:"checkbox", name:"freeze", value:"", onclick: "freeze_patch(\"#{patch.id.to_s}\", this.checked)", checked: (patch.frozen == "true"), style: "-webkit-transform: scale(1.8)" }
               =link_to(patch.track.track_name_pretty,{ :controller => 'jample', :action => 'set_current_patch', id:  patch.patch_index+36}) rescue "ERROR"
-
 
   .col-md-6
     %p

@@ -68,6 +68,17 @@ class JampleController < ApplicationController
     redirect_to '/'
   end
 
+  def freeze_patch
+    patch = Patch.find(params[:id])
+    patch.frozen = params[:checkbox_status] 
+    patch.save
+    render json: {}.to_json
+  end
+
+  def shuffle_unfrozen
+      PatchSet.shuffle_unfrozen  
+      redirect_to '/'
+  end
 
   def set_filter
     cp = CurrentPatch.last

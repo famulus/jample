@@ -128,6 +128,14 @@ class PatchSet
     CurrentPatch.set_current_patch_set(new_patch_set)
   end
 
+  def self.shuffle_unfrozen
+    current_patch_set = CurrentPatch.get_current_patch_set
+    current_patch_set.patches.each_with_index do |patch, index|
+      patch.randomize_patch()
+    end
+
+  end
+
   def previous_patch_set
     mongoid = self.id.to_s
     PatchSet.where(:conditions => {:_id.lt => mongoid}).sort({:_id => -1 }).limit(1).last
