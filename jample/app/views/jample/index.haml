@@ -33,7 +33,7 @@
             %td{:class => ("bg-info" if @current_patch.id == patch.id)}
               %h4
                 =patch.patch_index + 1
-              %input{type:"checkbox", name:"freeze", value:"", onclick: "freeze_patch(\"#{patch.id.to_s}\", this.checked)", checked: (patch.frozen == "true"), style: "-webkit-transform: scale(1.8)" }
+              %input{type:"checkbox", name:"freeze", value:"", onclick: "freeze_patch(\"#{patch.id.to_s}\", this.checked)", checked: (patch.frozen == "true"), style: "-webkit-transform: scale(3)" }
               =link_to(patch.track.track_name_pretty,{ :controller => 'jample', :action => 'set_current_patch', id:  patch.patch_index+36}) rescue "ERROR"
 
   .col-md-6

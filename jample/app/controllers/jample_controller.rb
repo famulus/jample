@@ -77,6 +77,7 @@ class JampleController < ApplicationController
 
   def shuffle_unfrozen
       PatchSet.shuffle_unfrozen  
+      PatchSet.reload_pure_data()
       redirect_to '/'
   end
 
