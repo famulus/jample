@@ -13,6 +13,7 @@ end
 
 task :init => :environment do
 	CurrentPatch.init
+	PatchSet.init_16_patches
 end
 
 
