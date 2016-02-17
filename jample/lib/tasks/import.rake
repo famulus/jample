@@ -10,4 +10,11 @@ task :convert_to_mp3 => :environment do
 	end
 end
 
+
+task :init => :environment do
+	CurrentPatch.init
+end
+
+
+
 # doc fax 212-460-5002
