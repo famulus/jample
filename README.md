@@ -8,10 +8,11 @@ INSTALL for MAC
 
 1) Install Xcode
 
-2) Install homebrew
+2) Install homebrew using instructions here: http://brew.sh/
 
-2) In terminal run:
-brew install mongo
+In terminal run the following commands:
+
+2) brew install mongo
 
 3) ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
 4) launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
@@ -28,12 +29,14 @@ brew install mongo
 
 10) brew install aubio --with-python
 
-11) rake import_tracks (Errno::EISDIR: Is a directory - /Users/dave//Dropbox/Logic/Undo/Undo Data/07 Otis.mp3)
+11) brew install ffmpeg
 
-12) brew install ffmpeg
+12) brew install MP3SPLT
 
-13) brew install MP3SPLT
+13) rake import_tracks 
+
 14) rake init
+
 15) rails server -p 80
 
 16) download and install pure data extended: https://puredata.info/downloads/pd-extended
@@ -46,7 +49,7 @@ TODO: fix hardcoded paths in jample.pd
 
 19) Are you able to hear sound coming from pure data
 
-20) 
+20) JAMPLE!
 
 
 
