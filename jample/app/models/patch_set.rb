@@ -11,9 +11,13 @@ class PatchSet
 
 
   def self.reload_pure_data
-    s = TCPSocket.new 'localhost', 4040
-    s.puts "reload;"
-    s.close
+    begin
+      s = TCPSocket.new 'localhost', 4040
+      s.puts "reload;"
+      s.close
+    rescue
+      puts "ERROR RELOADING PURE DATA"
+    end
   end
 
   def self.cut_current_patch_set
