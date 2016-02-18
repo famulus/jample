@@ -1,3 +1,5 @@
+require 'shellwords'
+
 task :import_tracks => :environment do
 	Track.import_tracks
 end
@@ -13,7 +15,6 @@ end
 
 task :init => :environment do
 	FileUtils.mkpath( PATCH_DIRECTORY)
-
 	CurrentPatch.create
 	PatchSet.init_16_patches
 	CurrentPatch.init
@@ -21,4 +22,23 @@ end
 
 
 
-# doc fax 212-460-5002
+task :copy_files_to_location => :environment do
+	destination_folder = '/Volumes/Samples/facesvases\ samples'
+	Track.all.each do |track|
+		command = ("cp #{ Shellwords.shellescape track.path_and_file} #{destination_folder}")
+		puts command
+		begin
+			puts `#{command}`
+		rescue Exception => e
+			puts "ERROR:#{e}"
+		end
+	end
+
+end
+
+
+
+
+
+
+

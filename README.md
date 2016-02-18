@@ -32,7 +32,21 @@ brew install mongo
 
 12) brew install ffmpeg
 
-13) rake init
+13) brew install MP3SPLT
+14) rake init
+15) rails server -p 80
+
+16) download and install pure data extended: https://puredata.info/downloads/pd-extended
+
+TODO: fix hardcoded paths in jample.pd
+
+17) open pure data and setup midi and audio settings
+
+18) Is you midi hardware showing up in pure data
+
+19) Are you able to hear sound coming from pure data
+
+20) 
 
 
 
