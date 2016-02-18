@@ -12,6 +12,8 @@ end
 
 
 task :init => :environment do
+	FileUtils.mkpath( PATCH_DIRECTORY)
+
 	CurrentPatch.create
 	PatchSet.init_16_patches
 	CurrentPatch.init
