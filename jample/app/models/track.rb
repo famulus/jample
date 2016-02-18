@@ -35,7 +35,6 @@ class Track
 
     tracks_array.each do |track_path|
       begin
-      rescue
         next if track_path.include?('pure_data/tmp/patch') # don't ingest the temporary files
         file_contents_hash = Digest::MD5.file(track_path).hexdigest # hash the file contents, like a fingerprint
         track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
@@ -46,6 +45,7 @@ class Track
           track.detect_onset
           track.save
         end
+      rescue
       end
     end
   end
