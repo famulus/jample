@@ -15,6 +15,7 @@ In terminal run the following commands:
 2) brew install mongo
 
 3) ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+
 4) launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
 
 5) cd ~/Documents/
