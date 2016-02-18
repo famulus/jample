@@ -34,15 +34,18 @@ class Track
     end
 
     tracks_array.each do |track_path|
-      next if track_path.include?('pure_data/tmp/patch') # don't ingest the temporary files
-      file_contents_hash = Digest::MD5.file(track_path).hexdigest # hash the file contents, like a fingerprint
-      track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
-      if track.new_record?
-        puts "track_path:#{track_path.to_s}"
-        track.path_and_file = track_path
-        track.mp3_data
-        track.detect_onset
-        track.save
+      begin
+      rescue
+        next if track_path.include?('pure_data/tmp/patch') # don't ingest the temporary files
+        file_contents_hash = Digest::MD5.file(track_path).hexdigest # hash the file contents, like a fingerprint
+        track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
+        if track.new_record?
+          puts "track_path:#{track_path.to_s}"
+          track.path_and_file = track_path
+          track.mp3_data
+          track.detect_onset
+          track.save
+        end
       end
     end
   end
