@@ -1,5 +1,4 @@
   include TimeHelpers
-  include Settings
 
 
   class Patch
