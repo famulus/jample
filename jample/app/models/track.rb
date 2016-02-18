@@ -73,9 +73,12 @@ class Track
   end
 
   def mp3_data
-    mp3_data = Mp3Info.open(self.path_and_file)   
-    self.mp3_data_string = mp3_data.to_s
-    self.save
+    begin
+      mp3_data = Mp3Info.open(self.path_and_file)   
+      self.mp3_data_string = mp3_data.to_s
+      self.save
+    rescue 
+    end
     return mp3_data
   end
 
