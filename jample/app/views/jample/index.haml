@@ -9,7 +9,7 @@
         Set Filter
       ="#{@current_filter_size} tracks in filter"
 
-  .col-md-4
+  .col-md-3
     %p
       =button_to('new random patchset', { :controller => 'jample', :action => 'init_16_patches'}, class: 'btn btn-danger')
     %p
@@ -21,7 +21,7 @@
     
   .col-md-1
     -@recent_filters.each do |filter|
-      %span
+      %p
         =button_to(filter.filter_value, { :controller => 'jample', :action => 'set_filter', filter_text: filter.filter_value }, class: 'btn btn-primary')
 
 
