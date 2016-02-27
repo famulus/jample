@@ -6,7 +6,7 @@ class JampleController < ApplicationController
     @current_filter = CurrentPatch.last.subset_search_string
     @named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
     @current_filter_size = CurrentPatch.get_current_filter_set.size
-    @recent_filters = FilterHistory.all.desc('_id').limit(5).uniq{|s|s.filter_value}
+    @recent_filters = FilterHistory.all.desc('_id').limit(20).uniq{|s|s.filter_value}[(0...4)]
   end
 
   def reset
