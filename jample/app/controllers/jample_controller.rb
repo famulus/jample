@@ -5,9 +5,8 @@ class JampleController < ApplicationController
     @patch_set = CurrentPatch.get_current_patch_set
     @current_filter = CurrentPatch.last.subset_search_string
     @named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
-
     @current_filter_size = CurrentPatch.get_current_filter_set.size
-
+    @recent_filters = FilterHistory.all.desc('_id').limit(5).uniq{|s|s.filter_value}
   end
 
   def reset
@@ -87,6 +86,8 @@ class JampleController < ApplicationController
     cp.subset_search_string = '' if params[:filter_text]=="*"
 
     cp.save
+    FilterHistory.create({filter_value: cp.subset_search_string })
+
     puts "filter set to: #{cp.subset_search_string}"
     redirect_to '/'
   end

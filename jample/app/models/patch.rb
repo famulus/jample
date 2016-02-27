@@ -25,7 +25,7 @@
 
       return if self.is_frozen?
       
-      duration_in_slices = 10
+      duration_in_slices = 12
       subset_of_track_ids = CurrentPatch.get_current_filter_set
       while  # if the track has too few samples, randomly pick another track, until a suitable track is found
         track_id = subset_of_track_ids.shuffle.first

@@ -7,22 +7,23 @@
         =text_field_tag(:filter_text,nil ,{class: "form-control"} ) 
       %button{type: 'submit', class:'btn btn-primary', style:'margin-bottom:15px;'}
         Set Filter
+      ="#{@current_filter_size} tracks in filter"
+
   .col-md-4
     %p
       =button_to('new random patchset', { :controller => 'jample', :action => 'init_16_patches'}, class: 'btn btn-danger')
-  .col-md-4
     %p
       =button_to('new random patchset sequence', { :controller => 'jample', :action => 'init_16_patches_as_sequence'}, class: 'btn btn-danger')
     %p
       =button_to('shuffle unfrozen', { :controller => 'jample', :action => 'shuffle_unfrozen'}, class: 'btn btn-danger')
-  .col-md-4
     %p
       =button_to('duplicate patch set', { :controller => 'jample', :action => 'duplicate_patch_set'}, class: 'btn btn-danger')
     
-.row
-  .col-md-6
-    ="#{@current_filter_size} tracks in filter"
-        
+  .col-md-1
+    -@recent_filters.each do |filter|
+      %span
+        =button_to(filter.filter_value, { :controller => 'jample', :action => 'set_filter', filter_text: filter.filter_value }, class: 'btn btn-primary')
+
 
 .row
   .col-md-6

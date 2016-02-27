@@ -21,7 +21,6 @@ class CurrentPatch
       cp = CurrentPatch.first
       cp.patch_index = patch_index
       # increment the voice count for this patch
-
       patch = CurrentPatch.get_current_patch_set.p(patch_index)
       patch.voiced_count = (patch.voiced_count || 0) + 1
       patch.save
