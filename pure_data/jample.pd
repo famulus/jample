@@ -148,24 +148,26 @@
 #X msg 96 1032 49;
 #X msg 109 1071 50;
 #X msg 122 1114 51;
-#X obj 237 323 tgl 15 0 respect_note_off empty respect_note_off 17
-7 0 10 -262144 -1 -1 0 1;
-#X obj 212 344 tgl 15 0 monosample empty monosample 17 7 0 10 -262144
--1 -1 1 1;
-#X obj 212 263 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X obj 237 301 != 1;
+#X obj 274 393 tgl 15 0 respect_note_off empty respect_note_off 17
+7 0 10 -262144 -1 -1 1 1;
+#X obj 249 414 tgl 15 0 monosample empty monosample 17 7 0 10 -262144
+-1 -1 0 64;
+#X obj 249 333 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+64;
 #X floatatom 243 147 0 0 0 0 - - -;
 #X floatatom 207 147 0 0 0 0 - - -;
 #X floatatom 279 147 0 0 0 0 - - -;
 #X obj 207 114 notein;
-#X obj 211 199 == 60;
-#X obj 212 235 spigot;
-#X obj 243 171 > 0;
 #X text 206 95 connect foot pedal to sustain;
 #X text 416 95 PD8 program change for sustain;
 #X text 31 -77 reload all patched from socket trigger;
 #X text 49 11 initialiaze;
+#X obj 278 185 == 17;
+#X obj 207 187 == 64;
+#X obj 246 225 &&;
+#X obj 222 277 spigot;
+#X floatatom 291 319 5 0 0 0 - - -;
+#X obj 274 371 < 1;
 #X connect 0 0 15 0;
 #X connect 0 1 44 0;
 #X connect 0 2 45 0;
@@ -275,13 +277,16 @@
 #X connect 88 0 77 1;
 #X connect 89 0 78 1;
 #X connect 92 0 91 0;
-#X connect 92 0 93 0;
-#X connect 93 0 90 0;
-#X connect 94 0 100 0;
-#X connect 95 0 98 0;
-#X connect 97 0 95 0;
-#X connect 97 1 94 0;
-#X connect 97 2 96 0;
-#X connect 98 0 99 1;
-#X connect 99 0 92 0;
-#X connect 100 0 99 0;
+#X connect 92 0 106 0;
+#X connect 93 0 104 0;
+#X connect 94 0 102 0;
+#X connect 95 0 101 0;
+#X connect 96 0 94 0;
+#X connect 96 1 93 0;
+#X connect 96 2 95 0;
+#X connect 101 0 103 1;
+#X connect 102 0 103 0;
+#X connect 103 0 104 1;
+#X connect 104 0 92 0;
+#X connect 104 0 105 0;
+#X connect 106 0 90 0;
