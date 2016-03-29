@@ -1,0 +1,3 @@
+#N canvas 15 23 450 300 10;
+#X obj 131 69 loadbang;
+#X obj 126 134 assigned_note 36 1;
