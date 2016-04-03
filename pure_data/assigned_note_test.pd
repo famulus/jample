@@ -29,7 +29,7 @@
 #X coords 0 1 138239 -1 200 140 1;
 #X restore -182 320 graph;
 #X obj -178 496 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 1975 1;
+-1 -1 14730 1;
 #X obj 221 729 dac~;
 #X obj 241 598 / 127;
 #X obj 108 585 tabread4~ \$0-drumL;
@@ -88,6 +88,7 @@
 #X msg 284 289 0;
 #X obj 217 316 spigot;
 #X obj 217 262 speed_control;
+#X text 260 315 current patch?;
 #X connect 0 1 44 0;
 #X connect 0 1 61 0;
 #X connect 0 1 63 0;
