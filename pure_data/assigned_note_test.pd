@@ -1,12 +1,12 @@
-#N canvas 384 41 941 759 10;
-#X obj 317 152 assigned_note \$2 \$3;
+#N canvas 301 23 1012 823 10;
+#X obj 399 212 assigned_note \$2 \$3;
 #X obj 69 174 soundfiler;
 #X obj 69 105 pack s \$0;
 #X msg 69 129 read -resize \$1 \$2-drumL \$2-drumR;
 #X obj 113 249 expr 44100 / $f1;
 #X floatatom 89 372 5 0 0 0 - - -;
 #X obj 89 424 phasor~;
-#X obj 160 344 t b f;
+#X obj 217 344 t b f;
 #X floatatom 119 398 5 0 0 0 - - -;
 #X obj 89 397 * 1;
 #X obj 124 290 expr 1 / $f1;
@@ -23,68 +23,75 @@
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array \$0-drumL 138240 float 0;
 #X coords 0 1 138239 -1 200 140 1 0 0;
-#X restore -183 186 graph;
+#X restore -183 157 graph;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array \$0-drumR 138240 float 0;
 #X coords 0 1 138239 -1 200 140 1;
-#X restore -182 349 graph;
-#X obj -178 525 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 11703 1;
-#X obj 261 869 dac~;
-#X obj 281 738 / 127;
-#X obj 148 725 tabread4~ \$0-drumL;
-#X obj 366 728 tabread4~ \$0-drumR;
-#X text 298 719 volume;
-#X obj 145 832 hip~ 5;
-#X obj 368 835 hip~ 5;
-#X obj 148 774 *~ 0.8;
-#X obj 366 779 *~ 0.8;
-#X obj 232 813 line~;
-#X obj 367 807 *~;
-#X obj 146 801 *~;
-#X obj 319 836 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore -182 320 graph;
+#X obj -178 496 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
+-1 -1 1975 1;
+#X obj 221 729 dac~;
+#X obj 241 598 / 127;
+#X obj 108 585 tabread4~ \$0-drumL;
+#X obj 326 588 tabread4~ \$0-drumR;
+#X text 258 579 volume;
+#X obj 105 692 hip~ 5;
+#X obj 328 695 hip~ 5;
+#X obj 108 634 *~ 0.8;
+#X obj 326 639 *~ 0.8;
+#X obj 192 673 line~;
+#X obj 327 667 *~;
+#X obj 106 661 *~;
+#X obj 171 662 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 145 869 send~ bus-L;
-#X obj 368 866 send~ bus-R;
-#X floatatom 287 791 5 0 0 0 - - -;
-#X obj 285 763 spigot 1;
-#X obj 281 681 ctlin 4 1;
-#X obj -181 499 unsig~ 20;
-#X msg 258 322 0;
-#X obj 368 220 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 105 729 send~ bus-L;
+#X obj 328 726 send~ bus-R;
+#X floatatom 247 651 5 0 0 0 - - -;
+#X obj 245 623 spigot 1;
+#X obj 241 541 ctlin 4 1;
+#X obj -181 470 unsig~ 20;
+#X msg 400 322 0;
+#X obj 460 243 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 370 426 0;
-#X obj 432 213 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X msg 340 426 0;
+#X obj 514 243 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 453 282 unassigned_note \$2 \$3;
-#X obj 513 312 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 529 362 unassigned_note \$2 \$3;
+#X obj 587 392 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 573 312 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 650 392 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 403 422 tgl 15 0 empty respect_note_off respect_note_off 17
+#X obj 373 422 tgl 15 0 empty respect_note_off respect_note_off 17
 7 0 10 -262144 -1 -1 1 1;
 #X obj 481 439 tgl 15 0 empty monosample Mono_Sample 17 7 0 10 -262144
 -1 -1 0 1;
 #X obj 448 465 spigot;
-#X msg 448 537 0;
+#X msg 448 547 0;
 #X obj 141 105 print;
-#X obj 370 452 spigot;
+#X obj 340 452 spigot;
 #X obj 430 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 370 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 340 486 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 476 507 assigned_note 64 17;
-#X text 476 484 mute all upon foot pedal note off;
+#X obj 326 527 assigned_note 64 17;
+#X text 324 512 mute all upon foot pedal note off;
 #X obj 68 -16 bng 15 250 50 0 empty netreceive netreceive 17 7 0 10
 -262144 -1 -1;
-#X msg 332 323 0;
-#X msg 292 322 1;
-#X obj 292 295 delay 5;
-#X msg 232 785 \$1 5;
-#X text 246 264 this fades out and in to prevent popping;
+#X msg 474 323 0;
+#X msg 434 322 1;
+#X obj 434 295 delay 5;
+#X msg 192 645 \$1 5;
+#X text 429 275 this fades out and in to prevent popping;
+#X text 396 192 trigger if midi matches assigned note;
+#X text 528 340 trigger when unassigned note;
+#X msg 251 290 1;
+#X msg 284 289 0;
+#X obj 217 316 spigot;
+#X obj 217 262 speed_control;
 #X connect 0 1 44 0;
 #X connect 0 1 61 0;
 #X connect 0 1 63 0;
+#X connect 0 1 68 0;
 #X connect 0 2 45 0;
 #X connect 0 2 46 0;
 #X connect 1 0 4 0;
@@ -137,6 +144,7 @@
 #X connect 45 0 55 0;
 #X connect 47 1 48 0;
 #X connect 47 1 52 0;
+#X connect 47 1 69 0;
 #X connect 47 2 49 0;
 #X connect 50 0 55 1;
 #X connect 51 0 52 1;
@@ -153,3 +161,7 @@
 #X connect 63 0 43 0;
 #X connect 64 0 33 0;
 #X connect 64 0 36 0;
+#X connect 68 0 70 1;
+#X connect 69 0 70 1;
+#X connect 70 0 7 0;
+#X connect 71 0 70 0;
