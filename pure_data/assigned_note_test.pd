@@ -29,7 +29,7 @@
 #X coords 0 1 138239 -1 200 140 1;
 #X restore -182 320 graph;
 #X obj -178 496 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 14730 1;
+-1 -1 18801 1;
 #X obj 221 729 dac~;
 #X obj 241 598 / 127;
 #X obj 108 585 tabread4~ \$0-drumL;
@@ -50,7 +50,7 @@
 #X obj 245 623 spigot 1;
 #X obj 241 541 ctlin 4 1;
 #X obj -181 470 unsig~ 20;
-#X msg 400 322 0;
+#X msg 400 323 0;
 #X obj 460 243 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 340 426 0;
@@ -61,7 +61,7 @@
 -1 -1;
 #X obj 650 392 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 373 422 tgl 15 0 empty respect_note_off respect_note_off 17
+#X obj 373 427 tgl 15 0 empty respect_note_off respect_note_off 17
 7 0 10 -262144 -1 -1 1 1;
 #X obj 481 439 tgl 15 0 empty monosample Mono_Sample 17 7 0 10 -262144
 -1 -1 0 1;
