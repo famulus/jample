@@ -23,15 +23,15 @@
 #X obj 68 11 loadbang;
 #X msg 68 63 ~/Documents/essample/pure_data/tmp/patch/pad_\$1.wav;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumL 163584 float 0;
-#X coords 0 1 163583 -1 200 140 1 0 0;
+#X array \$0-drumL 107136 float 0;
+#X coords 0 1 107135 -1 200 140 1 0 0;
 #X restore -183 157 graph;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumR 163584 float 0;
-#X coords 0 1 163583 -1 200 140 1;
+#X array \$0-drumR 107136 float 0;
+#X coords 0 1 107135 -1 200 140 1;
 #X restore -182 320 graph;
 #X obj -178 496 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 15682 1;
+-1 -1 19151 1;
 #X obj 221 729 dac~;
 #X obj 241 598 / 127;
 #X obj 108 585 tabread4~ \$0-drumL;
@@ -91,12 +91,12 @@
 #X obj 217 316 spigot;
 #X obj 217 262 speed_control;
 #X text 260 315 current patch?;
-#X obj 482 132 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 482 135 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 437 105 http_get;
-#X text 467 51 Set Current Patch in Rails;
-#X msg 437 78 get http://localhost/set_current_patch/\$1;
-#X obj 437 51 f;
+#X obj 437 108 http_get;
+#X text 467 54 Set Current Patch in Rails;
+#X msg 437 81 get http://localhost/set_current_patch/\$1;
+#X obj 437 54 f;
 #X connect 0 1 44 0;
 #X connect 0 1 61 0;
 #X connect 0 1 63 0;
