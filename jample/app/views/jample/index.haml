@@ -1,4 +1,4 @@
-= react_component('Jample', @props_hash) 
+= react_component('Jample', @props_hash.merge(authenticity_token: form_authenticity_token)) 
 / .row
 /   .col-md-6
 /     =form_tag("/set_filter", method: "post") do

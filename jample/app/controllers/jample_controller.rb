@@ -12,6 +12,7 @@ class JampleController < ApplicationController
       current_patch: @current_patch,
       patch_set: @patch_set.as_json(include: [:patches], methods: [:track]),
       track_set: @patch_set.patches.map{|p|p.track.as_json(methods: [:track_name_pretty])},
+      mp3_set: @patch_set.patches.map{|p|p.track.mp3_data.tag rescue {}},
       current_filter: @current_filter,
       named_patch_sets: @named_patch_sets,
       current_filter_size: @current_filter_size,
@@ -32,7 +33,8 @@ class JampleController < ApplicationController
 
   def init_16_patches
     PatchSet.init_16_patches()
-    redirect_to '/'
+    @current_patch = CurrentPatch.get_current_patch
+    render(json: @current_patch)
   end
 
   def init_16_patches_as_sequence
