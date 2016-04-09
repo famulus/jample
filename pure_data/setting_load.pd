@@ -1,0 +1,25 @@
+#N canvas 467 263 823 404 10;
+#X obj 78 47 f \$1;
+#X obj 78 21 loadbang;
+#X obj 78 -1 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 370 281 zl;
+#X msg 304 69 ~/Documents/essample/pure_data/tmp/metadata/\$1.txt;
+#X obj 85 158 textfile;
+#X msg 79 91 read ~/Documents/essample/pure_data/tmp/metadata/\$1.txt
+;
+#X obj 172 136 print;
+#X obj 81 228 print list;
+#X obj 208 226 print done;
+#X msg 13 118 clear;
+#X msg 297 127 read /Users/clean/Documents/essample/pure_data/tmp/metadata/0.txt
+;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 5 0 8 0;
+#X connect 5 1 9 0;
+#X connect 6 0 5 0;
+#X connect 6 0 7 0;
+#X connect 10 0 5 0;
+#X connect 11 0 5 0;
