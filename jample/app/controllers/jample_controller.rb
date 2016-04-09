@@ -7,6 +7,18 @@ class JampleController < ApplicationController
     @named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
     @current_filter_size = CurrentPatch.get_current_filter_set.size
     @recent_filters = FilterHistory.all.desc('_id').limit(20).uniq{|s|s.filter_value}[(0...4)]
+
+    @props_hash = {
+      current_patch: @current_patch,
+      patch_set: @patch_set.as_json(include: [:patches], methods: [:track]),
+      track_set: @patch_set.patches.map{|p|p.track.as_json(methods: [:track_name_pretty])},
+      current_filter: @current_filter,
+      named_patch_sets: @named_patch_sets,
+      current_filter_size: @current_filter_size,
+      recent_filters: @recent_filters
+    }
+
+
   end
 
   def reset

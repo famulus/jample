@@ -21,6 +21,8 @@
     # time = Benchmark.measure do
     # end ; puts "\n\n\n BENCHMARK \n\n\n#{time}\n\n\n BENCHMARK \n\n\n"
 
+
+
     def randomize_patch
 
       return if self.is_frozen?
