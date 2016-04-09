@@ -1,4 +1,36 @@
 #N canvas 427 23 824 743 10;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
+#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
+;
 #X obj 285 247 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 261 199 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -32,7 +64,7 @@
 #X floatatom 630 58 5 0 0 0 - - -;
 #X obj 437 24 notein;
 #X obj 548 174 netreceive 4040;
-#X obj 547 234 bng 15 250 50 0 netreceive empty netreceive 17 7 0 10
+#X obj 548 204 bng 15 250 50 0 netreceive empty netreceive 17 7 0 10
 -262144 -1 -1;
 #X text 545 156 receives refresh signal from rails;
 #X text 67 -4 index \, note \, channel;
