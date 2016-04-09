@@ -10,12 +10,12 @@ class JampleController < ApplicationController
   end
 
   def reset
-      cp = CurrentPatch.last
-      cp.patch_set_id = PatchSet.last.id
-      cp.subset_search_string = ''
-      cp.save
-      CurrentPatch.set_current_patch(0)
-      redirect_to '/'
+    cp = CurrentPatch.last
+    cp.patch_set_id = PatchSet.last.id
+    cp.subset_search_string = ''
+    cp.save
+    CurrentPatch.set_current_patch(0)
+    redirect_to '/'
   end
 
   def init_16_patches
@@ -75,9 +75,9 @@ class JampleController < ApplicationController
   end
 
   def shuffle_unfrozen
-      PatchSet.shuffle_unfrozen  
-      PatchSet.reload_pure_data()
-      redirect_to '/'
+    PatchSet.shuffle_unfrozen  
+    PatchSet.reload_pure_data()
+    redirect_to '/'
   end
 
   def set_filter
