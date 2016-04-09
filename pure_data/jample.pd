@@ -1,299 +1,74 @@
-#N canvas 0 22 1397 803 10;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X obj -201 374 unpack s s s s s s s s s s s s s s s s;
-#X msg 30 74 \; pd dsp 1;
-#X obj 30 41 loadbang;
-#X obj 423 240 tgl 15 1 respect_note_off empty respect_note_off 17
-7 0 10 -262144 -1 -1 1 1;
-#X obj 455 228 tgl 15 1 monosample empty mono_sample 17 7 0 10 -262144
--1 -1 0 1;
-#X text -216 471 1;
-#X obj 661 189 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 427 23 824 743 10;
+#X obj 285 247 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 261 199 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X floatatom 453 -13 0 0 0 0 - - -;
-#X floatatom 417 -13 0 0 0 0 - - -;
-#X floatatom 489 -13 0 0 0 0 - - -;
-#X text 416 -65 midi in;
-#X obj 535 -49 ctlin;
-#X floatatom 535 -13 5 0 0 0 - - -;
-#X floatatom 574 -13 5 0 0 0 - - -;
-#X floatatom 610 -12 5 0 0 0 - - -;
-#X obj -201 473 jample_subsampler;
-#X msg 54 446 1;
-#X msg 64 598 1;
-#X obj 661 157 note_to_bang;
-#X obj 417 -46 notein;
-#X obj 661 102 notein;
-#X msg -351 -87 list /Users/clean/Documents/essample/pure_data/tmp/patch/pad_0.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_1.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_2.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_3.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_4.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_5.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_6.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_7.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_8.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_9.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_10.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_11.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_12.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_13.wav /Users/clean/Documents/essample/pure_data/tmp/patch/pad_14.wav
-/Users/clean/Documents/essample/pure_data/tmp/patch/pad_15.wav;
-#X msg 57 487 1;
-#X msg 62 527 1;
-#X msg 62 559 1;
-#X msg 67 639 1;
-#X msg 72 679 1;
-#X msg 72 711 1;
-#X msg -102 447 36;
-#X msg -87 489 37;
-#X msg -74 530 38;
-#X msg -57 572 39;
-#X msg -37 616 40;
-#X msg -24 666 41;
-#X msg -11 705 42;
-#X msg 2 748 43;
-#X floatatom 120 -24 5 0 0 0 - - -;
-#X obj 33 -24 print;
-#X obj 80 -24 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 33 -58 netreceive 4040;
-#X msg 661 134 28;
-#X msg 730 135 25;
-#X obj 661 246 http_get;
-#X msg 661 216 get http://localhost/randomize_current_patch/;
-#X obj -186 516 jample_subsampler;
-#X obj -171 556 jample_subsampler;
-#X obj -156 597 jample_subsampler;
-#X obj -136 645 jample_subsampler;
-#X obj -123 690 jample_subsampler;
-#X obj -110 729 jample_subsampler;
-#X obj -96 771 jample_subsampler;
-#X obj -201 473 jample_subsampler;
-#X obj -201 473 jample_subsampler;
-#X obj -201 473 jample_subsampler;
-#X obj 423 113 pgmin;
-#X floatatom 423 149 5 0 0 0 - - -;
-#X floatatom 515 161 5 0 0 0 - - -;
-#X obj 423 198 == 1;
-#X obj 459 200 == 2;
-#X text 703 196 Randomize Current Patch in Rails;
-#X obj 30 13 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text -96 837 1;
-#X obj -81 839 jample_subsampler;
-#X msg 174 812 1;
-#X msg 184 964 1;
-#X msg 222 1115 1;
-#X msg 177 853 1;
-#X msg 182 893 1;
-#X msg 182 925 1;
-#X msg 187 1005 1;
-#X msg 192 1045 1;
-#X msg 192 1077 1;
-#X obj -66 882 jample_subsampler;
-#X obj -51 922 jample_subsampler;
-#X obj -36 963 jample_subsampler;
-#X obj -16 1011 jample_subsampler;
-#X obj -3 1056 jample_subsampler;
-#X obj 10 1095 jample_subsampler;
-#X obj 24 1137 jample_subsampler;
-#X obj -81 839 jample_subsampler;
-#X obj -81 839 jample_subsampler;
-#X obj -81 839 jample_subsampler;
-#X msg 18 813 44;
-#X msg 33 855 45;
-#X msg 46 896 46;
-#X msg 63 938 47;
-#X msg 83 982 48;
-#X msg 96 1032 49;
-#X msg 109 1071 50;
-#X msg 122 1114 51;
-#X obj 274 393 tgl 15 0 respect_note_off empty respect_note_off 17
+#X obj 319 201 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 206 147 assigned_note 64 17;
+#X msg 283 199 1;
+#X msg 341 200 0;
+#X obj 338 298 tgl 15 0 respect_note_off empty respect_note_off 17
 7 0 10 -262144 -1 -1 1 1;
-#X obj 249 414 tgl 15 0 monosample empty monosample 17 7 0 10 -262144
--1 -1 0 64;
-#X obj 249 333 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-64;
-#X floatatom 243 147 0 0 0 0 - - -;
-#X floatatom 207 147 0 0 0 0 - - -;
-#X floatatom 279 147 0 0 0 0 - - -;
-#X obj 207 114 notein;
-#X text 206 95 connect foot pedal to sustain;
-#X text 416 95 PD8 program change for sustain;
-#X text 31 -77 reload all patched from socket trigger;
-#X text 49 11 initialiaze;
-#X obj 278 185 == 17;
-#X obj 207 187 == 64;
-#X obj 246 225 &&;
-#X obj 222 277 spigot;
-#X floatatom 291 319 5 0 0 0 - - -;
-#X obj 274 371 < 1;
-#X obj 200 243 f;
-#X obj 258 247 t b f;
-#X obj 217 394 > 0;
-#X connect 0 0 15 0;
-#X connect 0 1 44 0;
-#X connect 0 2 45 0;
-#X connect 0 3 46 0;
-#X connect 0 4 47 0;
-#X connect 0 5 48 0;
-#X connect 0 6 49 0;
-#X connect 0 7 50 0;
-#X connect 0 8 62 0;
-#X connect 0 9 72 0;
-#X connect 0 10 73 0;
-#X connect 0 11 74 0;
-#X connect 0 12 75 0;
-#X connect 0 13 76 0;
-#X connect 0 14 77 0;
-#X connect 0 15 78 0;
-#X connect 2 0 1 0;
-#X connect 2 0 21 0;
-#X connect 2 0 28 0;
-#X connect 2 0 16 0;
-#X connect 6 0 43 0;
-#X connect 11 0 12 0;
-#X connect 11 1 13 0;
-#X connect 11 2 14 0;
-#X connect 16 0 22 0;
-#X connect 16 0 15 2;
-#X connect 17 0 25 0;
-#X connect 17 0 47 2;
-#X connect 18 0 6 0;
-#X connect 19 0 8 0;
-#X connect 19 1 7 0;
-#X connect 19 2 9 0;
-#X connect 20 0 40 0;
-#X connect 20 2 41 0;
-#X connect 21 0 0 0;
-#X connect 22 0 23 0;
-#X connect 22 0 44 2;
-#X connect 23 0 24 0;
-#X connect 23 0 45 2;
+#X obj 285 322 tgl 15 0 monosample empty monosample 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 285 298 > 0;
+#X obj 338 276 == 0;
+#X msg 208 62 \; pd dsp 1;
+#X obj 208 39 loadbang;
+#X obj 208 11 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 227 9 initialiaze;
+#X obj 341 148 loadbang;
+#X obj 360 86 tgl 15 0 loop empty loop 17 7 0 10 -262144 -1 -1 0 1
+;
+#X floatatom 473 57 0 0 0 0 - - -;
+#X floatatom 437 57 0 0 0 0 - - -;
+#X floatatom 509 57 0 0 0 0 - - -;
+#X text 436 5 midi in;
+#X obj 555 21 ctlin;
+#X floatatom 555 57 5 0 0 0 - - -;
+#X floatatom 594 57 5 0 0 0 - - -;
+#X floatatom 630 58 5 0 0 0 - - -;
+#X obj 437 24 notein;
+#X obj 548 174 netreceive 4040;
+#X obj 547 234 bng 15 250 50 0 netreceive empty netreceive 17 7 0 10
+-262144 -1 -1;
+#X text 545 156 receives refresh signal from rails;
+#X text 67 -4 index \, note \, channel;
+#X obj 23 20 jample_subsampler 0 36 1;
+#X obj 23 50 jample_subsampler 1 37 1;
+#X obj 23 80 jample_subsampler 2 38 1;
+#X obj 23 110 jample_subsampler 3 39 1;
+#X obj 24 140 jample_subsampler 4 40 1;
+#X obj 23 170 jample_subsampler 5 41 1;
+#X obj 23 200 jample_subsampler 6 42 1;
+#X obj 23 230 jample_subsampler 7 43 1;
+#X obj 23 260 jample_subsampler 8 44 1;
+#X obj 23 290 jample_subsampler 9 45 1;
+#X obj 23 320 jample_subsampler 10 46 1;
+#X obj 23 350 jample_subsampler 11 47 1;
+#X obj 23 380 jample_subsampler 12 48 1;
+#X obj 23 410 jample_subsampler 13 49 1;
+#X obj 23 440 jample_subsampler 14 50 1;
+#X obj 23 470 jample_subsampler 15 51 1;
+#X connect 0 0 8 0;
+#X connect 0 0 9 0;
+#X connect 3 1 1 0;
+#X connect 3 1 4 0;
+#X connect 3 2 2 0;
+#X connect 3 2 5 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 8 0 7 0;
+#X connect 9 0 6 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 14 0 5 0;
+#X connect 20 0 21 0;
+#X connect 20 1 22 0;
+#X connect 20 2 23 0;
 #X connect 24 0 17 0;
-#X connect 24 0 46 2;
+#X connect 24 1 16 0;
+#X connect 24 2 18 0;
 #X connect 25 0 26 0;
-#X connect 25 0 48 2;
-#X connect 26 0 27 0;
-#X connect 26 0 49 2;
-#X connect 27 0 50 2;
-#X connect 27 0 63 0;
-#X connect 28 0 29 0;
-#X connect 28 0 15 1;
-#X connect 29 0 30 0;
-#X connect 29 0 44 1;
-#X connect 30 0 31 0;
-#X connect 30 0 45 1;
-#X connect 31 0 32 0;
-#X connect 31 0 46 1;
-#X connect 32 0 33 0;
-#X connect 32 0 47 1;
-#X connect 33 0 34 0;
-#X connect 33 0 48 1;
-#X connect 34 0 35 0;
-#X connect 34 0 49 1;
-#X connect 35 0 50 1;
-#X connect 35 0 82 0;
-#X connect 39 0 37 0;
-#X connect 39 0 38 0;
-#X connect 39 0 21 0;
-#X connect 39 1 36 0;
-#X connect 40 0 18 0;
-#X connect 41 0 18 1;
-#X connect 43 0 42 0;
-#X connect 54 0 55 0;
-#X connect 54 0 57 0;
-#X connect 54 0 58 0;
-#X connect 54 1 56 0;
-#X connect 57 0 3 0;
-#X connect 58 0 4 0;
-#X connect 60 0 2 0;
-#X connect 63 0 66 0;
-#X connect 63 0 62 2;
-#X connect 64 0 69 0;
-#X connect 64 0 75 2;
-#X connect 66 0 67 0;
-#X connect 66 0 72 2;
-#X connect 67 0 68 0;
-#X connect 67 0 73 2;
-#X connect 68 0 64 0;
-#X connect 68 0 74 2;
-#X connect 69 0 70 0;
-#X connect 69 0 76 2;
-#X connect 70 0 71 0;
-#X connect 70 0 77 2;
-#X connect 71 0 65 0;
-#X connect 71 0 78 2;
-#X connect 82 0 83 0;
-#X connect 82 0 62 1;
-#X connect 83 0 84 0;
-#X connect 83 0 72 1;
-#X connect 84 0 85 0;
-#X connect 84 0 73 1;
-#X connect 85 0 86 0;
-#X connect 85 0 74 1;
-#X connect 86 0 87 0;
-#X connect 86 0 75 1;
-#X connect 87 0 88 0;
-#X connect 87 0 76 1;
-#X connect 88 0 89 0;
-#X connect 88 0 77 1;
-#X connect 89 0 78 1;
-#X connect 92 0 106 0;
-#X connect 92 0 109 0;
-#X connect 93 0 107 1;
-#X connect 94 0 102 0;
-#X connect 95 0 101 0;
-#X connect 96 0 94 0;
-#X connect 96 1 93 0;
-#X connect 96 2 95 0;
-#X connect 101 0 103 1;
-#X connect 102 0 103 0;
-#X connect 103 0 108 0;
-#X connect 104 0 92 0;
-#X connect 104 0 105 0;
-#X connect 106 0 90 0;
-#X connect 107 0 104 0;
-#X connect 108 0 107 0;
-#X connect 108 1 104 1;
-#X connect 109 0 91 0;
