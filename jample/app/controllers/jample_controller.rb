@@ -1,6 +1,11 @@
 class JampleController < ApplicationController
 
   def index
+    self.props_hash
+
+  end
+
+  def props_hash
     @current_patch = CurrentPatch.get_current_patch
     @patch_set = CurrentPatch.get_current_patch_set
     @current_filter = CurrentPatch.last.subset_search_string
@@ -18,8 +23,7 @@ class JampleController < ApplicationController
       current_filter_size: @current_filter_size,
       recent_filters: @recent_filters
     }
-
-
+    
   end
 
   def reset
@@ -34,7 +38,7 @@ class JampleController < ApplicationController
   def init_16_patches
     PatchSet.init_16_patches()
     @current_patch = CurrentPatch.get_current_patch
-    render(json: @current_patch)
+    render(json: self.props_hash)
   end
 
   def init_16_patches_as_sequence
