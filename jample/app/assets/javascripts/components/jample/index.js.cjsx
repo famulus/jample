@@ -8,6 +8,7 @@ Jample = React.createClass
     state
   componentDidMount: ->
     @debounce = _.debounce(@set_filter, 500) 
+    @set_filter()
     midi = undefined
     data = undefined
     # request MIDI access
@@ -53,14 +54,12 @@ Jample = React.createClass
     currentPatch = @state.patch_set.patches[@state.currentPatch]
     currentTrack = @state.track_set[@state.currentPatch]
     currentmp3 = @state.mp3_set[@state.currentPatch]
-    console.log("MP3")
-    console.log(currentmp3)
     <div className="wrapper">
       <div className="row">
         <div className="col-md-6">  
           <div className="form-group">  
             Filter
-            <input type="text" id="filter_input" className="form-control" onKeyUp={@debounce}/>
+            <input type="text" onKeyUp={@debounce} id="filter_input" className="form-control" />
             <button type="button" className="btn btn-info" onClick={@set_filter}>Go</button>
             {@state.current_filter_size} Tracks
           </div>

@@ -118,7 +118,10 @@ class JampleController < ApplicationController
     FilterHistory.create({filter_value: cp.subset_search_string })
 
     puts "filter set to: #{cp.subset_search_string}"
-    render(json: self.props_hash)
+    @current_filter = CurrentPatch.last.subset_search_string
+    @current_filter_size = CurrentPatch.get_current_filter_set.size
+
+    render(json: {current_filter: @current_filter, current_filter_size: @current_filter_size})
 
   end
 
