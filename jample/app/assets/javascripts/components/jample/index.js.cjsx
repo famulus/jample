@@ -68,6 +68,21 @@ Jample = React.createClass
         {@grid()}
         <div className="col-md-6">  
           <p>
+            <button type="button" className="btn btn-info" onClick={@init_16_patches}>Random Patches</button>
+            <button type="button" className="btn btn-info" onClick={@init_16_patches_as_sequence}>Random Sequence</button>
+            <button type="button" className="btn btn-info" onClick={@expand_single_patch_to_sequence}>Patch to Sequence</button>
+            <button type="button" className="btn btn-info" onClick={@duplicate_patch_set}>Duplicate</button>
+          </p>
+          <p>
+            <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
+          </p>
+          <p>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Grow Loop</button>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shrink Loop</button>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Forward</button>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Backward</button>
+          </p>
+          <p>
             {currentPatch.patch_index}
           </p>
           <p>
@@ -78,20 +93,6 @@ Jample = React.createClass
           </p>
           <p>
             mp3: {currentmp3}
-          </p>
-          <p>
-            <button type="button" className="btn btn-info" onClick={@init_16_patches}>Random Patches</button>
-            <button type="button" className="btn btn-info" onClick={@init_16_patches_as_sequence}>Random Sequence</button>
-            <button type="button" className="btn btn-info" onClick={@expand_single_patch_to_sequence}>Patch to Sequence</button>
-          </p>
-          <p>
-            <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
-          </p>
-          <p>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Grow Loop</button>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shrink Loop</button>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Forward</button>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Backward</button>
           </p>
 
         </div>  
@@ -112,6 +113,17 @@ Jample = React.createClass
       method: "POST"
       data:
         filter_text: $('#filter_input').val()
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+  duplicate_patch_set: ->
+    console.log("duplicate_patch_set")
+    $.ajax
+      url: 'duplicate_patch_set/'
+      method: "POST"
+      data:
         authenticity_token: @props.authenticity_token
       success: (data) =>
         @setState(data)
