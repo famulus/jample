@@ -2,7 +2,7 @@ Jample = React.createClass
 
   getInitialState: ->
     state = 
-      currentPatch: 0
+      currentPatch: @props.current_patch.patch_index
     for key,value of @props
       state[key] = value
     state
@@ -52,6 +52,8 @@ Jample = React.createClass
     currentPatch = @state.patch_set.patches[@state.currentPatch]
     currentTrack = @state.track_set[@state.currentPatch]
     currentmp3 = @state.mp3_set[@state.currentPatch]
+    console.log("MP3")
+    console.log(currentmp3)
     <div className="wrapper">
       <div className="row">
         <div className="col-md-6">  
@@ -92,7 +94,7 @@ Jample = React.createClass
             track_id: {currentTrack._id}
           </p>
           <p>
-            mp3: {currentmp3}
+            mp3: {(currentmp3)}
           </p>
 
         </div>  
@@ -103,7 +105,7 @@ Jample = React.createClass
   set_current_patch: ->
     console.log("set_current_patch")
     $.ajax
-      url: 'set_current_patch/' + @state.currentPatch
+      url: 'set_current_patch/' + (@state.currentPatch + 1)
       method: "GET"
 
   set_filter: ->

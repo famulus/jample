@@ -1,0 +1,15 @@
+ReactJS parity TODO:
+
+Input to name patche set
+
+list of names patch sets
+
+Get MP3 working again
+
+Show filter metadata
+
+Show recent filters
+
+Show track name on grid
+
+Style parity (though ugly to start)
