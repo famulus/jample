@@ -15,8 +15,8 @@ class JampleController < ApplicationController
 
     @props_hash = {
       current_patch: @current_patch,
-      patch_set: @patch_set.as_json(include: [:patches], methods: [:track]),
-      track_set: @patch_set.patches.map{|p|p.track.as_json(methods: [:track_name_pretty])},
+      patch_set: @patch_set.as_json(include: [:patches]),
+      track_set: @patch_set.patches.map{|p|p.track.as_json(:except => [:onset_times,:mp3_data_string],methods: [:track_name_pretty])},
       mp3_set: @patch_set.patches.map{|p|p.track.mp3_data.tag rescue {}},
       current_filter: @current_filter,
       named_patch_sets: @named_patch_sets,
@@ -89,7 +89,7 @@ class JampleController < ApplicationController
     patch = Patch.find(params[:id])
     patch.frozen = params[:checkbox_status] 
     patch.save
-    render json: {}.to_json
+    render(json: self.props_hash)
   end
 
   def shuffle_unfrozen

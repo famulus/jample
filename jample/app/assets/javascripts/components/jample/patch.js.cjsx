@@ -1,8 +1,15 @@
 Patch = React.createClass
   render: ->
+    console.log("PATCH RENDER")
     <td className={ if @isCurrent() then "bg-info" else "" }>
-      PATCH {@props.patch.patch_index}
-      {@isCurrent()}
+      {@props.patch.patch_index}<br/>
+      <input 
+      type="checkbox" name="freeze" value={@props.patch._id.$oid} className="big_checkbox" 
+      checked={@props.patch.frozen == "true"}
+
+      onChange={@props.freezePatchCallback}
+      />
+
     </td>
 
   isCurrent: ->

@@ -6,3 +6,6 @@
 	width:90px;
 }
 
+.big_checkbox{
+	-webkit-transform: scale(3);
+}

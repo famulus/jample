@@ -51,6 +51,11 @@ Jample = React.createClass
     currentTrack = @state.track_set[@state.currentPatch]
     currentmp3 = @state.mp3_set[@state.currentPatch]
     <div className="row">
+      <div className="col-md-6">  
+        Filter
+      </div>
+    </div>
+    <div className="row">
       {@grid()}
       <div className="col-md-6">  
         <p>
@@ -66,8 +71,17 @@ Jample = React.createClass
           mp3: {currentmp3}
         </p>
         <p>
-          <button type="button" className="btn btn-danger" onClick={@init_16_patches}>Random Patches</button>
+          <button type="button" className="btn btn-info" onClick={@init_16_patches}>Random Patches</button>
+          <button type="button" className="btn btn-info" onClick={@init_16_patches_as_sequence}>Random Sequence</button>
+          <button type="button" className="btn btn-info" onClick={@expand_single_patch_to_sequence}>Patch to Sequence</button>
         </p>
+        <p>
+          <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
+        </p>
+        <p>
+          <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
+        </p>
+
       </div>  
       
     </div>
@@ -86,31 +100,33 @@ Jample = React.createClass
 
 
 
-    # field :patch_index, type: Integer
-    # field :track_id, type: String
-    # field :patch_set_id, type: String
-    # field :start_onset_index, type: Integer
-    # field :stop_onset_index, type: Integer
-    # field :voiced_count, type: Integer
-    # field :volume, type: Float
-    # field :frozen, type: String, default: false
-
+  freezePatchCallback: (e) ->
+    console.log($(e.currentTarget).is(':checked'))
+    console.log($(e.currentTarget).val())
+    chosen_patch = $(e.currentTarget).val()
+    frozen = $(e.currentTarget).is(':checked')
+    $.ajax
+      url: 'freeze_patch/'+chosen_patch+'/'+frozen+'/'
+      method: "GET"
+      success: (data) =>
+        @setState(data)
+        console.log(data)
 
   grid: ->
-    reversed_patches = @props.patch_set.patches
+    reversed_patches = @state.patch_set.patches
     <div className="col-md-6">  
       <table className="table">
         <tr>
-          { reversed_patches.slice(12,16).map (patch) => <Patch key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          { reversed_patches.slice(12,16).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
         </tr>
         <tr>
-          { reversed_patches.slice(8,12).map (patch) => <Patch key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          { reversed_patches.slice(8,12).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
         </tr>
         <tr>
-          { reversed_patches.slice(4,8).map (patch) => <Patch key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          { reversed_patches.slice(4,8).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
         </tr>
         <tr>
-          { reversed_patches.slice(0,4).map (patch) => <Patch key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          { reversed_patches.slice(0,4).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
         </tr>
       </table>
     </div>
