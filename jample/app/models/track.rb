@@ -15,7 +15,7 @@ class Track
 
 
   def as_json(options = {})
-    super(options.merge({methods: [:track_name_pretty] }))
+    super(options.merge( {methods: [:track_name_pretty] }) )
     
   end
 

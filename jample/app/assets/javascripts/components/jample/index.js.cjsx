@@ -35,7 +35,9 @@ Jample = React.createClass
       # this gives us our [command/channel, note, velocity] data.
       if  (data[0] == 144) && (data[1] < 52) # the < 52 ignore the foot pedal
         console.log 'MIDI data', data
+        previous_state = @state
         @setState(currentPatch: (data[1] - 36))
+        @set_current_patch()
       # MIDI data [144, 63, 73]
       return
 
@@ -50,42 +52,90 @@ Jample = React.createClass
     currentPatch = @state.patch_set.patches[@state.currentPatch]
     currentTrack = @state.track_set[@state.currentPatch]
     currentmp3 = @state.mp3_set[@state.currentPatch]
-    <div className="row">
-      <div className="col-md-6">  
-        Filter
+    <div className="wrapper">
+      <div className="row">
+        <div className="col-md-6">  
+          <div className="form-group">  
+            Filter
+            <input type="text" id="filter_input" className="form-control" />
+            <button type="button" className="btn btn-info" onClick={@set_filter}>Go</button>
+
+          </div>
+        </div>
+      </div>
+
+      <div className="row">
+        {@grid()}
+        <div className="col-md-6">  
+          <p>
+            {currentPatch.patch_index}
+          </p>
+          <p>
+            {currentTrack.track_name_pretty}
+          </p>
+          <p>
+            track_id: {currentTrack._id}
+          </p>
+          <p>
+            mp3: {currentmp3}
+          </p>
+          <p>
+            <button type="button" className="btn btn-info" onClick={@init_16_patches}>Random Patches</button>
+            <button type="button" className="btn btn-info" onClick={@init_16_patches_as_sequence}>Random Sequence</button>
+            <button type="button" className="btn btn-info" onClick={@expand_single_patch_to_sequence}>Patch to Sequence</button>
+          </p>
+          <p>
+            <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
+          </p>
+
+        </div>  
+        
       </div>
     </div>
-    <div className="row">
-      {@grid()}
-      <div className="col-md-6">  
-        <p>
-          {currentPatch.patch_index}
-        </p>
-        <p>
-          {currentTrack.track_name_pretty}
-        </p>
-        <p>
-          track_id: {currentTrack._id}
-        </p>
-        <p>
-          mp3: {currentmp3}
-        </p>
-        <p>
-          <button type="button" className="btn btn-info" onClick={@init_16_patches}>Random Patches</button>
-          <button type="button" className="btn btn-info" onClick={@init_16_patches_as_sequence}>Random Sequence</button>
-          <button type="button" className="btn btn-info" onClick={@expand_single_patch_to_sequence}>Patch to Sequence</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
-        </p>
-        <p>
-          <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
-        </p>
 
-      </div>  
-      
-    </div>
+  set_current_patch: ->
+    console.log("set_current_patch")
+    $.ajax
+      url: 'set_current_patch/' + @state.currentPatch
+      method: "GET"
 
+  set_filter: ->
+    console.log("set_filter")
+    $.ajax
+      url: 'set_filter/'
+      method: "POST"
+      data:
+        filter_text: $('#filter_input').val()
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+    
+
+  expand_single_patch_to_sequence: ->
+    console.log("expand_single_patch_to_sequence")
+    $.ajax
+      url: 'expand_single_patch_to_sequence'
+      data:
+        authenticity_token: @props.authenticity_token
+      method: "POST"
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+
+  shuffle_unfrozen: ->
+    console.log("shuffle_unfrozen")
+    $.ajax
+      url: 'shuffle_unfrozen'
+      data:
+        authenticity_token: @props.authenticity_token
+      method: "POST"
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+    
   init_16_patches: ->
     console.log("init_16_patches")
     $.ajax
