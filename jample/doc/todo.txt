@@ -13,3 +13,5 @@ Show track name on grid
 Style parity (though ugly to start)
 
 Wire up loops change buttons
+
+random sequence not wired 

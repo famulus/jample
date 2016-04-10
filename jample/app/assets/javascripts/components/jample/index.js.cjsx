@@ -7,6 +7,7 @@ Jample = React.createClass
       state[key] = value
     state
   componentDidMount: ->
+    @debounce = _.debounce(@set_filter, 500) 
     midi = undefined
     data = undefined
     # request MIDI access
@@ -59,9 +60,9 @@ Jample = React.createClass
         <div className="col-md-6">  
           <div className="form-group">  
             Filter
-            <input type="text" id="filter_input" className="form-control" />
+            <input type="text" id="filter_input" className="form-control" onKeyUp={@debounce}/>
             <button type="button" className="btn btn-info" onClick={@set_filter}>Go</button>
-
+            {@state.current_filter_size} Tracks
           </div>
         </div>
       </div>
