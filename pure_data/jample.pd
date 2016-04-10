@@ -1,36 +1,4 @@
 #N canvas 427 23 824 743 10;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
-#X declare -stdpath extra/zexy -stdpath extra/moocow -stdpath extra/mrpeach
-;
 #X obj 285 247 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 261 199 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -84,6 +52,8 @@
 #X obj 23 410 jample_subsampler 13 49 1;
 #X obj 23 440 jample_subsampler 14 50 1;
 #X obj 23 470 jample_subsampler 15 51 1;
+#X obj 508 450 bng 15 250 50 0 reset_speed empty Reset_Speed 17 7 0
+10 -262144 -1 -1;
 #X connect 0 0 8 0;
 #X connect 0 0 9 0;
 #X connect 3 1 1 0;
