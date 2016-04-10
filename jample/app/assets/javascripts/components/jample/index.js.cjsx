@@ -87,6 +87,12 @@ Jample = React.createClass
           <p>
             <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
           </p>
+          <p>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Grow Loop</button>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shrink Loop</button>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Forward</button>
+            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Backward</button>
+          </p>
 
         </div>  
         
