@@ -53,7 +53,6 @@ Jample = React.createClass
   render: ->
     currentPatch = @state.patch_set.patches[@state.currentPatch]
     currentTrack = @state.track_set[@state.currentPatch]
-    currentmp3 = @state.mp3_set[@state.currentPatch]
     <div className="wrapper">
       <div className="row">
         <div className="col-md-6">  
@@ -81,8 +80,8 @@ Jample = React.createClass
           <p>
             <button type="button" className="btn btn-info" onClick={@grow_patch_by_one_on_the_end}>Grow Loop</button>
             <button type="button" className="btn btn-info" onClick={@shrink_patch_by_one_on_the_end}>Shrink Loop</button>
-            <button type="button" className="btn btn-info" onClick={@shift_sample_forward_one_slice}>Shift Forward</button>
             <button type="button" className="btn btn-info" onClick={@shift_sample_backward_one_slice}>Shift Backward</button>
+            <button type="button" className="btn btn-info" onClick={@shift_sample_forward_one_slice}>Shift Forward</button>
           </p>
           <p>
             {currentPatch.patch_index}
@@ -91,16 +90,38 @@ Jample = React.createClass
             {currentTrack.track_name_pretty}
           </p>
           <p>
+            {currentTrack.path_and_file}
+          </p>
+          <p>
+            Onset Index:
+            {currentPatch.start_onset_index}
+          </p>
+          <p>
+            Onset Times:
+            {currentPatch.start_onset_time}
+            <br/>
+            to<br/>
+            {currentPatch.stop_onset_time}
+
+          </p>
+          <p>
             track_id: {currentTrack._id}
           </p>
           <p>
-            mp3: {(currentmp3)}
+            mp3: {@mp3_display()}
           </p>
+
 
         </div>  
         
       </div>
     </div>
+
+  mp3_display: ->
+    currentmp3 = @state.mp3_set[@state.currentPatch]
+    for key,value of currentmp3
+      <div><span>{key}: </span><span>{value}</span></div>
+
 
   set_current_patch: ->
     console.log("set_current_patch")

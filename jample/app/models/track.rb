@@ -14,11 +14,6 @@ class Track
   field :mp3_data_string, type: String
 
 
-  def as_json(options = {})
-    super(options.merge( {methods: [:track_name_pretty] }) )
-    
-  end
-
 
   def self.import_tracks
     # track_list_string = `mdfind -name \.mp3`

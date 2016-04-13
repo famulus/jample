@@ -2,12 +2,8 @@ ReactJS parity TODO:
 
 Input to name patche set
 
-list of names patch sets
+list of named patch sets
 
 Show recent filters
-
-Show track name on grid
-
-random sequence not wired 
 
 Style parity (though ugly to start)

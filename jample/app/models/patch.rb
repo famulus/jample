@@ -23,6 +23,13 @@
 
 
 
+    def as_json(options)
+      super(options.merge({methods: [:start_onset_time,:stop_onset_time]}))
+    end
+
+
+
+
     def randomize_patch
 
       return if self.is_frozen?
