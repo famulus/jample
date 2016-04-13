@@ -8,8 +8,6 @@ Show recent filters
 
 Show track name on grid
 
-Wire up loops change buttons
-
 random sequence not wired 
 
 Style parity (though ugly to start)

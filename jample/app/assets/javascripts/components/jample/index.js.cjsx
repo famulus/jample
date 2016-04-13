@@ -108,6 +108,17 @@ Jample = React.createClass
       url: 'set_current_patch/' + (@state.currentPatch + 1)
       method: "GET"
 
+  init_16_patches_as_sequence: ->
+    console.log("init_16_patches_as_sequence")
+    $.ajax
+      url: 'init_16_patches_as_sequence'
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
   grow_patch_by_one_on_the_end: ->
     console.log("grow_patch_by_one_on_the_end")
     $.ajax
