@@ -79,10 +79,10 @@ Jample = React.createClass
             <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
           </p>
           <p>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Grow Loop</button>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shrink Loop</button>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Forward</button>
-            <button type="button" className="btn btn-info" onClick={@shuffle_unfrozen}>Shift Backward</button>
+            <button type="button" className="btn btn-info" onClick={@grow_patch_by_one_on_the_end}>Grow Loop</button>
+            <button type="button" className="btn btn-info" onClick={@shrink_patch_by_one_on_the_end}>Shrink Loop</button>
+            <button type="button" className="btn btn-info" onClick={@shift_sample_forward_one_slice}>Shift Forward</button>
+            <button type="button" className="btn btn-info" onClick={@shift_sample_backward_one_slice}>Shift Backward</button>
           </p>
           <p>
             {currentPatch.patch_index}
@@ -107,6 +107,50 @@ Jample = React.createClass
     $.ajax
       url: 'set_current_patch/' + (@state.currentPatch + 1)
       method: "GET"
+
+  grow_patch_by_one_on_the_end: ->
+    console.log("grow_patch_by_one_on_the_end")
+    $.ajax
+      url: 'grow_patch_by_one_on_the_end'
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+  shrink_patch_by_one_on_the_end: ->
+    console.log("shrink_patch_by_one_on_the_end ")
+    $.ajax
+      url: 'shrink_patch_by_one_on_the_end  '
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+  shift_sample_backward_one_slice: ->
+    console.log("shift_sample_backward_one_slice")
+    $.ajax
+      url: 'shift_sample_backward_one_slice'
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+  shift_sample_forward_one_slice: ->
+    console.log("shift_sample_forward_one_slice")
+    $.ajax
+      url: 'shift_sample_forward_one_slice'
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
 
   set_filter: ->
     console.log("set_filter")

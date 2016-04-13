@@ -4,14 +4,12 @@ Input to name patche set
 
 list of names patch sets
 
-Show filter metadata
-
 Show recent filters
 
 Show track name on grid
 
-Style parity (though ugly to start)
-
 Wire up loops change buttons
 
 random sequence not wired 
+
+Style parity (though ugly to start)

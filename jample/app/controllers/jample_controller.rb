@@ -144,7 +144,7 @@ class JampleController < ApplicationController
   def grow_patch_by_one_on_the_end
     CurrentPatch.get_current_patch.grow_patch_by_one_on_the_end
     PatchSet.reload_pure_data()
-    render(json: self.props_hash)
+    render(json: {})
 
   end
 
