@@ -1,9 +1,15 @@
 ReactJS parity TODO:
 
-Input to name patche set
-
 list of named patch sets
 
 Show recent filters
 
 Style parity (though ugly to start)
+
+
+--------
+
+New features:
+
+Navigate to previous / next patchset
+

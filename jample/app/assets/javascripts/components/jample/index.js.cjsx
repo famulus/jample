@@ -108,20 +108,56 @@ Jample = React.createClass
             track_id: {currentTrack._id}
           </p>
           <p>
-            mp3: {@mp3_display()}
+            mp3: {@mp3_display(@state.mp3_set[@state.currentPatch])}
           </p>
+        </div>  
+      </div>
 
+      <div className="row">
+        <div className="col-md-12">  
+        </div>  
+      </div>
+
+      <div className="row">
+        <div className="col-md-6">  
+          <div className="form-group">  
+            <label>Patch Set Name
+              <input type="text" id="current_patch_set_name" className="form-control" />
+            </label>
+            <button type="button" className="btn btn-info" onClick={@set_current_patch_set_name}>Go</button>
+          </div>
 
         </div>  
-        
       </div>
+      <div className="row">
+        <div className="col-md-6">  
+          <table className="table">
+          { @state.named_patch_sets.map (patch_set) => <div>{patch_set.patch_set_label}</div>}
+          </table>
+        </div>  
+      </div>
+
+
+
     </div>
 
-  mp3_display: ->
-    currentmp3 = @state.mp3_set[@state.currentPatch]
-    for key,value of currentmp3
-      <div><span>{key}: </span><span>{value}</span></div>
+  mp3_display: (mp3_data) ->
+    # for key,value of mp3_data
+    #   <div><span>{key}: </span><span>{value}</span></div>
 
+
+  set_current_patch_set_name: ->
+    console.log("set_current_patch_set_name")
+    $.ajax
+      url: 'set_current_patch_set_name'
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+        current_patch_set_name: $('#current_patch_set_name').val()
+      success: (data) =>
+        @setState(data)
+        console.log(data) 
+        
 
   set_current_patch: ->
     console.log("set_current_patch")
