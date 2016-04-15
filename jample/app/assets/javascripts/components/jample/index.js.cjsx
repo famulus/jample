@@ -132,7 +132,7 @@ Jample = React.createClass
       <div className="row">
         <div className="col-md-6">  
           <table className="table">
-          { @state.named_patch_sets.map (patch_set) => <div>{patch_set.patch_set_label}</div>}
+          { @state.named_patch_sets.map (patch_set) => <div><a href="#"  id={patch_set._id.$oid} onClick={@set_current_patch_set}>{patch_set.patch_set_label}</a></div>}
           </table>
         </div>  
       </div>
@@ -144,6 +144,19 @@ Jample = React.createClass
   mp3_display: (mp3_data) ->
     # for key,value of mp3_data
     #   <div><span>{key}: </span><span>{value}</span></div>
+
+
+  set_current_patch_set: (e) ->
+    console.log("set_current_patch_set")
+    $.ajax
+      url: 'set_current_patch_set'
+      method: "POST"
+      data:
+        patch_id: e.currentTarget.id
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data) 
 
 
   set_current_patch_set_name: ->

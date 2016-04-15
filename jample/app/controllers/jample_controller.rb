@@ -71,7 +71,7 @@ class JampleController < ApplicationController
   end
   
   def set_current_patch_set
-    patch_set = PatchSet.find(params[:id])
+    patch_set = PatchSet.find(params[:patch_id])
     CurrentPatch.set_current_patch_set(patch_set)
     PatchSet.cut_current_patch_set
     PatchSet.reload_pure_data()

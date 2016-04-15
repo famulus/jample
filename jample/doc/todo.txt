@@ -13,3 +13,4 @@ New features:
 
 Navigate to previous / next patchset
 
+mp3 data doesn't update with patch

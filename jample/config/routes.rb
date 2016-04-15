@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
   get 'set_current_patch/:id' => 'jample#set_current_patch'
-  get 'set_current_patch_set/:id' => 'jample#set_current_patch_set'
+  post 'set_current_patch_set' => 'jample#set_current_patch_set'
 
 
   get 'randomize_current_patch' => 'jample#randomize_current_patch'
