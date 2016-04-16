@@ -4,12 +4,12 @@ task :open_jample => :environment do
 	command = ("open /Users/clean/Documents/essample/pure_data/jample.pd")
 	puts `#{command}`
 
+
+	command = ("cd ~/Documents/essample/jample/;rvmsudo rails server -p 80 -d")
+	puts `#{command}`
+
 	command = ('open /Applications/Google\ Chrome.app "http://localhost"')
 	puts `#{command}`
-
-	command = ("cd ~/Documents/essample/jample/;rvmsudo rails server -p 80")
-	puts `#{command}`
-
 
 end
 
