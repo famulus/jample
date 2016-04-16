@@ -13,3 +13,11 @@ Navigate to previous / next patchset
 
 mp3 data doesn't update with patch
 
+current patch to filter set to track only
+
+A clear button on the filter
+
+
+show patch_set name
+
+fix patchset_name

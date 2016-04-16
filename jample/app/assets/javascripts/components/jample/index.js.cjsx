@@ -82,6 +82,7 @@ Jample = React.createClass
             <button type="button" className="btn btn-info" onClick={@shrink_patch_by_one_on_the_end}>Shrink Loop</button>
             <button type="button" className="btn btn-info" onClick={@shift_sample_backward_one_slice}>Shift Backward</button>
             <button type="button" className="btn btn-info" onClick={@shift_sample_forward_one_slice}>Shift Forward</button>
+            <button type="button" className="btn btn-info" onClick={@set_filter_to_current_patch_track}>Patch to Filter</button>
           </p>
           <p>
             {currentPatch.patch_index}
@@ -177,6 +178,12 @@ Jample = React.createClass
     $.ajax
       url: 'set_current_patch/' + (@state.currentPatch + 1)
       method: "GET"
+ 
+  set_filter_to_current_patch_track: ->
+    console.log("set_filter_to_current_patch_track")
+    currentTrack = @state.track_set[@state.currentPatch]
+    $('#filter_input').val(currentTrack._id.$oid)
+    @set_filter()
 
   init_16_patches_as_sequence: ->
     console.log("init_16_patches_as_sequence")

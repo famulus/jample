@@ -2,7 +2,6 @@ class JampleController < ApplicationController
 
   def index
     self.props_hash
-
   end
 
   def props_hash
