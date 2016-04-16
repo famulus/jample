@@ -1,7 +1,5 @@
 ReactJS parity TODO:
 
-list of named patch sets
-
 Show recent filters
 
 Style parity (though ugly to start)
@@ -14,3 +12,4 @@ New features:
 Navigate to previous / next patchset
 
 mp3 data doesn't update with patch
+
