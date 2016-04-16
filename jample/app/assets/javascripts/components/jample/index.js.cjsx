@@ -60,6 +60,7 @@ Jample = React.createClass
             Filter
             <input type="text" onKeyUp={@debounce} id="filter_input" className="form-control" />
             <button type="button" className="btn btn-info" onClick={@set_filter}>Go</button>
+            <button type="button" className="btn btn-info" onClick={@clear_filter}>Clear</button>
             {@state.current_filter_size} Tracks
           </div>
         </div>
@@ -183,6 +184,11 @@ Jample = React.createClass
     console.log("set_filter_to_current_patch_track")
     currentTrack = @state.track_set[@state.currentPatch]
     $('#filter_input').val(currentTrack._id.$oid)
+    @set_filter()
+
+  clear_filter: ->
+    console.log("clear_filter")
+    $('#filter_input').val("")
     @set_filter()
 
   init_16_patches_as_sequence: ->
