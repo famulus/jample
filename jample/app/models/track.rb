@@ -18,6 +18,9 @@ class Track
   def self.import_tracks
     # track_list_string = `mdfind -name \.mp3`
     track_list_string = `find ~/  -name *.mp3`
+    if system("mount|grep /BIG_GUY")
+      track_list_string += `find /Volumes/BIG_GUY/dc_tunez/  -name *.mp3`
+    end
     track_list__wav_string = ''# `find ~/  -name *.wav`
     tracks_array = track_list_string.split("\n")
     tracks_array =  tracks_array + track_list__wav_string.split("\n")
