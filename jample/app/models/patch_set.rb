@@ -137,18 +137,20 @@ class PatchSet
     current_patch_set.patches.each_with_index do |patch, index|
       patch.randomize_patch()
     end
-
   end
+
 
   def previous_patch_set
     mongoid = self.id.to_s
-    PatchSet.where(:conditions => {:_id.lt => mongoid}).sort({:_id => -1 }).limit(1).last
+    PatchSet.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first
   end
+
 
   def next_patch_set
     mongoid = self.id
-    PatchSet.where(:conditions => {:_id.gt => mongoid}).sort({:_id => 1 }).limit(1).last
+    PatchSet.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first
   end
+  
 
   def voiced_count
     self.patches.inject(0){|memo, patch| memo + (patch.voiced_count || 0) }

@@ -13,9 +13,4 @@ Navigate to previous / next patchset
 
 mp3 data doesn't update with patch
 
-
-show patch_set name
-
-fix patchset_name
-
 gracefully handle volumes
