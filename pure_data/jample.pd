@@ -1,5 +1,5 @@
 #N canvas 427 23 824 743 10;
-#X obj 285 247 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 283 247 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 261 199 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
@@ -8,12 +8,12 @@
 #X obj 206 147 assigned_note 64 17;
 #X msg 283 199 1;
 #X msg 341 200 0;
-#X obj 338 298 tgl 15 0 respect_note_off empty respect_note_off 17
+#X obj 336 298 tgl 15 0 respect_note_off empty respect_note_off 17
 7 0 10 -262144 -1 -1 1 1;
-#X obj 285 322 tgl 15 0 monosample empty monosample 17 7 0 10 -262144
+#X obj 283 322 tgl 15 0 monosample empty monosample 17 7 0 10 -262144
 -1 -1 0 1;
-#X obj 285 298 > 0;
-#X obj 338 276 == 0;
+#X obj 283 298 > 0;
+#X obj 336 276 == 0;
 #X msg 208 62 \; pd dsp 1;
 #X obj 208 39 loadbang;
 #X obj 208 11 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1

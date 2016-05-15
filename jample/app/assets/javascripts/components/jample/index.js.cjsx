@@ -113,10 +113,10 @@ Jample = React.createClass
             mp3: {@mp3_display(@state.mp3_set[@state.currentPatch])}
           </p>
           <p>
-            <button type="button" disabled={!@state.patch_set.previous_patch_set} id={@state.patch_set.previous_patch_set} className="btn btn-info" onClick={@set_current_patch_set}>Prev PatchSet</button>
+            <button type="button"  disabled={!@state.patch_set.next_patch_set} id={@state.patch_set.next_patch_set} className="btn btn-info" onClick={@set_current_patch_set}>Next PatchSet</button>
           </p>
           <p>
-            <button type="button"  disabled={!@state.patch_set.next_patch_set} id={@state.patch_set.next_patch_set} className="btn btn-info" onClick={@set_current_patch_set}>Next PatchSet</button>
+            <button type="button" disabled={!@state.patch_set.previous_patch_set} id={@state.patch_set.previous_patch_set} className="btn btn-info" onClick={@set_current_patch_set}>Prev PatchSet</button>
           </p>
         </div>  
       </div>
