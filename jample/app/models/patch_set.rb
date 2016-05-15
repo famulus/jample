@@ -142,15 +142,15 @@ class PatchSet
 
   def previous_patch_set
     mongoid = self.id.to_s
-    PatchSet.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first
+    PatchSet.where(:_id.lt => self._id).order_by([[:_id, :desc]]).limit(1).first.id.to_s rescue nil
   end
 
 
   def next_patch_set
     mongoid = self.id
-    PatchSet.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first
+    PatchSet.where(:_id.gt => self._id).order_by([[:_id, :asc]]).limit(1).first.id.to_s rescue nil
   end
-  
+
 
   def voiced_count
     self.patches.inject(0){|memo, patch| memo + (patch.voiced_count || 0) }

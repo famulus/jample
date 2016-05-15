@@ -14,7 +14,11 @@ class JampleController < ApplicationController
 
     @props_hash = {
       current_patch: @current_patch,
-      patch_set: @patch_set.as_json({include: {patches: {include: {track: {methods: [:track_name_pretty ], :except => [:onset_times,:mp3_data_string]}}, methods: [:start_onset_time,:stop_onset_time]}}} ),
+      patch_set: @patch_set.as_json({include: 
+        {patches: {include: 
+          {track: {methods: [:track_name_pretty ], :except => [:onset_times,:mp3_data_string]}}, methods: [:start_onset_time,:stop_onset_time]}},
+        methods: [:next_patch_set,:previous_patch_set]
+      }),
       track_set: @patch_set.patches.map{|p|p.track.as_json(:except => [:onset_times,:mp3_data_string],methods: [:track_name_pretty])},
       mp3_set: @patch_set.patches.map{|p|p.track.mp3_data.tag rescue {}},
       current_filter: @current_filter,
