@@ -20,7 +20,7 @@
 -1;
 #X text 227 9 initialiaze;
 #X obj 341 148 loadbang;
-#X obj 360 86 tgl 15 0 loop empty loop 17 7 0 10 -262144 -1 -1 0 1
+#X obj 508 425 tgl 15 0 loop empty loop 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X floatatom 473 57 0 0 0 0 - - -;
 #X floatatom 437 57 0 0 0 0 - - -;
