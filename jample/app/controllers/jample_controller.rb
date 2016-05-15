@@ -22,12 +22,12 @@ class JampleController < ApplicationController
       current_filter_size: @current_filter_size,
       recent_filters: @recent_filters
     }
-    
   end
 
   def track_alias
     self.track.as_json
   end
+
   def reset
     cp = CurrentPatch.last
     cp.patch_set_id = PatchSet.last.id
@@ -35,7 +35,6 @@ class JampleController < ApplicationController
     cp.save
     CurrentPatch.set_current_patch(0)
     render(json: self.props_hash)
-
   end
 
   def init_16_patches
@@ -46,19 +45,16 @@ class JampleController < ApplicationController
   def init_16_patches_as_sequence
     PatchSet.init_16_patches_as_sequence()
     render(json: self.props_hash)
-
   end
 
   def init_16_patches_as_duration_sequence
     PatchSet.init_16_patches_as_duration_sequence()
     render(json: self.props_hash)
-
   end
 
   def expand_single_patch_to_sequence
     PatchSet.expand_single_patch_to_sequence()
     render(json: self.props_hash)
-
   end
 
   def set_current_patch
@@ -66,7 +62,6 @@ class JampleController < ApplicationController
     CurrentPatch.set_current_patch(patch_index)
     puts "new index: #{patch_index}"
     render(json: {})
-
   end
   
   def set_current_patch_set
@@ -75,14 +70,12 @@ class JampleController < ApplicationController
     PatchSet.cut_current_patch_set
     PatchSet.reload_pure_data()
     render(json: self.props_hash)
-
   end
 
   def duplicate_patch_set
     cp = CurrentPatch.get_current_patch_set
     cp.duplicate_patch_set
     render(json: self.props_hash)
-
   end
 
   def randomize_current_patch
@@ -91,7 +84,6 @@ class JampleController < ApplicationController
     PatchSet.reload_pure_data()
     puts "randomize_patch: #{cp.patch_index}"
     render(json: self.props_hash)
-
   end
 
   def freeze_patch
@@ -105,7 +97,6 @@ class JampleController < ApplicationController
     PatchSet.shuffle_unfrozen  
     PatchSet.reload_pure_data()
     render(json: self.props_hash)
-
   end
 
   def set_filter
@@ -121,7 +112,6 @@ class JampleController < ApplicationController
     @current_filter_size = CurrentPatch.get_current_filter_set.size
 
     render(json: {current_filter: @current_filter, current_filter_size: @current_filter_size})
-
   end
 
   def set_current_patch_set_name
@@ -129,22 +119,18 @@ class JampleController < ApplicationController
     cps.patch_set_label = params[:current_patch_set_name]
     cps.save
     render(json: self.props_hash)
-
-
   end
 
   def shrink_patch_by_one_on_the_end
     CurrentPatch.get_current_patch.shrink_patch_by_one_on_the_end
     PatchSet.reload_pure_data()
     render(json: self.props_hash)
-
   end
 
   def grow_patch_by_one_on_the_end
     CurrentPatch.get_current_patch.grow_patch_by_one_on_the_end
     PatchSet.reload_pure_data()
     render(json: {})
-
   end
 
 
@@ -152,14 +138,12 @@ class JampleController < ApplicationController
     CurrentPatch.get_current_patch.shift_sample_backward_one_slice
     PatchSet.reload_pure_data()
     render(json: self.props_hash)
-
   end
 
   def shift_sample_forward_one_slice
     CurrentPatch.get_current_patch.shift_sample_forward_one_slice
     PatchSet.reload_pure_data()
     render(json: self.props_hash)
-
   end
 
   def set_volume
@@ -171,12 +155,10 @@ class JampleController < ApplicationController
 
   def all_patchsets
     @all_patch_sets = PatchSet.all.order_by(:created_at => 'desc').group_by{|p|p.created_at.to_date}
-    
   end
 
   def all_tracks
     @all_tracks = Track.all
-    
   end
 
 end
