@@ -150,8 +150,8 @@ Jample = React.createClass
     </div>
 
   mp3_display: (mp3_data) ->
-    # for key,value of mp3_data
-    #   <div><span>{key}: </span><span>{value}</span></div>
+    for key,value of mp3_data
+      <div><span>{key}: </span><span>{value}</span></div>
 
 
   set_current_patch_set: (e) ->
