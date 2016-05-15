@@ -134,7 +134,7 @@ Jample = React.createClass
       <div className="row">
         <div className="col-md-6">  
           <table className="table">
-          { @state.named_patch_sets.map (patch_set) => <div><a href="#"  id={patch_set._id.$oid} onClick={@set_current_patch_set}>{patch_set.patch_set_label}</a></div>}
+          { @state.named_patch_sets.map (patch_set) => <tr><td><a href="#"  id={patch_set._id.$oid} onClick={@set_current_patch_set}>{patch_set.patch_set_label}</a></td></tr>}
           </table>
         </div>  
       </div>
