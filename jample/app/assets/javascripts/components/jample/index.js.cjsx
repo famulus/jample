@@ -13,7 +13,7 @@ Jample = React.createClass
     data = undefined
     # request MIDI access
     # midi functions
-
+    
     onMIDISuccess = (midiAccess) ->
       # when we get a succesful response, run this code
       midi = midiAccess
