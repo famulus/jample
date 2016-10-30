@@ -112,10 +112,9 @@
       pad_name = "pad_#{pad}"
       # Thread.new do 
          "-------------------------SPLIT-------------------------------\n\n\n"
-         mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} \"#{self.track.path_and_file}\" #{convert_time_format(self.start_onset_time)} #{convert_time_format(self.stop_onset_time)}"
-        `#{mp3split_command}`
-        #  "-------------------------TO WAV-------------------------------\n\n\n"
+         mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} #{self.track.escaped_path_and_file} #{convert_time_format(self.start_onset_time)} #{convert_time_format(self.stop_onset_time)}"
          convert_format_command = "ffmpeg -y -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
+        `#{mp3split_command}`
         `#{convert_format_command}`
       # end
 

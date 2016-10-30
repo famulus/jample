@@ -36,9 +36,44 @@ end
 
 
 task :copy_files_to_location => :environment do
-	destination_folder = '/Volumes/Samples/facesvases\ samples'
+	destination_folder = '/Volumes/BIG_GUY/jample_songs'
 	Track.all.each do |track|
 		command = ("cp #{ Shellwords.shellescape track.path_and_file} #{destination_folder}")
+		puts command
+		begin
+			puts `#{command}`
+		rescue Exception => e
+			puts "ERROR:#{e}"
+		end
+	end
+
+end
+
+
+task :change_file_reference_to_new_location => :environment do
+	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	Track.all.each do |track|
+		# track.path_and_file = "#{destination_folder}/#{track_name}"
+		puts  (new_path = "#{destination_folder}/#{track.track_name}")
+		track.path_and_file = new_path
+		track.save
+
+		# command = ("cp #{ Shellwords.shellescape track.path_and_file} #{destination_folder}")
+		# puts command
+		# begin
+		# 	puts `#{command}`
+		# rescue Exception => e
+		# 	puts "ERROR:#{e}"
+		# end
+	end
+
+end
+
+task :remove_old_file => :environment do
+	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	Track.all.each do |track|
+
+		command = ("rm #{ Shellwords.shellescape track.path_and_file_old}")
 		puts command
 		begin
 			puts `#{command}`

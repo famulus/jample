@@ -18,7 +18,7 @@ gem 'react-rails'
 gem 'sprockets-coffee-react'
 
 
-
+gem  "awesome_print"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

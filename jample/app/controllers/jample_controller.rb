@@ -11,6 +11,7 @@ class JampleController < ApplicationController
     @named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
     @current_filter_size = CurrentPatch.get_current_filter_set.size
     @recent_filters = FilterHistory.all.desc('_id').limit(20).uniq{|s|s.filter_value}[(0...4)]
+    # debugger
 
     @props_hash = {
       current_patch: @current_patch,
@@ -107,7 +108,7 @@ class JampleController < ApplicationController
     cp = CurrentPatch.last
     cp.subset_search_string = params[:filter_text]
     cp.subset_search_string = '' if params[:filter_text]=="*"
-
+    # debugger
     cp.save
     FilterHistory.create({filter_value: cp.subset_search_string })
 

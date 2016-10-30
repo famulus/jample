@@ -13,27 +13,30 @@ class Track
   field :track_missing, type: Boolean, default: false
   field :mp3_data_string, type: String
 
+  field :path_and_file_old, type: String
 
 
   def self.import_tracks
+    track_list_string = ''
     # track_list_string = `mdfind -name \.mp3`
-    track_list_string = `find ~/  -name *.mp3`
-    if system("mount|grep /BIG_GUY")
-      track_list_string += `find /Volumes/BIG_GUY/dc_tunez/  -name *.mp3`
+    # track_list_string = `find ~/  -name *.mp3`
+    if system("mount|grep /BIG_GUY").present?
+      track_list_string += `find /Volumes/BIG_GUY/jample_songs/  -name *.mp3`
+    else
+      raise "Main song harddrive missing"
     end
     track_list__wav_string = ''# `find ~/  -name *.wav`
     tracks_array = track_list_string.split("\n")
     tracks_array =  tracks_array + track_list__wav_string.split("\n")
     # puts tracks_array
     puts "#{tracks_array.size} tracks to check"
-
     # remove Track records when there is no underlying file
-    missing_files = Track.nin(path_and_file: tracks_array)
-    missing_files.each  do |missing_file|
-      missing_file.track_missing = true
-      missing_file.save
-      puts "Deleted #{missing_file}"
-    end
+    # missing_files = Track.nin(path_and_file: tracks_array)
+    # missing_files.each  do |missing_file|
+    #   missing_file.track_missing = true
+    #   missing_file.save
+    #   puts "Deleted #{missing_file}"
+    # end
 
     tracks_array.each do |track_path|
       begin
@@ -42,12 +45,17 @@ class Track
         track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
         if track.new_record?
           puts "track_path:#{track_path.to_s}"
-          track.path_and_file = track_path
           track.mp3_data
           track.detect_onset
-          track.save
+        else
+          puts "re-attaching:#{track.track_name}"
+          track.path_and_file = track_path
+          track.track_missing = false
         end
-      rescue
+        track.save
+      rescue => e
+        debugger
+        puts "ERROR re-attaching:#{track.track_name}"
       end
     end
   end
@@ -71,6 +79,10 @@ class Track
 
   def track_name
     path_and_file.split('/').last
+  end
+
+  def escaped_path_and_file
+    Shellwords.escape(path_and_file)
   end
 
   def track_name_pretty

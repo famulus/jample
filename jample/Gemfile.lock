@@ -28,6 +28,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    awesome_print (1.7.0)
     babel-source (5.8.19)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -149,6 +150,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   byebug
   coffee-rails (~> 4.0.0)
   haml
