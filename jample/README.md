@@ -19,3 +19,5 @@ stereo sampling (pending update to aubiocut)
 integrate aubio into puredata
 
 OKOK
+
+BUG: you can shift forward past the end of song, causing error
