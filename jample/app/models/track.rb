@@ -25,9 +25,15 @@ class Track
     else
       raise "Main song harddrive missing"
     end
+    # debugger
     track_list__wav_string = ''# `find ~/  -name *.wav`
     tracks_array = track_list_string.split("\n")
     tracks_array =  tracks_array + track_list__wav_string.split("\n")
+
+    database_tracks  = Track.pluck :path_and_file
+
+    new_tracks = ( tracks_array - database_tracks )
+
     # puts tracks_array
     puts "#{tracks_array.size} tracks to check"
     # remove Track records when there is no underlying file
@@ -38,15 +44,24 @@ class Track
     #   puts "Deleted #{missing_file}"
     # end
 
-    tracks_array.each do |track_path|
+    new_tracks.each do |track_path|
       begin
         next if track_path.include?('pure_data/tmp/patch') # don't ingest the temporary files
+        pn = Pathname.new(track_path)
+        unless pn.exist?
+          debugger
+        end
         file_contents_hash = Digest::MD5.file(track_path).hexdigest # hash the file contents, like a fingerprint
+
+        # debugger
         track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
         if track.new_record?
           puts "track_path:#{track_path.to_s}"
           track.mp3_data
+          track.path_and_file = track_path
+          track.save
           track.detect_onset
+
         else
           puts "re-attaching:#{track.track_name}"
           track.path_and_file = track_path
@@ -68,7 +83,8 @@ class Track
 
   def detect_onset
     if onset_times.blank?
-      aubiocut_command = "aubiocut -i \"#{self.path_and_file}\""
+      aubiocut_command = "aubiocut -i \"#{( self.path_and_file )}\""
+      puts   "aubiocut_command: #{aubiocut_command}"
       puts onsets = `#{aubiocut_command}`
       self.onset_times = onsets.split("\n")
       self.onset_count = onset_times.size
