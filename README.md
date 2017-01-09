@@ -1,10 +1,18 @@
 jample
 ======
 
-jazz sampling / jam sampling
+Jample lets a muscian rapidly discover and improvise samples from huge harddrives of music.
 
 
-INSTALL for MAC
+Jample slices every mp3 on your hardrive in advance, so you can instantly shuffle across huge music libraries searching for dopeness by ear. Samples always load on a beat or note. Once you find a dope sample, you can freeze it and continue to shuffly the remaining pads.
+
+
+
+
+
+
+
+*INSTALL for MAC*
 
 1) Install Xcode
 
