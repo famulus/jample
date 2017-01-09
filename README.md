@@ -16,29 +16,29 @@ In terminal run the following commands:
 
 3) `ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents`
 
-4) launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+4) `launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist`
 
-5) cd ~/Documents/
+5) `cd ~/Documents/`
 
-6) git clone git@github.com:famulus/jample.git
+6) `git clone git@github.com:famulus/jample.git`
 
-7) cd jample/jample
+7) `cd jample/jample`
 
-8) sudo gem install bundler
+8) `sudo gem install bundler`
 
-9) bundle install
+9) `bundle install`
 
-10) brew install aubio --with-python
+10) `brew install aubio --with-python`
 
-11) brew install ffmpeg
+11) `brew install ffmpeg`
 
-12) brew install MP3SPLT
+12) `brew install MP3SPLT`
 
-13) rake import_tracks 
+13) `rake import_tracks`
 
-14) rake init
+14) `rake init`
 
-15) rails server -p 80
+15) `rails server -p 80`
 
 16) download and install pure data extended: https://puredata.info/downloads/pd-extended
 
