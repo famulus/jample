@@ -3,6 +3,7 @@ Patch = React.createClass
     <td className={ if @isCurrent() then "bg-info" else "" }>
       {@props.patch.patch_index}<br/>
       {@props.patch.track.track_name_pretty}<br/>
+      
       <input 
       type="checkbox" name="freeze" value={@props.patch._id.$oid} className="big_checkbox" 
       checked={@props.patch.frozen == "true"}

@@ -75,9 +75,11 @@ Jample = React.createClass
             <button type="button" className="btn btn-info" onClick={@expand_single_patch_to_sequence}>Patch to Sequence</button>
             <button type="button" className="btn btn-info" onClick={@duplicate_patch_set}>Duplicate</button>
           </p>
+
           <p>
             <button type="button" className="btn btn-danger" onClick={@shuffle_unfrozen}>Shuffle Unfrozen</button>
           </p>
+
           <p>
             <button type="button" className="btn btn-info" onClick={@grow_patch_by_one_on_the_end}>Grow Loop</button>
             <button type="button" className="btn btn-info" onClick={@shrink_patch_by_one_on_the_end}>Shrink Loop</button>
@@ -85,19 +87,24 @@ Jample = React.createClass
             <button type="button" className="btn btn-info" onClick={@shift_sample_forward_one_slice}>Shift Forward</button>
             <button type="button" className="btn btn-info" onClick={@set_filter_to_current_patch_track}>Patch to Filter</button>
           </p>
+
           <p>
             {currentPatch.patch_index}
           </p>
+
           <p>
             {currentTrack.track_name_pretty}
           </p>
+          
           <p>
             {currentTrack.path_and_file}
           </p>
+          
           <p>
             Onset Index:
             {currentPatch.start_onset_index}
           </p>
+          
           <p>
             Onset Times:
             {currentPatch.start_onset_time}
@@ -106,18 +113,21 @@ Jample = React.createClass
             {currentPatch.stop_onset_time}
 
           </p>
+          
           <p>
             track_id: {currentTrack._id}
           </p>
-          <p>
-            mp3: {@mp3_display(@state.mp3_set[@state.currentPatch])}
-          </p>
+          
+          mp3: {@mp3_display(@state.mp3_set[@state.currentPatch])}
+          
           <p>
             <button type="button"  disabled={!@state.patch_set.next_patch_set} id={@state.patch_set.next_patch_set} className="btn btn-info" onClick={@set_current_patch_set}>Next PatchSet</button>
           </p>
+          
           <p>
             <button type="button" disabled={!@state.patch_set.previous_patch_set} id={@state.patch_set.previous_patch_set} className="btn btn-info" onClick={@set_current_patch_set}>Prev PatchSet</button>
           </p>
+        
         </div>  
       </div>
 
@@ -330,18 +340,20 @@ Jample = React.createClass
     reversed_patches = @state.patch_set.patches
     <div className="col-md-6">  
       <table className="table">
-        <tr>
-          { reversed_patches.slice(12,16).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
-        </tr>
-        <tr>
-          { reversed_patches.slice(8,12).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
-        </tr>
-        <tr>
-          { reversed_patches.slice(4,8).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
-        </tr>
-        <tr>
-          { reversed_patches.slice(0,4).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
-        </tr>
+        <tbody>
+          <tr>
+            { reversed_patches.slice(12,16).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          </tr>
+          <tr>
+            { reversed_patches.slice(8,12).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          </tr>
+          <tr>
+            { reversed_patches.slice(4,8).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          </tr>
+          <tr>
+            { reversed_patches.slice(0,4).map (patch) => <Patch freezePatchCallback={@freezePatchCallback} key={patch._id.$oid} currentPatch={@state.currentPatch } patch={patch}/>}
+          </tr>
+        </tbody>
       </table>
     </div>
 

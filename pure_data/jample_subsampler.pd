@@ -21,15 +21,15 @@
 #X obj 68 11 loadbang;
 #X msg 68 63 ~/Documents/essample/pure_data/tmp/patch/pad_\$1.wav;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumL 433199 float 0;
-#X coords 0 1 433198 -1 200 140 1 0 0;
+#X array \$0-drumL 136128 float 0;
+#X coords 0 1 136127 -1 200 140 1 0 0;
 #X restore -183 157 graph;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumR 433199 float 0;
-#X coords 0 1 433198 -1 200 140 1;
+#X array \$0-drumR 136128 float 0;
+#X coords 0 1 136127 -1 200 140 1;
 #X restore -182 320 graph;
 #X obj -178 496 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 18190 1;
+-1 -1 15456 1;
 #X obj 241 598 / 127;
 #X obj 108 585 tabread4~ \$0-drumL;
 #X obj 326 588 tabread4~ \$0-drumR;
@@ -91,8 +91,8 @@
 10 -262144 -1 -1;
 #X msg 301 222 1;
 #X obj 241 541 ctlin 4 1;
-#X obj 221 729 dac~ \$1;
 #X obj 548 537 ctlin 4 17;
+#X obj 221 729 dac~;
 #X connect 0 1 42 0;
 #X connect 0 1 59 0;
 #X connect 0 1 61 0;
@@ -131,8 +131,9 @@
 #X connect 25 0 30 0;
 #X connect 26 0 31 0;
 #X connect 28 0 36 0;
-#X connect 28 0 74 0;
+#X connect 28 0 75 0;
 #X connect 29 0 37 0;
+#X connect 29 0 75 1;
 #X connect 30 0 34 0;
 #X connect 31 0 33 0;
 #X connect 32 0 33 1;
@@ -171,4 +172,4 @@
 #X connect 71 0 72 0;
 #X connect 72 0 7 0;
 #X connect 73 0 24 0;
-#X connect 75 0 51 0;
+#X connect 74 0 51 0;
