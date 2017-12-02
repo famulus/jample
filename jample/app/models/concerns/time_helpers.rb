@@ -15,7 +15,6 @@ module TimeHelpers
     raise "thousandths required" if thousandths.blank?
     puts "CONVERT_TIME_FORMAT"
     puts thousandths
-    
     sec = thousandths.split(".").first.to_i
     thousandths = thousandths.split(".").last
 

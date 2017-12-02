@@ -9,7 +9,10 @@ class Track
   field :path_and_file, type: String
   field :file_contents_hash, type: String
   field :onset_times, type: Array
+  field :onset_times_beat_mode, type: Array
   field :onset_count, type: Integer
+  field :onset_count_beat_mode, type: Integer
+
   field :track_missing, type: Boolean, default: false
   field :mp3_data_string, type: String
 
@@ -61,6 +64,7 @@ class Track
           track.path_and_file = track_path
           track.save
           track.detect_onset
+          track.detect_beat
 
         else
           puts "re-attaching:#{track.track_name}"
@@ -83,11 +87,22 @@ class Track
 
   def detect_onset
     if onset_times.blank?
-      aubiocut_command = "aubiocut -i \"#{( self.path_and_file )}\""
+      aubiocut_command = "aubio onset -i \"#{( self.path_and_file )}\""
       puts   "aubiocut_command: #{aubiocut_command}"
       puts onsets = `#{aubiocut_command}`
-      self.onset_times = onsets.split("\n")
+      self.onset_times = onsets.split("\t\n")
       self.onset_count = onset_times.size
+      self.save
+    end
+  end 
+
+  def detect_beat
+    if self.onset_times_beat_mode.blank?
+      aubiocut_command = "aubio beat -i \"#{( self.path_and_file )}\""
+      puts   "aubiocut_command: #{aubiocut_command}"
+      puts beats = `#{aubiocut_command}`
+      self.onset_times_beat_mode = beats.split("\t\n")
+      self.onset_count_beat_mode = self.onset_times_beat_mode.size
       self.save
     end
   end

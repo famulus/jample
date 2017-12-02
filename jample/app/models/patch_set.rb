@@ -99,6 +99,7 @@ class PatchSet
     track_onset_array = track.onset_times
     first_patch_index = seed_patch.start_onset_index - patch_index
     new_patch_set = PatchSet.create({})
+    # debugger
     (0...NUMBER_OF_PADS).each do |index|
       patch = Patch.create({
         track: track,
@@ -107,6 +108,7 @@ class PatchSet
         stop_onset_index: [(first_patch_index+index+DURATION_IN_SLICES),(track_onset_array.size-1)].min
         })
       patch.patch_set = new_patch_set
+      patch.refresh_onset_times
       patch.save
       patch.cut_sample(index)
     end
