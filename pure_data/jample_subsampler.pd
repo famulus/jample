@@ -29,7 +29,7 @@
 #X coords 0 1 252287 -1 200 140 1;
 #X restore -182 320 graph;
 #X obj -178 496 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 17561 1;
+-1 -1 1838 1;
 #X obj 241 598 / 127;
 #X obj 108 585 tabread4~ \$0-drumL;
 #X obj 326 588 tabread4~ \$0-drumR;
@@ -99,16 +99,17 @@
 #X obj 300 846 dac~;
 #X obj 263 816 spigot~;
 #X obj 317 816 spigot~;
-#X obj 637 521 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 632 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 604 553 spigot;
+#X obj 604 608 spigot;
 #X obj 465 606 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 658 516 Note Off State;
-#X msg 637 472 1;
-#X msg 677 472 0;
+#X text 657 579 Note Off State;
+#X msg 657 472 1;
+#X msg 697 472 0;
 #X text 459 497 Conditional Mute on Foot Pedal;
 #X text 363 524 mute all;
+#X obj 604 548 t b b;
 #X connect 0 1 42 0;
 #X connect 0 1 58 0;
 #X connect 0 1 60 0;
@@ -176,7 +177,7 @@
 #X connect 53 0 55 0;
 #X connect 53 0 61 0;
 #X connect 53 0 85 0;
-#X connect 56 2 82 0;
+#X connect 56 2 89 0;
 #X connect 57 0 19 0;
 #X connect 58 0 61 0;
 #X connect 59 0 61 0;
@@ -204,3 +205,5 @@
 #X connect 82 0 51 0;
 #X connect 85 0 81 0;
 #X connect 86 0 81 0;
+#X connect 89 0 82 0;
+#X connect 89 1 81 0;

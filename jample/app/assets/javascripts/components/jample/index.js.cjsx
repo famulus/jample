@@ -193,7 +193,7 @@ Jample = React.createClass
   set_current_patch: ->
     console.log("set_current_patch")
     $.ajax
-      url: 'set_current_patch/' + (@state.currentPatch + 1)
+      url: 'set_current_patch/' + (@state.currentPatch )
       method: "GET"
  
   set_filter_to_current_patch_track: ->

@@ -18,7 +18,9 @@ class Track
 
   field :path_and_file_old, type: String
 
-
+  index({track_missing: 1})
+  index({path_and_file: 1})
+  index({file_contents_hash: 1})
   def self.import_tracks
     track_list_string = ''
     # track_list_string = `mdfind -name \.mp3`

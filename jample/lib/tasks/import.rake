@@ -85,6 +85,28 @@ task :remove_old_file => :environment do
 end
 
 
+task :convert_from_index_to_time => :environment do
+	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	Patch.all.each do |patch|
+		begin
+			patch.start_onset_time  = patch.track.onset_times[patch.start_onset_index]
+			patch.stop_onset_time = patch.track.onset_times[patch.stop_onset_index]
+			patch.save
+		rescue => e
+			puts "\n\n BAD TRACK\n\n\n"		
+		end
+	end
+
+end
+
+
+
+task :populate_onset_times_beat_mode => :environment do
+	tracks = Track.where({onset_times_beat_mode: nil})
+	tracks.each{|t|t.detect_beat()}
+end
+
+
 
 
 

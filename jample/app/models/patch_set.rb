@@ -99,7 +99,6 @@ class PatchSet
     track_onset_array = track.onset_times
     first_patch_index = seed_patch.start_onset_index - patch_index
     new_patch_set = PatchSet.create({})
-    # debugger
     (0...NUMBER_OF_PADS).each do |index|
       patch = Patch.create({
         track: track,
