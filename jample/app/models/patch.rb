@@ -18,8 +18,8 @@
     field :volume, type: Float
     field :frozen, type: String, default: false
 
-    belongs_to :track
-    belongs_to :patch_set
+    belongs_to :track, index: true
+    belongs_to :patch_set, index: true
 
     index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: false, drop_dups: false })
     # time = Benchmark.measure do
@@ -34,12 +34,12 @@
 
 
 
-    def randomize_patch
+    def randomize_patch(subset_of_track_ids)
 
       return if self.is_frozen?
       
       duration_in_slices = 12
-      subset_of_track_ids = CurrentPatch.get_current_filter_set
+      
       while  # if the track has too few samples, randomly pick another track, until a suitable track is found
         track_id = subset_of_track_ids.shuffle.first
         self.track = Track.find(track_id.to_s)

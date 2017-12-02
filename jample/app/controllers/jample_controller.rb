@@ -85,7 +85,8 @@ class JampleController < ApplicationController
 
   def randomize_current_patch
     cp = CurrentPatch.get_current_patch
-    cp.randomize_patch
+    subset_of_track_ids = CurrentPatch.get_current_filter_set
+    cp.randomize_patch(subset_of_track_ids)
     PatchSet.reload_pure_data()
     puts "randomize_patch: #{cp.patch_index}"
     render(json: self.props_hash)

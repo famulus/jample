@@ -10,6 +10,7 @@ class PatchSet
   has_many :patches, {:dependent => :destroy}
 
 
+
   def self.reload_pure_data
     begin
       s = TCPSocket.new 'localhost', 4040
@@ -30,9 +31,10 @@ class PatchSet
 
   def self.init_16_patches
     new_patch_set = PatchSet.create({})
+    subset_of_track_ids = CurrentPatch.get_current_filter_set
     (0..15).each do |index|
       patch = Patch.create({patch_index: index})
-      patch.randomize_patch
+      patch.randomize_patch(subset_of_track_ids)
       patch.patch_set = new_patch_set
       patch.save
     end
@@ -135,8 +137,9 @@ class PatchSet
 
   def self.shuffle_unfrozen
     current_patch_set = CurrentPatch.get_current_patch_set
+    subset_of_track_ids = CurrentPatch.get_current_filter_set
     current_patch_set.patches.each_with_index do |patch, index|
-      patch.randomize_patch()
+      patch.randomize_patch(subset_of_track_ids)
     end
   end
 

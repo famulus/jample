@@ -198,7 +198,9 @@ Jample = React.createClass
  
   set_filter_to_current_patch_track: ->
     console.log("set_filter_to_current_patch_track")
-    currentTrack = @state.track_set[@state.currentPatch]
+    console.log(@state.currentPatch)
+    cp = _.find(@state.patch_set.patches, (patch) => return (patch.patch_index == @state.currentPatch ))
+    currentTrack = cp.track
     $('#filter_input').val(currentTrack._id.$oid)
     @set_filter()
 
