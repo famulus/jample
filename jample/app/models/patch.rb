@@ -3,6 +3,8 @@
   #ONSET_MODE = :beat
   ONSET_MODE =  :onset
 
+  NUDGE_MILLISEC =  5
+
   class Patch
     include Mongoid::Document
     include Mongoid::Timestamps::Created
@@ -106,6 +108,16 @@
         self.refresh_onset_times()
         self.cut_sample(self.patch_index)
     end 
+    def nudge_sample_start_forward_milliseconds
+        self.start_onset_time = (self.start_onset_time.to_d + (NUDGE_MILLISEC / 1000.0).round(4))
+        self.save
+        self.cut_sample(self.patch_index)
+    end 
+    def nudge_sample_start_backward_milliseconds
+        self.start_onset_time = (self.start_onset_time.to_d - (NUDGE_MILLISEC / 1000.0).round(4))
+        self.save
+        self.cut_sample(self.patch_index)
+    end 
 
     def copy_patch(desired_patch)
       desired_patch_object = Patch.where(patch_index: (desired_patch -1) ).first
@@ -120,9 +132,13 @@
     def cut_sample(pad)
       valid_sample?
       pad_name = "pad_#{pad}"
+      puts "OKOK"
+      puts self.patch_index
+      puts "OKOK"
       # Thread.new do 
          "-------------------------SPLIT-------------------------------\n\n\n"
          mp3split_command = "mp3splt -d #{PATCH_DIRECTORY} -o #{pad_name} #{self.track.escaped_path_and_file} #{convert_time_format(self.start_onset_time)} #{convert_time_format(self.stop_onset_time)}"
+         puts mp3split_command
          convert_format_command = "ffmpeg -y -i #{File.join(PATCH_DIRECTORY, pad_name+'.mp3')}  -ac 2 #{File.join(PATCH_DIRECTORY, pad_name+'.wav')}"
         `#{mp3split_command}`
         `#{convert_format_command}`

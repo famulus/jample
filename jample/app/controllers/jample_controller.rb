@@ -140,6 +140,18 @@ class JampleController < ApplicationController
   end
 
 
+  def nudge_sample_start_backward_milliseconds
+    CurrentPatch.get_current_patch.nudge_sample_start_backward_milliseconds
+    PatchSet.reload_pure_data()
+    render(json: self.props_hash)
+  end
+
+  def nudge_sample_start_forward_milliseconds
+    CurrentPatch.get_current_patch.nudge_sample_start_forward_milliseconds
+    PatchSet.reload_pure_data()
+    render(json: self.props_hash)
+  end
+
   def shift_sample_backward_one_slice
     CurrentPatch.get_current_patch.shift_sample_backward_one_slice
     PatchSet.reload_pure_data()

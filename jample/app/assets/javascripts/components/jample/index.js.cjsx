@@ -83,8 +83,13 @@ Jample = React.createClass
           <p>
             <button type="button" className="btn btn-info" onClick={@grow_patch_by_one_on_the_end}>Grow Loop</button>
             <button type="button" className="btn btn-info" onClick={@shrink_patch_by_one_on_the_end}>Shrink Loop</button>
+           </p> 
+           <p>  
             <button type="button" className="btn btn-info" onClick={@shift_sample_backward_one_slice}>Shift Backward</button>
             <button type="button" className="btn btn-info" onClick={@shift_sample_forward_one_slice}>Shift Forward</button>
+
+            <button type="button" className="btn btn-info" onClick={@nudge_sample_start_backward_milliseconds}>Shift Backward MSEC</button>
+            <button type="button" className="btn btn-info" onClick={@nudge_sample_start_forward_milliseconds}>Shift Forward MSEC</button>
             <button type="button" className="btn btn-info" onClick={@set_filter_to_current_patch_track}>Patch to Filter</button>
           </p>
 
@@ -257,6 +262,28 @@ Jample = React.createClass
     console.log("shift_sample_forward_one_slice")
     $.ajax
       url: 'shift_sample_forward_one_slice'
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+  nudge_sample_start_backward_milliseconds: ->
+    console.log("nudge_sample_start_backward_milliseconds")
+    $.ajax
+      url: 'nudge_sample_start_backward_milliseconds'
+      method: "POST"
+      data:
+        authenticity_token: @props.authenticity_token
+      success: (data) =>
+        @setState(data)
+        console.log(data)
+
+  nudge_sample_start_forward_milliseconds: ->
+    console.log("nudge_sample_start_forward_milliseconds")
+    $.ajax
+      url: 'nudge_sample_start_forward_milliseconds'
       method: "POST"
       data:
         authenticity_token: @props.authenticity_token

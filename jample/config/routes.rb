@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   post 'grow_patch_by_one_on_the_end/' => 'jample#grow_patch_by_one_on_the_end'
   post 'shift_sample_backward_one_slice/' => 'jample#shift_sample_backward_one_slice'
   post 'shift_sample_forward_one_slice/' => 'jample#shift_sample_forward_one_slice'
+  post 'nudge_sample_start_backward_milliseconds/' => 'jample#nudge_sample_start_backward_milliseconds'
+  post 'nudge_sample_start_forward_milliseconds/' => 'jample#nudge_sample_start_forward_milliseconds'
   get 'set_volume/:volume' => 'jample#set_volume'
 
   get 'reset' => 'jample#reset'
