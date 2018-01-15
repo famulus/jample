@@ -21,16 +21,16 @@
 #X obj 68 11 loadbang;
 #X msg 68 63 ~/Documents/essample/pure_data/tmp/patch/pad_\$1.wav;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumL 252288 float 0;
-#X coords 0 1 252287 -1 200 140 1 0 0;
+#X array \$0-drumL 77736 float 0;
+#X coords 0 1 77735 -1 200 140 1 0 0;
 #X restore -183 157 graph;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-drumR 252288 float 0;
-#X coords 0 1 252287 -1 200 140 1;
+#X array \$0-drumR 77736 float 0;
+#X coords 0 1 77735 -1 200 140 1;
 #X restore -182 320 graph;
 #X obj -178 496 hsl 200 15 0 1 0 0 empty empty empty -2 -6 0 8 -262144
--1 -1 1838 1;
-#X obj 241 598 / 127;
+-1 -1 14670 1;
+#X obj 222 446 / 127;
 #X obj 108 585 tabread4~ \$0-drumL;
 #X obj 326 588 tabread4~ \$0-drumR;
 #X text 258 579 volume;
@@ -46,7 +46,7 @@
 #X obj 105 729 send~ bus-L;
 #X obj 328 726 send~ bus-R;
 #X floatatom 247 651 5 0 0 0 - - -;
-#X obj 245 623 spigot 1;
+#X obj 222 493 spigot 1;
 #X obj -181 470 unsig~ 20;
 #X msg 400 323 0;
 #X obj 460 243 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -89,7 +89,6 @@
 #X obj 295 192 bng 15 250 50 0 empty reset_speed Reset_Speed 17 7 0
 10 -262144 -1 -1;
 #X msg 301 222 1;
-#X obj 241 541 ctlin 4 1;
 #X obj 361 539 ctlin 4 17;
 #X obj 215 731 dac~ \$1;
 #X obj 302 756 tgl 15 0 empty multichannel_out multichannel_out 17
@@ -99,7 +98,7 @@
 #X obj 300 846 dac~;
 #X obj 263 816 spigot~;
 #X obj 317 816 spigot~;
-#X obj 632 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 632 582 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 604 608 spigot;
 #X obj 465 606 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -110,10 +109,14 @@
 #X text 459 497 Conditional Mute on Foot Pedal;
 #X text 363 524 mute all;
 #X obj 604 548 t b b;
+#X obj 221 415 ctlin 0 1;
+#X msg 269 445 0;
+#X msg 296 444 1;
 #X connect 0 1 42 0;
 #X connect 0 1 58 0;
 #X connect 0 1 60 0;
 #X connect 0 1 65 0;
+#X connect 0 1 91 0;
 #X connect 0 2 43 0;
 #X connect 0 2 44 0;
 #X connect 1 0 4 0;
@@ -148,10 +151,10 @@
 #X connect 25 0 30 0;
 #X connect 26 0 31 0;
 #X connect 28 0 36 0;
-#X connect 28 0 76 0;
-#X connect 28 0 79 0;
+#X connect 28 0 75 0;
+#X connect 28 0 78 0;
 #X connect 29 0 37 0;
-#X connect 29 0 80 0;
+#X connect 29 0 79 0;
 #X connect 30 0 34 0;
 #X connect 31 0 33 0;
 #X connect 32 0 33 1;
@@ -167,17 +170,18 @@
 #X connect 45 1 46 0;
 #X connect 45 1 50 0;
 #X connect 45 1 66 0;
+#X connect 45 1 90 0;
 #X connect 45 2 47 0;
 #X connect 48 0 53 1;
 #X connect 49 0 50 1;
 #X connect 50 0 51 0;
 #X connect 50 0 54 0;
 #X connect 51 0 61 0;
-#X connect 51 0 83 0;
+#X connect 51 0 82 0;
 #X connect 53 0 55 0;
 #X connect 53 0 61 0;
-#X connect 53 0 85 0;
-#X connect 56 2 89 0;
+#X connect 53 0 84 0;
+#X connect 56 2 88 0;
 #X connect 57 0 19 0;
 #X connect 58 0 61 0;
 #X connect 59 0 61 0;
@@ -185,25 +189,27 @@
 #X connect 60 0 41 0;
 #X connect 61 0 32 0;
 #X connect 61 0 35 0;
-#X connect 61 0 86 0;
+#X connect 61 0 85 0;
 #X connect 65 0 67 1;
 #X connect 66 0 67 1;
 #X connect 67 0 7 0;
 #X connect 68 0 67 0;
 #X connect 70 0 71 0;
 #X connect 71 0 7 0;
-#X connect 72 0 24 0;
-#X connect 73 0 51 0;
-#X connect 75 0 76 1;
-#X connect 75 0 77 0;
-#X connect 76 0 74 0;
-#X connect 77 0 79 1;
-#X connect 77 0 80 1;
-#X connect 79 0 78 0;
-#X connect 80 0 78 1;
-#X connect 81 0 82 1;
-#X connect 82 0 51 0;
-#X connect 85 0 81 0;
-#X connect 86 0 81 0;
-#X connect 89 0 82 0;
-#X connect 89 1 81 0;
+#X connect 72 0 51 0;
+#X connect 74 0 75 1;
+#X connect 74 0 76 0;
+#X connect 75 0 73 0;
+#X connect 76 0 78 1;
+#X connect 76 0 79 1;
+#X connect 78 0 77 0;
+#X connect 79 0 77 1;
+#X connect 80 0 81 1;
+#X connect 81 0 51 0;
+#X connect 84 0 80 0;
+#X connect 85 0 80 0;
+#X connect 88 0 81 0;
+#X connect 88 1 80 0;
+#X connect 89 0 24 0;
+#X connect 90 0 39 1;
+#X connect 91 0 39 1;
