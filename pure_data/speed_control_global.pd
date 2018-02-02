@@ -16,9 +16,9 @@
 #X text 404 236 speed fine;
 #X obj 231 514 outlet;
 #X obj 361 147 loadbang;
-#X obj 106 255 ctlin 21 25;
-#X obj 408 257 ctlin 22 25;
-#X obj 229 254 ctlin 23 25;
+#X obj 106 255 ctlin 24 25;
+#X obj 229 254 ctlin 26 25;
+#X obj 408 257 ctlin 25 25;
 #X connect 0 0 8 0;
 #X connect 1 0 0 0;
 #X connect 4 0 5 0;
@@ -33,6 +33,6 @@
 #X connect 15 0 1 0;
 #X connect 15 0 11 0;
 #X connect 16 0 4 0;
-#X connect 17 0 6 0;
-#X connect 18 0 1 0;
-#X connect 18 0 11 0;
+#X connect 17 0 1 0;
+#X connect 17 0 11 0;
+#X connect 18 0 6 0;

@@ -3,7 +3,7 @@
   #ONSET_MODE = :beat
   ONSET_MODE =  :onset
 
-  NUDGE_MILLISEC =  5
+  NUDGE_MILLISEC =  15
 
   class Patch
     include Mongoid::Document
