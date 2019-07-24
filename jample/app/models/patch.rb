@@ -42,13 +42,15 @@
       
       duration_in_slices = 12
 
-      
       while  # if the track has too few samples, randomly pick another track, until a suitable track is found
+      puts "\n\n\nATTEMPT\n\n"
         track_id = subset_of_track_ids.shuffle.first
         self.track = Track.find(track_id.to_s)
         track_onset_array = self.track.onset_times
         break if (track_onset_array.size > (duration_in_slices + 1))
       end
+      # track_onset_array.size rescue debugger
+      track_onset_array = self.track.onset_times
 
       max_start_index = track_onset_array.size - duration_in_slices # figure out the max starting index that won't go out of bounds
       self.start_onset_index = rand(0...max_start_index) # pick a random starting index
@@ -61,23 +63,27 @@
       shift_slice_forward_one_index = {
         start_onset_index: start_onset_index+1,
         stop_onset_index: stop_onset_index+1,
-        start: sec_dot_milli_to_milli(self.track.onset_times[self.start_onset_index+1]), 
-        duration: ((sec_dot_milli_to_milli(self.track.onset_times[self.stop_onset_index+1]) - sec_dot_milli_to_milli(self.track.onset_times[self.start_onset_index+1]) ).round(5) ) ,
-        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index}",
+        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index+1}",
       }
 
       shift_slice_backward_one_index = {
         start_onset_index: start_onset_index-1,
         stop_onset_index: stop_onset_index-1,
-        start: sec_dot_milli_to_milli(self.track.onset_times[self.start_onset_index-1]), 
-        duration: ((sec_dot_milli_to_milli(self.track.onset_times[self.stop_onset_index-1]) - sec_dot_milli_to_milli(self.track.onset_times[self.start_onset_index-1]) ).round(5) ) ,
-        url: "",
+        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index-1}/#{stop_onset_index-1}",
 
       }
+      grow_by_one_index = {
+        start_onset_index: start_onset_index,
+        stop_onset_index: stop_onset_index+1,
+        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index}/#{stop_onset_index+1}",
+      }
 
+      shrink_by_one_index = {
+        start_onset_index: start_onset_index,
+        stop_onset_index: stop_onset_index-1,
+        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index}/#{stop_onset_index-1}",
 
-
-
+      }
 
       self.save 
 
@@ -91,6 +97,8 @@
         duration: (self.duration ) ,
         shift_slice_forward_one_index: shift_slice_forward_one_index,
         shift_slice_backward_one_index: shift_slice_backward_one_index,
+        grow_by_one_index: grow_by_one_index,
+        shrink_by_one_index: shrink_by_one_index,
 
       }
     end
