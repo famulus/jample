@@ -1,0 +1,20 @@
+minimal jample  
+
+one sample, one pad. Use LaunchControl to shuffle one sample.
+    port database
+        install mongo
+
+    or
+    
+    reinjest
+
+
+    or
+
+    use existing API
+      * install mongo
+      * move database over
+      * intall rails
+      * single sampler randomize
+      * cache for fast updates
+      
