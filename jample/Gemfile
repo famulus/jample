@@ -41,3 +41,4 @@ gem 'haml'
 gem 'mp3info'
 gem 'kaminari'
 
+gem 'aws-sdk', '~> 3'
