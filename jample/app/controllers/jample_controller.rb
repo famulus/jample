@@ -96,15 +96,15 @@ class JampleController < ApplicationController
 
 
   def randomize_voice
-	puts "\n\n\n GET CURRENT PATCH \n\n"
+        puts "\n\n\n GET CURRENT PATCH \n\n"
 
     cp = CurrentPatch.get_current_patch
-	puts "\n\n\n GET FILTER \n\n"
+        puts "\n\n\n GET FILTER \n\n"
     subset_of_track_ids = CurrentPatch.get_current_filter_set
-	puts "\n\n\n RANDOMIZE \n\n"
+        puts "\n\n\n RANDOMIZE \n\n"
     patch_specifier = cp.randomize_voice(subset_of_track_ids)
     ap patch_specifier
-	puts "\n\n\n RENDER \n\n"
+        puts "\n\n\n RENDER \n\n"
     render(json: patch_specifier)
   end
 
