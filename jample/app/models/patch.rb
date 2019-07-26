@@ -41,17 +41,20 @@
       # return if self.is_frozen?
       
       duration_in_slices = 12
-
-      while  # if the track has too few samples, randomly pick another track, until a suitable track is found
+      track_path = nil
+      # debugger
       puts "\n\n\nATTEMPT\n\n"
         track_id = subset_of_track_ids.shuffle.first
         self.track = Track.find(track_id.to_s)
         track_onset_array = self.track.onset_times
-        break if (track_onset_array.size > (duration_in_slices + 1))
-      end
+      track_path = self.track.escaped_path_and_file
+      #   break if (track_onset_array.size > (duration_in_slices + 1))
+      # while  # if the track has too few samples, randomly pick another track, until a suitable track is found
+      # end
       # track_onset_array.size rescue debugger
       track_onset_array = self.track.onset_times
-
+      puts "\n\n\nTRACK: #{self.track.id}\n\n"
+# debugger
       max_start_index = track_onset_array.size - duration_in_slices # figure out the max starting index that won't go out of bounds
       self.start_onset_index = rand(0...max_start_index) # pick a random starting index
       self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (track_onset_array.size - 1)].min
@@ -90,7 +93,7 @@
       # debugger #if self.duration < 0
       return {
         track_id: self.track.id.to_s,
-        track_path: self.track.escaped_path_and_file,
+	track_path: track_path,
         start_onset_index: start_onset_index,
         stop_onset_index: stop_onset_index,
         start: sec_dot_milli_to_milli(self.start_onset_time), 

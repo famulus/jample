@@ -54,6 +54,9 @@ class CurrentPatch
     puts "\n\nbegin filter\n\n"
     # debugger
     subset_search_string = CurrentPatch.last.subset_search_string
+    if subset_search_string.blank?
+      return Track.where(track_missing: false).pluck(:id)
+    end
     track_id_lookup = Track.find(subset_search_string) rescue nil
     if track_id_lookup.present?
       subset_of_tracks = [track_id_lookup.id.to_s]
