@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 
   get 'randomize_current_patch' => 'jample#randomize_current_patch'
-
+  
   get 'randomize_voice/:id' => 'jample#randomize_voice'
 
   post 'set_filter/' => 'jample#set_filter'
