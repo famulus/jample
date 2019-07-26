@@ -9,11 +9,17 @@ Rails.application.routes.draw do
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
+
+  get 'get_slice/:track_id/:start_onset_index/:stop_onset_index' => 'jample#get_slice'
+
   get 'set_current_patch/:id' => 'jample#set_current_patch'
   post 'set_current_patch_set' => 'jample#set_current_patch_set'
 
 
   get 'randomize_current_patch' => 'jample#randomize_current_patch'
+
+  get 'randomize_voice/:id' => 'jample#randomize_voice'
+
   post 'set_filter/' => 'jample#set_filter'
   post 'set_current_patch_set_name/' => 'jample#set_current_patch_set_name'
   post 'duplicate_patch_set/' => 'jample#duplicate_patch_set'
