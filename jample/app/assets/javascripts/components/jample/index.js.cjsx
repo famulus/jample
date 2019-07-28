@@ -39,7 +39,7 @@ Jample = React.createClass
         console.log 'MIDI data', data
         previous_state = @state
         @setState(currentPatch: (data[1] - 36))
-        @set_current_patch()
+        #@set_current_patch()
       # MIDI data [144, 63, 73]
       return
 

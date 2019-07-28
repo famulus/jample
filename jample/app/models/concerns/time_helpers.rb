@@ -1,11 +1,15 @@
 module TimeHelpers
   
   def sec_dot_milli_to_milli(sec_dot_milli)
-    raise "Bad second dot millisecond format for #{sec_dot_milli}"  unless /^\d+\.\d+$/.match(sec_dot_milli)
-    second = sec_dot_milli.split('.').first.to_i
-    millisecond = sec_dot_milli.split('.').last.to_i
+    # raise "Bad second dot millisecond format for #{sec_dot_milli}"  unless /^\d+\.\d+$/.match(sec_dot_milli)
+    debugger unless /^\d+\.\d+$/.match(sec_dot_milli)
+    # second = sec_dot_milli.split('.').first.to_i
+    # millisecond = sec_dot_milli.split('.').last.to_i
 
-    result = (second*10000)+millisecond
+
+    result = (sec_dot_milli.to_f*1000.0).round(5)
+
+    # result = (second*1000)+(millisecond.to_f/10)
     return result
   end
 

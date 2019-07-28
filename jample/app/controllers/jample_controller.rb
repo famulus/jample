@@ -87,10 +87,99 @@ class JampleController < ApplicationController
     cp = CurrentPatch.get_current_patch
     subset_of_track_ids = CurrentPatch.get_current_filter_set
     cp.randomize_patch(subset_of_track_ids)
-    PatchSet.reload_pure_data()
+    # PatchSet.reload_pure_data()
     puts "randomize_patch: #{cp.patch_index}"
-    render(json: self.props_hash)
+    render(json: {track: cp.track_id.to_s})
   end
+
+
+
+
+  def randomize_voice
+        puts "\n\n\n GET CURRENT PATCH \n\n"
+
+    cp = CurrentPatch.get_current_patch
+        puts "\n\n\n GET FILTER \n\n"
+    subset_of_track_ids = CurrentPatch.get_current_filter_set
+        puts "\n\n\n RANDOMIZE \n\n"
+    patch_specifier = cp.randomize_voice(subset_of_track_ids)
+    ap patch_specifier
+        puts "\n\n\n RENDER \n\n"
+    render(json: patch_specifier)
+  end
+
+
+
+
+
+  def get_slice
+    track_id = params[:track_id]
+    start_onset_index = params[:start_onset_index].to_i
+    stop_onset_index = params[:stop_onset_index].to_i
+
+    duration_in_slices = 12
+
+    track = Track.find(track_id.to_s)
+    track_onset_array = track.onset_times
+  
+    max_start_index = track_onset_array.size - duration_in_slices # figure out the max starting index that won't go out of bounds
+
+    start_onset_time = track_onset_array[start_onset_index]
+    stop_onset_time = track_onset_array[stop_onset_index]
+
+    debugger if stop_onset_time.to_i < 1
+
+    shift_slice_forward_one_index = {
+      start_onset_index: start_onset_index+1,
+      stop_onset_index: stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index+1}/#{stop_onset_index+1}",
+    }
+
+    shift_slice_backward_one_index = {
+      start_onset_index: start_onset_index-1,
+      stop_onset_index: stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index-1}/#{stop_onset_index-1}",
+
+    }
+    grow_by_one_index = {
+      start_onset_index: start_onset_index,
+      stop_onset_index: stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index}/#{stop_onset_index+1}",
+    }
+
+    shrink_by_one_index = {
+      start_onset_index: start_onset_index,
+      stop_onset_index: stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index}/#{stop_onset_index-1}",
+
+    }
+
+
+
+    # debugger #if self.duration < 0
+    response = {
+      track_id: track.id.to_s,
+      track_path: track.escaped_path_and_file,
+      start_onset_index: start_onset_index,
+      stop_onset_index: stop_onset_index,
+      start: sec_dot_milli_to_milli(start_onset_time), 
+      duration: ((sec_dot_milli_to_milli(track_onset_array[stop_onset_index]) - sec_dot_milli_to_milli(track_onset_array[start_onset_index]) ).round(5) ) ,
+      shift_slice_forward_one_index: shift_slice_forward_one_index,
+      shift_slice_backward_one_index: shift_slice_backward_one_index,
+      grow_by_one_index: grow_by_one_index,
+      shrink_by_one_index: shrink_by_one_index,
+
+    }
+
+    ap response
+
+    render(json: response)
+
+  end
+
+
+
+
 
   def freeze_patch
     patch = Patch.find(params[:id])

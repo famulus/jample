@@ -50,6 +50,39 @@ task :copy_files_to_location => :environment do
 end
 
 
+
+
+
+
+task :add_mp3_to_all_files => :environment do
+	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	Track.all.each do |track|
+		starting_path_and_file  = track.path_and_file
+		ending_path_and_file  = "#{track.path_and_file}.mp3"
+		unless starting_path_and_file.include? ("mp3")
+			command = ("mv #{ Shellwords.shellescape starting_path_and_file} #{Shellwords.shellescape ending_path_and_file}")
+			puts "\n\n"
+			puts starting_path_and_file
+			puts ending_path_and_file
+			puts `#{command}`
+			puts "\n\n"
+			track.path_and_file = ending_path_and_file
+			track.save
+			# puts command
+			# begin
+			# rescue Exception => e
+			# 	puts "ERROR:#{e}"
+			# end
+		end
+	end
+
+end
+
+
+
+
+
+
 task :change_file_reference_to_new_location => :environment do
 	destination_folder = '/Volumes/BIG_GUY/jample_songs'
 	Track.all.each do |track|
