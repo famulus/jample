@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   #   get 'products/:id' => 'catalog#view'
 
 
-  get 'get_slice/:track_id/:start_onset_index/:stop_onset_index' => 'jample#get_slice'
+  get 'get_slice/:voice/:track_id/:start_onset_index/:stop_onset_index' => 'jample#get_slice'
+  get 'get_slice/:voice/' => 'jample#get_slice'
+
+  get 'voice/:id' => 'jample#voice'
 
   get 'set_current_patch/:id' => 'jample#set_current_patch'
   post 'set_current_patch_set' => 'jample#set_current_patch_set'

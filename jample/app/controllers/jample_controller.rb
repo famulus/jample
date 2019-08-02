@@ -96,16 +96,21 @@ class JampleController < ApplicationController
 
 
   def randomize_voice
-        puts "\n\n\n GET CURRENT PATCH \n\n"
-
-    cp = CurrentPatch.get_current_patch
-        puts "\n\n\n GET FILTER \n\n"
+    voice = Voice.find_or_create_by({max_for_live_voice_id: params[:id]})
     subset_of_track_ids = CurrentPatch.get_current_filter_set
-        puts "\n\n\n RANDOMIZE \n\n"
-    patch_specifier = cp.randomize_voice(subset_of_track_ids)
-    ap patch_specifier
-        puts "\n\n\n RENDER \n\n"
-    render(json: patch_specifier)
+    voice_specifier = voice.randomize_voice(subset_of_track_ids)
+    render(json: voice_specifier)
+  end
+
+
+  def voice
+    voice = Voice.find_or_create_by({max_for_live_voice_id: params[:id]})
+    if(voice.start_onset_index.blank?)
+    render(json: {})
+    return
+      
+    end
+    render(json: voice.to_json)
   end
 
 
@@ -113,57 +118,62 @@ class JampleController < ApplicationController
 
 
   def get_slice
+    voice = Voice.find_or_create_by({max_for_live_voice_id: params[:voice]})
+
     track_id = params[:track_id]
-    start_onset_index = params[:start_onset_index].to_i
-    stop_onset_index = params[:stop_onset_index].to_i
 
-    duration_in_slices = 12
+    if track_id.present? 
+      track = Track.find(track_id.to_s)
+      voice.start_onset_index = params[:start_onset_index].to_i
+      voice.stop_onset_index = params[:stop_onset_index].to_i
+      track_onset_array = track.onset_times
+      voice.start_onset_time = track_onset_array[voice.start_onset_index]
+      voice.stop_onset_time = track_onset_array[voice.stop_onset_index]
 
-    track = Track.find(track_id.to_s)
-    track_onset_array = track.onset_times
+      voice.save
+    end
+
+
   
-    max_start_index = track_onset_array.size - duration_in_slices # figure out the max starting index that won't go out of bounds
 
-    start_onset_time = track_onset_array[start_onset_index]
-    stop_onset_time = track_onset_array[stop_onset_index]
 
-    debugger if stop_onset_time.to_i < 1
+    debugger if voice.stop_onset_time.to_i < 1
 
     shift_slice_forward_one_index = {
-      start_onset_index: start_onset_index+1,
-      stop_onset_index: stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index+1}/#{stop_onset_index+1}",
+      start_onset_index: voice.start_onset_index+1,
+      stop_onset_index: voice.stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index+1}/#{voice.stop_onset_index+1}",
     }
 
     shift_slice_backward_one_index = {
-      start_onset_index: start_onset_index-1,
-      stop_onset_index: stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index-1}/#{stop_onset_index-1}",
+      start_onset_index: voice.start_onset_index-1,
+      stop_onset_index: voice.stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index-1}/#{voice.stop_onset_index-1}",
 
     }
     grow_by_one_index = {
-      start_onset_index: start_onset_index,
-      stop_onset_index: stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index}/#{stop_onset_index+1}",
+      start_onset_index: voice.start_onset_index,
+      stop_onset_index: voice.stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index}/#{voice.stop_onset_index+1}",
     }
 
     shrink_by_one_index = {
-      start_onset_index: start_onset_index,
-      stop_onset_index: stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{track.id}/#{start_onset_index}/#{stop_onset_index-1}",
+      start_onset_index: voice.start_onset_index,
+      stop_onset_index: voice.stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index}/#{voice.stop_onset_index-1}",
 
     }
 
-
+    voice.save
 
     # debugger #if self.duration < 0
     response = {
       track_id: track.id.to_s,
       track_path: track.escaped_path_and_file,
-      start_onset_index: start_onset_index,
-      stop_onset_index: stop_onset_index,
-      start: sec_dot_milli_to_milli(start_onset_time), 
-      duration: ((sec_dot_milli_to_milli(track_onset_array[stop_onset_index]) - sec_dot_milli_to_milli(track_onset_array[start_onset_index]) ).round(5) ) ,
+      start_onset_index: voice.start_onset_index,
+      stop_onset_index: voice.stop_onset_index,
+      start: sec_dot_milli_to_milli(voice.start_onset_time), 
+      duration: ((sec_dot_milli_to_milli(track_onset_array[voice.stop_onset_index]) - sec_dot_milli_to_milli(track_onset_array[voice.start_onset_index]) ).round(5) ) ,
       shift_slice_forward_one_index: shift_slice_forward_one_index,
       shift_slice_backward_one_index: shift_slice_backward_one_index,
       grow_by_one_index: grow_by_one_index,

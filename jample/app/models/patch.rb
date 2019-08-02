@@ -66,25 +66,25 @@
       shift_slice_forward_one_index = {
         start_onset_index: start_onset_index+1,
         stop_onset_index: stop_onset_index+1,
-        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index+1}",
+        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index+1}",
       }
 
       shift_slice_backward_one_index = {
         start_onset_index: start_onset_index-1,
         stop_onset_index: stop_onset_index-1,
-        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index-1}/#{stop_onset_index-1}",
+        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index-1}/#{stop_onset_index-1}",
 
       }
       grow_by_one_index = {
         start_onset_index: start_onset_index,
         stop_onset_index: stop_onset_index+1,
-        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index}/#{stop_onset_index+1}",
+        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index+1}",
       }
 
       shrink_by_one_index = {
         start_onset_index: start_onset_index,
         stop_onset_index: stop_onset_index-1,
-        url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index}/#{stop_onset_index-1}",
+        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index-1}",
 
       }
 

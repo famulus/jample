@@ -1,4 +1,5 @@
-class Voice  include Mongoid::Document
+class Voice  
+  include Mongoid::Document
   include Mongoid::Timestamps::Created
 
   field :track_id, type: String
@@ -38,29 +39,31 @@ class Voice  include Mongoid::Document
     self.start_onset_time = self.track.onset_times[self.start_onset_index]
     self.stop_onset_time = self.track.onset_times[self.stop_onset_index]
     debugger if self.stop_onset_time.to_i < 1
+    duration = (sec_dot_milli_to_milli(self.stop_onset_time) - sec_dot_milli_to_milli(self.start_onset_time) ).round(5)
+
 
     shift_slice_forward_one_index = {
       start_onset_index: start_onset_index+1,
       stop_onset_index: stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index+1}",
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index+1}",
     }
 
     shift_slice_backward_one_index = {
       start_onset_index: start_onset_index-1,
       stop_onset_index: stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index-1}/#{stop_onset_index-1}",
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index-1}/#{stop_onset_index-1}",
 
     }
     grow_by_one_index = {
       start_onset_index: start_onset_index,
       stop_onset_index: stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index}/#{stop_onset_index+1}",
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index+1}",
     }
 
     shrink_by_one_index = {
       start_onset_index: start_onset_index,
       stop_onset_index: stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{self.track_id}/#{start_onset_index}/#{stop_onset_index-1}",
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index-1}",
 
     }
 
@@ -73,7 +76,61 @@ class Voice  include Mongoid::Document
       start_onset_index: start_onset_index,
       stop_onset_index: stop_onset_index,
       start: sec_dot_milli_to_milli(self.start_onset_time), 
-      duration: (self.duration ) ,
+      duration: (duration ) ,
+      shift_slice_forward_one_index: shift_slice_forward_one_index,
+      shift_slice_backward_one_index: shift_slice_backward_one_index,
+      grow_by_one_index: grow_by_one_index,
+      shrink_by_one_index: shrink_by_one_index,
+
+    }
+  end
+
+
+
+
+
+
+
+  def to_json
+
+    if self.stop_onset_time.present?
+    duration = (sec_dot_milli_to_milli(self.stop_onset_time) - sec_dot_milli_to_milli(self.start_onset_time) ).round(5)
+    end
+
+    shift_slice_forward_one_index = {
+      start_onset_index: start_onset_index+1,
+      stop_onset_index: stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index+1}",
+    }
+
+    shift_slice_backward_one_index = {
+      start_onset_index: start_onset_index-1,
+      stop_onset_index: stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index-1}/#{stop_onset_index-1}",
+
+    }
+    grow_by_one_index = {
+      start_onset_index: start_onset_index,
+      stop_onset_index: stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index+1}",
+    }
+
+    shrink_by_one_index = {
+      start_onset_index: start_onset_index,
+      stop_onset_index: stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index-1}",
+
+    }
+
+
+    # debugger #if self.duration < 0
+    return {
+      track_id: self.track.id.to_s,
+      track_path: self.track.escaped_path_and_file,
+      start_onset_index: start_onset_index,
+      stop_onset_index: stop_onset_index,
+      start: sec_dot_milli_to_milli(self.start_onset_time), 
+      duration: (duration ) ,
       shift_slice_forward_one_index: shift_slice_forward_one_index,
       shift_slice_backward_one_index: shift_slice_backward_one_index,
       grow_by_one_index: grow_by_one_index,
