@@ -55,7 +55,7 @@ class CurrentPatch
     # debugger
     subset_search_string = CurrentPatch.last.subset_search_string
     if subset_search_string.blank?
-      return Track.where(track_missing: false).pluck(:id)
+      return Track.where({track_missing: false, :onset_count.gt => 12}).pluck(:id)
     end
     track_id_lookup = Track.find(subset_search_string) rescue nil
     if track_id_lookup.present?

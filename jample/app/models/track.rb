@@ -15,12 +15,25 @@ class Track
 
   field :track_missing, type: Boolean, default: false
   field :mp3_data_string, type: String
+  field :mp3_tag, type: Hash
 
   field :path_and_file_old, type: String
 
   index({track_missing: 1})
   index({path_and_file: 1})
   index({file_contents_hash: 1})
+
+
+  field :title, type: String
+  field :artist, type: String
+  field :album, type: String
+  field :tracknum, type: String
+  field :year, type: String
+  field :comments, type: String
+  field :genre_s, type: String
+  field :genre_s, type: String
+
+
   def self.import_tracks
     track_list_string = ''
     # track_list_string = `mdfind -name \.mp3`
@@ -126,6 +139,13 @@ class Track
     begin
       mp3_data = Mp3Info.open(self.path_and_file)   
       self.mp3_data_string = mp3_data.to_s
+      self.mp3_tag = mp3_data.tag
+      self.title = self.mp3_tag[:title]
+      self.artist = self.mp3_tag[:artist]
+      self.album = self.mp3_tag[:album]
+      self.year = self.mp3_tag[:year]
+      self.genre_s = self.mp3_tag[:genre_s]
+      self.tracknum = self.mp3_tag[:tracknum]
       self.save
     rescue 
     end

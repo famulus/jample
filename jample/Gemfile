@@ -42,3 +42,5 @@ gem 'mp3info'
 gem 'kaminari'
 
 gem 'aws-sdk', '~> 3'
+
+gem 'youtube-dl.rb'

@@ -1,4 +1,6 @@
 class Voice  
+  include TimeHelpers
+
   include Mongoid::Document
   include Mongoid::Timestamps::Created
 
@@ -34,6 +36,7 @@ class Voice
   # debugger
     max_start_index = track_onset_array.size - duration_in_slices # figure out the max starting index that won't go out of bounds
     self.start_onset_index = rand(0...max_start_index) # pick a random starting index
+    debugger if (self.start_onset_index == nil)
     self.stop_onset_index = [(self.start_onset_index + duration_in_slices), (track_onset_array.size - 1)].min
 
     self.start_onset_time = self.track.onset_times[self.start_onset_index]
@@ -70,9 +73,13 @@ class Voice
     self.save 
 
     # debugger #if self.duration < 0
-    return {
+    response = {
       track_id: self.track.id.to_s,
       track_path: track_path,
+      title: self.track.title || "NA",
+      artist: self.track.artist || "NA",
+      album: self.track.album || "NA",
+      year: self.track.year || "NA",
       start_onset_index: start_onset_index,
       stop_onset_index: stop_onset_index,
       start: sec_dot_milli_to_milli(self.start_onset_time), 
@@ -83,6 +90,9 @@ class Voice
       shrink_by_one_index: shrink_by_one_index,
 
     }
+
+    ap response
+    return response
   end
 
 
@@ -127,6 +137,11 @@ class Voice
     return {
       track_id: self.track.id.to_s,
       track_path: self.track.escaped_path_and_file,
+      title: self.track.title,
+      artist: self.track.artist,
+      album: self.track.album,
+      year: self.track.year,
+
       start_onset_index: start_onset_index,
       stop_onset_index: stop_onset_index,
       start: sec_dot_milli_to_milli(self.start_onset_time), 

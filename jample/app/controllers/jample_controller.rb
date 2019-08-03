@@ -95,6 +95,12 @@ class JampleController < ApplicationController
 
 
 
+
+# ----------------------------------------------
+
+
+
+
   def randomize_voice
     voice = Voice.find_or_create_by({max_for_live_voice_id: params[:id]})
     subset_of_track_ids = CurrentPatch.get_current_filter_set
@@ -134,9 +140,6 @@ class JampleController < ApplicationController
     end
 
 
-  
-
-
     debugger if voice.stop_onset_time.to_i < 1
 
     shift_slice_forward_one_index = {
@@ -170,6 +173,11 @@ class JampleController < ApplicationController
     response = {
       track_id: track.id.to_s,
       track_path: track.escaped_path_and_file,
+      title: track.title,
+      artist: track.artist,
+      album: track.album,
+      year: track.year,
+
       start_onset_index: voice.start_onset_index,
       stop_onset_index: voice.stop_onset_index,
       start: sec_dot_milli_to_milli(voice.start_onset_time), 
@@ -186,6 +194,25 @@ class JampleController < ApplicationController
     render(json: response)
 
   end
+
+
+
+
+  def youtube_dl
+    youtube_id = params[:youtube_id]
+    YoutubeDL.download(youtube_id , output: 'some_file.mp4')
+    
+  end
+
+# ----------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
