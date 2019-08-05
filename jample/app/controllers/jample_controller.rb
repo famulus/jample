@@ -119,7 +119,26 @@ class JampleController < ApplicationController
     render(json: voice.to_json)
   end
 
+  def mp3tag
+    track_id = params[:track_id]
 
+    if track_id.present? 
+      track = Track.find(track_id.to_s)
+    end
+    slice_id = params[:slice_id]
+
+
+
+  Mp3Info.open("/Volumes/BIG_GUY/jample_slices/slice_#{slice_id}.wav") do |mp3|
+  puts mp3.tag.title
+  puts mp3.tag.artist
+  puts mp3.tag.album
+  puts mp3.tag.tracknum
+  mp3.tag.title = "track title"
+  mp3.tag.artist = "artist name"
+end
+
+  end
 
 
 

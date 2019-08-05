@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'youtube_dl/:youtube_id' => 'jample#youtube_dl'
 
   
+  get 'mp3tag/:slice_id/:track_id' => 'jample#mp3tag'
 
 
 
