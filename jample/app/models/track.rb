@@ -77,9 +77,9 @@ class Track
           puts "track_path:#{track_path.to_s}"
           track.mp3_data
           track.path_and_file = track_path
-          track.save
           track.detect_onset
           track.detect_beat
+          track.save
 
         else
           puts "re-attaching:#{track.track_name}"
@@ -95,6 +95,27 @@ class Track
   end
 
 
+
+
+
+  def self.import_track(file)
+    file_contents_hash = Digest::MD5.file(file).hexdigest
+    track = Track.where(file_contents_hash: file_contents_hash).first_or_initialize
+    puts  "\n\n"
+    puts  track.id
+    puts  "\n\n"
+    escaped_file = Shellwords.escape(file)
+    new_file = escaped_file.gsub('wav', 'mp3')
+    convert_command = "ffmpeg -y -i #{escaped_file} #{new_file}"
+    `#{convert_command}`
+    track.path_and_file = new_file
+    track.detect_onset
+    track.mp3_data
+    track.save
+    return track
+  end
+
+
   def number_of_slices
     self.onset_count
   end
@@ -102,10 +123,10 @@ class Track
 
   def detect_onset
     if onset_times.blank?
-      aubiocut_command = "aubio onset -i \"#{( self.path_and_file )}\""
+      aubiocut_command = "aubioonset -i \"#{( self.path_and_file )}\""
       puts   "aubiocut_command: #{aubiocut_command}"
       puts onsets = `#{aubiocut_command}`
-      self.onset_times = onsets.split("\t\n")
+      self.onset_times = onsets.split("\n")
       self.onset_count = onset_times.size
       self.save
     end
@@ -116,7 +137,7 @@ class Track
       aubiocut_command = "aubio beat -i \"#{( self.path_and_file )}\""
       puts   "aubiocut_command: #{aubiocut_command}"
       puts beats = `#{aubiocut_command}`
-      self.onset_times_beat_mode = beats.split("\t\n")
+      self.onset_times_beat_mode = beats.split("\n")
       self.onset_count_beat_mode = self.onset_times_beat_mode.size
       self.save
     end

@@ -121,23 +121,18 @@ class JampleController < ApplicationController
 
   def mp3tag
     track_id = params[:track_id]
-
     if track_id.present? 
       track = Track.find(track_id.to_s)
     end
     slice_id = params[:slice_id]
-
-
-
-  Mp3Info.open("/Volumes/BIG_GUY/jample_slices/slice_#{slice_id}.wav") do |mp3|
-  puts mp3.tag.title
-  puts mp3.tag.artist
-  puts mp3.tag.album
-  puts mp3.tag.tracknum
-  mp3.tag.title = "track title"
-  mp3.tag.artist = "artist name"
-end
-
+    Mp3Info.open("/Volumes/BIG_GUY/jample_slices/slice_#{slice_id}.wav") do |mp3|
+      puts mp3.tag.title
+      puts mp3.tag.artist
+      puts mp3.tag.album
+      puts mp3.tag.tracknum
+      mp3.tag.title = "track title"
+      mp3.tag.artist = "artist name"
+    end
   end
 
 
@@ -219,8 +214,33 @@ end
 
   def youtube_dl
     youtube_id = params[:youtube_id]
-    YoutubeDL.download(youtube_id , output: 'some_file.mp4')
-    
+    file = "/Volumes/BIG_GUY/jample_youtube/video_#{youtube_id}.wav"
+    YoutubeDL.download(youtube_id , {
+      output: file, 
+      "extract-audio" => true, 
+      "audio-quality" => 0, 
+      "audio-format" => "wav",
+      # xattrs: true,
+
+    })
+    puts "\n\n"
+    puts "PAST DOWNLOAD"
+    puts "\n\n"
+    track = Track.import_track(file)
+
+    cp = CurrentPatch.last
+    cp.subset_search_string = track.id
+    cp.subset_search_string = '' if params[:filter_text]=="*"
+    # debugger
+    cp.save
+    FilterHistory.create({filter_value: cp.subset_search_string })
+
+    puts "filter set to: #{cp.subset_search_string}"
+    @current_filter = CurrentPatch.last.subset_search_string
+    @current_filter_size = CurrentPatch.get_current_filter_set.size
+
+    render(json: {})
+
   end
 
 # ----------------------------------------------
