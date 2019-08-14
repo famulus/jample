@@ -1,4 +1,5 @@
 class Voice  
+  DURATION_IN_SLICES = 12
   include TimeHelpers
 
   include Mongoid::Document
@@ -25,147 +26,48 @@ class Voice
 
 
   def randomize_voice(subset_of_track_ids)
-
-
-
-    duration_in_slices = 12
     track_id = subset_of_track_ids.shuffle.first
 
-
     # remember for undo
-    current_audition  = self.auditions.create({
+    self.current_audition = current_audition  = self.auditions.create({
       voice_id: self.id,
       track_id: track_id,
     })
 
-    self.current_audition = current_audition
 
     track = Track.find(track_id.to_s)
     track_onset_array = track.onset_times
     track_path = track.escaped_path_and_file
-    track_onset_array = track.onset_times
-    max_start_index = track_onset_array.size - duration_in_slices # figure out the max starting index that won't go out of bounds
+    max_start_index = track_onset_array.size - DURATION_IN_SLICES # figure out the max starting index that won't go out of bounds
     current_audition.start_onset_index = rand(0...max_start_index) # pick a random starting index
-    debugger if (current_audition.start_onset_index == nil)
-    current_audition.stop_onset_index = [(current_audition.start_onset_index + duration_in_slices), (track_onset_array.size - 1)].min
+    # debugger if (current_audition.start_onset_index == nil)
+    current_audition.stop_onset_index = [(current_audition.start_onset_index + DURATION_IN_SLICES), (track_onset_array.size - 1)].min
 
     current_audition.start_onset_time = track.onset_times[current_audition.start_onset_index]
     current_audition.stop_onset_time = track.onset_times[current_audition.stop_onset_index]
-    debugger if current_audition.stop_onset_time.to_i < 1
-    duration = (sec_dot_milli_to_milli(current_audition.stop_onset_time) - sec_dot_milli_to_milli(current_audition.start_onset_time) ).round(5)
-
-
-    shift_slice_forward_one_index = {
-      start_onset_index: current_audition.start_onset_index+1,
-      stop_onset_index: current_audition.stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index+1}/#{current_audition.stop_onset_index+1}",
-    }
-
-    shift_slice_backward_one_index = {
-      start_onset_index: current_audition.start_onset_index-1,
-      stop_onset_index: current_audition.stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index-1}/#{current_audition.stop_onset_index-1}",
-
-    }
-    grow_by_one_index = {
-      start_onset_index: current_audition.start_onset_index,
-      stop_onset_index: current_audition.stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index+1}",
-    }
-
-    shrink_by_one_index = {
-      start_onset_index: current_audition.start_onset_index,
-      stop_onset_index: current_audition.stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index-1}",
-
-    }
+    # debugger if current_audition.stop_onset_time.to_i < 1
     current_audition.save
-
     self.save 
-
-
-    # debugger #if self.duration < 0
-    response = {
-      track_id: current_audition.track.id.to_s,
-      track_path: track_path,
-      title: current_audition.track.title || "NA",
-      artist: current_audition.track.artist || "NA",
-      album: current_audition.track.album || "NA",
-      year: current_audition.track.year || "NA",
-      start_onset_index: current_audition.start_onset_index,
-      stop_onset_index: current_audition.stop_onset_index,
-      start: sec_dot_milli_to_milli(current_audition.start_onset_time), 
-      duration: (duration ) ,
-      shift_slice_forward_one_index: shift_slice_forward_one_index,
-      shift_slice_backward_one_index: shift_slice_backward_one_index,
-      grow_by_one_index: grow_by_one_index,
-      shrink_by_one_index: shrink_by_one_index,
-
-    }
-
+    response = self.return_voice_hash()
     ap response
     return response
   end
 
 
-  def duration
-    duration = (sec_dot_milli_to_milli(self.current_audition.stop_onset_time) - sec_dot_milli_to_milli(self.current_audition.start_onset_time) ).round(5)
-    return duration
-  end
+  # def get_slice
+  #   current_audition = self.current_audition
+  #   response = self.return_voice_hash()
+  #   ap response
+  #   return response
 
-
+  # end
 
   def back_one_audition
     current_audition = self.auditions.where(:created_at.lt => (self.current_audition.created_at)).order(created_at: :desc).first
     if current_audition.present?
       self.current_audition = current_audition
       self.save
-
-
-      shift_slice_forward_one_index = {
-        start_onset_index: current_audition.start_onset_index+1,
-        stop_onset_index: current_audition.stop_onset_index+1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index+1}/#{current_audition.stop_onset_index+1}",
-      }
-
-      shift_slice_backward_one_index = {
-        start_onset_index: current_audition.start_onset_index-1,
-        stop_onset_index: current_audition.stop_onset_index-1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index-1}/#{current_audition.stop_onset_index-1}",
-
-      }
-      grow_by_one_index = {
-        start_onset_index: current_audition.start_onset_index,
-        stop_onset_index: current_audition.stop_onset_index+1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index+1}",
-      }
-
-      shrink_by_one_index = {
-        start_onset_index: current_audition.start_onset_index,
-        stop_onset_index: current_audition.stop_onset_index-1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index-1}",
-
-      }
-
-
-      response = {
-        track_id: current_audition.track.id.to_s,
-        track_path: current_audition.track.escaped_path_and_file,
-        title: current_audition.track.title || "NA",
-        artist: current_audition.track.artist || "NA",
-        album: current_audition.track.album || "NA",
-        year: current_audition.track.year || "NA",
-        start_onset_index: current_audition.start_onset_index,
-        stop_onset_index: current_audition.stop_onset_index,
-        start: sec_dot_milli_to_milli(current_audition.start_onset_time), 
-        duration: (self.duration ) ,
-        shift_slice_forward_one_index: shift_slice_forward_one_index,
-        shift_slice_backward_one_index: shift_slice_backward_one_index,
-        grow_by_one_index: grow_by_one_index,
-        shrink_by_one_index: shrink_by_one_index,
-
-      }
-
+      response = self.return_voice_hash()
       ap response
       return response
 
@@ -179,112 +81,83 @@ class Voice
     if current_audition.present?
       self.current_audition = current_audition
       self.save
-
-
-      shift_slice_forward_one_index = {
-        start_onset_index: current_audition.start_onset_index+1,
-        stop_onset_index: current_audition.stop_onset_index+1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index+1}/#{current_audition.stop_onset_index+1}",
-      }
-
-      shift_slice_backward_one_index = {
-        start_onset_index: current_audition.start_onset_index-1,
-        stop_onset_index: current_audition.stop_onset_index-1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index-1}/#{current_audition.stop_onset_index-1}",
-
-      }
-      grow_by_one_index = {
-        start_onset_index: current_audition.start_onset_index,
-        stop_onset_index: current_audition.stop_onset_index+1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index+1}",
-      }
-
-      shrink_by_one_index = {
-        start_onset_index: current_audition.start_onset_index,
-        stop_onset_index: current_audition.stop_onset_index-1,
-        url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index-1}",
-
-      }
-
-
-      response = {
-        track_id: current_audition.track.id.to_s,
-        track_path: current_audition.track.escaped_path_and_file,
-        title: current_audition.track.title || "NA",
-        artist: current_audition.track.artist || "NA",
-        album: current_audition.track.album || "NA",
-        year: current_audition.track.year || "NA",
-        start_onset_index: current_audition.start_onset_index,
-        stop_onset_index: current_audition.stop_onset_index,
-        start: sec_dot_milli_to_milli(current_audition.start_onset_time), 
-        duration: (self.duration ) ,
-        shift_slice_forward_one_index: shift_slice_forward_one_index,
-        shift_slice_backward_one_index: shift_slice_backward_one_index,
-        grow_by_one_index: grow_by_one_index,
-        shrink_by_one_index: shrink_by_one_index,
-
-      }
-
+      response = self.return_voice_hash()
       ap response
       return response
-
     end
     
   end
 
 
-  def to_json
+  def return_voice_hash
+    current_audition = self.current_audition
+    response = {
+      track_id: current_audition.track.id.to_s,
+      track_path: current_audition.track.escaped_path_and_file,
+      title: current_audition.track.title || "NA",
+      artist: current_audition.track.artist || "NA",
+      album: current_audition.track.album || "NA",
+      year: current_audition.track.year || "NA",
+      start_onset_index: current_audition.start_onset_index,
+      stop_onset_index: current_audition.stop_onset_index,
+      start: sec_dot_milli_to_milli(current_audition.start_onset_time), 
+      duration: (self.duration ) ,
 
-    if self.stop_onset_time.present?
-    duration = (sec_dot_milli_to_milli(self.stop_onset_time) - sec_dot_milli_to_milli(self.start_onset_time) ).round(5)
-    end
+    }.merge(self.sample_modification_links())
+
+    
+  end
+
+
+  def to_json
+    # debugger #if self.duration < 0
+    return self.return_voice_hash
+  end
+
+
+
+  def duration
+    duration = (sec_dot_milli_to_milli(self.current_audition.stop_onset_time) - sec_dot_milli_to_milli(self.current_audition.start_onset_time) ).round(5)
+    return duration
+  end
+
+
+  def sample_modification_links
+    current_audition = self.current_audition
 
     shift_slice_forward_one_index = {
-      start_onset_index: start_onset_index+1,
-      stop_onset_index: stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index+1}/#{stop_onset_index+1}",
+      start_onset_index: current_audition.start_onset_index+1,
+      stop_onset_index: current_audition.stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{current_audition.track_id}/#{current_audition.start_onset_index+1}/#{current_audition.stop_onset_index+1}",
     }
 
     shift_slice_backward_one_index = {
-      start_onset_index: start_onset_index-1,
-      stop_onset_index: stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index-1}/#{stop_onset_index-1}",
-
+      start_onset_index: current_audition.start_onset_index-1,
+      stop_onset_index: current_audition.stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{current_audition.track_id}/#{current_audition.start_onset_index-1}/#{current_audition.stop_onset_index-1}",
     }
+
     grow_by_one_index = {
-      start_onset_index: start_onset_index,
-      stop_onset_index: stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index+1}",
+      start_onset_index: current_audition.start_onset_index,
+      stop_onset_index: current_audition.stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{current_audition.track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index+1}",
     }
 
     shrink_by_one_index = {
-      start_onset_index: start_onset_index,
-      stop_onset_index: stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{self.track_id}/#{start_onset_index}/#{stop_onset_index-1}",
-
+      start_onset_index: current_audition.start_onset_index,
+      stop_onset_index: current_audition.stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{self.max_for_live_voice_id}/#{current_audition.track_id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index-1}",
     }
 
-
-    # debugger #if self.duration < 0
-    return {
-      track_id: self.track.id.to_s,
-      track_path: self.track.escaped_path_and_file,
-      title: self.track.title,
-      artist: self.track.artist,
-      album: self.track.album,
-      year: self.track.year,
-
-      start_onset_index: start_onset_index,
-      stop_onset_index: stop_onset_index,
-      start: sec_dot_milli_to_milli(self.start_onset_time), 
-      duration: (duration ) ,
+    return_hash = {        
       shift_slice_forward_one_index: shift_slice_forward_one_index,
       shift_slice_backward_one_index: shift_slice_backward_one_index,
       grow_by_one_index: grow_by_one_index,
       shrink_by_one_index: shrink_by_one_index,
-
-    }
+   } 
   end
+
+
 
 
 end
