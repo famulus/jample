@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   
   get 'mp3tag/:slice_id/:track_id' => 'jample#mp3tag'
 
+  get 'back_one_audition/:voice/' => 'jample#back_one_audition'
+  get 'forward_one_audition/:voice/' => 'jample#forward_one_audition'
+
 
 
 

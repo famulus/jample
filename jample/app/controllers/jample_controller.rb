@@ -111,7 +111,7 @@ class JampleController < ApplicationController
 
   def voice
     voice = Voice.find_or_create_by({max_for_live_voice_id: params[:id]})
-    if(voice.start_onset_index.blank?)
+    if(current_audition.start_onset_index.blank?)
     render(json: {})
     return
       
@@ -159,33 +159,33 @@ end
     end
 
 
-    debugger if voice.stop_onset_time.to_i < 1
+    debugger if current_audition.stop_onset_time.to_i < 1
 
     shift_slice_forward_one_index = {
-      start_onset_index: voice.start_onset_index+1,
-      stop_onset_index: voice.stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index+1}/#{voice.stop_onset_index+1}",
+      start_onset_index: current_audition.start_onset_index+1,
+      stop_onset_index: current_audition.stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{current_audition.start_onset_index+1}/#{current_audition.stop_onset_index+1}",
     }
 
     shift_slice_backward_one_index = {
-      start_onset_index: voice.start_onset_index-1,
-      stop_onset_index: voice.stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index-1}/#{voice.stop_onset_index-1}",
+      start_onset_index: current_audition.start_onset_index-1,
+      stop_onset_index: current_audition.stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{current_audition.start_onset_index-1}/#{current_audition.stop_onset_index-1}",
 
     }
     grow_by_one_index = {
-      start_onset_index: voice.start_onset_index,
-      stop_onset_index: voice.stop_onset_index+1,
-      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index}/#{voice.stop_onset_index+1}",
+      start_onset_index: current_audition.start_onset_index,
+      stop_onset_index: current_audition.stop_onset_index+1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index+1}",
     }
 
     shrink_by_one_index = {
-      start_onset_index: voice.start_onset_index,
-      stop_onset_index: voice.stop_onset_index-1,
-      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{voice.start_onset_index}/#{voice.stop_onset_index-1}",
+      start_onset_index: current_audition.start_onset_index,
+      stop_onset_index: current_audition.stop_onset_index-1,
+      url: "get http://localhost:3000/get_slice/#{voice.max_for_live_voice_id}/#{track.id}/#{current_audition.start_onset_index}/#{current_audition.stop_onset_index-1}",
 
     }
-
+    current_audition.save
     voice.save
 
     # debugger #if self.duration < 0
@@ -197,10 +197,10 @@ end
       album: track.album,
       year: track.year,
 
-      start_onset_index: voice.start_onset_index,
-      stop_onset_index: voice.stop_onset_index,
-      start: sec_dot_milli_to_milli(voice.start_onset_time), 
-      duration: ((sec_dot_milli_to_milli(track_onset_array[voice.stop_onset_index]) - sec_dot_milli_to_milli(track_onset_array[voice.start_onset_index]) ).round(5) ) ,
+      start_onset_index: current_audition.start_onset_index,
+      stop_onset_index: current_audition.stop_onset_index,
+      start: sec_dot_milli_to_milli(current_audition.start_onset_time), 
+      duration: ((sec_dot_milli_to_milli(track_onset_array[current_audition.stop_onset_index]) - sec_dot_milli_to_milli(track_onset_array[current_audition.start_onset_index]) ).round(5) ) ,
       shift_slice_forward_one_index: shift_slice_forward_one_index,
       shift_slice_backward_one_index: shift_slice_backward_one_index,
       grow_by_one_index: grow_by_one_index,
@@ -222,6 +222,34 @@ end
     YoutubeDL.download(youtube_id , output: 'some_file.mp4')
     
   end
+
+
+
+
+
+
+
+  def back_one_audition
+    voice = Voice.find_or_create_by({max_for_live_voice_id: params[:voice]})
+    response = voice.back_one_audition()
+    render(json: response)
+
+  end
+
+  def forward_one_audition
+    voice = Voice.find_or_create_by({max_for_live_voice_id: params[:voice]})
+    response = voice.forward_one_audition()
+    render(json: response)
+
+  end
+
+
+
+
+
+
+
+
 
 # ----------------------------------------------
 
