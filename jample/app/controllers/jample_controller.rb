@@ -144,18 +144,18 @@ end
 
   def get_slice
     voice = Voice.find_or_create_by({max_for_live_voice_id: params[:voice]})
-
+    current_audition = voice.current_audition
     track_id = params[:track_id]
 
     if track_id.present? 
       track = Track.find(track_id.to_s)
-      voice.start_onset_index = params[:start_onset_index].to_i
-      voice.stop_onset_index = params[:stop_onset_index].to_i
+      current_audition.start_onset_index = params[:start_onset_index].to_i
+      current_audition.stop_onset_index = params[:stop_onset_index].to_i
       track_onset_array = track.onset_times
-      voice.start_onset_time = track_onset_array[voice.start_onset_index]
-      voice.stop_onset_time = track_onset_array[voice.stop_onset_index]
+      current_audition.start_onset_time = track_onset_array[current_audition.start_onset_index]
+      current_audition.stop_onset_time = track_onset_array[current_audition.stop_onset_index]
 
-      voice.save
+      current_audition.save
     end
 
 
