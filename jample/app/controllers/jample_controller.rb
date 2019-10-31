@@ -100,17 +100,24 @@ class JampleController < ApplicationController
   def youtube_dl
     youtube_id = params[:youtube_id]
     file = "/Volumes/BIG_GUY/jample_youtube/video_#{youtube_id}.wav"
-    YoutubeDL.download(youtube_id , {
-      output: file, 
-      "extract-audio" => true, 
-      "audio-quality" => 0, 
-      "audio-format" => "wav",
-      # xattrs: true,
+    yt_video_info = YoutubeDL.download(
+      youtube_id ,
+      {output: file,
+       "extract-audio" => true,
+       "audio-quality" => 0,
+       "audio-format" => "wav",
+     # xattrs: true, 
     })
     puts "\n\n"
     puts "PAST DOWNLOAD"
     puts "\n\n"
     track = Track.import_track(file)
+    track.title = yt_video_info.information[:track] || yt_video_info.information[:title]
+    track.artist = yt_video_info.information[:artist] || yt_video_info.information[:description]
+    track.album = yt_video_info.information[:album]
+    track.youtube_url = yt_video_info.information[:webpage_url]
+    track.youtube_data = yt_video_info.information
+    track.save
     cp = CurrentPatch.last
     cp.subset_search_string = track.id
     cp.subset_search_string = '' if params[:filter_text]=="*"

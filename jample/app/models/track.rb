@@ -31,7 +31,8 @@ class Track
   field :year, type: String
   field :comments, type: String
   field :genre_s, type: String
-  field :genre_s, type: String
+  field :youtube_url, type: String
+  field :youtube_data, type: Hash
 
 
   def self.import_tracks
