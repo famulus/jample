@@ -45,4 +45,4 @@ gem 'aws-sdk', '~> 3'
 
 gem 'youtube-dl.rb'
 
-gem  'taglib-ruby'
+# gem  'taglib-ruby'
