@@ -20,7 +20,9 @@ Jample slices every mp3 on your hardrive in advance, so you can instantly shuffl
 
 In terminal run the following commands:
 
-2) `brew install mongo`
+2) `brew tap mongodb/brew`
+
+2.5) `brew install mongodb-community`
 
 3) `ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents`
 
