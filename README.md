@@ -50,7 +50,7 @@ In terminal run the following commands:
 
 14) `rake init`
 
-15) `rails server -p 80`
+15) `rails server`
 
 16) download and install pure data extended: https://puredata.info/downloads/pd-extended
 
