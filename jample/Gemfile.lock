@@ -837,7 +837,7 @@ GEM
       ruby-mp3info (>= 0.8.5)
     multi_json (1.10.1)
     origin (2.3.1)
-    rack (1.5.2)
+    rack (1.5.5)
     rack-cors (0.4.0)
     rack-test (0.6.2)
       rack (>= 1.0)
