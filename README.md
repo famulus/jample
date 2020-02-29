@@ -44,6 +44,8 @@ In terminal run the following commands:
 
 12) `brew install MP3SPLT`
 
+12.5) `brew install youtube-dl`
+
 13) `rake import_tracks`
 
 14) `rake init`
