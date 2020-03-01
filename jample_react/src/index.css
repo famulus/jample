@@ -1,3 +1,17 @@
+
+
+
+
+/*font-family: 'Oxanium', sans-serif;
+font-family: 'Odibee Sans', sans-serif;
+font-family: 'Teko', sans-serif;
+font-family: 'Anton', sans-serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Archivo Black', sans-serif;
+font-family: 'Changa', sans-serif;
+font-family: 'Russo One', sans-serif;
+font-family: 'VT323', sans-serif;*/
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,9 +19,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #4b3201;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+.jample {
+  display: block;
+  position: relative;
+  width: 98vw;
+  height: 98vw;
+  margin: 10px auto;
+  border-radius: 5px;
+  background-color: #ffefbf;
+  background-image: url(/images/wood-texture.jpg);
+}
+
+.input {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  display: block;
+  position: absolute;
+}
+
+.input_field {
+  border-radius: 3px;
+}
+
+.message {
+  font-family: 'Kanit', sans-serif;
 }

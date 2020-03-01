@@ -36,7 +36,7 @@ const statechart = {
 }
 
 class App extends React.Component {
-  
+
   constructor( props ){
     super( props );
     this.debouceInput = this.debouceInput.bind(this);
@@ -74,18 +74,22 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
       <div>
-      <input onChange={ this.debouceInput } />
-      </div>
+        <div className="jample">
 
-      <div>
-        <State is="start">START</State>
-        <State is="typing">TYPING</State>
-        <State is="requesting">REQUESTING</State>
-        <State is="results">results</State>
+          <div className="input">
+            <input className="input_field" onChange={ this.debouceInput } />
+            <div className="message">
+              <State is="start">START</State>
+              <State is="typing">TYPING</State>
+              <State is="requesting">REQUESTING</State>
+              <State is="results">results</State>
+            </div>
+          </div>
+
+
+        </div>
       </div>
-      </>
     )
   }
 }
