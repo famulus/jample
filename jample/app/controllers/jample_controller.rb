@@ -147,6 +147,12 @@ class JampleController < ApplicationController
     render(json: response)
   end
 
+  # orders tracks by most recent, limit 15
+  def get_recent_tracks
+  tracks = Track.order_by(created_at: 1).limit(15)
+    render(json: tracks)
+  end
+
 
   def set_filter
     cp = CurrentPatch.last
