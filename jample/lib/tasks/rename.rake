@@ -4,7 +4,7 @@ require 'shellwords'
 
 
 task :rename_tracks => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Track.all.each do |track|
 		# track.path_and_file = "#{destination_folder}/#{track_name}"
 		puts  (new_path = "#{destination_folder}/#{track.file_contents_hash}")
@@ -37,15 +37,15 @@ end
 
 
 task :add_mp3_extension => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Track.all.each do |track|
-		
+
 	end
 
 end
 
 task :check_for_file => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Track.all.each do |track|
 		track.path_and_file = (track.path_and_file + ".mp3")
 		ap track.path_and_file

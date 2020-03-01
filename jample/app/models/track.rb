@@ -39,8 +39,9 @@ class Track
     track_list_string = ''
     # track_list_string = `mdfind -name \.mp3`
     # track_list_string = `find ~/  -name *.mp3`
-    if system("mount|grep /BIG_GUY").present?
-      track_list_string += `find /Volumes/BIG_GUY/jample_songs/  -name *.mp3`
+    # if system("mount|grep /BIG_GUY").present?
+    if true
+      track_list_string += `find #{SOURCE_TRACKS}  -name *.mp3`
     else
       raise "Main song harddrive missing"
     end
@@ -131,7 +132,7 @@ class Track
       self.onset_count = onset_times.size
       self.save
     end
-  end 
+  end
 
   def detect_beat
     if self.onset_times_beat_mode.blank?
@@ -159,7 +160,7 @@ class Track
 
   def mp3_data
     begin
-      mp3_data = Mp3Info.open(self.path_and_file)   
+      mp3_data = Mp3Info.open(self.path_and_file)
       self.mp3_data_string = mp3_data.to_s
       self.mp3_tag = mp3_data.tag
       self.title = self.mp3_tag[:title]
@@ -169,7 +170,7 @@ class Track
       self.genre_s = self.mp3_tag[:genre_s]
       self.tracknum = self.mp3_tag[:tracknum]
       self.save
-    rescue 
+    rescue
     end
     return mp3_data
   end
