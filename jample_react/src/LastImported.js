@@ -7,7 +7,7 @@ export default class LastImported extends React.Component {
     super(props);
 
     this.state = {
-      lastImported:["test", "test2", "test3"]
+      lastImported:["no tracks"]
     };
 
     this.findRecentImports = this.findRecentImports.bind(this)
@@ -49,10 +49,10 @@ export default class LastImported extends React.Component {
     return(
 
       <div className="last-imported">
-        Last Imported:
         <div className="imported-items">
 
           <ul>
+            Last Imported:
 
           {this.state.lastImported.map( track => <li>{track}</li>)}
 
