@@ -52,6 +52,8 @@ In terminal run the following commands:
 
 16) download and install pure data extended: https://puredata.info/downloads/pd-extended
 
+TODO: fix hardcoded paths in jample.pd
+
 17) open pure data and setup midi and audio settings
 
 18) Is you midi hardware showing up in pure data?
