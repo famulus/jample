@@ -16,7 +16,7 @@ export default class LastImported extends React.Component {
 
 
     findRecentImports() {
-      console.log("penguin from findRecentImports()")
+      console.log("hello from findRecentImports()")
       axios.get('http://localhost:3000/get_recent_tracks')
        .then((response) => {
           console.log("Recent Imports:" , response.data);
@@ -24,6 +24,7 @@ export default class LastImported extends React.Component {
             let tracks = []
             this.data = response.data;
             this.data.forEach((item) => {
+            // logging path_and_file b/c artist & track name are blank
             console.log("track: ", item.path_and_file)
             tracks.push(item.path_and_file)
           })
