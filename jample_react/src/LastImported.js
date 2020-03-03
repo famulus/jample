@@ -51,7 +51,11 @@ export default class LastImported extends React.Component {
         Last Imported:
         <div className="imported-items">
 
-          {this.state.lastImported}
+          <ul>
+
+          {this.state.lastImported.map( track => <li>{track}</li>)}
+
+          </ul>
 
         </div>
       </div>
