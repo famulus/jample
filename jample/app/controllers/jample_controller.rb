@@ -132,13 +132,11 @@ class JampleController < ApplicationController
   end
 
 
-
   def back_one_audition
     voice = Voice.find_or_create_by({max_for_live_voice_id: params[:voice]})
     response = voice.back_one_audition()
     render(json: response)
   end
-
 
 
   def forward_one_audition
@@ -147,9 +145,9 @@ class JampleController < ApplicationController
     render(json: response)
   end
 
-  # orders tracks by most recent, limit 15
+  # orders tracks by "most recent", limit 15
   def get_recent_tracks
-  tracks = Track.order_by(created_at: 1).limit(15)
+    tracks = Track.order_by(created_at: 1).limit(15)
     render(json: tracks)
   end
 

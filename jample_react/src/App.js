@@ -3,6 +3,7 @@ import './App.css';
 import {  withStateMachine, State } from 'react-automata'
 import axios from 'axios';
 import { debounce } from "debounce";
+import LastImported from './LastImported';
 
 const statechart = {
   initial: 'start',
@@ -87,6 +88,9 @@ class App extends React.Component {
             </div>
           </div>
 
+          <div>
+            <LastImported parent_state={this.state} />
+          </div>
 
         </div>
       </div>
