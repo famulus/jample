@@ -1,3 +1,19 @@
+
+
+font-family: 'Oxanium', sans-serif;
+font-family: 'Odibee Sans', sans-serif;
+font-family: 'Teko', sans-serif;
+font-family: 'Anton', sans-serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Archivo Black', sans-serif;
+font-family: 'Changa', sans-serif;
+font-family: 'Russo One', sans-serif;
+font-family: 'VT323', sans-serif;
+font-family: 'IBM Plex Mono', sans-serif;
+font-family: 'Press Start 2P', sans-serif;
+font-family: 'Fira Mono', sans-serif;
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -11,3 +27,76 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.jample {
+  display: block;
+  position: relative;
+  width: 97vw;
+  height: 97vw;
+  margin: 10px auto;
+  border-radius: 5px;
+  background-color: #ffefbf;
+  background-image: url(/images/wood-texture.jpg);
+  background-image: url(/images/retina_wood.png);
+  background-image: url(/images/purty_wood.png);
+  padding: 1rem;
+}
+
+.input {
+  display: inline-block;
+  position: relative;
+}
+
+.input_field {
+  border-radius: 5px;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+
+}
+
+.message {
+  display: inline-block;
+  font-family: 'Press Start 2P', sans-serif;
+  background-color: #000;
+  color: #d0021b; /* red */
+  margin-top: .5rem;
+  padding: 5px 10px;
+}
+
+
+.search-results {
+  margin-top: 1rem;
+  display: inline-block;
+  background-color: #000;
+  color: #d0021b; /* red */
+  font-family: 'VT323', sans-serif;
+  font-size: 1.25rem;
+}
+
+
+.last-imported {
+  margin-top: 1rem;
+  display: inline-block;
+  background-color: #000;
+  color: #d0021b; /* red */
+  font-family: 'VT323', sans-serif;
+  font-size: 1.25rem;
+}
+
+ul {
+  margin: 0 !important;
+  padding: 1rem;
+
+}
+
+li {
+  list-style-type: none;
+
+}
+
+
+.imported-items {
+
+
+}
+

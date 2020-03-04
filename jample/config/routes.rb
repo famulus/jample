@@ -18,13 +18,14 @@ Rails.application.routes.draw do
 
   get 'youtube_dl/:youtube_id' => 'jample#youtube_dl'
 
-  
+
   get 'mp3tag/:slice_id/:track_id' => 'jample#mp3tag'
 
   get 'back_one_audition/:voice/' => 'jample#back_one_audition'
   get 'forward_one_audition/:voice/' => 'jample#forward_one_audition'
 
-
+  # Sarah's route WORK IN PROGRESS
+  get 'get_recent_tracks' => 'jample#get_recent_tracks'
 
 
   get 'set_current_patch/:id' => 'jample#set_current_patch'
@@ -32,13 +33,13 @@ Rails.application.routes.draw do
 
 
   get 'randomize_current_patch' => 'jample#randomize_current_patch'
-  
+
   get 'randomize_voice/:id' => 'jample#randomize_voice'
 
   post 'set_filter/' => 'jample#set_filter'
   post 'set_current_patch_set_name/' => 'jample#set_current_patch_set_name'
   post 'duplicate_patch_set/' => 'jample#duplicate_patch_set'
-  
+
   post 'init_16_patches' => 'jample#init_16_patches'
   post 'shuffle_unfrozen' => 'jample#shuffle_unfrozen'
   post 'init_16_patches_as_sequence' => 'jample#init_16_patches_as_sequence'

@@ -29,14 +29,14 @@ end
 task :init => :environment do
 	FileUtils.mkpath( PATCH_DIRECTORY)
 	CurrentPatch.create
-	PatchSet.init_16_patches
+	# PatchSet.init_16_patches
 	CurrentPatch.init
 end
 
 
 
 task :copy_files_to_location => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Track.all.each do |track|
 		command = ("cp #{ Shellwords.shellescape track.path_and_file} #{destination_folder}")
 		puts command
@@ -55,7 +55,7 @@ end
 
 
 task :add_mp3_to_all_files => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Track.all.each do |track|
 		starting_path_and_file  = track.path_and_file
 		ending_path_and_file  = "#{track.path_and_file}.mp3"
@@ -84,7 +84,7 @@ end
 
 
 task :change_file_reference_to_new_location => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Track.all.each do |track|
 		# track.path_and_file = "#{destination_folder}/#{track_name}"
 		puts  (new_path = "#{destination_folder}/#{track.track_name}")
@@ -103,7 +103,7 @@ task :change_file_reference_to_new_location => :environment do
 end
 
 task :remove_old_file => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Track.all.each do |track|
 
 		command = ("rm #{ Shellwords.shellescape track.path_and_file_old}")
@@ -119,14 +119,14 @@ end
 
 
 task :convert_from_index_to_time => :environment do
-	destination_folder = '/Volumes/BIG_GUY/jample_songs'
+	destination_folder = SOURCE_TRACKS
 	Patch.all.each do |patch|
 		begin
 			patch.start_onset_time  = patch.track.onset_times[patch.start_onset_index]
 			patch.stop_onset_time = patch.track.onset_times[patch.stop_onset_index]
 			patch.save
 		rescue => e
-			puts "\n\n BAD TRACK\n\n\n"		
+			puts "\n\n BAD TRACK\n\n\n"
 		end
 	end
 

@@ -18,8 +18,8 @@ class JampleController < ApplicationController
 
     @props_hash = {
       current_patch: @current_patch,
-      patch_set: @patch_set.as_json({include: 
-        {patches: {include: 
+      patch_set: @patch_set.as_json({include:
+        {patches: {include:
           {track: {methods: [:track_name_pretty ], :except => [:onset_times,:mp3_data_string]}}, methods: [:start_onset_time,:stop_onset_time]}},
         methods: [:next_patch_set,:previous_patch_set]
       }),
@@ -59,9 +59,10 @@ class JampleController < ApplicationController
 
   def mp3tag
     track_id = params[:track_id]
-    if track_id.present? 
+    if track_id.present?
       track = Track.find(track_id.to_s)
     end
+    # Is this being used?
     slice_id = params[:slice_id]
     Mp3Info.open("/Volumes/BIG_GUY/jample_slices/slice_#{slice_id}.wav") do |mp3|
       puts mp3.tag.title
@@ -80,7 +81,7 @@ class JampleController < ApplicationController
     current_audition = voice.current_audition
     track_id = params[:track_id]
 
-    if track_id.present? 
+    if track_id.present?
       track = Track.find(track_id.to_s)
       current_audition.start_onset_index = params[:start_onset_index].to_i
       current_audition.stop_onset_index = params[:stop_onset_index].to_i
@@ -99,14 +100,14 @@ class JampleController < ApplicationController
 
   def youtube_dl
     youtube_id = params[:youtube_id]
-    file = "/Volumes/BIG_GUY/jample_youtube/video_#{youtube_id}.wav"
+    file = "#{YOUTUBE_SOURCE_TRACKS}/video_#{youtube_id}.wav"
     yt_video_info = YoutubeDL.download(
       youtube_id ,
       {output: file,
        "extract-audio" => true,
        "audio-quality" => 0,
        "audio-format" => "wav",
-     # xattrs: true, 
+     # xattrs: true,
     })
     puts "\n\n"
     puts "PAST DOWNLOAD"
@@ -131,7 +132,6 @@ class JampleController < ApplicationController
   end
 
 
-
   def back_one_audition
     voice = Voice.find_or_create_by({max_for_live_voice_id: params[:voice]})
     response = voice.back_one_audition()
@@ -139,11 +139,16 @@ class JampleController < ApplicationController
   end
 
 
-
   def forward_one_audition
     voice = Voice.find_or_create_by({max_for_live_voice_id: params[:voice]})
     response = voice.forward_one_audition()
     render(json: response)
+  end
+
+  # orders tracks by "most recent", limit 15
+  def get_recent_tracks
+    tracks = Track.order_by(created_at: 1).limit(15)
+    render(json: tracks)
   end
 
 
