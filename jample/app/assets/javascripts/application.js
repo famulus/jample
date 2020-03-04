@@ -14,8 +14,6 @@
 //= require jquery_ujs
 //= require underscore
 //= require turbolinks
-//= require react
-//= require react_ujs
 //= require components
 //= require_tree .
 //= require ion-sound
