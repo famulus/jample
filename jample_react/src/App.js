@@ -54,10 +54,10 @@ class App extends React.Component {
     }).then((response) => {
       console.log("response.data: ", response.data);
       console.log("response.data.current_filter_size: ", response.data.current_filter_size);
-      console.log(response.status);
+      console.log("response.status: ", response.status);
       console.log("response.statusText: ", response.statusText);
-      console.log(response.headers);
-      console.log(response.config);
+      console.log("response.headers: ", response.headers);
+      console.log("response.config: ", response.config);
           this.setState({results: response.data} )
           this.setState({num_filtered_results: response.data.current_filter_size} )
           this.props.transition('response')
@@ -91,8 +91,9 @@ class App extends React.Component {
               <State is="results">results</State>
             </div>
           </div>
-          <div className="search-results">
-          Number of Filtered Tracks: {this.state.num_filtered_results}
+
+          <div className="filtered-tracks">
+            Filtered Tracks: {this.state.num_filtered_results}
           </div>
 
           <div>

@@ -74,9 +74,10 @@ code {
 }
 
 
+.filtered-tracks,
 .last-imported {
   margin-top: 1rem;
-  display: inline-block;
+  display: block;
   background-color: #000;
   color: #d0021b; /* red */
   font-family: 'VT323', sans-serif;
