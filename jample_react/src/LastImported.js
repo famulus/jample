@@ -24,9 +24,18 @@ export default class LastImported extends React.Component {
             let tracks = []
             this.data = response.data;
             this.data.forEach((item) => {
-            // logging path_and_file b/c artist & track name are blank
-            console.log("track: ", item.path_and_file)
-            tracks.push(item.path_and_file)
+
+              // If your track title or artist data is null, then
+              // show the path and file name so at least you have
+              // some indication of what the track is.
+              // If not, then great! Show the track title & artist
+              if ((item.title !== null) && (item.artist !== null)) {
+                console.log("track artist: ", item.artist)
+                console.log("track title: ", item.title)
+                tracks.push(item.title + `, ` + item.artist)
+              } else {
+                tracks.push(item.path_and_file)
+              }
           })
 
           this.setState({lastImported: tracks} )

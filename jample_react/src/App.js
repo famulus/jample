@@ -91,9 +91,8 @@ class App extends React.Component {
               <State is="results">results</State>
             </div>
           </div>
-
-          <div className="serach_results">
-            {this.state.num_filtered_results}
+          <div className="search-results">
+          Number of Filtered Tracks: {this.state.num_filtered_results}
           </div>
 
           <div>

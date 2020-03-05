@@ -31,10 +31,10 @@ code {
 .jample {
   display: block;
   position: relative;
-  width: 97vw;
-  height: 97vw;
+  width: 90vw;
+  height: 90vh;
   margin: 10px auto;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #ffefbf;
   background-image: url(/images/wood-texture.jpg);
   background-image: url(/images/retina_wood.png);
@@ -66,8 +66,8 @@ code {
 
 .search-results {
   margin-top: 1rem;
-  display: inline-block;
-  background-color: #000;
+  display: block;
+  /*background-color: #000;*/
   color: #d0021b; /* red */
   font-family: 'VT323', sans-serif;
   font-size: 1.25rem;
