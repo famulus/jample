@@ -18,7 +18,7 @@
     field :voiced_count, type: Integer
 
     belongs_to :track, index: true
-    belongs_to :voice, index: true
+    belongs_to :voice, index: true, :inverse_of => :voice
     
 
     index({ track_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: false, drop_dups: false })

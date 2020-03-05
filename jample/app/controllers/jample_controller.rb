@@ -163,8 +163,11 @@ class JampleController < ApplicationController
     puts "filter set to: #{cp.subset_search_string}"
     @current_filter = CurrentPatch.last.subset_search_string
     @current_filter_size = CurrentPatch.get_current_filter_set.size
-
-    render(json: {current_filter: @current_filter, current_filter_size: @current_filter_size})
+    # debugger
+    if(@current_filter_size < 15)
+      @filter_set_tracks = CurrentPatch.get_current_filter_set.map{|track_id| Track.find(track_id)}
+    end
+    render(json: {current_filter: @current_filter, current_filter_size: @current_filter_size, filter_set_tracks: @filter_set_tracks})
   end
 
 
