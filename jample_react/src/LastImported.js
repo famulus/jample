@@ -25,9 +25,9 @@ export default class LastImported extends React.Component {
             this.data = response.data;
             this.data.forEach((item) => {
 
-              // If your track title or artist data is null, then
+              // If the track title or artist data is null, then
               // show the path and file name so at least you have
-              // some indication of what the track is.
+              // some idea of what the track is.
               // If not, then great! Show the track title & artist
               if ((item.title !== null) && (item.artist !== null)) {
                 console.log("track artist: ", item.artist)

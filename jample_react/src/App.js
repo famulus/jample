@@ -6,8 +6,8 @@ import { debounce } from "debounce";
 import LastImported from './LastImported';
 
 const statechart = {
-  serach_results: [],
-  num_filtered_results: 0,
+  searchResults: [],
+  numFilteredResults: 0,
   initial: 'start',
   states: {
     start: {
@@ -53,14 +53,36 @@ class App extends React.Component {
       filter_text: this.state.filter,
     }).then((response) => {
       console.log("response.data: ", response.data);
-      console.log("response.data.current_filter_size: ", response.data.current_filter_size);
-      console.log("response.status: ", response.status);
-      console.log("response.statusText: ", response.statusText);
-      console.log("response.headers: ", response.headers);
-      console.log("response.config: ", response.config);
-          this.setState({results: response.data} )
-          this.setState({num_filtered_results: response.data.current_filter_size} )
-          this.props.transition('response')
+      // console.log("response.data.current_filter_size: ", response.data.current_filter_size);
+      // console.log("response.data.filter_set_tracks[0].title: ", response.data.filter_set_tracks[0].title);
+      // console.log("response.data.filter_set_tracks[0].artist: ", response.data.filter_set_tracks[0].artist);
+      // console.log("response.data.filter_set_tracks[0].path_and_file: ", response.data.filter_set_tracks[0].path_and_file);
+      // console.log("response.status: ", response.status);
+      // console.log("response.statusText: ", response.statusText);
+      // console.log("response.headers: ", response.headers);
+      // console.log("response.config: ", response.config);
+
+      let filteredTracks = []
+      this.data = response.data.filter_set_tracks
+      this.data.forEach((item) => {
+
+        // If the track title or artist data is null, then
+        // show the path and file name so at least you have
+        // some idea of what the track is.
+        // If not, then great! Show the track title & artist
+        if ((item.title !== null) && (item.artist !== null)) {
+          console.log("track artist: ", item.artist)
+          console.log("track title: ", item.title)
+          filteredTracks.push(item.title + `, ` + item.artist)
+        } else {
+          filteredTracks.push(item.path_and_file)
+        }
+
+      })
+
+      this.setState({searchResults: filteredTracks})
+      this.setState({numFilteredResults: response.data.current_filter_size} )
+      this.props.transition('response')
 
     });
   }
@@ -80,7 +102,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="jample">
+        <div className="jampler">
 
           <div className="input">
             <input className="input_field" onChange={ this.debouceInput } />
@@ -93,13 +115,26 @@ class App extends React.Component {
           </div>
 
           <div className="filtered-tracks">
-            Filtered Tracks: {this.state.num_filtered_results}
+            Number of Filtered Tracks: {this.state.numFilteredResults}
+          </div>
+
+          <div className="filtered-tracks">
+              <ul>
+                Filtered Tracks:
+                {this.state.searchResults}
+              </ul>
           </div>
 
           <div>
             <LastImported parent_state={this.state} />
           </div>
 
+          <section id="lower-right-stripes">
+            <div className="stripe-style" id="stripe1"></div>
+            <div className="stripe-style" id="stripe2"></div>
+            <div className="stripe-style" id="stripe3"></div>
+            <div className="stripe-style" id="stripe4"></div>
+          </section>
         </div>
       </div>
     )

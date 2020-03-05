@@ -28,7 +28,8 @@ code {
     monospace;
 }
 
-.jample {
+.jampler {
+  overflow: hidden;
   display: block;
   position: relative;
   width: 90vw;
@@ -99,5 +100,40 @@ li {
 .imported-items {
 
 
+}
+
+section#lower-right-stripes {
+  width: 263px;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  -webkit-transform: skewY(-45deg);
+  -moz-transform: skewY(-45deg);
+  -ms-transform: skewY(-45deg);
+  -o-transform: skewY(-45deg);
+  transform: skewY(-45deg);
+}
+
+.stripe-style {
+  width: 100%;
+  height: 20px;
+}
+
+#stripe1 {
+  background-color: #b02600; /* fire brick */
+}
+
+#stripe2 {
+  background-color: #d22601; /* red */
+}
+
+#stripe3 {
+  background-color: #e48401; /* orange */
+}
+
+#stripe4 {
+  background-color: #e6a202; /* light orange */
 }
 
