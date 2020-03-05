@@ -114,15 +114,16 @@ class App extends React.Component {
             </div>
           </div>
 
-          <div className="filtered-tracks">
+          <div className="num-filtered-tracks">
             Number of Filtered Tracks: {this.state.numFilteredResults}
           </div>
 
           <div className="filtered-tracks">
-              <ul>
-                Filtered Tracks:
-                {this.state.searchResults}
-              </ul>
+            <ul>
+              Filtered Tracks:
+              <br/>
+              {this.state.searchResults}
+            </ul>
           </div>
 
           <div>

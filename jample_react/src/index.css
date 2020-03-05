@@ -66,6 +66,7 @@ code {
 
 
 .search-results {
+  overflow: hidden;
   margin-top: 1rem;
   display: block;
   /*background-color: #000;*/
@@ -75,25 +76,29 @@ code {
 }
 
 
+.num-filtered-tracks,
 .filtered-tracks,
 .last-imported {
+  overflow: hidden;
   margin-top: 1rem;
   display: block;
   background-color: #000;
   color: #d0021b; /* red */
   font-family: 'VT323', sans-serif;
   font-size: 1.25rem;
+  border-radius: 6px;
+  padding: 1rem;
 }
 
 ul {
   margin: 0 !important;
-  padding: 1rem;
+  padding: 0rem;
 
 }
 
 li {
   list-style-type: none;
-
+  /*padding: 0rem;*/
 }
 
 
@@ -102,6 +107,9 @@ li {
 
 }
 
+/*=========================
+Decoration
+==========================*/
 section#lower-right-stripes {
   width: 263px;
   height: 50px;
