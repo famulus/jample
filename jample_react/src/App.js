@@ -6,8 +6,6 @@ import { debounce } from "debounce";
 import LastImported from './LastImported';
 
 const statechart = {
-  searchResults: [],
-  numFilteredResults: 0,
   initial: 'start',
   states: {
     start: {
@@ -45,7 +43,12 @@ class App extends React.Component {
     this.debouceInput = this.debouceInput.bind(this);
     // this.debouceDone = this.debouceDone.bind(this);
     this.debouceDone = debounce(this.debouceDone.bind(this),1000);
-    this.state = {filter: '', results: null}
+    this.state = {
+      filter: '',
+      results: null,
+      searchResults: [],
+      numFilteredResults: 0
+    }
   }
 
   search_api(){
@@ -63,16 +66,14 @@ class App extends React.Component {
       // console.log("response.config: ", response.config);
 
       let filteredTracks = []
-      this.data = response.data.filter_set_tracks
-      this.data.forEach((item) => {
+      // this.data = response.data.filter_set_tracks
+      response.data.filter_set_tracks.forEach((item) => {
 
         // If the track title or artist data is null, then
         // show the path and file name so at least you have
         // some idea of what the track is.
         // If not, then great! Show the track title & artist
         if ((item.title !== null) && (item.artist !== null)) {
-          console.log("track artist: ", item.artist)
-          console.log("track title: ", item.title)
           filteredTracks.push(item.title + `, ` + item.artist)
         } else {
           filteredTracks.push(item.path_and_file)
@@ -122,13 +123,15 @@ class App extends React.Component {
             <ul>
               Filtered Tracks:
               <br/>
-              {this.state.searchResults}
+              {this.state.searchResults.map( penguin => <li>{penguin}</li>)}
             </ul>
           </div>
 
           <div>
             <LastImported parent_state={this.state} />
           </div>
+
+          <h1 class="logo">Jampler</h1>
 
           <section id="lower-right-stripes">
             <div className="stripe-style" id="stripe1"></div>

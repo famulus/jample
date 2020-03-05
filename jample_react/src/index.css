@@ -14,6 +14,7 @@ font-family: 'Press Start 2P', sans-serif;
 font-family: 'Fira Mono', sans-serif;
 
 
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -110,6 +111,13 @@ li {
 /*=========================
 Decoration
 ==========================*/
+.logo {
+  font-family: 'Monoton', sans-serif;
+  color: #4f2700; /* brown */
+  position: absolute;
+  bottom: -1rem;
+}
+
 section#lower-right-stripes {
   width: 263px;
   height: 50px;

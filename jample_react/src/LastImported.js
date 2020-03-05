@@ -38,7 +38,7 @@ export default class LastImported extends React.Component {
               }
           })
 
-          this.setState({lastImported: tracks} )
+          this.setState({lastImported: tracks})
 
     });
 
