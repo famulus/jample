@@ -12,9 +12,12 @@ font-family: 'VT323', sans-serif;
 font-family: 'IBM Plex Mono', sans-serif;
 font-family: 'Press Start 2P', sans-serif;
 font-family: 'Fira Mono', sans-serif;
+font-family: 'Rubik Mono One', sans-serif;
 
 
-
+/*=========================
+Main
+==========================*/
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -38,12 +41,17 @@ code {
   margin: 10px auto;
   border-radius: 8px;
   background-color: #ffefbf;
-  background-image: url(/images/wood-texture.jpg);
-  background-image: url(/images/retina_wood.png);
   background-image: url(/images/purty_wood.png);
-  padding: 1rem;
+  padding: 1.5rem;
 }
 
+a {
+  color: #d0021b; /* red */
+ }
+
+/*=========================
+Search Field
+==========================*/
 .input {
   display: inline-block;
   position: relative;
@@ -66,6 +74,32 @@ code {
 }
 
 
+/*=========================
+Search Results
+==========================*/
+h2 {
+  color: #4f2700; /* brown */
+  font-family: 'Rubik Mono One', sans-serif;
+  font-family: 'Yesteryear', cursive;
+  font-size: 1.75rem;
+  margin-bottom: .5rem;
+  /*text-shadow: -1px -1px 1px #ebc78f, 1px 1px 1px #000;*/
+
+  /*Bold white text, with seven descending shadows,
+  each has no blur and is an increasingly darker shade of grey.
+  The eighth shadow is dark-blue and blurred to enhance the overall effect.*/
+/*  text-shadow: 0px 1px 0px #999,
+               0px 2px 0px #888,
+               0px 3px 0px #777,
+               0px 4px 0px #666,
+               0px 5px 0px #555,
+               0px 6px 0px #444,
+               0px 7px 0px #333,
+               0px 8px 7px #001135;*/
+}
+
+
+
 .search-results {
   overflow: hidden;
   margin-top: 1rem;
@@ -81,7 +115,8 @@ code {
 .filtered-tracks,
 .last-imported {
   overflow: hidden;
-  margin-top: 1rem;
+  margin-top: .5rem;
+  margin-bottom: 1.5rem;
   display: block;
   background-color: #000;
   color: #d0021b; /* red */
@@ -94,8 +129,8 @@ code {
 ul {
   margin: 0 !important;
   padding: 0rem;
-
 }
+
 
 li {
   list-style-type: none;
@@ -103,15 +138,10 @@ li {
 }
 
 
-.imported-items {
-
-
-}
-
 /*=========================
-Decoration
+Decorative Elements
 ==========================*/
-.logo {
+h1.logo {
   font-family: 'Monoton', sans-serif;
   color: #4f2700; /* brown */
   position: absolute;

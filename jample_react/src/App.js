@@ -119,11 +119,14 @@ class App extends React.Component {
             Number of Filtered Tracks: {this.state.numFilteredResults}
           </div>
 
+            <h2>Filtered Tracks:</h2>
           <div className="filtered-tracks">
             <ul>
-              Filtered Tracks:
-              <br/>
-              {this.state.searchResults.map( penguin => <li>{penguin}</li>)}
+              {this.state.searchResults.map( item =>
+                <li>
+                  <a href="">{item}</a>
+                </li>
+              )}
             </ul>
           </div>
 
