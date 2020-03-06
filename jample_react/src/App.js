@@ -46,7 +46,7 @@ class App extends React.Component {
     this.state = {
       filter: '',
       results: null,
-      searchResults: [],
+      searchResults: ['no filtered tracks'],
       numFilteredResults: 0
     }
   }

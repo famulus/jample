@@ -59,10 +59,16 @@ Search Field
 }
 
 .input_field {
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   margin-right: 1rem;
   margin-bottom: 1rem;
-
+  padding: .5rem;
+  background-color: black;
+  height: 20px;
+  width: 200px;
+  color: #07fd1f; /* lime */
+  font-family: 'VT323', sans-serif;
+  font-size: 1.25rem;
 }
 
 .message {
@@ -72,6 +78,7 @@ Search Field
   color: #d0021b; /* red */
   margin-top: .5rem;
   padding: 5px 10px;
+  display: none;
 }
 
 
@@ -101,31 +108,33 @@ h2 {
 
 
 
-.search-results {
-  overflow: hidden;
-  margin-top: 1rem;
-  display: block;
-  /*background-color: #000;*/
-  color: #d0021b; /* red */
-  font-family: 'VT323', sans-serif;
-  font-size: 1.25rem;
-}
-
-
 .num-filtered-tracks,
 .filtered-tracks,
 .last-imported {
+  position: relative;
   overflow: hidden;
   margin-top: .5rem;
   margin-bottom: 1.5rem;
-  display: block;
   background-color: #000;
-  color: #d0021b; /* red */
+  color: #d22601; /* red */
   font-family: 'VT323', sans-serif;
   font-size: 1.25rem;
   border-radius: 6px;
-  padding: 1rem;
+  padding: .5rem .75rem;
+  z-index: 2;
+  border: 2px solid #4f2700; /* brown */
 }
+
+
+.num-filtered-tracks {
+  display: inline;
+}
+
+.filtered-tracks,
+.last-imported {
+  display: block;
+}
+
 
 ul {
   margin: 0 !important;
@@ -166,6 +175,8 @@ section#lower-right-stripes {
 .stripe-style {
   width: 100%;
   height: 20px;
+  z-index: 1;
+  position: relative;
 }
 
 #stripe1 {
