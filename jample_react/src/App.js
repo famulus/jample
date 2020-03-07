@@ -25,7 +25,7 @@ const statechart = {
         response: 'results',
         inputChange: 'typing',
       },
-      onEntry: 'search_api',
+      onEntry: 'searchAPI',
     },
     results: {
       on: {
@@ -41,25 +41,22 @@ class App extends React.Component {
 
   constructor( props ){
     super( props );
-    this.debouceInput = this.debouceInput.bind(this);
-    // this.debouceDone = this.debouceDone.bind(this);
-    this.debouceDone = debounce(this.debouceDone.bind(this),1000);
+    this.debounceInput = this.debounceInput.bind(this);
+    this.debounceDone = debounce(this.debounceDone.bind(this),1000);
     this.state = {
       filter: '',
-      results: null,
+      // results: null,
       searchResults: ['no filtered tracks'],
       numFilteredResults: 0
     }
   }
 
-  search_api(){
+  searchAPI(){
     axios.post('http://localhost:3000/set_filter', {
       filter_text: this.state.filter,
     }).then((response) => {
       console.log("response.data: ", response.data);
-      // console.log("response.data.current_filter_size: ", response.data.current_filter_size);
       // console.log("response.data.filter_set_tracks[0].title: ", response.data.filter_set_tracks[0].title);
-      // console.log("response.data.filter_set_tracks[0].artist: ", response.data.filter_set_tracks[0].artist);
       // console.log("response.data.filter_set_tracks[0].path_and_file: ", response.data.filter_set_tracks[0].path_and_file);
       // console.log("response.status: ", response.status);
       // console.log("response.statusText: ", response.statusText);
@@ -82,6 +79,14 @@ class App extends React.Component {
 
       })
 
+      // If search does not yield any results,
+      // display a 'no search results' message
+      // so the user gets visual feedback
+      if (this.state.numFilteredResults == 0) {
+        filteredTracks.push("no search results for " + this.state.filter)
+      }
+
+
       this.setState({searchResults: filteredTracks})
       this.setState({numFilteredResults: response.data.current_filter_size} )
       this.props.transition('response')
@@ -89,25 +94,30 @@ class App extends React.Component {
     });
   }
 
-  debouceDone(){
-    console.log('hello from debouceDone()')
+  debounceDone(){
+    console.log('hello from debounceDone()')
     this.props.transition('debounce')
   }
 
-  debouceInput(e){
-    console.log('hello from debouceInput(e)')
+  debounceInput(e){
+    console.log('hello from debounceInput(e)')
     this.setState({filter: e.target.value })
     this.props.transition('inputChange')
-    this.debouceDone()
+    this.debounceDone()
   }
 
+
+
+//  ==================================
+//  And finally, the render
+//  ==================================
   render() {
     return (
       <div>
         <div className="jampler">
 
           <div className="input">
-            <input className="input_field" onChange={ this.debouceInput } />
+            <input className="input_field" onChange={this.debounceInput} />
             <div className="message">
               <State is="start">START</State>
               <State is="typing">TYPING</State>
@@ -120,12 +130,11 @@ class App extends React.Component {
             Number of Filtered Tracks: {this.state.numFilteredResults}
           </div>
 
-            <h2>Filtered Tracks:</h2>
+          <h2>Filtered Tracks:</h2>
           <div className="filtered-tracks">
             <ul>
               {this.state.searchResults.map( item =>
-                <li>
-                  <a href="">{item}</a>
+                <li>{item}
                 </li>
               )}
             </ul>

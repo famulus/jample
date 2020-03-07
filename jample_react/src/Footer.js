@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
 
+
+// This component contains the Jampler logo and the
+// cute stripes in the lower right
+
+
+
 export default class Footer extends React.Component {
-
-
-  // This component contains the Jampler logo and the
-  // cute stripes in the lower right
-
   render() {
     return(
 

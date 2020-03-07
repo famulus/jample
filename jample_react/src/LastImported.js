@@ -2,6 +2,11 @@ import React from 'react';
 import './App.css';
 import axios from 'axios';
 
+
+
+// This component displays the last 15 tracks imported into
+// the music storage. The limit of 15 is set on the back end.
+
 export default class LastImported extends React.Component {
   constructor(props) {
     super(props);
@@ -41,10 +46,30 @@ export default class LastImported extends React.Component {
           this.setState({lastImported: tracks})
 
     });
-
-
-
   }
+
+    // Not working
+    // makeFilteredTrack(tackID) {
+    //   console.log("hello from findRecentImports()")
+    //   axios.get('http://localhost:3000/set_filter')
+    //     .then( (response) => {
+    //       console.log("Recent Imports:" , response.data);
+    //       // let track = [response.data]
+    //     })
+    //   this.setState({filteredTrack: this.response.data})
+
+
+
+
+
+
+
+
+
+    // }
+
+
+
 
 
     componentDidMount() {
@@ -65,8 +90,8 @@ export default class LastImported extends React.Component {
           <ul>
 
           {this.state.lastImported.map( item =>
-            <li>
-              <a href="">{item}</a>
+            <li onClick={this.makeFilteredTrack}>
+              {item}
             </li>
           )}
 
