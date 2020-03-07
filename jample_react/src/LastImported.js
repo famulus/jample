@@ -48,27 +48,6 @@ export default class LastImported extends React.Component {
     });
   }
 
-    // Not working
-    // makeFilteredTrack(tackID) {
-    //   console.log("hello from findRecentImports()")
-    //   axios.get('http://localhost:3000/set_filter')
-    //     .then( (response) => {
-    //       console.log("Recent Imports:" , response.data);
-    //       // let track = [response.data]
-    //     })
-    //   this.setState({filteredTrack: this.response.data})
-
-
-
-
-
-
-
-
-
-    // }
-
-
 
 
 
@@ -90,7 +69,7 @@ export default class LastImported extends React.Component {
           <ul>
 
           {this.state.lastImported.map( item =>
-            <li onClick={this.makeFilteredTrack}>
+            <li key={item} onClick={this.makeFilteredTrack}>
               {item}
             </li>
           )}

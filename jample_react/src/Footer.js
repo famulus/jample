@@ -13,7 +13,7 @@ export default class Footer extends React.Component {
 
       <footer>
 
-        <h1 class="logo">Jampler</h1>
+        <h1 className="logo">Jampler</h1>
 
         <section id="lower-right-stripes">
           <div className="stripe-style" id="stripe1"></div>

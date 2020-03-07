@@ -4,6 +4,7 @@ import {  withStateMachine, State } from 'react-automata'
 import axios from 'axios';
 import { debounce } from "debounce";
 import LastImported from './LastImported';
+import DragAndDropWindow from './DragAndDropWindow';
 import Footer from './Footer';
 
 const statechart = {
@@ -134,13 +135,13 @@ class App extends React.Component {
           <div className="filtered-tracks">
             <ul>
               {this.state.searchResults.map( item =>
-                <li>{item}
-                </li>
+                <li key={item}>{item}</li>
               )}
             </ul>
           </div>
 
           <LastImported parent_state={this.state} />
+          <DragAndDropWindow parent_state={this.state} />
           <Footer />
 
         </div>

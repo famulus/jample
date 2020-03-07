@@ -110,12 +110,10 @@ h2 {
 
 .num-filtered-tracks,
 .filtered-tracks,
-.last-imported {
+.last-imported,
+.drag-drop-field {
   position: relative;
   overflow: hidden;
-  width: 50%;
-  min-width: 500px;
-  max-width: 800px;
   margin-top: .5rem;
   margin-bottom: 1.5rem;
   background-color: #000;
@@ -135,7 +133,16 @@ h2 {
 
 .filtered-tracks,
 .last-imported {
+  width: 50%;
   display: block;
+  min-width: 500px;
+  max-width: 800px;
+}
+
+.drag-drop-field {
+  width: 33%;
+  min-height: 100px;
+  min-width: 100px;
 }
 
 
