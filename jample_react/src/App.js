@@ -4,6 +4,7 @@ import {  withStateMachine, State } from 'react-automata'
 import axios from 'axios';
 import { debounce } from "debounce";
 import LastImported from './LastImported';
+import Footer from './Footer';
 
 const statechart = {
   initial: 'start',
@@ -130,18 +131,9 @@ class App extends React.Component {
             </ul>
           </div>
 
-          <div>
-            <LastImported parent_state={this.state} />
-          </div>
+          <LastImported parent_state={this.state} />
+          <Footer />
 
-          <h1 class="logo">Jampler</h1>
-
-          <section id="lower-right-stripes">
-            <div className="stripe-style" id="stripe1"></div>
-            <div className="stripe-style" id="stripe2"></div>
-            <div className="stripe-style" id="stripe3"></div>
-            <div className="stripe-style" id="stripe4"></div>
-          </section>
         </div>
       </div>
     )
