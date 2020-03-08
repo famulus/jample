@@ -941,6 +941,7 @@ GEM
     bigdecimal (1.4.2)
     bson (4.8.2)
     builder (3.2.4)
+    byebug (6.0.2)
     climate_control (0.2.0)
     cocaine (0.6.0)
       terrapin (= 0.6.0)
@@ -1074,6 +1075,7 @@ DEPENDENCIES
   awesome_print
   aws-sdk
   bigdecimal (= 1.4.2)
+  byebug
   haml
   jbuilder
   kaminari

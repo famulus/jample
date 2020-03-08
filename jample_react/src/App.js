@@ -13,6 +13,7 @@ const statechart = {
     start: {
       on: {
         inputChange: 'typing',
+        debounce: 'requesting',
       },
       onEntry: 'start',
     },
@@ -30,10 +31,10 @@ const statechart = {
     },
     results: {
       on: {
-        response: 'results',
         inputChange: 'typing',
+        debounce: 'requesting',
+
       },
-      onEntry: 'requesting',
     },
   },
 }
@@ -46,8 +47,7 @@ class App extends React.Component {
     this.debounceDone = debounce(this.debounceDone.bind(this),1000);
     this.state = {
       filter: '',
-      // results: null,
-      searchResults: ['no filtered tracks'],
+      searchResults: [],
       numFilteredResults: 0
     }
   }
@@ -56,41 +56,13 @@ class App extends React.Component {
     axios.post('http://localhost:3000/set_filter', {
       filter_text: this.state.filter,
     }).then((response) => {
-      console.log("response.data: ", response.data);
-      // console.log("response.data.filter_set_tracks[0].title: ", response.data.filter_set_tracks[0].title);
-      // console.log("response.data.filter_set_tracks[0].path_and_file: ", response.data.filter_set_tracks[0].path_and_file);
-      // console.log("response.status: ", response.status);
-      // console.log("response.statusText: ", response.statusText);
-      // console.log("response.headers: ", response.headers);
-      // console.log("response.config: ", response.config);
-
-      let filteredTracks = []
-      // this.data = response.data.filter_set_tracks
-      response.data.filter_set_tracks.forEach((item) => {
-
-        // If the track title or artist data is null, then
-        // show the path and file name so at least you have
-        // some idea of what the track is.
-        // If not, then great! Show the track title & artist
-        if ((item.title !== null) && (item.artist !== null)) {
-          filteredTracks.push(item.title + `, ` + item.artist)
-        } else {
-          filteredTracks.push(item.path_and_file)
-        }
-
-      })
+      this.setState({searchResults: response.data.filter_set_tracks})
+      this.setState({numFilteredResults: response.data.current_filter_size} )
+      this.props.transition('response')
 
       // If search does not yield any results,
       // display a 'no search results' message
       // so the user gets visual feedback
-      if (this.state.numFilteredResults == 0) {
-        filteredTracks.push("no search results for " + this.state.filter)
-      }
-
-
-      this.setState({searchResults: filteredTracks})
-      this.setState({numFilteredResults: response.data.current_filter_size} )
-      this.props.transition('response')
 
     });
   }
@@ -107,22 +79,39 @@ class App extends React.Component {
     this.debounceDone()
   }
 
+  updateFilterFromChild(e){
+    document.getElementById("filterInput").value = e;
+    this.setState({filter: e })
+    this.props.transition('debounce')
 
+
+  }
 
 //  ==================================
 //  And finally, the render
 //  ==================================
   render() {
+
+    var emptyMessage
+    if(this.state.numFilteredResults == 0){
+       emptyMessage =
+        <ul>
+          {"no search results for search term " + this.state.filter}
+        </ul>
+    }
+
+
+
     return (
       <div>
         <div className="jampler">
 
-          <div className="input">
-            <input className="input_field" onChange={this.debounceInput} />
+          <div className="input" >
+            <input id="filterInput" className="input_field" onChange={this.debounceInput} />
             <div className="message">
               <State is="start">START</State>
               <State is="typing">TYPING</State>
-              <State is="requesting">REQUESTING</State>
+              <State is="requesting"><img src="https://media.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"/></State>
               <State is="results">results</State>
             </div>
           </div>
@@ -134,14 +123,25 @@ class App extends React.Component {
           <h2>Filtered Tracks:</h2>
           <div className="filtered-tracks">
             <ul>
+            {console.log(this.state.searchResults)}
               {this.state.searchResults.map( item =>
-                <li key={item}>{item}</li>
+                <li key={item._id.$oid}> {item.path_and_file} </li>
               )}
             </ul>
+            <State is="results">{emptyMessage}</State>
+
+
           </div>
 
-          <LastImported parent_state={this.state} />
-          <DragAndDropWindow parent_state={this.state} />
+          <LastImported
+            parent_state={this.state}
+            updateFilterFromChild={   (arg)=>{this.updateFilterFromChild(arg)}  }
+
+           />
+
+          <DragAndDropWindow
+            parent_state={this.state}
+          />
           <Footer />
 
         </div>

@@ -2,7 +2,6 @@ class CurrentPatch
 
   include Mongoid::Document
 
-
   field :patch_index, type: Integer
   field :patch_set_id, type: String
   field :subset_search_string, type: String
@@ -26,7 +25,7 @@ class CurrentPatch
       patch.save
       cp.save
     rescue => e
-      debugger
+      # debugger
     end
   end
 
@@ -52,7 +51,7 @@ class CurrentPatch
 
   def self.get_current_filter_set
     puts "\n\nbegin filter\n\n"
-    # debugger
+
     subset_search_string = CurrentPatch.last.subset_search_string
     if subset_search_string.blank?
       return Track.where({track_missing: false, :onset_count.gt => 12}).pluck(:id)
@@ -67,6 +66,8 @@ class CurrentPatch
       subset_of_tracks = subset_of_tracks +  Track.where(mp3_data_string: /#{subset_search_string}/i, track_missing: false).pluck(:id)
       subset_of_tracks = subset_of_tracks.uniq
     end
+
+
     puts "\n\n\nend filter\n\n"
     return subset_of_tracks
   end

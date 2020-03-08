@@ -19,6 +19,7 @@ gem 'uglifier'
 
 
 gem  "awesome_print"
+gem  "byebug"
 
 # Use jquery as the JavaScript library
 # gem 'jquery-rails'

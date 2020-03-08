@@ -12,7 +12,7 @@ export default class DragAndDropAction extends React.Component {
 
       this.state = {
         dragging: false,
-        files:["no dragged tracks"]
+        // files:["no dragged tracks"]
       };
     }
 
@@ -59,14 +59,11 @@ export default class DragAndDropAction extends React.Component {
     this.setState({dragging: false})
     if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
       this.props.handleDrop(e.dataTransfer.files)
-      // sarah
-      // this.setState({files: e.dataTransfer.files} )
 
       e.dataTransfer.clearData()
       this.dragCounter = 0
     }
-      // sarah
-      // console.log("files: ", this.state.files)
+
   }
 
   // we add each of the four listeners in componentDidMount()

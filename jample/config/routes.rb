@@ -24,9 +24,12 @@ Rails.application.routes.draw do
   get 'back_one_audition/:voice/' => 'jample#back_one_audition'
   get 'forward_one_audition/:voice/' => 'jample#forward_one_audition'
 
-  # Sarah's route WORK IN PROGRESS
-  get 'get_recent_tracks' => 'jample#get_recent_tracks'
 
+  # Route for recent tracks by Sarah
+  get 'get_recent_tracks' => 'jample#get_recent_tracks'
+  # Route for drag and drop post by Sarah
+  get 'drag_and_drop' => 'jample#drag_and_drop'
+  post 'drag_and_drop' => 'jample#drag_and_drop'
 
   get 'set_current_patch/:id' => 'jample#set_current_patch'
   post 'set_current_patch_set' => 'jample#set_current_patch_set'
