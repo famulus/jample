@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from 'axios';
+import truncate from 'truncate';
 
 
 
@@ -51,6 +52,7 @@ export default class LastImported extends React.Component {
       } else {
         item.formattedTitle = (item.path_and_file)
       }
+      item.formattedTitle = truncate(item.formattedTitle, 200)
       return item
     })
 
