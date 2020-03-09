@@ -147,7 +147,7 @@ class JampleController < ApplicationController
 
   # orders tracks by "most recent", limit 15
   def get_recent_tracks
-    tracks = Track.order_by(created_at: 1).limit(15)
+    tracks = Track.order_by(created_at: :desc).limit(15)
     render(json: tracks)
   end
 
