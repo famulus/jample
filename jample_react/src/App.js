@@ -48,6 +48,10 @@ class App extends React.Component {
     super( props );
     this.formatTracks = this.formatTracks.bind(this);
     this.debounceInput = this.debounceInput.bind(this);
+    this.updateFilterFromChild = this.updateFilterFromChild.bind(this);
+
+
+
     this.debounceDone = debounce(this.debounceDone.bind(this),1000);
     this.state = {
       filter: '',
@@ -67,22 +71,22 @@ class App extends React.Component {
   }
 
   debounceDone(){
-    console.log('hello from debounceDone()')
+    // console.log('hello from debounceDone()')
     this.props.transition('requesting')
   }
 
   debounceInput(e){
-    console.log('hello from debounceInput(e)')
+    // console.log('hello from debounceInput(e)')
     this.setState({filter: e.target.value })
     this.props.transition('typing')
     this.debounceDone()
   }
 
-  updatefilterfromchild(e){
-    document.getelementbyid("filterinput").value = e;
-    this.setstate({filter: e })
+  updateFilterFromChild(e){
+    this.setState({filter: e })
     this.props.transition('requesting')
   }
+
   updateFilter(e){
     this.setstate({filter: e })
     this.props.transition('requesting')

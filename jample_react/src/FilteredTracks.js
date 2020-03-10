@@ -13,9 +13,13 @@ export default class FilteredTracks extends React.Component {
 
   constructor(props) {
     super(props);
+    this.selectTrack = this.selectTrack.bind(this);
 
   }
 
+  selectTrack(e){
+    console.log("selectTrack")
+  }
 
   //  ==================================
   //  And finally, the render
@@ -31,9 +35,9 @@ export default class FilteredTracks extends React.Component {
     }
 
     return(
-      <>
+      <div>
         <div className="input" >
-          <input id="filterInput" className="input_field" onChange={this.props.debounceInput} />
+          <input id="filterInput" className="input_field" onChange={this.props.debounceInput} value={this.props.parentState.filter}/>
           <div className="message">
             <State is="requesting">
             <img style={{'width': '20px', 'height':'20px'}} src="https://media.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"/>
@@ -49,13 +53,13 @@ export default class FilteredTracks extends React.Component {
         <div className="filtered-tracks">
           <ul>
             {searchResults.map( item =>
-              <li key={item._id.$oid}> {item.formattedTitle} </li>
+              <li key={item._id.$oid} onClick={this.selectTrack}> {item.formattedTitle} </li>
             )}
           </ul>
           <State is="results">{emptyMessage}</State>
         </div>
-      </>
-      )
+      </div>
+    )
   }
 }
 
