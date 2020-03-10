@@ -6,13 +6,14 @@ import { State } from 'react-automata'
 
 
 
-// This component displays the last 15 tracks imported into
-// the music storage. The limit of 15 is set on the back end.
+
 
 export default class FilteredTracks extends React.Component {
 
   constructor(props) {
     super(props);
+
+    // 'this' binding
     this.setFilter = this.setFilter.bind(this);
 
   }
@@ -41,16 +42,23 @@ export default class FilteredTracks extends React.Component {
     return(
       <div>
         <div className="input" >
-          <input id="filterInput" className="input_field" onChange={this.props.debounceInput} value={this.props.parentState.filter}/>
+          <input id="filterInput" className="input-field" onChange={this.props.debounceInput} value={this.props.parentState.filter}/>
           <div className="message">
             <State is="requesting">
-            <img style={{'width': '50px', 'height':'30px'}} src="https://media.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"/>
+
+
+            <section className='loading-spinner'>
+              <div className='ball fade-in-1'></div>
+              <div className='ball fade-in-2'></div>
+              <div className='ball fade-in-3'></div>
+            </section>
+
             </State>
           </div>
         </div>
 
         <div className="num-filtered-tracks">
-          Number of Filtered Tracks: {this.props.parentState.numFilteredResults}
+          Number Filtered Tracks: {this.props.parentState.numFilteredResults}
         </div>
 
         <h2>Filtered Tracks:</h2>
@@ -67,3 +75,7 @@ export default class FilteredTracks extends React.Component {
   }
 }
 
+
+            // <section className="loading-spinner-container">
+            //   <img className="loading-spinner" src="https://media.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"/>
+            // </section>

@@ -37,7 +37,7 @@ code {
   display: block;
   position: relative;
   width: 90vw;
-  height: 90vh;
+  height: auto;
   margin: 10px auto;
   border-radius: 8px;
   background-color: #ffefbf;
@@ -67,7 +67,7 @@ Search Field
   position: relative;
 }
 
-.input_field {
+.input-field {
   border-radius: 5px;
   margin-right: 1rem;
   margin-bottom: 1rem;
@@ -81,16 +81,71 @@ Search Field
   font-size: 1.25rem;
 }
 
+
+/*=========================
+Loading Spinner
+==========================*/
 .message {
+  position: relative;
+  right: 2rem;
   display: inline-block;
   font-family: 'Press Start 2P', sans-serif;
-  background-color: #000;
-  color: #d0021b; /* red */
+  /*background-color: #000;*/
+  color: #d0021b;
   margin-top: .5rem;
   padding: 5px 10px;
   /*display: none;*/
+  position: fixed;
+  right: 6rem;
 }
 
+.loading-spinner-container {
+  position: relative;
+  background-color: green;
+  position: relative;
+  right: 2rem;
+
+}
+
+img.loading-spinner {
+  width: 100px;
+  height: 50px;
+}
+
+ .ball {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  float: left;
+  margin-right: 6px;
+}
+
+
+.fade-in-1 {
+  background: red;
+  animation: fadeIn .65s infinite;
+}
+
+.fade-in-2 {
+  background: lime;
+  animation: fadeIn .75s infinite;
+}
+
+.fade-in-3 {
+  background: yellow;
+  animation: fadeIn .50s infinite;
+}
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
 
 /*=========================
 Search Results
@@ -128,7 +183,7 @@ h2 {
   margin-top: .5rem;
   margin-bottom: 1.5rem;
   background-color: #000;
-  color: #d22601; /* red */
+  color: #fe3001; /* red */
   font-family: 'VT323', sans-serif;
   font-size: 1.25rem;
   border-radius: 6px;
@@ -177,8 +232,9 @@ Decorative Elements
 h1.logo {
   font-family: 'Monoton', sans-serif;
   color: #4f2700; /* brown */
-  position: absolute;
+  position: relative;
   bottom: -1rem;
+  left: 1rem;
 }
 
 section#lower-right-stripes {
