@@ -106,6 +106,7 @@ class App extends React.Component {
       <div>
         <div className="jampler">
 
+
           <div className="input" >
             <input id="filterInput" className="input_field" onChange={this.debounceInput} />
             <div className="message">
@@ -135,13 +136,11 @@ class App extends React.Component {
 
           <LastImported
             parent_state={this.state}
-            updateFilterFromChild={   (arg)=>{this.updateFilterFromChild(arg)}  }
+            updateFilterFromChild={   (arg)=>{this.updateFilterFromChild(arg)}  } />
 
-           />
+          <DragAndDropWindow parent_state={this.state} />
 
-          <DragAndDropWindow
-            parent_state={this.state}
-          />
+
           <Footer />
 
         </div>
@@ -151,3 +150,16 @@ class App extends React.Component {
 }
 
 export default withStateMachine(statechart)(App)
+
+        // <section className="jample-board">
+
+        //   <section className="stripes">
+        //     <div className="stripe1"></div>
+        //     <div className="stripe2"></div>
+        //     <div className="stripe3"></div>
+        //     <div className="stripe4"></div>
+        //   </section>
+
+        // </section>
+
+

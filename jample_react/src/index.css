@@ -1,6 +1,6 @@
 
 
-font-family: 'Oxanium', sans-serif;
+/*font-family: 'Oxanium', sans-serif;
 font-family: 'Odibee Sans', sans-serif;
 font-family: 'Teko', sans-serif;
 font-family: 'Anton', sans-serif;
@@ -12,7 +12,7 @@ font-family: 'VT323', sans-serif;
 font-family: 'IBM Plex Mono', sans-serif;
 font-family: 'Press Start 2P', sans-serif;
 font-family: 'Fira Mono', sans-serif;
-font-family: 'Rubik Mono One', sans-serif;
+font-family: 'Rubik Mono One', sans-serif;*/
 
 
 /*=========================
@@ -29,7 +29,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  monospace;
 }
 
 .jampler {
@@ -50,6 +50,15 @@ a {
   text-decoration: none;
  }
 
+ .jample-board {
+   margin: 0 auto;
+   width: 95%;
+   height: 95%;
+   background-color: #b02600;
+   border-radius: 5px;
+   display: none;
+ }
+
 /*=========================
 Search Field
 ==========================*/
@@ -62,6 +71,7 @@ Search Field
   border-radius: 5px;
   margin-right: 1rem;
   margin-bottom: 1rem;
+  margin-left: 1rem;
   padding: .5rem;
   background-color: black;
   height: 24px;
@@ -92,6 +102,7 @@ h2 {
   font-size: 1.75rem;
   margin-top: .5rem;
   margin-bottom: -10px;
+  margin-left: 1rem;
   /*text-shadow: -1px -1px 1px #ebc78f, 1px 1px 1px #000;*/
 
   /*Bold white text, with seven descending shadows,
@@ -137,12 +148,14 @@ h2 {
   display: block;
   min-width: 500px;
   max-width: 800px;
+  margin-left: 1rem;
 }
 
 .drag-drop-field {
   width: 33%;
   min-height: 100px;
   min-width: 100px;
+  margin-left: 1rem;
 }
 
 
@@ -169,8 +182,8 @@ h1.logo {
 }
 
 section#lower-right-stripes {
-  width: 263px;
-  height: 50px;
+  width: 550px;
+  height: 200px;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -180,11 +193,12 @@ section#lower-right-stripes {
   -ms-transform: skewY(-45deg);
   -o-transform: skewY(-45deg);
   transform: skewY(-45deg);
+  /*display: none;*/
 }
 
 .stripe-style {
   width: 100%;
-  height: 20px;
+  height: 60px;
   z-index: 1;
   position: relative;
 }
