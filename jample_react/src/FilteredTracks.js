@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import axios from 'axios';
-import truncate from 'truncate';
 import { State } from 'react-automata'
 
 
@@ -32,7 +30,7 @@ export default class FilteredTracks extends React.Component {
   render() {
     var searchResults = this.props.formatedTracks
     var emptyMessage
-    if(this.props.parentState.numFilteredResults == 0){
+    if(this.props.parentState.numFilteredResults === 0){
        emptyMessage =
         <ul>
           {"no search results for search term " + this.props.parentState.filter}

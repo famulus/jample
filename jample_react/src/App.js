@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {  withStateMachine, State } from 'react-automata'
+import {  withStateMachine } from 'react-automata'
 import axios from 'axios';
 import { debounce } from "debounce";
 import LastImported from './LastImported';
