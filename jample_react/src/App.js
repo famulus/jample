@@ -46,6 +46,8 @@ class App extends React.Component {
 
   constructor( props ){
     super( props );
+
+    // this-binding
     this.formatTracks = this.formatTracks.bind(this);
     this.debounceInput = this.debounceInput.bind(this);
     this.updateFilterFromChild = this.updateFilterFromChild.bind(this);

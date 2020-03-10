@@ -53,7 +53,7 @@ export default class DragAndDropWindow extends Component {
 render() {
     return (
       <DragAndDropAction handleDrop={this.handleDrop}>
-        <div style={{height: 200, width: 300}}>
+        <div style={{height: 100, width: 300}}>
           {this.state.files.map((file, i) =>
             <div key={i}>{file}</div>
           )}

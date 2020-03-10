@@ -44,7 +44,7 @@ export default class FilteredTracks extends React.Component {
           <input id="filterInput" className="input_field" onChange={this.props.debounceInput} value={this.props.parentState.filter}/>
           <div className="message">
             <State is="requesting">
-            <img style={{'width': '20px', 'height':'20px'}} src="https://media.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"/>
+            <img style={{'width': '50px', 'height':'30px'}} src="https://media.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"/>
             </State>
           </div>
         </div>
