@@ -22,10 +22,10 @@ export default class LastImported extends React.Component {
 
 
   findRecentImports() {
-    console.log("hello from findRecentImports()")
+    // console.log("hello from findRecentImports()")
     axios.get('http://localhost:3000/get_recent_tracks')
      .then((response) => {
-        console.log("Recent Imports:" , response.data);
+        // console.log("Recent Imports:" , response.data);
         this.setState({lastImported: response.data})
     });
   }
@@ -34,7 +34,7 @@ export default class LastImported extends React.Component {
     // console.log("hello from setFilter()")
     // console.log(event.target.attributes.trackid.value)
     const trackId = event.target.attributes.trackid.value
-     {console.log(trackId)}
+     // {console.log(trackId)}
     this.props.updateFilterFromChild( trackId )
   }
 
@@ -59,9 +59,7 @@ export default class LastImported extends React.Component {
     return(
       <div>
         <h2>Last Imported:</h2>
-
         <div className="last-imported">
-
           <ul>
              {displayTracks.map( item =>{
               return(
@@ -72,16 +70,10 @@ export default class LastImported extends React.Component {
                })
               }
           </ul>
-
         </div>
       </div>
-
-
     );
-
-
-
-
   }
+  
 }
 
