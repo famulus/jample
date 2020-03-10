@@ -59,9 +59,7 @@ export default class LastImported extends React.Component {
     return(
       <div>
         <h2>Last Imported:</h2>
-
         <div className="last-imported">
-
           <ul>
              {displayTracks.map( item =>{
               return(
@@ -72,16 +70,10 @@ export default class LastImported extends React.Component {
                })
               }
           </ul>
-
         </div>
       </div>
-
-
     );
-
-
-
-
   }
+  
 }
 

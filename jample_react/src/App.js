@@ -7,6 +7,8 @@ import LastImported from './LastImported';
 import DragAndDropWindow from './DragAndDropWindow';
 import FilteredTracks from './FilteredTracks';
 import Footer from './Footer';
+import truncate from 'truncate';
+
 
 const statechart = {
   initial: 'start',
@@ -44,6 +46,7 @@ class App extends React.Component {
 
   constructor( props ){
     super( props );
+    this.formatTracks = this.formatTracks.bind(this);
     this.debounceInput = this.debounceInput.bind(this);
     this.debounceDone = debounce(this.debounceDone.bind(this),1000);
     this.state = {
@@ -85,6 +88,21 @@ class App extends React.Component {
     this.props.transition('requesting')
   }
 
+  formatTracks(tracks){
+    const displayTracks = tracks.map( item  => {
+      if ((item.title !== null) && (item.artist !== null)) {
+        item.formattedTitle = (item.title + `, ` + item.artist)
+      } else {
+        item.formattedTitle = (item.path_and_file)
+      }
+      item.formattedTitle = truncate(item.formattedTitle, 200)
+      return item
+    })
+
+    return displayTracks
+
+  }
+
 //  ==================================
 //  And finally, the render
 //  ==================================
@@ -97,6 +115,7 @@ class App extends React.Component {
           <FilteredTracks
             parentState={this.state}
             debounceInput={   (arg)=>{this.debounceInput(arg)}  }
+            formatedTracks = {this.formatTracks(this.state.searchResults)}
            />
 
           <LastImported
