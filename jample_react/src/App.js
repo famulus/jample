@@ -120,6 +120,7 @@ class App extends React.Component {
             parentState={this.state}
             debounceInput={   (arg)=>{this.debounceInput(arg)}  }
             formatedTracks = {this.formatTracks(this.state.searchResults)}
+            updateFilterFromChild={   (arg)=>{this.updateFilterFromChild(arg)}  }
            />
 
           <LastImported

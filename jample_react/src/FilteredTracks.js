@@ -13,12 +13,16 @@ export default class FilteredTracks extends React.Component {
 
   constructor(props) {
     super(props);
-    this.selectTrack = this.selectTrack.bind(this);
+    this.setFilter = this.setFilter.bind(this);
 
   }
 
-  selectTrack(e){
-    console.log("selectTrack")
+  setFilter(event){
+    // console.log("hello from setFilter()")
+    // console.log(event.target.attributes.trackid.value)
+    const trackId = event.target.attributes.trackid.value
+     // {console.log(trackId)}
+    this.props.updateFilterFromChild( trackId )
   }
 
   //  ==================================
@@ -53,7 +57,7 @@ export default class FilteredTracks extends React.Component {
         <div className="filtered-tracks">
           <ul>
             {searchResults.map( item =>
-              <li key={item._id.$oid} onClick={this.selectTrack}> {item.formattedTitle} </li>
+              <li key={item._id.$oid} trackId={item._id.$oid} onClick={this.setFilter}> {item.formattedTitle} </li>
             )}
           </ul>
           <State is="results">{emptyMessage}</State>
