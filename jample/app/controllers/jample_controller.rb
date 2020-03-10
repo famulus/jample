@@ -14,7 +14,7 @@ class JampleController < ApplicationController
     @named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
     @current_filter_size = CurrentPatch.get_current_filter_set.size
     @recent_filters = FilterHistory.all.desc('_id').limit(20).uniq{|s|s.filter_value}[(0...4)]
-    # debugger
+    # byebug
 
     @props_hash = {
       current_patch: @current_patch,
@@ -122,7 +122,7 @@ class JampleController < ApplicationController
     cp = CurrentPatch.last
     cp.subset_search_string = track.id
     cp.subset_search_string = '' if params[:filter_text]=="*"
-    # debugger
+    # byebug
     cp.save
     FilterHistory.create({filter_value: cp.subset_search_string })
     puts "filter set to: #{cp.subset_search_string}"
@@ -156,17 +156,15 @@ class JampleController < ApplicationController
     cp = CurrentPatch.last
     cp.subset_search_string = params[:filter_text]
     cp.subset_search_string = '' if params[:filter_text]=="*"
-    # debugger
+    # byebug
     cp.save
     FilterHistory.create({filter_value: cp.subset_search_string })
 
     puts "filter set to: #{cp.subset_search_string}"
     @current_filter = CurrentPatch.last.subset_search_string
     @current_filter_size = CurrentPatch.get_current_filter_set.size
-    # debugger
-    if(@current_filter_size < 15)
-      @filter_set_tracks = CurrentPatch.get_current_filter_set.map{|track_id| Track.find(track_id)}
-    end
+    # byebug
+    @filter_set_tracks = CurrentPatch.get_current_filter_set[0..15].map{|track_id| Track.find(track_id)}
     render(json: {current_filter: @current_filter, current_filter_size: @current_filter_size, filter_set_tracks: @filter_set_tracks})
   end
 

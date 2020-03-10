@@ -5,6 +5,7 @@ import axios from 'axios';
 import { debounce } from "debounce";
 import LastImported from './LastImported';
 import DragAndDropWindow from './DragAndDropWindow';
+import FilteredTracks from './FilteredTracks';
 import Footer from './Footer';
 
 const statechart = {
@@ -12,27 +13,27 @@ const statechart = {
   states: {
     start: {
       on: {
-        inputChange: 'typing',
-        debounce: 'requesting',
+        typing: 'typing',
+        requesting: 'requesting',
       },
       onEntry: 'start',
     },
     typing: {
       on: {
-        debounce: 'requesting',
+        requesting: 'requesting',
       },
     },
     requesting: {
       on: {
-        response: 'results',
-        inputChange: 'typing',
+        results: 'results',
+        typing: 'typing',
       },
       onEntry: 'searchAPI',
     },
     results: {
       on: {
-        inputChange: 'typing',
-        debounce: 'requesting',
+        typing: 'typing',
+        requesting: 'requesting',
 
       },
     },
@@ -58,33 +59,30 @@ class App extends React.Component {
     }).then((response) => {
       this.setState({searchResults: response.data.filter_set_tracks})
       this.setState({numFilteredResults: response.data.current_filter_size} )
-      this.props.transition('response')
-
-      // If search does not yield any results,
-      // display a 'no search results' message
-      // so the user gets visual feedback
-
+      this.props.transition('results')
     });
   }
 
   debounceDone(){
     console.log('hello from debounceDone()')
-    this.props.transition('debounce')
+    this.props.transition('requesting')
   }
 
   debounceInput(e){
     console.log('hello from debounceInput(e)')
     this.setState({filter: e.target.value })
-    this.props.transition('inputChange')
+    this.props.transition('typing')
     this.debounceDone()
   }
 
-  updateFilterFromChild(e){
-    document.getElementById("filterInput").value = e;
-    this.setState({filter: e })
-    this.props.transition('debounce')
-
-
+  updatefilterfromchild(e){
+    document.getelementbyid("filterinput").value = e;
+    this.setstate({filter: e })
+    this.props.transition('requesting')
+  }
+  updateFilter(e){
+    this.setstate({filter: e })
+    this.props.transition('requesting')
   }
 
 //  ==================================
@@ -92,56 +90,24 @@ class App extends React.Component {
 //  ==================================
   render() {
 
-    var emptyMessage
-    if(this.state.numFilteredResults == 0){
-       emptyMessage =
-        <ul>
-          {"no search results for search term " + this.state.filter}
-        </ul>
-    }
-
-
-
     return (
       <div>
         <div className="jampler">
 
-          <div className="input" >
-            <input id="filterInput" className="input_field" onChange={this.debounceInput} />
-            <div className="message">
-              <State is="start">START</State>
-              <State is="typing">TYPING</State>
-              <State is="requesting"><img src="https://media.giphy.com/media/2WjpfxAI5MvC9Nl8U7/giphy.gif"/></State>
-              <State is="results">results</State>
-            </div>
-          </div>
-
-          <div className="num-filtered-tracks">
-            Number of Filtered Tracks: {this.state.numFilteredResults}
-          </div>
-
-          <h2>Filtered Tracks:</h2>
-          <div className="filtered-tracks">
-            <ul>
-            {console.log(this.state.searchResults)}
-              {this.state.searchResults.map( item =>
-                <li key={item._id.$oid}> {item.path_and_file} </li>
-              )}
-            </ul>
-            <State is="results">{emptyMessage}</State>
-
-
-          </div>
+          <FilteredTracks
+            parentState={this.state}
+            debounceInput={   (arg)=>{this.debounceInput(arg)}  }
+           />
 
           <LastImported
-            parent_state={this.state}
+            parentState={this.state}
             updateFilterFromChild={   (arg)=>{this.updateFilterFromChild(arg)}  }
-
            />
 
           <DragAndDropWindow
-            parent_state={this.state}
+            parentState={this.state}
           />
+
           <Footer />
 
         </div>
