@@ -1,20 +1,4 @@
 
-
-/*font-family: 'Oxanium', sans-serif;
-font-family: 'Odibee Sans', sans-serif;
-font-family: 'Teko', sans-serif;
-font-family: 'Anton', sans-serif;
-font-family: 'Kanit', sans-serif;
-font-family: 'Archivo Black', sans-serif;
-font-family: 'Changa', sans-serif;
-font-family: 'Russo One', sans-serif;
-font-family: 'VT323', sans-serif;
-font-family: 'IBM Plex Mono', sans-serif;
-font-family: 'Press Start 2P', sans-serif;
-font-family: 'Fira Mono', sans-serif;
-font-family: 'Rubik Mono One', sans-serif;*/
-
-
 /*=========================
 Main
 ==========================*/
@@ -50,14 +34,6 @@ a {
   text-decoration: none;
  }
 
- .jample-board {
-   margin: 0 auto;
-   width: 95%;
-   height: 95%;
-   background-color: #b02600;
-   border-radius: 5px;
-   display: none;
- }
 
 /*=========================
 Search Field
@@ -67,18 +43,31 @@ Search Field
   position: relative;
 }
 
-.input-field {
+input[value] {
+  font-family: 'VT323', sans-serif;
+  color: #07fd1f; /* lime */
+  font-size: 1.25rem;
+}
+
+.input-field,
+.youtube-input-field {
+  position: relative;
   border-radius: 5px;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
+  margin: 1rem;
   padding: .5rem;
   background-color: black;
   height: 24px;
+  z-index: 3;
+}
+
+.input-field {
   width: 200px;
-  color: #07fd1f; /* lime */
-  font-family: 'VT323', sans-serif;
-  font-size: 1.25rem;
+}
+
+.youtube-input-field {
+  width: 50%;
+  min-width: 500px;
+  max-width: 800px;
 }
 
 
@@ -199,13 +188,17 @@ h2 {
 
 .filtered-tracks,
 .last-imported {
-  width: 50%;
   display: block;
+  width: 50%;
   min-width: 500px;
   max-width: 800px;
+  min-height: 1rem;
   margin-left: 1rem;
 }
 
+/*=========================
+Drag & Drop
+==========================*/
 .drag-drop-field {
   width: 33%;
   min-height: 100px;
@@ -222,7 +215,12 @@ ul {
 
 li {
   list-style-type: none;
-  margin-bottom: 5px;
+  margin-bottom: 1rem;
+  /* line clamp */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 

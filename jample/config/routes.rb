@@ -27,7 +27,9 @@ Rails.application.routes.draw do
 
   # Route for recent tracks by Sarah
   get 'get_recent_tracks' => 'jample#get_recent_tracks'
+
   # Route for drag and drop post by Sarah
+  # TODO: Mark review
   get 'drag_and_drop' => 'jample#drag_and_drop'
   post 'drag_and_drop' => 'jample#drag_and_drop'
 

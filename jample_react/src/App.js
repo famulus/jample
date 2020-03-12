@@ -6,6 +6,7 @@ import { debounce } from "debounce";
 import LastImported from './LastImported';
 import DragAndDropWindow from './DragAndDropWindow';
 import FilteredTracks from './FilteredTracks';
+import YouTubeImport from './YouTubeImport';
 import Footer from './Footer';
 import truncate from 'truncate';
 
@@ -131,6 +132,10 @@ class App extends React.Component {
             updateFilterFromChild={   (arg)=>{this.updateFilterFromChild(arg)}  }
            />
 
+          <YouTubeImport
+            parentState={this.state}
+          />
+
           <DragAndDropWindow
             parentState={this.state}
           />
@@ -145,16 +150,3 @@ class App extends React.Component {
 }
 
 export default withStateMachine(statechart)(App)
-
-        // <section className="jample-board">
-
-        //   <section className="stripes">
-        //     <div className="stripe1"></div>
-        //     <div className="stripe2"></div>
-        //     <div className="stripe3"></div>
-        //     <div className="stripe4"></div>
-        //   </section>
-
-        // </section>
-
-

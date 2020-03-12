@@ -22,58 +22,60 @@ In terminal run the following commands:
 
 2) `brew tap mongodb/brew`
 
-2.5) `brew install mongodb-community`
+3) `brew install mongodb-community`
 
-3) `ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents`
+4) `ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents`
 
-4) `launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist`
+5) `launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist`
 
-5) `cd ~/Documents/`
+6) `cd ~/Documents/`
 
-6) `git clone git@github.com:famulus/jample.git`
+7) `git clone git@github.com:famulus/jample.git`
 
-7) `cd jample/jample`
+8) `cd jample/jample`
 
-8) `sudo gem install bundler`
+9) `sudo gem install bundler`
 
-9) `bundle install`
+10) `bundle install`
 
-10) `brew install aubio --with-python`
+11) `brew install aubio --with-python`
 
-11) `brew install ffmpeg`
+12) `brew install ffmpeg`
 
-12) `brew install MP3SPLT`
+13) `brew install MP3SPLT`
 
-12.5) `brew install youtube-dl`
+14) `brew install youtube-dl`
 
-13) `rake import_tracks`
+15) `rake import_tracks`
 
-14) `rake init`
+16) `rake init`
 
-15) `rails server`
+17) `rails server`
 
-16) download and install pure data extended: https://puredata.info/downloads/pd-extended
+18) download and install pure data extended: https://puredata.info/downloads/pd-extended
 
 TODO: fix hardcoded paths in jample.pd
 
-17) open pure data and setup midi and audio settings
+19) open pure data and setup midi and audio settings
 
-18) Is you midi hardware showing up in pure data?
+20) Is you midi hardware showing up in pure data?
 
-19) Are you able to hear sound coming from pure data?
+21) Are you able to hear sound coming from pure data?
 
-20) JAMPLE!
+22) JAMPLE!
 
 
 ## React Client
 
-In terminal run the following commands:
+In a new terminal run the following commands from the jample folder:
 
 1) `cd jample_react`
 
 2) `npm start`
 
 3) open a brower window, visit http://localhost:3001/
+
+4) JAMPLE!
 
 
 

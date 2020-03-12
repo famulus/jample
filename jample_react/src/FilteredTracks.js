@@ -40,7 +40,11 @@ export default class FilteredTracks extends React.Component {
     return(
       <div>
         <div className="input" >
-          <input id="filterInput" className="input-field" onChange={this.props.debounceInput} value={this.props.parentState.filter}/>
+          <input id="filterInput"
+                 className="input-field"
+                 onChange={this.props.debounceInput}
+                 value={this.props.parentState.filter}
+                 />
           <div className="message">
             <State is="requesting">
 
@@ -63,7 +67,11 @@ export default class FilteredTracks extends React.Component {
         <div className="filtered-tracks">
           <ul>
             {searchResults.map( item =>
-              <li key={item._id.$oid} trackid={item._id.$oid} onClick={this.setFilter}> {item.formattedTitle} </li>
+              <li key={item._id.$oid}
+                  trackid={item._id.$oid}
+                  onClick={this.setFilter}>
+                    {item.formattedTitle}
+              </li>
             )}
           </ul>
           <State is="results">{emptyMessage}</State>
