@@ -137,7 +137,7 @@ class JampleController < ApplicationController
     # file = "#{YOUTUBE_SOURCE_TRACKS}/video_#{youtube_id}.wav"
     track_path = '/Volumes/BIG_GUY/recycled/keyCode.aif'
     track = Track.import_track(track_path)
-    track.title = 'recycled'
+    track.title = 'recycled04'
     track.artist = 'facesvases'
     # track.album = yt_video_info.information[:album]
     # track.youtube_url = yt_video_info.information[:webpage_url]
@@ -171,7 +171,8 @@ class JampleController < ApplicationController
 
   # orders tracks by "most recent", limit 15
   def get_recent_tracks
-    tracks = Track.order_by(created_at: :desc).limit(15)
+    tracks = Track.order(created_at: :desc).limit(15)
+    # debugger
     render(json: tracks)
   end
 
@@ -182,7 +183,7 @@ class JampleController < ApplicationController
     cp.subset_search_string = '' if params[:filter_text]=="*"
     # byebug
     cp.save
-    FilterHistory.create({filter_value: cp.subset_search_string })
+    # FilterHistory.create({filter_value: cp.subset_search_string })
 
     puts "filter set to: #{cp.subset_search_string}"
     @current_filter = CurrentPatch.last.subset_search_string

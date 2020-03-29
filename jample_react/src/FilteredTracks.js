@@ -67,8 +67,8 @@ export default class FilteredTracks extends React.Component {
         <div className="filtered-tracks">
           <ul>
             {searchResults.map( item =>
-              <li key={item._id.$oid}
-                  trackid={item._id.$oid}
+              <li key={item.id}
+                  trackid={item.id}
                   onClick={this.setFilter}>
                     {item.formattedTitle}
               </li>

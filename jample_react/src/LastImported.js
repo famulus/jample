@@ -63,7 +63,7 @@ export default class LastImported extends React.Component {
           <ul>
              {displayTracks.map( item =>{
               return(
-                <li key={item._id.$oid} trackid={item._id.$oid} onClick= {this.setFilter }>
+                <li key={item.id} trackid={item.id} onClick= {this.setFilter }>
                   {item.formattedTitle}
                 </li>
                 )

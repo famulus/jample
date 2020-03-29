@@ -49,3 +49,4 @@ gem 'youtube-dl.rb'
 gem 'bigdecimal', '1.4.2'
 
 # gem  'taglib-ruby'
+gem 'rack-cors', :require => 'rack/cors'
