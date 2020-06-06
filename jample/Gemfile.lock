@@ -1077,7 +1077,7 @@ GEM
     underscore-rails (1.8.3)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
-    websocket-extensions (0.1.4)
+    websocket-extensions (0.1.5)
     youtube-dl.rb (0.3.1.2016.09.11.1)
       cocaine (>= 0.5.4)
     zeitwerk (2.3.0)
