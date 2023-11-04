@@ -48,7 +48,8 @@ export default class YouTubeImport extends React.Component {
 
         <input id="youtube-input"
                className="youtube-input-field"
-               value="placeholder"
+               value={this.props.parentState.youTubeUrl}
+               onChange={this.props.debounceYoutubeUrl}
                />
       </div>
     );
