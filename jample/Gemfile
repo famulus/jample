@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'activemodel'
+gem 'activemodel', '~> 6.1.7.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 # gem 'rails'
-gem 'rails'
+gem 'rails', '~> 6.1.7.6'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'sqlite3'
@@ -42,7 +42,7 @@ gem 'sdoc',          group: :doc
 gem 'spring',        group: :development
 
 # gem 'byebug', group: [:development, :test]
-gem 'mongoid', '~> 4.0.2'
+gem 'mongoid'
 # gem 'haml' 
 gem 'haml', '~> 5.2', '>= 5.2.2'
 gem 'mp3info'
@@ -52,6 +52,9 @@ gem 'aws-sdk'
 
 gem 'youtube-dl.rb'
 gem 'bigdecimal', '3.0.0'
+# gem 'puma' is a server
+gem 'puma'
+
 
 # gem  'taglib-ruby'
 

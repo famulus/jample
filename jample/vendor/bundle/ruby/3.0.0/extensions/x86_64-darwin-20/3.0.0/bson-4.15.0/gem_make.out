@@ -1,0 +1,33 @@
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/bson-4.15.0/ext/bson
+/Users/sarahphillips/.rvm/rubies/ruby-3.0.0/bin/ruby -I /Users/sarahphillips/.rvm/rubies/ruby-3.0.0/lib/ruby/3.0.0 -r ./siteconf20240127-19083-2j4vdk.rb extconf.rb
+creating Makefile
+
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/bson-4.15.0/ext/bson
+make "DESTDIR=" clean
+
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/bson-4.15.0/ext/bson
+make "DESTDIR="
+compiling bytebuf.c
+compiling endian.c
+compiling init.c
+compiling libbson-utf8.c
+compiling read.c
+read.c:142:5: warning: variable 'result' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+    default:
+    ^~~~~~~
+read.c:146:10: note: uninitialized use occurs here
+  return result;
+         ^~~~~~
+read.c:131:15: note: initialize the variable 'result' to silence this warning
+  VALUE result;
+              ^
+               = 0
+1 warning generated.
+compiling util.c
+compiling write.c
+linking shared-object bson_native.bundle
+ld: warning: -multiply_defined is obsolete
+
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/bson-4.15.0/ext/bson
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 bson_native.bundle ./.gem.20240127-19083-qqfjux

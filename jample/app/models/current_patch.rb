@@ -8,11 +8,25 @@ class CurrentPatch
   field :subset_search_string, type: String
 
 
-  def self.init
-    if true #CurrentPatch.count != 1
-      CurrentPatch.delete_all
-      CurrentPatch.create(patch_index:1, patch_set_id: PatchSet.last.id)
+  # def self.init
+  #   if true #CurrentPatch.count != 1
+  #     CurrentPatch.delete_all
+  #     CurrentPatch.create(patch_index:1, patch_set_id: PatchSet.last.id)
 
+  #   end
+  # end
+
+  # chatGPT offered this suggestion
+  def self.init
+    if true # CurrentPatch.count != 1
+      CurrentPatch.delete_all
+      last_patch_set = PatchSet.last
+      if last_patch_set
+        CurrentPatch.create(patch_index: 1, patch_set_id: last_patch_set.id)
+      else
+        # Handle the case when there are no PatchSet records
+        # You might want to create a new PatchSet here, raise an error, or handle it in another way
+      end
     end
   end
 
