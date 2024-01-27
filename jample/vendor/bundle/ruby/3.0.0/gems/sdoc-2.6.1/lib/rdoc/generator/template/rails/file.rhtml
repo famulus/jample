@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= h file.name %></title>
+    <meta charset="<%= @options.charset %>" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= include_template '_head.rhtml', {:rel_prefix => rel_prefix, :tree_keys => [] } %>
+</head>
+
+<body>
+    <a class="sr-only sr-only-focusable" href="#content" data-turbolinks="false">Skip to Content</a>
+    <a class="sr-only sr-only-focusable" href="#search" data-turbolinks="false">Skip to Search</a>
+
+    <%= include_template '_panel.rhtml' %>
+
+    <div class="banner">
+        <% if ENV['HORO_PROJECT_NAME'] %>
+            <span><%= ERB::Util.html_escape(ENV['HORO_PROJECT_NAME']) %> <%= ERB::Util.html_escape(ENV['HORO_PROJECT_VERSION']) %></span><br />
+        <% end %>
+        <h2>
+            <%= h file.name %>
+        </h2>
+        <ul class="files">
+            <%
+                github = github_url(file.relative_name) if options.github
+            %>
+            <li>
+                <%= h file.relative_name %>
+                <% if github %>
+                    <a href="<%= github %>" target="_blank" class="github_url">on GitHub</a>
+                <% end %>
+            </li>
+            <li>Last modified: <%= file.file_stat.mtime %></li>
+        </ul>
+        <% if ENV['HORO_BADGE_VERSION'] %>
+            <div id="version-badge"><%= ENV['HORO_BADGE_VERSION'] %></div>
+        <% end %>
+    </div>
+
+    <main id="bodyContent">
+        <%= include_template '_context.rhtml', {:context => file, :rel_prefix => rel_prefix} %>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/psych-5.1.2/ext/psych
+/Users/sarahphillips/.rvm/rubies/ruby-3.0.0/bin/ruby -I /Users/sarahphillips/.rvm/rubies/ruby-3.0.0/lib/ruby/3.0.0 -r ./siteconf20240127-92447-6r22zd.rb extconf.rb
+checking for yaml.h... yes
+checking for yaml_get_version() in -lyaml... yes
+creating Makefile
+
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/psych-5.1.2/ext/psych
+make "DESTDIR=" clean
+cd libyaml && /Applications/Xcode.app/Contents/Developer/usr/bin/make clean
+/bin/sh: line 0: cd: libyaml: No such file or directory
+make: [clean-so] Error 1 (ignored)
+
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/psych-5.1.2/ext/psych
+make "DESTDIR="
+compiling psych.c
+compiling psych_emitter.c
+compiling psych_parser.c
+compiling psych_to_ruby.c
+compiling psych_yaml_tree.c
+linking shared-object psych.bundle
+ld: warning: -multiply_defined is obsolete
+ld: warning: ignoring duplicate libraries: '-lyaml'
+
+current directory: /Users/sarahphillips/Documents/01-software-dev/jample/jample/vendor/bundle/ruby/3.0.0/gems/psych-5.1.2/ext/psych
+make "DESTDIR=" install
+/usr/local/opt/coreutils/bin/ginstall -c -m 0755 psych.bundle ./.gem.20240127-92447-832se4

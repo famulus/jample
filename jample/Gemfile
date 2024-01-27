@@ -1,14 +1,18 @@
 source 'https://rubygems.org'
 
-
+gem 'activemodel'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# gem 'rails'
 gem 'rails'
 # Use sqlite3 as the database for Active Record
+# gem 'sqlite3'
 gem 'sqlite3'
 # Use SCSS for stylesheets
-gem 'sass-rails'
+# gem 'sass-rails'
+gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
+# gem 'uglifier'
+gem 'uglifier', '~> 4.2'
 # Use CoffeeScript for .js.coffee assets and views
 # gem 'coffee-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -17,13 +21,14 @@ gem 'uglifier'
 # gem 'react-rails'
 # gem 'sprockets-coffee-react'
 
-
-gem  "awesome_print"
+# gem 'awesome_print'
+gem 'awesome_print', '~> 1.9', '>= 1.9.2'
 
 # Use jquery as the JavaScript library
 # gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+# gem 'turbolinks'
+gem 'turbolinks', '~> 5.2', '>= 5.2.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'underscore-rails'
 
@@ -37,14 +42,17 @@ gem 'sdoc',          group: :doc
 gem 'spring',        group: :development
 
 # gem 'byebug', group: [:development, :test]
-gem 'mongoid'
-gem 'haml'
+gem 'mongoid', '~> 4.0.2'
+# gem 'haml' 
+gem 'haml', '~> 5.2', '>= 5.2.2'
 gem 'mp3info'
 gem 'kaminari'
 
 gem 'aws-sdk'
 
 gem 'youtube-dl.rb'
-gem 'bigdecimal', '1.4.2'
+gem 'bigdecimal', '3.0.0'
 
 # gem  'taglib-ruby'
+
+

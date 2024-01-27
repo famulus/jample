@@ -64,7 +64,8 @@ class JampleController < ApplicationController
     end
     # Is this being used?
     slice_id = params[:slice_id]
-    Mp3Info.open("/Volumes/BIG_GUY/jample_slices/slice_#{slice_id}.wav") do |mp3|
+    # Mp3Info.open("/Volumes/BIG_GUY/jample_slices/slice_#{slice_id}.wav") do |mp3|
+    Mp3Info.open("./BIG_GUY/jample_slices/slice_#{slice_id}.wav") do |mp3|
       puts mp3.tag.title
       puts mp3.tag.artist
       puts mp3.tag.album
