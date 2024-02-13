@@ -1579,7 +1579,6 @@ GEM
     aws-sigv4 (1.8.0)
       aws-eventstream (~> 1, >= 1.0.2)
     bigdecimal (3.0.0)
-    bson (4.15.0)
     builder (3.2.4)
     climate_control (0.2.0)
     cocaine (0.6.0)
@@ -1625,13 +1624,6 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.21.2)
-    mongo (2.19.3)
-      bson (>= 4.14.1, < 5.0.0)
-    mongoid (8.1.4)
-      activemodel (>= 5.1, < 7.2, != 7.0.0)
-      concurrent-ruby (>= 1.0.5, < 2.0)
-      mongo (>= 2.18.0, < 3.0.0)
-      ruby2_keywords (~> 0.0.5)
     mp3info (0.8.5)
       ruby-mp3info (>= 0.8.5)
     net-imap (0.4.9.1)
@@ -1698,7 +1690,6 @@ GEM
     rdoc (6.6.2)
       psych (>= 4.0.0)
     ruby-mp3info (0.8.10)
-    ruby2_keywords (0.0.5)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -1763,7 +1754,6 @@ DEPENDENCIES
   haml (~> 5.2, >= 5.2.2)
   jbuilder
   kaminari
-  mongoid
   mp3info
   puma
   rack-cors

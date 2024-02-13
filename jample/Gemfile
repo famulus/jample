@@ -42,7 +42,7 @@ gem 'sdoc',          group: :doc
 gem 'spring',        group: :development
 
 # gem 'byebug', group: [:development, :test]
-gem 'mongoid'
+# gem 'mongoid'
 # gem 'haml' 
 gem 'haml', '~> 5.2', '>= 5.2.2'
 gem 'mp3info'
