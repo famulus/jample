@@ -8,8 +8,9 @@
     "react": "^16.8.6",
     "react-automata": "^4.0.4",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1",
-    "react-test-renderer": "^16.11.0"
+    "react-scripts": "^3.4.0",
+    "react-test-renderer": "^16.11.0",
+    "truncate": "^2.1.0"
   },
   "scripts": {
     "start": "PORT=3001 react-scripts start",
