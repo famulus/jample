@@ -4,10 +4,10 @@ class Voice  < ActiveRecord::Base
 
   DURATION_IN_SLICES = 20
 
-  has_many :auditions, {dependent: :destroy}
-  has_one :current_audition, {class_name: "Audition"}
-  has_one :previous_audition, {class_name: "Audition"}
-  has_one :next_audition, {class_name: "Audition"}
+  has_many :auditions, **{dependent: :destroy}
+  has_one :current_audition, **{class_name: "Audition"}
+  has_one :previous_audition, **{class_name: "Audition"}
+  has_one :next_audition, **{class_name: "Audition"}
 
 
 

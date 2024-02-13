@@ -1,12 +1,9 @@
 class PatchSet
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
 
   DURATION_IN_SLICES = 12
   NUMBER_OF_PADS = 16
 
 
-  field :patch_set_label, type: String
   has_many :patches, {:dependent => :destroy}
 
 
