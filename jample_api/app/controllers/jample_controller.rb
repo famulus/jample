@@ -46,6 +46,7 @@ class JampleController < ApplicationController
 
   def voice
     voice = Voice.find_or_create_by({max_for_live_voice_id: params[:id]})
+    puts "voice:#{voice}"
     current_audition = voice.current_audition
     if(current_audition.blank? || current_audition.start_onset_index.blank?)
       render(json: {})

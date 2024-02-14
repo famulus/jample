@@ -44,8 +44,7 @@ class CurrentPatch < ActiveRecord::Base
   end
 
   def self.get_current_filter_set
-    puts "\n\nbegin filter\n\n"
-
+    # puts "\n\nbegin filter\n\n"
     subset_search_string = CurrentPatch.last.subset_search_string
     if subset_search_string.blank? || subset_search_string == ''
       return Track.omit_empty_onsets.pluck(:id)
@@ -57,9 +56,9 @@ class CurrentPatch < ActiveRecord::Base
       subset_of_tracks = Track.omit_empty_onsets.mp3_search(subset_search_string).pluck(:id) # TODO: this line gets slow as the found set grows
     end
 
-    
+    puts subset_of_tracks
 
-    puts "\n\n\nend filter\n\n"
+    # puts "\n\n\nend filter\n\n"
     return subset_of_tracks
   end
 
