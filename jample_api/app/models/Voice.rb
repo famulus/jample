@@ -42,7 +42,7 @@ class Voice  < ActiveRecord::Base
       current_audition.save
       self.save 
       response = self.return_voice_hash()
-      ap response
+      puts response
     rescue => e
       debugger
     end
@@ -54,7 +54,7 @@ class Voice  < ActiveRecord::Base
   # def get_slice
   #   current_audition = self.current_audition
   #   response = self.return_voice_hash()
-  #   ap response
+  #   puts response
   #   return response
 
   # end
@@ -66,7 +66,7 @@ class Voice  < ActiveRecord::Base
       self.current_audition = current_audition
       self.save
       response = self.return_voice_hash()
-      ap response
+      puts response
       return response
 
     end
@@ -81,7 +81,7 @@ class Voice  < ActiveRecord::Base
       self.current_audition = current_audition
       self.save
       response = self.return_voice_hash()
-      ap response
+      puts response
       return response 
     end
     
