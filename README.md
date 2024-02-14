@@ -18,10 +18,10 @@ Jample slices every mp3 on your hard-drive in advance, so you can instantly shuf
 
 2) Install homebrew using instructions here: http://brew.sh/
 
+
 In terminal run the following commands:
 
 2) `brew install postgresql`
-
 
 5) `brew services start postgresql`
 
@@ -29,7 +29,7 @@ In terminal run the following commands:
 
 7) `git clone git@github.com:famulus/jample.git`
 
-8) `cd jample/jample`
+8) `cd jample/jample_api`
 
 9) `sudo gem install bundler`
 
@@ -52,6 +52,8 @@ In terminal run the following commands:
 
 ## React Client
 
+This part of the project runs in the browser and provides an interface for the database of samples.
+
 In a new terminal run the following commands from the jample folder:
 
 1) `cd jample_react`
@@ -62,7 +64,10 @@ In a new terminal run the following commands from the jample folder:
 
 4) JAMPLE!
 
+
 ## Max for Live
+
+The Max for live plugin run in Ableton, and loads random sample drops from the database
 
 1) Setup Max for live plugin in Ableton
 
