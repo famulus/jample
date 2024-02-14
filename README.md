@@ -1,10 +1,10 @@
 jample
 ======
 
-Jample lets a muscian rapidly discover and improvise samples from huge harddrives of music.
+Jample lets a musician rapidly discover and improvise samples from huge hard-drives of music.
 
 
-Jample slices every mp3 on your hardrive in advance, so you can instantly shuffle across huge music libraries searching for dopeness by ear. Samples always load on a beat or note. Once you find a dope sample, you can freeze it and continue to shuffly the remaining pads.
+Jample slices every mp3 on your hard-drive in advance, so you can instantly shuffle across huge music libraries searching for dopeness by ear. Samples always load on a beat or note. Once you find a dope sample, you can freeze it and continue to shuffle the remaining pads.
 
 
 
@@ -20,13 +20,10 @@ Jample slices every mp3 on your hardrive in advance, so you can instantly shuffl
 
 In terminal run the following commands:
 
-2) `brew tap mongodb/brew`
+2) `brew install postgresql`
 
-3) `brew install mongodb-community`
 
-4) `ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents`
-
-5) `launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist`
+5) `brew services start postgresql`
 
 6) `cd ~/Documents/`
 
@@ -38,7 +35,7 @@ In terminal run the following commands:
 
 10) `bundle install`
 
-11) `brew install aubio --with-python`
+11) `brew install aubio`
 
 12) `brew install ffmpeg`
 
@@ -46,23 +43,11 @@ In terminal run the following commands:
 
 14) `brew install youtube-dl`
 
-15) `rake import_tracks`
+15) `rake init`
 
-16) `rake init`
+16) `rake import_tracks`
 
 17) `rails server`
-
-18) download and install pure data extended: https://puredata.info/downloads/pd-extended
-
-TODO: fix hardcoded paths in jample.pd
-
-19) open pure data and setup midi and audio settings
-
-20) Is you midi hardware showing up in pure data?
-
-21) Are you able to hear sound coming from pure data?
-
-22) JAMPLE!
 
 
 ## React Client
@@ -76,6 +61,11 @@ In a new terminal run the following commands from the jample folder:
 3) open a brower window, visit http://localhost:3001/
 
 4) JAMPLE!
+
+## Max for Live
+
+1) Setup Max for live plugin in Ableton
+
 
 
 
