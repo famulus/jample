@@ -10,3 +10,4 @@ straigt_run.akai
 /ableton_live_songs
 /ableton_live_9_songs
 node_modules
+*.DS_Store
