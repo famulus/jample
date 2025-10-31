@@ -96,6 +96,11 @@ class Track  < ActiveRecord::Base
   end
 
 
+  def native_path_name
+    return self.path_and_file.gsub('host_music','Users/kark/Music/Swinsian')
+    
+  end
+
   def number_of_slices
     self.onset_count
   end

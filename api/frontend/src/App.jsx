@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-// import {  withStateMachine } from 'react-automata'
+import {  withStateMachine } from 'react-automata'
 import axios from 'axios';
 import { debounce } from "debounce";
-import LastImported from './LastImported';
+import LastImported from './LastImported.jsx';
 import DragAndDropWindow from './DragAndDropWindow';
 import FilteredTracks from './FilteredTracks';
 import YouTubeImport from './YouTubeImport';
@@ -149,4 +149,4 @@ class App extends React.Component {
   }
 }
 
-export default (App)
+export default withStateMachine(statechart)(App)

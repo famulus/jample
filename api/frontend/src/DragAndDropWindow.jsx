@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import DragAndDropAction from './DragAndDropAction'
+import DragAndDropAction from './DragAndDropAction.jsx'
 
 
 

@@ -44,13 +44,6 @@ export default class YouTubeImport extends React.Component {
   render() {
     return(
       <div>
-        <h2>Import Track from YouTube:</h2>
-
-        <input id="youtube-input"
-               className="youtube-input-field"
-               value={this.props.parentState.youTubeUrl}
-               onChange={this.props.debounceYoutubeUrl}
-               />
       </div>
     );
   }

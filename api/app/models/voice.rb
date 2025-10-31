@@ -44,7 +44,7 @@ class Voice  < ActiveRecord::Base
       response = self.return_voice_hash()
       puts response
     rescue => e
-      debugger
+      puts e
     end
 
     return response

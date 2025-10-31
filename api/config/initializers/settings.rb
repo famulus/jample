@@ -2,5 +2,6 @@
 PATCH_DIRECTORY = Rails.root.join('public', 'patch').to_s
 
 SOURCE_TRACKS = '/host_music'
+SOURCE_TRACKS_NATIVE = '/Users/kark/Music/Swinsian'
 
-YOUTUBE_SOURCE_TRACKS = '/Volumes/BIG_GUY/jample_youtube'
+YOUTUBE_SOURCE_TRACKS = '/host_music'
