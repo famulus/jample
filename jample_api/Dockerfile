@@ -1,24 +1,21 @@
-# Use the official Ruby image as a parent image
-FROM ruby:2.7
+# Dockerfile (excerpt)
+FROM ruby:3.3
 
-# Install dependencies
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+# OS deps: node, postgres client, aubio, python, audio decoders
+RUN apt-get update -qq && apt-get install -y --no-install-recommends \
+    nodejs postgresql-client \
+    python3 python3-pip \
+    aubio-tools python3-aubio \
+    ffmpeg libsndfile1 \
+  && rm -rf /var/lib/apt/lists/*
 
-# Set the working directory in the container
 WORKDIR /myapp
 
-# Copy the Gemfile and Gemfile.lock into the container
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
-
-# Install the Ruby gems
+# gem install steps (keep your current pattern)
+COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-# Copy the main application
-COPY . /myapp
+COPY . .
 
-# Expose the port the app runs on
 EXPOSE 3000
-
-# Configure the main process to run when running the image
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
