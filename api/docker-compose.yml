@@ -31,24 +31,25 @@ services:
       # PGPASSWORD: ${POSTGRES_PASSWORD}
       # PGDATABASE: ${POSTGRES_DB}
  
-  # React app (Vite on 5173; CRA on 3001—see notes below)
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     working_dir: /usr/src/app
-    command: ["npm", "run", "dev"]   # Vite
-    # command: ["npm", "start"]      # CRA
+    # Vite:
+    command: ["npm","run","dev"]
+    # CRA:
+    # command: ["npm","start"]
     volumes:
       - ./frontend:/usr/src/app
-      - /usr/src/app/node_modules    # keep deps inside container
+      - /usr/src/app/node_modules   # keep deps inside the container
     ports:
-      - "5173:5173"  # Vite default
-      # - "3001:3000"  # CRA default (host:container)
+      - "5173:5173"   # Vite default (browser hits http://localhost:5173)
+      # - "3001:3000" # CRA default (map container:3000 -> host:3001)
     environment:
       NODE_ENV: development
-      # Let the React app know where the API is:
+      # This is how the React container talks to Rails:
       VITE_API_URL: http://web:3000
-      # For CRA:
+      # For CRA instead:
       # REACT_APP_API_URL: http://web:3000
     depends_on: [web]

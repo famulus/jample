@@ -31,17 +31,3 @@ RUN chmod +x /usr/local/bin/docker-entrypoint
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
 
-
-# frontend/Dockerfile
-FROM node:20-alpine
-
-WORKDIR /usr/src/app
-
-# Install deps separately for cache
-COPY package*.json ./
-RUN npm ci || npm install
-
-# Bring in source (in dev the bind mount will override)
-COPY . .
-
-# Vite dev server (or CRA dev server) is started by compose `command`
