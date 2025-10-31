@@ -4,6 +4,7 @@ class CurrentPatch < ActiveRecord::Base
   def self.init
     if true #CurrentPatch.count != 1
       CurrentPatch.destroy_all
+      PatchSet.create
       CurrentPatch.create(patch_index:1, patch_set_id: PatchSet.last.id)
 
     end
@@ -26,6 +27,7 @@ class CurrentPatch < ActiveRecord::Base
   def self.get_current_patch
     patch_index = CurrentPatch.last.patch_index
     patch_set = CurrentPatch.get_current_patch_set
+    # WOW
     p = CurrentPatch.get_current_patch_set.patches.detect{|patch| patch.patch_index == patch_index}
 
     return p

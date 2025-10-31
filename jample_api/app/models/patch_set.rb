@@ -1,10 +1,9 @@
-class PatchSet
+class PatchSet < ApplicationRecord  # Rails 5+ prefers ApplicationRecord
 
   DURATION_IN_SLICES = 12
   NUMBER_OF_PADS = 16
 
-
-  has_many :patches, {:dependent => :destroy}
+  has_many :patches, dependent: :destroy, inverse_of: :patch_set
 
 
 

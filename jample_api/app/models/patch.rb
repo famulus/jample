@@ -5,9 +5,9 @@
 
   NUDGE_MILLISEC =  3
 
-  class Patch
-    include Mongoid::Document
-    include Mongoid::Timestamps::Created
+class Patch < ApplicationRecord
+    # include Mongoid::Document
+    # include Mongoid::Timestamps::Created
 
     field :patch_index, type: Integer
     field :track_id, type: String
@@ -21,7 +21,7 @@
     field :frozen, type: String, default: false
 
     belongs_to :track, index: true
-    belongs_to :patch_set, index: true
+  belongs_to :patch_set, inverse_of: :patches
 
     index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: false, drop_dups: false })
     # time = Benchmark.measure do
