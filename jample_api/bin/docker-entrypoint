@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Helpful output
+echo ">> docker-entrypoint: RAILS_ENV=${RAILS_ENV:-development}"
+
+# In dev containers, the bind mount can leave a stale PID lying around
+rm -f tmp/pids/server.pid 2>/dev/null || true
+
+# Ensure gems are present (fast when nothing changed)
+bundle check || bundle install
+
+# Prepare DB by default in dev/test; in prod you’ll typically run migrations separately
+if [[ "${RAILS_ENV:-development}" != "production" ]]; then
+  echo ">> db:prepare"
+  bin/rails db:prepare
+fi
+
+# Optional: clear log/tmp (comment out if you prefer)
+# bin/rails log:clear tmp:clear
+
+# Exec the container's main process (what Compose’s `command:` specifies)
+echo ">> exec: $*"
+exec "$@"

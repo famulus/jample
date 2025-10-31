@@ -2,7 +2,7 @@ class CurrentPatch < ActiveRecord::Base
 
 
   def self.init
-    if true #CurrentPatch.count != 1
+    if CurrentPatch.count != 1
       CurrentPatch.destroy_all
       PatchSet.create
       CurrentPatch.create(patch_index:1, patch_set_id: PatchSet.last.id)

@@ -1,21 +1,33 @@
-# Dockerfile (excerpt)
-FROM ruby:3.3
+# Dockerfile
+FROM ruby:3.4.7
 
-# OS deps: node, postgres client, aubio, python, audio decoders
+# Optional: speed up bundler a bit
+ENV BUNDLE_JOBS=4 BUNDLE_RETRY=3
+
+# OS deps: build tools for native gems, Postgres headers, Node (for JS runtime),
+# Python + aubio tools, audio decoders/codecs
 RUN apt-get update -qq && apt-get install -y --no-install-recommends \
-    nodejs postgresql-client \
+    build-essential pkg-config \
+    libpq-dev postgresql-client \
+    nodejs \
     python3 python3-pip \
     aubio-tools python3-aubio \
     ffmpeg libsndfile1 \
-  && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /myapp
 
-# gem install steps (keep your current pattern)
+# Install gems with proper caching
 COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
+
+
+# Bring in the app
 COPY . .
+COPY bin/docker-entrypoint /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
 
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+

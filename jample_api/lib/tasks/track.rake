@@ -4,8 +4,9 @@ end
 
 
 task :init => :environment do
-  # FileUtils.mkpath( PATCH_DIRECTORY)
-  CurrentPatch.create
+     
+  cp = CurrentPatch.create 
+  cp.set_current_patch (Patch.create)
   # CurrentPatch.init
 end
 
@@ -15,6 +16,5 @@ task :reset => :environment do
   Track.destroy_all
   Audition.destroy_all
   Voice.destroy_all
-
-  # CurrentPatch.init
+  CurrentPatch.init
 end
