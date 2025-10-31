@@ -1,3 +1,4 @@
+class Patch < ApplicationRecord
   include TimeHelpers
 
   #ONSET_MODE = :beat
@@ -5,27 +6,9 @@
 
   NUDGE_MILLISEC =  3
 
-class Patch < ApplicationRecord
-    # include Mongoid::Document
-    # include Mongoid::Timestamps::Created
 
-    field :patch_index, type: Integer
-    field :track_id, type: String
-    field :patch_set_id, type: String
-    field :start_onset_index, type: Integer
-    field :stop_onset_index, type: Integer
-    field :start_onset_time, type: String
-    field :stop_onset_time, type: String
-    field :voiced_count, type: Integer
-    field :volume, type: Float
-    field :frozen, type: String, default: false
-
-    belongs_to :track, index: true
-  belongs_to :patch_set, inverse_of: :patches
-
-    index({ track_id: 1,patch_set_id: 1, start_onset_index: 1, stop_onset_index: 1 }, { unique: false, drop_dups: false })
-    # time = Benchmark.measure do
-    # end ; puts "\n\n\n BENCHMARK \n\n\n#{time}\n\n\n BENCHMARK \n\n\n"
+    belongs_to :track
+    belongs_to :patch_set, inverse_of: :patches
 
 
 

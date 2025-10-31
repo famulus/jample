@@ -1,6 +1,4 @@
 class DurationIndex
-  include Mongoid::Document
-  include Mongoid::Timestamps::Created
   include TimeHelpers
 
   field :track_id, type: String

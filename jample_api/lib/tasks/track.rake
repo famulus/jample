@@ -5,8 +5,7 @@ end
 
 task :init => :environment do
      
-  cp = CurrentPatch.create 
-  cp.set_current_patch (Patch.create)
+   CurrentPatch.create 
   # CurrentPatch.init
 end
 

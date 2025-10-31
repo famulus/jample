@@ -11,9 +11,9 @@ class JampleController < ApplicationController
     @current_patch = CurrentPatch.get_current_patch
     @patch_set = CurrentPatch.get_current_patch_set
     @current_filter = CurrentPatch.last.subset_search_string
-    @named_patch_sets = PatchSet.where(:patch_set_label.ne => "", :patch_set_label.exists => true).reverse
+    @named_patch_sets = []
     @current_filter_size = CurrentPatch.get_current_filter_set.size
-    @recent_filters = FilterHistory.all.desc('_id').limit(20).uniq{|s|s.filter_value}[(0...4)]
+    @recent_filters = []
     # byebug
 
     @props_hash = {
