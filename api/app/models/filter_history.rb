@@ -1,0 +1,4 @@
+class FilterHistory
+
+
+end

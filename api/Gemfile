@@ -1,0 +1,46 @@
+source "https://rubygems.org"
+
+ruby "3.4.7"
+
+# Rails 8
+gem "rails", "~> 8.1.1"
+
+# Asset pipeline (keeping your existing Sprockets setup)
+gem "sprockets-rails"
+
+# Database: PostgreSQL
+gem "pg"
+
+# App/server/runtime
+gem "puma", ">= 5.0"
+gem "importmap-rails"
+gem "turbo-rails"
+gem "stimulus-rails"
+gem "jbuilder"
+
+# Timezone data (jruby only, keep as-is)
+gem "tzinfo-data", platforms: %i[jruby]
+
+# Boot speed
+gem "bootsnap", require: false
+
+# Your additional gems
+gem "mp3info"
+gem "rack-cors"
+gem "listen", "~> 3.5"
+gem "pg_search"
+
+group :development, :test do
+  gem "debug", platforms: %i[mri]
+end
+
+group :development do
+  gem "web-console"
+  # gem "rack-mini-profiler"
+  # gem "spring"
+end
+
+group :test do
+  gem "capybara"
+  gem "selenium-webdriver"
+end

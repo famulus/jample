@@ -1,0 +1,54 @@
+services:
+  db:
+    image: postgres:16-alpine
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+  web:
+    build: .
+    entrypoint: ["docker-entrypoint"]
+
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/myapp
+      - ${HOST_MUSIC_DIR}:${MUSIC_DIR}:ro
+
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      # Either rely on DATABASE_URL or your config/database.yml reading these:
+      DATABASE_URL: ${DATABASE_URL}
+      MUSIC_DIR: ${MUSIC_DIR}
+      # Or, if you prefer discrete vars in database.yml:
+      # PGHOST: db
+      # PGUSER: ${POSTGRES_USER}
+      # PGPASSWORD: ${POSTGRES_PASSWORD}
+      # PGDATABASE: ${POSTGRES_DB}
+ 
+  # React app (Vite on 5173; CRA on 3001—see notes below)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    working_dir: /usr/src/app
+    command: ["npm", "run", "dev"]   # Vite
+    # command: ["npm", "start"]      # CRA
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules    # keep deps inside container
+    ports:
+      - "5173:5173"  # Vite default
+      # - "3001:3000"  # CRA default (host:container)
+    environment:
+      NODE_ENV: development
+      # Let the React app know where the API is:
+      VITE_API_URL: http://web:3000
+      # For CRA:
+      # REACT_APP_API_URL: http://web:3000
+    depends_on: [web]
