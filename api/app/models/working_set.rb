@@ -1,7 +1,7 @@
 include TimeHelpers
 
 
-class WorkingSet
+class WorkingSet < ApplicationRecord
 
   field :tracks, type: Array
 

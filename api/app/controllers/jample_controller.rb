@@ -118,12 +118,12 @@ class JampleController < ApplicationController
     track.youtube_url = yt_video_info.information[:webpage_url]
     track.youtube_data = yt_video_info.information
     track.save
-    cp = CurrentPatch.last
-    cp.subset_search_string = track.id
-    cp.subset_search_string = '' if params[:filter_text]=="*"
-    cp.save
-    FilterHistory.create({filter_value: cp.subset_search_string })
-    puts "filter set to: #{cp.subset_search_string}"
+    currPatch = CurrentPatch.last
+    currPatch.subset_search_string = track.id
+    currPatch.subset_search_string = '' if params[:filter_text]=="*"
+    currPatch.save
+    FilterHistory.create({filter_value: currPatch.subset_search_string })
+    puts "filter set to: #{currPatch.subset_search_string}"
     @current_filter = CurrentPatch.last.subset_search_string
     @current_filter_size = CurrentPatch.get_current_filter_set.size
     render(json: {})
@@ -141,12 +141,12 @@ class JampleController < ApplicationController
     # track.youtube_url = yt_video_info.information[:webpage_url]
     # track.youtube_data = yt_video_info.information
     track.save
-    cp = CurrentPatch.last
-    cp.subset_search_string = track.id
-    cp.subset_search_string = '' if params[:filter_text]=="*"
-    cp.save
-    FilterHistory.create({filter_value: cp.subset_search_string })
-    puts "filter set to: #{cp.subset_search_string}"
+    currPatch = CurrentPatch.last
+    currPatch.subset_search_string = track.id
+    currPatch.subset_search_string = '' if params[:filter_text]=="*"
+    currPatch.save
+    FilterHistory.create({filter_value: currPatch.subset_search_string })
+    puts "filter set to: #{currPatch.subset_search_string}"
     @current_filter = CurrentPatch.last.subset_search_string
     @current_filter_size = CurrentPatch.get_current_filter_set.size
     render(json: {})
@@ -175,14 +175,14 @@ class JampleController < ApplicationController
 
 
   def set_filter
-    cp = CurrentPatch.last
-    cp.subset_search_string = params[:filter_text]
-    cp.subset_search_string = '' if params[:filter_text]=="*"
-    puts  cp.subset_search_string 
-    cp.save
-    # FilterHistory.create({filter_value: cp.subset_search_string })
+    currPatch = CurrentPatch.last
+    currPatch.subset_search_string = params[:filter_text]
+    currPatch.subset_search_string = '' if params[:filter_text]=="*"
+    puts  currPatch.subset_search_string 
+    currPatch.save
+    # FilterHistory.create({filter_value: currPatch.subset_search_string })
 
-    puts "filter set to: #{cp.subset_search_string}"
+    puts "filter set to: #{currPatch.subset_search_string}"
     @current_filter = CurrentPatch.last.subset_search_string
     @current_filter_size = CurrentPatch.get_current_filter_set.size
     @filter_set_tracks = CurrentPatch.get_current_filter_set[0..15].map{|track_id| Track.find(track_id)}

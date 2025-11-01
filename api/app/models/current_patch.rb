@@ -1,4 +1,4 @@
-class CurrentPatch < ActiveRecord::Base
+class CurrentPatch < ApplicationRecord
 
 
   def self.init

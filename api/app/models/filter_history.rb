@@ -1,4 +1,4 @@
-class FilterHistory
+class FilterHistory < ApplicationRecord
 
 
 end

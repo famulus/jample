@@ -1,11 +1,11 @@
-class Track  < ActiveRecord::Base
+class Track  < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :mp3_search, against: :mp3_tag
 
 
   scope :omit_empty_onsets, -> { 
     where("onset_times != '{}' ").
-    where(track_missing: false).
+    # where(track_missing: false)
     where("onset_count > ?", 20).
     where("onset_count IS NOT NULL")
 

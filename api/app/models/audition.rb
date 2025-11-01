@@ -2,7 +2,7 @@
 
   NUDGE_MILLISEC =  3
 
-  class Audition < ActiveRecord::Base
+  class Audition < ApplicationRecord
 
 
     belongs_to :track, optional: true,autosave: true

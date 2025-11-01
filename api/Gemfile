@@ -31,7 +31,7 @@ gem "listen", "~> 3.5"
 gem "pg_search"
 
 group :development, :test do
-  gem "debug", platforms: %i[mri]
+  gem "debug"   # Ruby’s official debugger
 end
 
 group :development do

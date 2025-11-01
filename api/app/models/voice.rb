@@ -1,5 +1,5 @@
 include TimeHelpers
-class Voice  < ActiveRecord::Base
+class Voice   < ApplicationRecord
 
 
   DURATION_IN_SLICES = 20
