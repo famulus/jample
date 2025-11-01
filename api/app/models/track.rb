@@ -96,10 +96,7 @@ class Track  < ActiveRecord::Base
   end
 
 
-  def native_path_name
-    return self.path_and_file.gsub('host_music','Users/kark/Music/Swinsian')
-    
-  end
+
 
   def number_of_slices
     self.onset_count
@@ -136,6 +133,11 @@ class Track  < ActiveRecord::Base
 
   def escaped_path_and_file
     Shellwords.escape(path_and_file)
+  end
+
+  def native_path_name
+    return  Shellwords.escape(path_and_file.gsub('host_music','Users/kark/Music/Swinsian'))
+    
   end
 
   def track_name_pretty

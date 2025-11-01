@@ -93,6 +93,8 @@ class Voice  < ActiveRecord::Base
     response = {
       track_id: current_audition.track.id.to_s,
       track_path: current_audition.track.escaped_path_and_file,
+      native_path_name: current_audition.track.native_path_name,
+      
       title: current_audition.track.title || "NA",
       artist: current_audition.track.artist || "NA",
       album: current_audition.track.album || "NA",

@@ -14,7 +14,6 @@ class JampleController < ApplicationController
     @named_patch_sets = []
     @current_filter_size = CurrentPatch.get_current_filter_set.size
     @recent_filters = []
-    # byebug
 
     @props_hash = {
       current_patch: @current_patch,
@@ -94,7 +93,6 @@ class JampleController < ApplicationController
       voice.save
     end
     response = voice.return_voice_hash
-    ap response
     render(json: response)
   end
 
@@ -123,7 +121,6 @@ class JampleController < ApplicationController
     cp = CurrentPatch.last
     cp.subset_search_string = track.id
     cp.subset_search_string = '' if params[:filter_text]=="*"
-    # byebug
     cp.save
     FilterHistory.create({filter_value: cp.subset_search_string })
     puts "filter set to: #{cp.subset_search_string}"
@@ -147,7 +144,6 @@ class JampleController < ApplicationController
     cp = CurrentPatch.last
     cp.subset_search_string = track.id
     cp.subset_search_string = '' if params[:filter_text]=="*"
-    # byebug
     cp.save
     FilterHistory.create({filter_value: cp.subset_search_string })
     puts "filter set to: #{cp.subset_search_string}"
@@ -173,7 +169,7 @@ class JampleController < ApplicationController
   # orders tracks by "most recent", limit 15
   def get_recent_tracks
     tracks = Track.order(created_at: :desc).limit(15)
-    # debugger
+    
     render(json: tracks)
   end
 
@@ -182,14 +178,13 @@ class JampleController < ApplicationController
     cp = CurrentPatch.last
     cp.subset_search_string = params[:filter_text]
     cp.subset_search_string = '' if params[:filter_text]=="*"
-    # byebug
+    puts  cp.subset_search_string 
     cp.save
     # FilterHistory.create({filter_value: cp.subset_search_string })
 
     puts "filter set to: #{cp.subset_search_string}"
     @current_filter = CurrentPatch.last.subset_search_string
     @current_filter_size = CurrentPatch.get_current_filter_set.size
-    # byebug
     @filter_set_tracks = CurrentPatch.get_current_filter_set[0..15].map{|track_id| Track.find(track_id)}
     render(json: {current_filter: @current_filter, current_filter_size: @current_filter_size, filter_set_tracks: @filter_set_tracks})
   end
