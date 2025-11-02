@@ -17,7 +17,7 @@ class Track  < ApplicationRecord
     # track_list_string = `find ~/  -name *.mp3`
     # if system("mount|grep /BIG_GUY").present?
     if true
-      track_list_string += `find #{SOURCE_TRACKS}  -name *.mp3`
+      track_list_string += `find #{MUSIC_DIR}  -name *.mp3`
     else
       raise "Main song harddrive missing"
     end
@@ -136,7 +136,7 @@ class Track  < ApplicationRecord
   end
 
   def native_path_name
-    return  Shellwords.escape(path_and_file.gsub(SOURCE_TRACKS,SOURCE_TRACKS_NATIVE))
+    return  Shellwords.escape(path_and_file.gsub(MUSIC_DIR,HOST_MUSIC_DIR))
     
   end
 

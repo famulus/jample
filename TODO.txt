@@ -4,3 +4,4 @@ remove hardcoded references in maxmsp
 
 update maxmsp device in repo
 
+what about bindings

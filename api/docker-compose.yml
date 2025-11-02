@@ -30,7 +30,8 @@ services:
       # PGUSER: ${POSTGRES_USER}
       # PGPASSWORD: ${POSTGRES_PASSWORD}
       # PGDATABASE: ${POSTGRES_DB}
- 
+    env_file:
+      - .env
   frontend:
     build:
       context: ./frontend
@@ -53,3 +54,5 @@ services:
       # For CRA instead:
       # REACT_APP_API_URL: http://web:3000
     depends_on: [web]
+    env_file:
+      - .env
