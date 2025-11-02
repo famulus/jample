@@ -136,7 +136,7 @@ class Track  < ApplicationRecord
   end
 
   def native_path_name
-    return  Shellwords.escape(path_and_file.gsub('host_music','Users/kark/Music/Swinsian'))
+    return  Shellwords.escape(path_and_file.gsub(SOURCE_TRACKS,SOURCE_TRACKS_NATIVE))
     
   end
 
