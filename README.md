@@ -1,4 +1,4 @@
-# Jampler API + Frontend
+# Jample API + Frontend
 
 A full-stack Dockerized development environment for **Rails 7.1 (API mode)** and **React (Vite)**, backed by **PostgreSQL**.  
 This setup provides hot-reloading for both the Rails API and the React frontend, while remaining production-deployable with minimal changes.
@@ -31,8 +31,8 @@ Make sure you have these installed on your local machine:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourname/jampler.git
-cd jampler
+git clone https://github.com/famulus/jample.git
+cd jample
 ```
 
 ### 2. Environment variables
@@ -42,7 +42,7 @@ Create a `.env` file at the project root (same level as `docker-compose.yml`):
 ```bash
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
-POSTGRES_DB=jampler_development
+POSTGRES_DB=jample_development
 RAILS_ENV=development
 VITE_API_URL=http://localhost:3000
 ```
