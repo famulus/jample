@@ -1,76 +1,182 @@
-jample
-======
+# Jampler API + Frontend
 
-Jample lets a musician rapidly discover and improvise samples from huge hard-drives of music.
+A full-stack Dockerized development environment for **Rails 7.1 (API mode)** and **React (Vite)**, backed by **PostgreSQL**.  
+This setup provides hot-reloading for both the Rails API and the React frontend, while remaining production-deployable with minimal changes.
 
+---
 
-Jample slices every mp3 on your hard-drive in advance, so you can instantly shuffle across huge music libraries searching for dopeness by ear. Samples always load on a beat or note. Once you find a dope sample, you can freeze it and continue to shuffle the remaining pads.
+## 🧱 Project Overview
 
+| Service | Description | Port |
+|----------|--------------|------|
+| `web` | Ruby on Rails 7.1 API | `3000` |
+| `frontend` | React + Vite app | `5173` |
+| `db` | PostgreSQL 15 | `5432` |
 
+---
 
+## 🚀 Prerequisites
 
+Make sure you have these installed on your local machine:
 
+- **Docker** ≥ 20.x  
+- **Docker Compose** ≥ 2.x  
+- **Git**
+- Optional: **VS Code** with Docker and Ruby extensions
 
+---
 
-## INSTALL Rails Server for MAC
+## ⚙️ Environment Setup
 
-1) Install Xcode
+### 1. Clone the repository
 
-2) Install homebrew using instructions here: http://brew.sh/
+```bash
+git clone https://github.com/yourname/jampler.git
+cd jampler
+```
 
+### 2. Environment variables
 
-In terminal run the following commands:
+Create a `.env` file at the project root (same level as `docker-compose.yml`):
 
-2) `brew install postgresql`
+```bash
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=jampler_development
+RAILS_ENV=development
+VITE_API_URL=http://localhost:3000
+```
 
-5) `brew services start postgresql`
+*(If you change credentials, update them in `config/database.yml` as well.)*
 
-6) `cd ~/Documents/`
+---
 
-7) `git clone git@github.com:famulus/jample.git`
+## 🧩 Build and Run
 
-8) `cd jample/jample_api`
+### 1. Build images
+Run once (or after Dockerfile/Gemfile/package.json changes):
+```bash
+docker compose build
+```
 
-9) `sudo gem install bundler`
+### 2. Start the full stack
+```bash
+docker compose up
+```
 
-10) `bundle install`
+- Rails API: [http://localhost:3000](http://localhost:3000)  
+- React frontend: [http://localhost:5173](http://localhost:5173)
 
-11) `brew install aubio`
+Both support live reload in development mode.
 
-12) `brew install ffmpeg`
+---
 
-13) `brew install MP3SPLT`
+## 💾 Database Setup
 
-14) `brew install youtube-dl`
+Once containers are up:
+```bash
+docker compose exec web bash -lc 'bin/rails db:setup'
+```
 
-15) `rake init`
+If you reset the database:
+```bash
+docker compose exec web bash -lc 'bin/rails db:drop db:create db:migrate'
+```
 
-16) `rake import_tracks`
+---
 
-17) `rails server`
+## 🧪 Running Tests
 
+```bash
+docker compose exec web bash -lc 'bundle exec rspec'
+```
 
-## React Client
+---
 
-This part of the project runs in the browser and provides an interface for the database of samples.
+## 🧰 Useful Commands
 
-In a new terminal run the following commands from the jample folder:
+### Rails
 
-1) `cd jample_react`
+```bash
+docker compose exec web bash                # open a shell
+docker compose exec web rails c             # open Rails console
+docker compose exec web bash -lc 'rails s'  # run server manually
+docker compose logs -f web                  # tail Rails logs
+```
 
-2) `npm start`
+### Frontend
 
-3) open a brower window, visit http://localhost:3001/
+```bash
+docker compose exec frontend sh             # open frontend shell
+docker compose exec frontend npm run dev    # run Vite dev server manually
+docker compose logs -f frontend             # tail Vite logs
+```
 
-4) JAMPLE!
+---
 
+## 🐞 Debugging Rails inside Docker
 
-## Max for Live
+### Quick breakpoints
+Insert in your Rails code:
+```ruby
+binding.break
+```
 
-The Max for live plugin run in Ableton, and loads random sample drops from the database
+Then attach interactively:
+```bash
+docker compose exec -it web bash -lc 'bundle exec rails s -b 0.0.0.0 -p 3000'
+```
 
-1) Setup Max for live plugin in Ableton
+### Remote debugger
+Expose port `12345` in `docker-compose.yml`:
+```yaml
+ports:
+  - "12345:12345"
+```
+Then start the server with:
+```bash
+docker compose exec web bash -lc 'rdbg --open --port 12345 -- bundle exec rails s'
+```
+Attach from your host:
+```bash
+rdbg -A tcp://localhost:12345
+```
 
+---
 
+## ⚡️ Common Tasks
 
+| Task | Command |
+|------|----------|
+| Start all services | `docker compose up` |
+| Stop services | `docker compose down` |
+| Rebuild containers | `docker compose up --build` |
+| Restart Rails only | `docker compose restart web` |
+| Tail all logs | `docker compose logs -f` |
+| Clean up unused images | `docker system prune -af` |
 
+---
+
+## 🧹 Troubleshooting
+
+- **Port 3000 already in use:**  
+  ```bash
+  lsof -nP -iTCP:3000 -sTCP:LISTEN
+  ```
+  Kill the process or change the port in `docker-compose.yml`.
+
+- **Frontend not reachable:**  
+  Check that `VITE_API_URL` matches your Rails service hostname (`http://localhost:3000` in dev).
+
+- **Gem or package added but not picked up:**  
+  ```bash
+  docker compose build web      # for Gemfile updates
+  docker compose build frontend # for npm/package.json updates
+  ```
+
+---
+
+## 🧾 License
+
+MIT © 2025 Your Name  
+Feel free to modify, extend, and adapt this setup for your own projects.
